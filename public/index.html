@@ -36,6 +36,7 @@
       max-width: 90vw;
       background-color: #ddd;
       margin: 0 auto;
+      touch-action: manipulation;
     }
 
     .grid-cell {
@@ -262,18 +263,23 @@
 
     
     gridContainer.addEventListener("touchstart", (event) => {
+        event.preventDefault(); 
         const touch = event.touches[0];
         const cell = document.elementFromPoint(touch.clientX, touch.clientY);
         startDrag(cell);
-    }, { passive: true });
+    }, { passive: false });
 
     gridContainer.addEventListener("touchmove", (event) => {
+        event.preventDefault();
         const touch = event.touches[0];
         const cell = document.elementFromPoint(touch.clientX, touch.clientY);
         dragOver(cell);
-    }, { passive: true });
+    }, { passive: false });
 
-    gridContainer.addEventListener("touchend", stopDrag);
+    gridContainer.addEventListener("touchend", (event) => {
+        event.preventDefault();
+        stopDrag();
+    }, { passive: false });
 
 
     
