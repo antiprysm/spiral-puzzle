@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spiral Word Puzzle</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      background-image: url('/img/spiral-bg.jpg');
+      background-position: center;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    .container {
+        padding: 2vw 0 2vw 0;
+        text-align: center;
+        width: 78%;
+        max-width: 80%;
+        height: auto;
+    }
+
+    #game-grid {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 2px;
+      width: 80%;
+      height: auto;
+      max-width: 90vw;
+      background-color: #ddd;
+      margin: 0 auto;
+    }
+
+    .grid-cell {
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: calc(2vmin); /* Dynamically scales based on viewport */
+      font-weight: bold;
+      aspect-ratio: 1 / 1; /* Ensures square shape */
+      user-select: none;
+    }
+
+    .grid-cell.selected {
+      background-color: #ffeb3b;
+    }
+
+    .subtitle {
+      font-size: calc(1.5vmin);
+      color: #555;
+      background-color: #eee;
+    }
+
+    .text-shadow {
+        text-shadow: 2px 2px 4px rgba(237, 211, 196, 0.5);
+    }
+
+    .message-bubble {
+        background-color: white;
+        border-radius: 20px;
+        padding: 10px 20px;
+        box-shadow: 0 4px 6px rgba(237, 211, 196, 0.5);
+        color: #080708;
+        max-width: 400px;
+        margin: 10px auto;
+        text-align: center;
+    }
+
+    .score {
+      font-size: calc(1.5vmin);
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center mb-2 text-shadow">Spiral Word Puzzle</h1>
+    <p class="subtitle mx-auto w-50">Current Word: <span id="word-key"></span></p>
+    <div id="game-grid"></div>
+    <p id="message" class="mt-3"></p>
+    <p class="score text-shadow">Score: <span id="score">0</span></p>
+    <p class="instructions">Click and Drag to make your selection in one stroke</p>
+  </div>
+
+  <script>
+    const gridSize = 10;
+    let wordIndex = 0;
+    let score = 0; // Initialize score
+    const wordList = ["HAMBURGER", "FLUMMOXED", "SWIZZLING", "JUKEBOXES", "BLACKJACK", "QUANTIZED", "JAWBONING",
+    "ZOMBIFIED", "JELLYFISH", "JUMPSHOTS", "ACQUAINTANCESHIP", "COUNTERREACTIONS", "DIABOLICALNESSES", "ANTHROPOMORPHISM"]; // Example word list
+    let word = wordList[wordIndex]; // Current word
+    
+    document.getElementById("word-key").textContent = word;
+    document.getElementById("score").textContent = score; // Display initial score
+
+    // Function to get a random start position
+    function getRandomStart() {
+      const positions = ['tl', 'tr', 'bl', 'br'];
+      const randomIndex = Math.floor(Math.random() * positions.length);
+      return positions[randomIndex];
+    }
+
+    // Function to randomly select 'true' or 'false' for the reversed parameter
+    function getRandomReversed() {
+        return Math.random() < 0.5;  // Returns true or false with equal probability
+    }
+
+    const start = getRandomStart(); // Spiral start position
+    const reversed = getRandomReversed();
+
+    // Generate and display the grid
+    const gridContainer = document.getElementById("game-grid");
+    let grid = imposeSpiral(gridSize, word, start);
+
+    function generateGrid() {
+      const start = getRandomStart(); // Spiral start position
+      grid = imposeSpiral(gridSize, word, start);
+      gridContainer.innerHTML = ''; // Clear previous grid
+      grid.forEach((row, rowIndex) => {
+        row.forEach((cell, colIndex) => {
+          const div = document.createElement("div");
+          div.classList.add("grid-cell");
+          div.dataset.row = rowIndex;
+          div.dataset.col = colIndex;
+          div.textContent = cell;
+          gridContainer.appendChild(div);
+        });
+      });
+    }
+
+    generateGrid();
+
+    const successSound = new Audio('audio/mixkit-game-ball-tap-2073.wav');
+
+    // Ensure audio is ready before attempting to play
+    successSound.addEventListener('canplaythrough', () => {
+        console.log('Audio is ready to play');
+    }, false);
+
+    function playSound() {
+        successSound.play();
+    }
+
+
+    const selectedCells = [];
+
+    let isDragging = false;
+
+    // Function to generate unique color based on the word length
+    function generateColor(word) {
+        const wordLength = word.length;
+        const saturation = 70;  // Saturation between 0-100
+        const lightness = 80;   // Lightness between 0-100
+        const hue = (wordLength * 137) % 360;  // 137 is a prime number for unique distribution
+        return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+    }
+
+    let currentRainbowIndex = 0; // To keep track of which color to use next
+
+    // Add event listeners for mouse drag
+    gridContainer.addEventListener("mousedown", (event) => {
+    const cell = event.target;
+    if (cell.classList.contains("grid-cell")) {
+        isDragging = true;
+        selectedCells.length = 0; // Clear selected cells when a new drag starts
+        cell.classList.add("selected");
+        
+        // Get the current word length for color generation
+        const selectedWord = selectedCells.map(cell => cell.letter).join("");
+        const color = generateColor(selectedWord);
+        cell.style.backgroundColor = color;
+
+        selectedCells.push({ row: cell.dataset.row, col: cell.dataset.col, letter: cell.textContent });
+    }
+    });
+
+    gridContainer.addEventListener("mouseover", (event) => {
+    if (isDragging) {
+        const cell = event.target;
+        if (cell.classList.contains("grid-cell") && !cell.classList.contains("selected")) {
+        cell.classList.add("selected");
+
+        // Get the current word length for color generation
+        const selectedWord = selectedCells.map(cell => cell.letter).join("");
+        const color = generateColor(selectedWord);
+        cell.style.backgroundColor = color;
+
+        selectedCells.push({ row: cell.dataset.row, col: cell.dataset.col, letter: cell.textContent });
+        }
+    }
+    });
+
+    gridContainer.addEventListener("mouseup", () => {
+    isDragging = false;
+    const selectedWord = selectedCells.map(cell => cell.letter).join("");
+    const message = document.getElementById("message");
+
+    // Play sound on mouseup
+    playSound();  // Play the sound
+
+    if (selectedWord === word) {
+        message.textContent = "Congratulations! You found the word!";
+        message.className = "text-success message-bubble";
+        
+        // Increase the score by 100
+        score += 100;
+        document.getElementById("score").textContent = score;
+
+        // Start over with the next word in the list
+        wordIndex = (wordIndex + 1) % wordList.length;
+        word = wordList[wordIndex];
+        document.getElementById("word-key").textContent = word;
+        selectedCells.length = 0; // Reset selected cells
+        generateGrid(); // Generate new grid with new word
+
+        // Clear the congratulatory message after 5 seconds
+        setTimeout(() => {
+        message.textContent = '';
+        message.className = "";
+        }, 5000);
+    } else {
+        message.textContent = "Try again. Keep looking!";
+        message.className = "text-danger message-bubble";
+
+        // Reset the selection colors
+        document.querySelectorAll(".grid-cell").forEach(cell => {
+        cell.classList.remove("selected");
+        cell.style.backgroundColor = "#ffffff"; // Reset color to default
+        });
+        selectedCells.length = 0; // Clear selected cells
+        setTimeout(() => {
+            message.textContent = '';
+            message.className = '';
+        }, 5000)
+    }
+    });
+
+
+    // Spiral generation functions (from earlier implementation)
+    function imposeSpiral(gridSize, word, start) {
+      const reversed = getRandomReversed();
+      const grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(''));
+      const n = Math.ceil(Math.sqrt(word.length));
+      const spiralWordGrid = spiral(word, start, reversed);
+
+      const maxStart = gridSize - n;
+      const startRow = Math.floor(Math.random() * (maxStart + 1));
+      const startCol = Math.floor(Math.random() * (maxStart + 1));
+
+      for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+          if (spiralWordGrid[i] && spiralWordGrid[i][j]) {
+            grid[startRow + i][startCol + j] = spiralWordGrid[i][j];
+          }
+        }
+      }
+
+      const randomLetters = word.split('').sort(() => Math.random() - 0.5);
+      let randomIndex = 0;
+      for (let i = 0; i < gridSize; i++) {
+        for (let j = 0; j < gridSize; j++) {
+          if (grid[i][j] === '') {
+            grid[i][j] = randomLetters[randomIndex % randomLetters.length];
+            randomIndex++;
+          }
+        }
+      }
+
+      return grid;
+    }
+
+    function spiral(word, start, reversed) {
+      const n = Math.ceil(Math.sqrt(word.length)); // Determine the size of the grid
+      const grid = Array.from({ length: n }, () => Array(n).fill(''));
+      let left = 0, right = n - 1, top = 0, bottom = n - 1;
+      let index = reversed ? word.length - 1 : 0;
+      const increment = reversed ? -1 : 1;
+
+      while (left <= right && top <= bottom) {
+          if (start === "tl") {
+              // Start from top-left
+              for (let i = left; i <= right && (index >= 0 && index < word.length); i++) {
+                  grid[top][i] = word[index];
+                  index += increment;
+              }
+              top++;
+              for (let i = top; i <= bottom && (index >= 0 && index < word.length); i++) {
+                  grid[i][right] = word[index];
+                  index += increment;
+              }
+              right--;
+              for (let i = right; i >= left && (index >= 0 && index < word.length); i--) {
+                  grid[bottom][i] = word[index];
+                  index += increment;
+              }
+              bottom--;
+              for (let i = bottom; i >= top && (index >= 0 && index < word.length); i--) {
+                  grid[i][left] = word[index];
+                  index += increment;
+              }
+              left++;
+          } else if (start === "tr") {
+              // Start from top-right
+              for (let i = right; i >= left && (index >= 0 && index < word.length); i--) {
+                  grid[top][i] = word[index];
+                  index += increment;
+              }
+              top++;
+              for (let i = top; i <= bottom && (index >= 0 && index < word.length); i++) {
+                  grid[i][left] = word[index];
+                  index += increment;
+              }
+              left++;
+              for (let i = left; i <= right && (index >= 0 && index < word.length); i++) {
+                  grid[bottom][i] = word[index];
+                  index += increment;
+              }
+              bottom--;
+              for (let i = bottom; i >= top && (index >= 0 && index < word.length); i--) {
+                  grid[i][right] = word[index];
+                  index += increment;
+              }
+              right--;
+          } else if (start === "bl") {
+              // Start from bottom-left
+              for (let i = left; i <= right && (index >= 0 && index < word.length); i++) {
+                  grid[bottom][i] = word[index];
+                  index += increment;
+              }
+              bottom--;
+              for (let i = bottom; i >= top && (index >= 0 && index < word.length); i--) {
+                  grid[i][right] = word[index];
+                  index += increment;
+              }
+              right--;
+              for (let i = right; i >= left && (index >= 0 && index < word.length); i--) {
+                  grid[top][i] = word[index];
+                  index += increment;
+              }
+              top++;
+              for (let i = top; i <= bottom && (index >= 0 && index < word.length); i++) {
+                  grid[i][left] = word[index];
+                  index += increment;
+              }
+              left++;
+          } else if (start === "br") {
+              // Start from bottom-right
+              for (let i = right; i >= left && (index >= 0 && index < word.length); i--) {
+                  grid[bottom][i] = word[index];
+                  index += increment;
+              }
+              bottom--;
+              for (let i = bottom; i >= top && (index >= 0 && index < word.length); i--) {
+                  grid[i][left] = word[index];
+                  index += increment;
+              }
+              left++;
+              for (let i = left; i <= right && (index >= 0 && index < word.length); i++) {
+                  grid[top][i] = word[index];
+                  index += increment;
+              }
+              top++;
+              for (let i = top; i <= bottom && (index >= 0 && index < word.length); i++) {
+                  grid[i][right] = word[index];
+                  index += increment;
+              }
+              right--;
+          }
+      }
+      return grid;
+  }
+  </script>
+</body>
+</html>
