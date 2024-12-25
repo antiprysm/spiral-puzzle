@@ -310,12 +310,11 @@
       }
 
       const randomLetters = word.split('').sort(() => Math.random() - 0.5);
-      let randomIndex = 0;
       for (let i = 0; i < gridSize; i++) {
         for (let j = 0; j < gridSize; j++) {
           if (grid[i][j] === '') {
-            grid[i][j] = randomLetters[randomIndex % randomLetters.length];
-            randomIndex++;
+            let randomIndex = Math.floor(Math.random() * randomLetters.length);
+            grid[i][j] = randomLetters[randomIndex];
           }
         }
       }
