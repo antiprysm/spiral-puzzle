@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="dedication" content="To my wonderful mother, with endless love and gratitude. You are my sanctuary.">
   <title>Spiral Word Puzzle</title>
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
@@ -109,12 +110,11 @@
     }
 
     // Function to randomly select 'true' or 'false' for the reversed parameter
-    function getRandomReversed() {
+    function getRandomBoolean() {
         return Math.random() < 0.5;  // Returns true or false with equal probability
     }
 
     const start = getRandomStart(); // Spiral start position
-    const reversed = getRandomReversed();
 
     // Generate and display the grid
     const gridContainer = document.getElementById("game-grid");
@@ -139,11 +139,6 @@
     generateGrid();
 
     const successSound = new Audio('audio/mixkit-game-ball-tap-2073.wav');
-
-    // Ensure audio is ready before attempting to play
-    successSound.addEventListener('canplaythrough', () => {
-        console.log('Audio is ready to play');
-    }, false);
 
     function playSound() {
         successSound.play();
@@ -246,10 +241,11 @@
 
     // Spiral generation functions (from earlier implementation)
     function imposeSpiral(gridSize, word, start) {
-      const reversed = getRandomReversed();
+      const reversed = getRandomBoolean();
+      const rotation = getRandomBoolean();
       const grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(''));
       const n = Math.ceil(Math.sqrt(word.length));
-      const spiralWordGrid = spiral(word, start, reversed);
+      const spiralWordGrid = spiral(word, start, reversed, rotation);
 
       const maxStart = gridSize - n;
       const startRow = Math.floor(Math.random() * (maxStart + 1));
@@ -277,106 +273,204 @@
       return grid;
     }
 
-    function spiral(word, start, reversed) {
-      const n = Math.ceil(Math.sqrt(word.length)); // Determine the size of the grid
-      const grid = Array.from({ length: n }, () => Array(n).fill(''));
-      let left = 0, right = n - 1, top = 0, bottom = n - 1;
-      let index = reversed ? word.length - 1 : 0;
-      const increment = reversed ? -1 : 1;
+    function spiral(word, start, reversed, clockwise) {
+    const n = Math.ceil(Math.sqrt(word.length)); // Determine the size of the grid
+    const grid = Array.from({ length: n }, () => Array(n).fill(''));
+    let left = 0, right = n - 1, top = 0, bottom = n - 1;
+    let index = reversed ? word.length - 1 : 0;
+    const increment = reversed ? -1 : 1;
 
-      while (left <= right && top <= bottom) {
-          if (start === "tl") {
-              // Start from top-left
-              for (let i = left; i <= right && (index >= 0 && index < word.length); i++) {
-                  grid[top][i] = word[index];
-                  index += increment;
-              }
-              top++;
-              for (let i = top; i <= bottom && (index >= 0 && index < word.length); i++) {
-                  grid[i][right] = word[index];
-                  index += increment;
-              }
-              right--;
-              for (let i = right; i >= left && (index >= 0 && index < word.length); i--) {
-                  grid[bottom][i] = word[index];
-                  index += increment;
-              }
-              bottom--;
-              for (let i = bottom; i >= top && (index >= 0 && index < word.length); i--) {
-                  grid[i][left] = word[index];
-                  index += increment;
-              }
-              left++;
-          } else if (start === "tr") {
-              // Start from top-right
-              for (let i = right; i >= left && (index >= 0 && index < word.length); i--) {
-                  grid[top][i] = word[index];
-                  index += increment;
-              }
-              top++;
-              for (let i = top; i <= bottom && (index >= 0 && index < word.length); i++) {
-                  grid[i][left] = word[index];
-                  index += increment;
-              }
-              left++;
-              for (let i = left; i <= right && (index >= 0 && index < word.length); i++) {
-                  grid[bottom][i] = word[index];
-                  index += increment;
-              }
-              bottom--;
-              for (let i = bottom; i >= top && (index >= 0 && index < word.length); i--) {
-                  grid[i][right] = word[index];
-                  index += increment;
-              }
-              right--;
-          } else if (start === "bl") {
-              // Start from bottom-left
-              for (let i = left; i <= right && (index >= 0 && index < word.length); i++) {
-                  grid[bottom][i] = word[index];
-                  index += increment;
-              }
-              bottom--;
-              for (let i = bottom; i >= top && (index >= 0 && index < word.length); i--) {
-                  grid[i][right] = word[index];
-                  index += increment;
-              }
-              right--;
-              for (let i = right; i >= left && (index >= 0 && index < word.length); i--) {
-                  grid[top][i] = word[index];
-                  index += increment;
-              }
-              top++;
-              for (let i = top; i <= bottom && (index >= 0 && index < word.length); i++) {
-                  grid[i][left] = word[index];
-                  index += increment;
-              }
-              left++;
-          } else if (start === "br") {
-              // Start from bottom-right
-              for (let i = right; i >= left && (index >= 0 && index < word.length); i--) {
-                  grid[bottom][i] = word[index];
-                  index += increment;
-              }
-              bottom--;
-              for (let i = bottom; i >= top && (index >= 0 && index < word.length); i--) {
-                  grid[i][left] = word[index];
-                  index += increment;
-              }
-              left++;
-              for (let i = left; i <= right && (index >= 0 && index < word.length); i++) {
-                  grid[top][i] = word[index];
-                  index += increment;
-              }
-              top++;
-              for (let i = top; i <= bottom && (index >= 0 && index < word.length); i++) {
-                  grid[i][right] = word[index];
-                  index += increment;
-              }
-              right--;
-          }
-      }
-      return grid;
-  }
+    while (left <= right && top <= bottom) {
+        if (start === "tl") {
+            // Start from top-left
+            if (clockwise) {
+                for (let i = left; i <= right && index >= 0 && index < word.length; i++) {
+                    grid[top][i] = word[index];
+                    index += increment;
+                }
+                top++;
+                for (let i = top; i <= bottom && index >= 0 && index < word.length; i++) {
+                    grid[i][right] = word[index];
+                    index += increment;
+                }
+                right--;
+                for (let i = right; i >= left && index >= 0 && index < word.length; i--) {
+                    grid[bottom][i] = word[index];
+                    index += increment;
+                }
+                bottom--;
+                for (let i = bottom; i >= top && index >= 0 && index < word.length; i--) {
+                    grid[i][left] = word[index];
+                    index += increment;
+                }
+                left++;
+            } else {
+                for (let i = top; i <= bottom && index >= 0 && index < word.length; i++) {
+                    grid[i][left] = word[index];
+                    index += increment;
+                }
+                left++;
+                for (let i = left; i <= right && index >= 0 && index < word.length; i++) {
+                    grid[bottom][i] = word[index];
+                    index += increment;
+                }
+                bottom--;
+                for (let i = bottom; i >= top && index >= 0 && index < word.length; i--) {
+                    grid[i][right] = word[index];
+                    index += increment;
+                }
+                right--;
+                for (let i = right; i >= left && index >= 0 && index < word.length; i--) {
+                    grid[top][i] = word[index];
+                    index += increment;
+                }
+                top++;
+            }
+        } else if (start === "tr") {
+            // Start from top-right
+            if (clockwise) {
+                for (let i = right; i >= left && index >= 0 && index < word.length; i--) {
+                    grid[top][i] = word[index];
+                    index += increment;
+                }
+                top++;
+                for (let i = top; i <= bottom && index >= 0 && index < word.length; i++) {
+                    grid[i][left] = word[index];
+                    index += increment;
+                }
+                left++;
+                for (let i = left; i <= right && index >= 0 && index < word.length; i++) {
+                    grid[bottom][i] = word[index];
+                    index += increment;
+                }
+                bottom--;
+                for (let i = bottom; i >= top && index >= 0 && index < word.length; i--) {
+                    grid[i][right] = word[index];
+                    index += increment;
+                }
+                right--;
+            } else {
+                // Counterclockwise
+                for (let i = top; i <= bottom && index >= 0 && index < word.length; i++) {
+                    grid[i][right] = word[index];
+                    index += increment;
+                }
+                right--;
+                for (let i = right; i >= left && index >= 0 && index < word.length; i--) {
+                    grid[bottom][i] = word[index];
+                    index += increment;
+                }
+                bottom--;
+                for (let i = bottom; i >= top && index >= 0 && index < word.length; i--) {
+                    grid[i][left] = word[index];
+                    index += increment;
+                }
+                left++;
+                for (let i = left; i <= right && index >= 0 && index < word.length; i++) {
+                    grid[top][i] = word[index];
+                    index += increment;
+                }
+                top++;
+            }
+        } else if (start === "bl") {
+            // Start from bottom-left
+            if (clockwise) {
+                // Clockwise from bottom-left
+                for (let i = bottom; i >= top && index >= 0 && index < word.length; i--) {
+                    grid[i][left] = word[index];
+                    index += increment;
+                }
+                left++;
+                for (let i = left; i <= right && index >= 0 && index < word.length; i++) {
+                    grid[top][i] = word[index];
+                    index += increment;
+                }
+                top++;
+                for (let i = top; i <= bottom && index >= 0 && index < word.length; i++) {
+                    grid[i][right] = word[index];
+                    index += increment;
+                }
+                right--;
+                for (let i = right; i >= left && index >= 0 && index < word.length; i--) {
+                    grid[bottom][i] = word[index];
+                    index += increment;
+                }
+                bottom--;
+            } else {
+                // Counterclockwise from bottom-left
+                for (let i = left; i <= right && index >= 0 && index < word.length; i++) {
+                    grid[bottom][i] = word[index];
+                    index += increment;
+                }
+                bottom--;
+                for (let i = bottom; i >= top && index >= 0 && index < word.length; i--) {
+                    grid[i][right] = word[index];
+                    index += increment;
+                }
+                right--;
+                for (let i = right; i >= left && index >= 0 && index < word.length; i--) {
+                    grid[top][i] = word[index];
+                    index += increment;
+                }
+                top++;
+                for (let i = top; i <= bottom && index >= 0 && index < word.length; i++) {
+                    grid[i][left] = word[index];
+                    index += increment;
+                }
+                left++;
+            }
+        } else if (start === "br") {
+            // Start from bottom-right
+            if (clockwise) {
+                // Clockwise from bottom-right
+                for (let i = bottom; i >= top && index >= 0 && index < word.length; i--) {
+                    grid[i][right] = word[index];
+                    index += increment;
+                }
+                right--;
+                for (let i = right; i >= left && index >= 0 && index < word.length; i--) {
+                    grid[top][i] = word[index];
+                    index += increment;
+                }
+                top++;
+                for (let i = top; i <= bottom && index >= 0 && index < word.length; i++) {
+                    grid[i][left] = word[index];
+                    index += increment;
+                }
+                left++;
+                for (let i = left; i <= right && index >= 0 && index < word.length; i++) {
+                    grid[bottom][i] = word[index];
+                    index += increment;
+                }
+                bottom--;
+            } else {
+                // Counterclockwise from bottom-right
+                for (let i = right; i >= left && index >= 0 && index < word.length; i--) {
+                    grid[bottom][i] = word[index];
+                    index += increment;
+                }
+                bottom--;
+                for (let i = bottom; i >= top && index >= 0 && index < word.length; i--) {
+                    grid[i][left] = word[index];
+                    index += increment;
+                }
+                left++;
+                for (let i = left; i <= right && index >= 0 && index < word.length; i++) {
+                    grid[top][i] = word[index];
+                    index += increment;
+                }
+                top++;
+                for (let i = top; i <= bottom && index >= 0 && index < word.length; i++) {
+                    grid[i][right] = word[index];
+                    index += increment;
+                }
+                right--;
+            }
+        }
+    }
+
+    return grid;
+}
   </script>
 </body>
 </html>
