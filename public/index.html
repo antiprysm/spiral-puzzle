@@ -172,14 +172,13 @@
 
     let currentRainbowIndex = 0; 
 
-    
-    gridContainer.addEventListener("mousedown", (event) => {
-    const cell = event.target;
+
+function startDrag(cell) {
     if (cell.classList.contains("grid-cell")) {
         isDragging = true;
         selectedCells.length = 0; 
         cell.classList.add("selected");
-        
+
         
         const selectedWord = selectedCells.map(cell => cell.letter).join("");
         const color = generateColor(selectedWord);
@@ -187,12 +186,11 @@
 
         selectedCells.push({ row: cell.dataset.row, col: cell.dataset.col, letter: cell.textContent });
     }
-    });
+}
 
-    gridContainer.addEventListener("mouseover", (event) => {
-    if (isDragging) {
-        const cell = event.target;
-        if (cell.classList.contains("grid-cell") && !cell.classList.contains("selected")) {
+
+function dragOver(cell) {
+    if (isDragging && cell.classList.contains("grid-cell") && !cell.classList.contains("selected")) {
         cell.classList.add("selected");
 
         
@@ -201,22 +199,21 @@
         cell.style.backgroundColor = color;
 
         selectedCells.push({ row: cell.dataset.row, col: cell.dataset.col, letter: cell.textContent });
-        }
     }
-    });
+}
 
-    gridContainer.addEventListener("mouseup", () => {
+
+function stopDrag() {
     isDragging = false;
     const selectedWord = selectedCells.map(cell => cell.letter).join("");
     const message = document.getElementById("message");
 
-    
-    playSound();  
+    playSound(); 
 
     if (selectedWord === word) {
         message.textContent = "Congratulations! You found the word!";
         message.className = "text-success message-bubble";
-        
+
         
         score += 100;
         document.getElementById("score").textContent = score;
@@ -230,8 +227,8 @@
 
         
         setTimeout(() => {
-        message.textContent = '';
-        message.className = "";
+            message.textContent = '';
+            message.className = "";
         }, 5000);
     } else {
         message.textContent = "Try again. Keep looking!";
@@ -239,16 +236,44 @@
 
         
         document.querySelectorAll(".grid-cell").forEach(cell => {
-        cell.classList.remove("selected");
-        cell.style.backgroundColor = "#ffffff"; 
+            cell.classList.remove("selected");
+            cell.style.backgroundColor = "#ffffff"; 
         });
         selectedCells.length = 0; 
         setTimeout(() => {
             message.textContent = '';
             message.className = '';
-        }, 5000)
+        }, 5000);
     }
-    });
+}
+
+
+gridContainer.addEventListener("mousedown", (event) => {
+    startDrag(event.target);
+});
+
+gridContainer.addEventListener("mouseover", (event) => {
+    if (event.buttons === 1) { 
+        dragOver(event.target);
+    }
+});
+
+gridContainer.addEventListener("mouseup", stopDrag);
+
+
+gridContainer.addEventListener("touchstart", (event) => {
+    const touch = event.touches[0];
+    const cell = document.elementFromPoint(touch.clientX, touch.clientY);
+    startDrag(cell);
+}, { passive: true });
+
+gridContainer.addEventListener("touchmove", (event) => {
+    const touch = event.touches[0];
+    const cell = document.elementFromPoint(touch.clientX, touch.clientY);
+    dragOver(cell);
+}, { passive: true });
+
+gridContainer.addEventListener("touchend", stopDrag);
 
 
     

@@ -171,14 +171,13 @@
 
     let currentRainbowIndex = 0; // To keep track of which color to use next
 
-    // Add event listeners for mouse drag
-    gridContainer.addEventListener("mousedown", (event) => {
-    const cell = event.target;
+// Start dragging
+function startDrag(cell) {
     if (cell.classList.contains("grid-cell")) {
         isDragging = true;
         selectedCells.length = 0; // Clear selected cells when a new drag starts
         cell.classList.add("selected");
-        
+
         // Get the current word length for color generation
         const selectedWord = selectedCells.map(cell => cell.letter).join("");
         const color = generateColor(selectedWord);
@@ -186,12 +185,11 @@
 
         selectedCells.push({ row: cell.dataset.row, col: cell.dataset.col, letter: cell.textContent });
     }
-    });
+}
 
-    gridContainer.addEventListener("mouseover", (event) => {
-    if (isDragging) {
-        const cell = event.target;
-        if (cell.classList.contains("grid-cell") && !cell.classList.contains("selected")) {
+// Continue dragging
+function dragOver(cell) {
+    if (isDragging && cell.classList.contains("grid-cell") && !cell.classList.contains("selected")) {
         cell.classList.add("selected");
 
         // Get the current word length for color generation
@@ -200,22 +198,21 @@
         cell.style.backgroundColor = color;
 
         selectedCells.push({ row: cell.dataset.row, col: cell.dataset.col, letter: cell.textContent });
-        }
     }
-    });
+}
 
-    gridContainer.addEventListener("mouseup", () => {
+// Stop dragging
+function stopDrag() {
     isDragging = false;
     const selectedWord = selectedCells.map(cell => cell.letter).join("");
     const message = document.getElementById("message");
 
-    // Play sound on mouseup
-    playSound();  // Play the sound
+    playSound(); // Play the sound
 
     if (selectedWord === word) {
         message.textContent = "Congratulations! You found the word!";
         message.className = "text-success message-bubble";
-        
+
         // Increase the score by 100
         score += 100;
         document.getElementById("score").textContent = score;
@@ -229,8 +226,8 @@
 
         // Clear the congratulatory message after 5 seconds
         setTimeout(() => {
-        message.textContent = '';
-        message.className = "";
+            message.textContent = '';
+            message.className = "";
         }, 5000);
     } else {
         message.textContent = "Try again. Keep looking!";
@@ -238,16 +235,44 @@
 
         // Reset the selection colors
         document.querySelectorAll(".grid-cell").forEach(cell => {
-        cell.classList.remove("selected");
-        cell.style.backgroundColor = "#ffffff"; // Reset color to default
+            cell.classList.remove("selected");
+            cell.style.backgroundColor = "#ffffff"; // Reset color to default
         });
         selectedCells.length = 0; // Clear selected cells
         setTimeout(() => {
             message.textContent = '';
             message.className = '';
-        }, 5000)
+        }, 5000);
     }
-    });
+}
+
+// Add event listeners for mouse and touch
+gridContainer.addEventListener("mousedown", (event) => {
+    startDrag(event.target);
+});
+
+gridContainer.addEventListener("mouseover", (event) => {
+    if (event.buttons === 1) { // Ensure mouse button is pressed
+        dragOver(event.target);
+    }
+});
+
+gridContainer.addEventListener("mouseup", stopDrag);
+
+// Add touch support
+gridContainer.addEventListener("touchstart", (event) => {
+    const touch = event.touches[0];
+    const cell = document.elementFromPoint(touch.clientX, touch.clientY);
+    startDrag(cell);
+}, { passive: true });
+
+gridContainer.addEventListener("touchmove", (event) => {
+    const touch = event.touches[0];
+    const cell = document.elementFromPoint(touch.clientX, touch.clientY);
+    dragOver(cell);
+}, { passive: true });
+
+gridContainer.addEventListener("touchend", stopDrag);
 
 
     // Spiral generation functions (from earlier implementation)
