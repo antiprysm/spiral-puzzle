@@ -99,9 +99,13 @@
         "HAMBURGER", "FLUMMOXED", "SWIZZLING", "JUKEBOXES", "BLACKJACK", "QUANTIZED", "JAWBONING",
         "ZOMBIFIED", "JELLYFISH", "JUMPSHOTS", "FUZZINESS", "SCUZZBAGS", "HIGHJINKS", "COOKSHACK",
         "FREQUENCY", "EXEMPLIFY", "ALCHEMIZE", "EXQUISITE", "HUNCHBACK", "JUXTAPOSE", "XYLOPHAGE",
+        "EQUIVOQUE", "ABSOLVENT", "GALLERIST", "RACLETTES", "OBJECTING", "VAPIDNESS", "NANOFIBER",
          "ACQUAINTANCESHIP", "COUNTERREACTIONS", "DIABOLICALNESSES", "ANTHROPOMORPHISM", "ADVANTAGEOUSNESS",
          "INCOMPLETENESSES", "ORGANIZATIONALLY", "SUBCONSCIOUSNESS", "MICROELECTRONICS", "LIGHTHEARTEDNESS",
-         "QUARTERFINALISTS", "VIDEOCONFERENCES", "ENVIRONMENTALIST", "COUNTERMOVEMENTS", "GREGARIOUSNESSES"
+         "QUARTERFINALISTS", "VIDEOCONFERENCES", "ENVIRONMENTALIST", "COUNTERMOVEMENTS", "GREGARIOUSNESSES",
+         "HYPERINTELLIGENT", "TRANSFORMATIONAL", "DISCOMBOBULATION", "LUGUBRIOUSNESSES", "ULTRASONOGRAPHER",
+         "DISESTABLISHMENTARIANISMS", "IMMUNOELECTROPHORETICALLY", "HYPOBETALIPOPROTEINAEMIAS", "MICROCRYSTALLOGRAPHICALLY",
+         "BALLISTOCARDIOGRAPHICALLY", "AMYGDALOHIPPOCAMPECTOMIES", "QUINQUAGINTATRECENTILLION", "UNDECILLIONSEDECILLIARDTH"
         ]; // Example word list
     let word = wordList[wordIndex]; // Current word
     
@@ -157,10 +161,11 @@
 
     // Function to generate unique color based on the word length
     function generateColor(word) {
+        const offset = Math.floor(Math.random() * 360) + 1;
         const wordLength = word.length;
         const saturation = 70;  // Saturation between 0-100
-        const lightness = 80;   // Lightness between 0-100
-        const hue = (wordLength * 137) % 360;  // 137 is a prime number for unique distribution
+        const lightness = 60;   // Lightness between 0-100
+        const hue = (offset + (wordLength * 137)) % 360;  // 137 is a prime number for unique distribution
         return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
     }
 

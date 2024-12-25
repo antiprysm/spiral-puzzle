@@ -96,8 +96,18 @@
     const gridSize = 10;
     let wordIndex = 0;
     let score = 0; 
-    const wordList = ["HAMBURGER", "FLUMMOXED", "SWIZZLING", "JUKEBOXES", "BLACKJACK", "QUANTIZED", "JAWBONING",
-    "ZOMBIFIED", "JELLYFISH", "JUMPSHOTS", "ACQUAINTANCESHIP", "COUNTERREACTIONS", "DIABOLICALNESSES", "ANTHROPOMORPHISM"]; 
+    const wordList = [
+        "HAMBURGER", "FLUMMOXED", "SWIZZLING", "JUKEBOXES", "BLACKJACK", "QUANTIZED", "JAWBONING",
+        "ZOMBIFIED", "JELLYFISH", "JUMPSHOTS", "FUZZINESS", "SCUZZBAGS", "HIGHJINKS", "COOKSHACK",
+        "FREQUENCY", "EXEMPLIFY", "ALCHEMIZE", "EXQUISITE", "HUNCHBACK", "JUXTAPOSE", "XYLOPHAGE",
+        "EQUIVOQUE", "ABSOLVENT", "GALLERIST", "RACLETTES", "OBJECTING", "VAPIDNESS", "NANOFIBER",
+         "ACQUAINTANCESHIP", "COUNTERREACTIONS", "DIABOLICALNESSES", "ANTHROPOMORPHISM", "ADVANTAGEOUSNESS",
+         "INCOMPLETENESSES", "ORGANIZATIONALLY", "SUBCONSCIOUSNESS", "MICROELECTRONICS", "LIGHTHEARTEDNESS",
+         "QUARTERFINALISTS", "VIDEOCONFERENCES", "ENVIRONMENTALIST", "COUNTERMOVEMENTS", "GREGARIOUSNESSES",
+         "HYPERINTELLIGENT", "TRANSFORMATIONAL", "DISCOMBOBULATION", "LUGUBRIOUSNESSES", "ULTRASONOGRAPHER",
+         "DISESTABLISHMENTARIANISMS", "IMMUNOELECTROPHORETICALLY", "HYPOBETALIPOPROTEINAEMIAS", "MICROCRYSTALLOGRAPHICALLY",
+         "BALLISTOCARDIOGRAPHICALLY", "AMYGDALOHIPPOCAMPECTOMIES", "QUINQUAGINTATRECENTILLION", "UNDECILLIONSEDECILLIARDTH"
+        ]; 
     let word = wordList[wordIndex]; 
     
     document.getElementById("word-key").textContent = word;
@@ -152,10 +162,11 @@
 
     
     function generateColor(word) {
+        const offset = Math.floor(Math.random() * 360) + 1;
         const wordLength = word.length;
         const saturation = 70;  
-        const lightness = 80;   
-        const hue = (wordLength * 137) % 360;  
+        const lightness = 60;   
+        const hue = (offset + (wordLength * 137)) % 360;  
         return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
     }
 
