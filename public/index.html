@@ -20,7 +20,7 @@
     }
 
     .container {
-        padding: 2vw 0 2vw 0;
+        padding: 5vw 0 2vw 0;
         text-align: center;
         width: 78%;
         max-width: 80%;
@@ -76,7 +76,7 @@
     }
 
     .score {
-      font-size: calc(1.5vmin);
+      font-size: calc(2.5vmin);
       font-weight: bold;
       margin-top: 10px;
     }
@@ -172,108 +172,108 @@
 
     let currentRainbowIndex = 0; 
 
+    
+    function startDrag(cell) {
+        if (cell.classList.contains("grid-cell")) {
+            isDragging = true;
+            selectedCells.length = 0; 
+            cell.classList.add("selected");
 
-function startDrag(cell) {
-    if (cell.classList.contains("grid-cell")) {
-        isDragging = true;
-        selectedCells.length = 0; 
-        cell.classList.add("selected");
+            
+            const selectedWord = selectedCells.map(cell => cell.letter).join("");
+            const color = generateColor(selectedWord);
+            cell.style.backgroundColor = color;
 
-        
+            selectedCells.push({ row: cell.dataset.row, col: cell.dataset.col, letter: cell.textContent });
+        }
+    }
+
+    
+    function dragOver(cell) {
+        if (isDragging && cell.classList.contains("grid-cell") && !cell.classList.contains("selected")) {
+            cell.classList.add("selected");
+
+            
+            const selectedWord = selectedCells.map(cell => cell.letter).join("");
+            const color = generateColor(selectedWord);
+            cell.style.backgroundColor = color;
+
+            selectedCells.push({ row: cell.dataset.row, col: cell.dataset.col, letter: cell.textContent });
+        }
+    }
+
+    
+    function stopDrag() {
+        isDragging = false;
         const selectedWord = selectedCells.map(cell => cell.letter).join("");
-        const color = generateColor(selectedWord);
-        cell.style.backgroundColor = color;
+        const message = document.getElementById("message");
 
-        selectedCells.push({ row: cell.dataset.row, col: cell.dataset.col, letter: cell.textContent });
+        playSound(); 
+
+        if (selectedWord === word) {
+            message.textContent = "Congratulations! You found the word!";
+            message.className = "text-success message-bubble";
+
+            
+            score += 100;
+            document.getElementById("score").textContent = score;
+
+            
+            wordIndex = (wordIndex + 1) % wordList.length;
+            word = wordList[wordIndex];
+            document.getElementById("word-key").textContent = word;
+            selectedCells.length = 0; 
+            generateGrid(); 
+
+            
+            setTimeout(() => {
+                message.textContent = '';
+                message.className = "";
+            }, 5000);
+        } else {
+            message.textContent = "Try again. Keep looking!";
+            message.className = "text-danger message-bubble";
+
+            
+            document.querySelectorAll(".grid-cell").forEach(cell => {
+                cell.classList.remove("selected");
+                cell.style.backgroundColor = "#ffffff"; 
+            });
+            selectedCells.length = 0; 
+            setTimeout(() => {
+                message.textContent = '';
+                message.className = '';
+            }, 5000);
+        }
     }
-}
 
+    
+    gridContainer.addEventListener("mousedown", (event) => {
+        startDrag(event.target);
+    });
 
-function dragOver(cell) {
-    if (isDragging && cell.classList.contains("grid-cell") && !cell.classList.contains("selected")) {
-        cell.classList.add("selected");
+    gridContainer.addEventListener("mouseover", (event) => {
+        if (event.buttons === 1) { 
+            dragOver(event.target);
+        }
+    });
 
-        
-        const selectedWord = selectedCells.map(cell => cell.letter).join("");
-        const color = generateColor(selectedWord);
-        cell.style.backgroundColor = color;
+    gridContainer.addEventListener("mouseup", stopDrag);
 
-        selectedCells.push({ row: cell.dataset.row, col: cell.dataset.col, letter: cell.textContent });
-    }
-}
+    
+    gridContainer.addEventListener("touchstart", (event) => {
+        const touch = event.touches[0];
+        const cell = document.elementFromPoint(touch.clientX, touch.clientY);
+        startDrag(cell);
+    }, { passive: true });
 
+    gridContainer.addEventListener("touchmove", (event) => {
+        const touch = event.touches[0];
+        const cell = document.elementFromPoint(touch.clientX, touch.clientY);
+        dragOver(cell);
+    }, { passive: true });
 
-function stopDrag() {
-    isDragging = false;
-    const selectedWord = selectedCells.map(cell => cell.letter).join("");
-    const message = document.getElementById("message");
-
-    playSound(); 
-
-    if (selectedWord === word) {
-        message.textContent = "Congratulations! You found the word!";
-        message.className = "text-success message-bubble";
-
-        
-        score += 100;
-        document.getElementById("score").textContent = score;
-
-        
-        wordIndex = (wordIndex + 1) % wordList.length;
-        word = wordList[wordIndex];
-        document.getElementById("word-key").textContent = word;
-        selectedCells.length = 0; 
-        generateGrid(); 
-
-        
-        setTimeout(() => {
-            message.textContent = '';
-            message.className = "";
-        }, 5000);
-    } else {
-        message.textContent = "Try again. Keep looking!";
-        message.className = "text-danger message-bubble";
-
-        
-        document.querySelectorAll(".grid-cell").forEach(cell => {
-            cell.classList.remove("selected");
-            cell.style.backgroundColor = "#ffffff"; 
-        });
-        selectedCells.length = 0; 
-        setTimeout(() => {
-            message.textContent = '';
-            message.className = '';
-        }, 5000);
-    }
-}
-
-
-gridContainer.addEventListener("mousedown", (event) => {
-    startDrag(event.target);
-});
-
-gridContainer.addEventListener("mouseover", (event) => {
-    if (event.buttons === 1) { 
-        dragOver(event.target);
-    }
-});
-
-gridContainer.addEventListener("mouseup", stopDrag);
-
-
-gridContainer.addEventListener("touchstart", (event) => {
-    const touch = event.touches[0];
-    const cell = document.elementFromPoint(touch.clientX, touch.clientY);
-    startDrag(cell);
-}, { passive: true });
-
-gridContainer.addEventListener("touchmove", (event) => {
-    const touch = event.touches[0];
-    const cell = document.elementFromPoint(touch.clientX, touch.clientY);
-    dragOver(cell);
-}, { passive: true });
-
-gridContainer.addEventListener("touchend", stopDrag);
+    gridContainer.addEventListener("touchend", stopDrag);
 
 
     
