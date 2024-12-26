@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="dedication" content="To my wonderful mother, with endless love and gratitude. You are my sanctuary.">
   <title>Spiral Word Puzzle</title>
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
@@ -28,15 +28,14 @@
     }
 
     #game-grid {
-      display: grid;
-      grid-template-columns: repeat(10, 1fr);
-      gap: 2px;
-      width: 80%;
-      height: auto;
-      max-width: 90vw;
-      background-color: #ddd;
-      margin: 0 auto;
-      touch-action: manipulation;
+        display: grid;
+        max-width: 90vw;
+        max-height: 90vh;
+        background-color: #ddd;  
+        margin: 0 auto;
+        touch-action: manipulation;
+        border: 1px solid #ccc;  
+        overflow: hidden;  
     }
 
     .grid-cell {
@@ -49,6 +48,18 @@
       font-weight: bold;
       aspect-ratio: 1 / 1;  
       user-select: none;
+    }
+
+     
+    #game-grid::after {
+        content: '';
+        background-color: transparent;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
     }
 
     .grid-cell.selected {
@@ -73,7 +84,7 @@
         border: 2px solid #3B60E4;
         box-shadow: 0 4px 6px rgba(237, 211, 196, 0.5);
         color: #080708;
-        width: 30vw;
+        width: 40vw;
         height: 4vh;
         max-height: 5vh;
         text-align: center;
@@ -114,12 +125,120 @@
         opacity: 1;  
     }
 
+    #size-selector-wrapper {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+}
+
+#size-selector-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#hamburger-button {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#close-button {
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  float: right;
+}
+
+#grid-size-menu {
+  margin-top: 10px;
+}
+
+#grid-size-selector {
+    margin-top: 10px;
+}
+
+ 
+@media (max-width: 768px) {
+  #size-selector-container {
+    padding: 8px;
+    top: 5px;
+    left: 5px;
+    max-width: 15vw;
+  }
+
+  #grid-size-selector {
+    max-width: 10vw;
+  }
+
+  #hamburger-button {
+    font-size: 20px;
+  }
+
+  #close-button {
+    font-size: 16px;
+  }
+
+  #grid-size-menu {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  #hamburger-button {
+    font-size: 22px;
+  }
+
+  #close-button {
+    font-size: 18px;
+  }
+
+  #grid-size-menu {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1025px) {
+  #hamburger-button {
+    font-size: 24px;
+  }
+
+  #close-button {
+    font-size: 18px;
+  }
+
+  #grid-size-menu {
+    font-size: 16px;
+  }
+}
+
+
   </style>
 </head>
 <body>
   <div class="container">
     <h1 class="text-center mb-2 text-shadow">Spiral Word Puzzle</h1>
     <p class="subtitle mx-auto w-50">Current Word: <span id="word-key"></span></p>
+    <div id="size-selector-wrapper">
+        <div id="size-selector-container" style="display: none;">
+          <button id="close-button" aria-label="Close Grid Size Selector">✖</button>
+          <div id="grid-size-menu">
+            <label for="grid-size-selector">Select Grid Size:</label>
+            <select id="grid-size-selector">
+              <option value="10">10 x 10</option>
+              <option value="15">15 x 15</option>
+              <option value="20">20 x 20</option>
+            </select>
+          </div>
+        </div>
+        <button id="hamburger-button" aria-label="Toggle Grid Size Selector">☰</button>
+      </div>
+      
     <div id="game-grid"></div>
     <div class="message-container"><p id="message" class="message-bubble mt-3"></p></div>
     <p class="score text-shadow">Score: <span id="score">0</span></p>
@@ -127,9 +246,10 @@
   </div>
 
   <script>
-    const gridSize = 10;
+    var gridSize = 10;
     let wordIndex = 0;
     let score = 0; 
+
     const wordList = [
         "HAMBURGER", "FLUMMOXED", "SWIZZLING", "JUKEBOXES", "BLACKJACK", "QUANTIZED", "JAWBONING",
         "ZOMBIFIED", "JELLYFISH", "JUMPSHOTS", "FUZZINESS", "SCUZZBAGS", "HIGHJINKS", "COOKSHACK",
@@ -163,9 +283,13 @@
 
     
     const gridContainer = document.getElementById("game-grid");
+    const gridSizeSelector = document.getElementById("grid-size-selector");
+    
     let grid = imposeSpiral(gridSize, word, start);
 
-    function generateGrid() {
+    function generateGrid(gridSize) {
+      gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+      gridContainer.innerHTML = "";
       const start = getRandomStart(); 
       grid = imposeSpiral(gridSize, word, start);
       gridContainer.innerHTML = ''; 
@@ -181,7 +305,7 @@
       });
     }
 
-    generateGrid();
+    generateGrid(gridSize);
 
     const successSound = new Audio('audio/mixkit-game-ball-tap-2073.wav');
 
@@ -288,7 +412,7 @@
             word = wordList[wordIndex];
             document.getElementById("word-key").textContent = word;
             selectedCells.length = 0; 
-            generateGrid(); 
+            generateGrid(gridSize); 
 
             
             setTimeout(() => {
@@ -345,6 +469,23 @@
         event.preventDefault();
         stopDrag();
     }, { passive: false });
+
+    gridSizeSelector.addEventListener("change", (event) => {
+        gridSize = parseInt(event.target.value, 10);
+        generateGrid(gridSize);
+    });
+
+    document.getElementById("hamburger-button").addEventListener("click", function () {
+        document.getElementById("size-selector-container").style.display = "block";
+        this.style.display = "none"; 
+    });
+
+    document.getElementById("close-button").addEventListener("click", function () {
+        document.getElementById("size-selector-container").style.display = "none";
+        document.getElementById("hamburger-button").style.display = "block"; 
+    });
+
+
 
 
     
@@ -578,6 +719,7 @@
 
     return grid;
 }
+
   </script>
 </body>
 </html>
