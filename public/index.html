@@ -237,6 +237,22 @@
     }
 
     
+    function isValidMatrix(selectedCells) {
+        if (selectedCells.length === 0) return false;
+
+        
+        const rows = selectedCells.map(cell => cell.row).sort((a, b) => a - b);
+        const cols = selectedCells.map(cell => cell.col).sort((a, b) => a - b);
+
+        
+        const rowRange = rows[rows.length - 1] - rows[0] + 1;
+        const colRange = cols[cols.length - 1] - cols[0] + 1;
+
+        
+        return rowRange === colRange && rowRange === Math.sqrt(selectedCells.length);
+    }
+
+    
     function stopDrag() {
         isDragging = false;
         const selectedWord = selectedCells.map(cell => cell.letter).join("");
@@ -244,7 +260,22 @@
 
         playSound(); 
 
-        if (selectedWord === word) {
+        if (selectedWord === word && !isValidMatrix(selectedCells)) {
+            message.textContent = "Invalid selection. Make sure to form a square!";
+            message.className = "text-danger message-bubble show";
+
+            
+            document.querySelectorAll(".grid-cell").forEach(cell => {
+                cell.classList.remove("selected");
+                cell.style.backgroundColor = "#ffffff"; 
+            });
+            selectedCells.length = 0; 
+            setTimeout(() => {
+                message.classList.add("disappear");
+                message.classList.remove("show");
+            }, 5000);
+            
+        } else if (selectedWord === word && isValidMatrix(selectedCells)) {
             message.textContent = "Congratulations! You found the word!";
             message.className = "text-success message-bubble show";
 
@@ -264,6 +295,7 @@
                 message.classList.add("disappear");
                 message.classList.remove("show");
             }, 5000);
+
         } else {
             message.textContent = "Try again. Keep looking!";
             message.className = "text-danger message-bubble show";

@@ -235,6 +235,22 @@
         }
     }
 
+    // Check if selected cells form an n x n matrix
+    function isValidMatrix(selectedCells) {
+        if (selectedCells.length === 0) return false;
+
+        // Extract row and column indices
+        const rows = selectedCells.map(cell => cell.row).sort((a, b) => a - b);
+        const cols = selectedCells.map(cell => cell.col).sort((a, b) => a - b);
+
+        // Check if rows and columns form a contiguous range
+        const rowRange = rows[rows.length - 1] - rows[0] + 1;
+        const colRange = cols[cols.length - 1] - cols[0] + 1;
+
+        // Check if it's an n x n matrix
+        return rowRange === colRange && rowRange === Math.sqrt(selectedCells.length);
+    }
+
     // Stop dragging
     function stopDrag() {
         isDragging = false;
@@ -243,7 +259,22 @@
 
         playSound(); // Play the sound
 
-        if (selectedWord === word) {
+        if (selectedWord === word && !isValidMatrix(selectedCells)) {
+            message.textContent = "Invalid selection. Make sure to form a square!";
+            message.className = "text-danger message-bubble show";
+
+            // Reset the selection colors
+            document.querySelectorAll(".grid-cell").forEach(cell => {
+                cell.classList.remove("selected");
+                cell.style.backgroundColor = "#ffffff"; // Reset color to default
+            });
+            selectedCells.length = 0; // Clear selected cells
+            setTimeout(() => {
+                message.classList.add("disappear");
+                message.classList.remove("show");
+            }, 5000);
+            
+        } else if (selectedWord === word && isValidMatrix(selectedCells)) {
             message.textContent = "Congratulations! You found the word!";
             message.className = "text-success message-bubble show";
 
@@ -263,6 +294,7 @@
                 message.classList.add("disappear");
                 message.classList.remove("show");
             }, 5000);
+
         } else {
             message.textContent = "Try again. Keep looking!";
             message.className = "text-danger message-bubble show";
