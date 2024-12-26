@@ -65,28 +65,54 @@
     }
 
     .message-bubble {
+        display: flex;
+        pointer-events: none;
         background-color: white;
         border-radius: 20px;
-        padding: 10px 20px;
+        border: 2px solid #3B60E4;
         box-shadow: 0 4px 6px rgba(237, 211, 196, 0.5);
         color: #080708;
         width: 30vw;
-        height: auto;
-        margin: 10px auto;
+        height: 4vh;
+        max-height: 5vh;
         text-align: center;
-        font-size: calc(3vmin)
+        align-items: center;
+        justify-content: center;
+        font-size: calc(1.5vmin);
+        margin: 1vh 1vw 1vh 1vw;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .message-container {
+        height: 5vh;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1vh 1vw 1vh 1vw;
     }
 
     .score {
       font-size: calc(2.5vmin);
       font-weight: bold;
-      margin-top: 10px;
+      margin-top: 1vh;
     }
     .instructions {
         font-size: calc(1.5vmin);
         font-weight: bold;
         margin-top: 10px;
      }
+
+     #message.disappear {
+        opacity: 0;
+    }
+
+    #message.show {
+        opacity: 1; /* Fully visible */
+    }
+
   </style>
 </head>
 <body>
@@ -94,7 +120,7 @@
     <h1 class="text-center mb-2 text-shadow">Spiral Word Puzzle</h1>
     <p class="subtitle mx-auto w-50">Current Word: <span id="word-key"></span></p>
     <div id="game-grid"></div>
-    <p id="message" class="mt-3"></p>
+    <div class="message-container"><p id="message" class="mt-3"></p></div>
     <p class="score text-shadow">Score: <span id="score">0</span></p>
     <p class="instructions">Click and Drag to make your selection in one stroke</p>
   </div>
@@ -219,7 +245,7 @@
 
         if (selectedWord === word) {
             message.textContent = "Congratulations! You found the word!";
-            message.className = "text-success message-bubble";
+            message.className = "text-success message-bubble show";
 
             // Increase the score by 100
             score += 100;
@@ -234,12 +260,12 @@
 
             // Clear the congratulatory message after 5 seconds
             setTimeout(() => {
-                message.textContent = '';
-                message.className = "";
+                message.classList.add("disappear");
+                message.classList.remove("show");
             }, 5000);
         } else {
             message.textContent = "Try again. Keep looking!";
-            message.className = "text-danger message-bubble";
+            message.className = "text-danger message-bubble show";
 
             // Reset the selection colors
             document.querySelectorAll(".grid-cell").forEach(cell => {
@@ -248,8 +274,8 @@
             });
             selectedCells.length = 0; // Clear selected cells
             setTimeout(() => {
-                message.textContent = '';
-                message.className = '';
+                message.classList.add("disappear");
+                message.classList.remove("show");
             }, 5000);
         }
     }
