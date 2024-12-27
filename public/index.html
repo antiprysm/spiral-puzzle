@@ -470,6 +470,8 @@
     gridSizeSelector.addEventListener("change", (event) => {
         gridSize = parseInt(event.target.value, 10);
         generateGrid(gridSize);
+        score = 0;
+        document.getElementById("score").textContent = score
     });
 
     document.getElementById("hamburger-button").addEventListener("click", function () {
