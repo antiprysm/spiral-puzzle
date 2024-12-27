@@ -29,7 +29,6 @@
     #game-grid {
         display: grid;
         max-width: 90vw;
-        max-height: 90vh;
         background-color: #ddd; /* Ensures gaps are covered */
         margin: 0 auto;
         touch-action: manipulation;
@@ -243,7 +242,6 @@
     <p class="score text-shadow">Score: <span id="score">0</span></p>
     <p class="instructions">Click and Drag to make your selection in one stroke</p>
   </div>
-
   <script>
     var gridSize = 10;
     let wordIndex = 0;
@@ -312,28 +310,26 @@
         successSound.play();
     }
 
-
     const selectedCells = [];
 
     let isDragging = false;
 
-    // Function to generate unique color based on the word length
     function generateColor(word) {
         const offset = Math.floor(Math.random() * 360) + 1;
         const wordLength = word.length;
-        const saturation = 70;  // Saturation between 0-100
-        const lightness = 60;   // Lightness between 0-100
-        const hue = (offset + (wordLength * 137)) % 360;  // 137 is a prime number for unique distribution
+        const saturation = 70;
+        const lightness = 60;
+        const hue = (offset + (wordLength * 137)) % 360;
         return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
     }
 
-    let currentRainbowIndex = 0; // To keep track of which color to use next
+    let currentRainbowIndex = 0;
 
     // Start dragging
     function startDrag(cell) {
         if (cell.classList.contains("grid-cell")) {
             isDragging = true;
-            selectedCells.length = 0; // Clear selected cells when a new drag starts
+            selectedCells.length = 0;
             cell.classList.add("selected");
 
             // Get the current word length for color generation
@@ -483,9 +479,6 @@
         document.getElementById("size-selector-container").style.display = "none";
         document.getElementById("hamburger-button").style.display = "block"; // Show the hamburger button again
     });
-
-
-
 
     // Spiral generation functions (from earlier implementation)
     function imposeSpiral(gridSize, word, start) {
@@ -715,10 +708,8 @@
             }
         }
     }
-
     return grid;
 }
-
   </script>
 </body>
 </html>

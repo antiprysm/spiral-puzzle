@@ -30,7 +30,6 @@
     #game-grid {
         display: grid;
         max-width: 90vw;
-        max-height: 90vh;
         background-color: #ddd;  
         margin: 0 auto;
         touch-action: manipulation;
@@ -244,7 +243,6 @@
     <p class="score text-shadow">Score: <span id="score">0</span></p>
     <p class="instructions">Click and Drag to make your selection in one stroke</p>
   </div>
-
   <script>
     var gridSize = 10;
     let wordIndex = 0;
@@ -313,28 +311,26 @@
         successSound.play();
     }
 
-
     const selectedCells = [];
 
     let isDragging = false;
 
-    
     function generateColor(word) {
         const offset = Math.floor(Math.random() * 360) + 1;
         const wordLength = word.length;
-        const saturation = 70;  
-        const lightness = 60;   
-        const hue = (offset + (wordLength * 137)) % 360;  
+        const saturation = 70;
+        const lightness = 60;
+        const hue = (offset + (wordLength * 137)) % 360;
         return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
     }
 
-    let currentRainbowIndex = 0; 
+    let currentRainbowIndex = 0;
 
     
     function startDrag(cell) {
         if (cell.classList.contains("grid-cell")) {
             isDragging = true;
-            selectedCells.length = 0; 
+            selectedCells.length = 0;
             cell.classList.add("selected");
 
             
@@ -484,9 +480,6 @@
         document.getElementById("size-selector-container").style.display = "none";
         document.getElementById("hamburger-button").style.display = "block"; 
     });
-
-
-
 
     
     function imposeSpiral(gridSize, word, start) {
@@ -716,10 +709,8 @@
             }
         }
     }
-
     return grid;
 }
-
   </script>
 </body>
 </html>
