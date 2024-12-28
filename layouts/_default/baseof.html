@@ -92,8 +92,6 @@
         border: 2px solid #3B60E4;
         box-shadow: 0 4px 6px rgba(237, 211, 196, 0.5);
         color: #080708;
-        min-width: 40vw;
-        max-width: 45vw;
         height: 3vh;
         max-height: 3vh;
         text-align: center;
@@ -269,7 +267,7 @@
       </div>
       
     <div id="game-grid"></div>
-    <div class="message-container"><p id="message" class="message-bubble mt-3"></p></div>
+    <div class="message-container" id="message-container"><p id="message" class="message-bubble mt-3"></p></div>
     <p class="score text-shadow">Score: <span id="score">0</span></p>
     <p class="instructions">Click and Drag to make your selection in one stroke</p>
   </div>
@@ -313,11 +311,22 @@
     const gridContainer = document.getElementById("game-grid");
     const gridSizeSelector = document.getElementById("grid-size-selector");
 
+    // Generate bubble size
+    const messageBubble = document.getElementById("message");
+    const messageContainer = document.getElementById("message-container")
+
     // Dynamically set grid size
     function setGridSize(size) {
       gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
       gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     }
+
+    // Dynamically set bubble size
+    function setBubbleSize(gridSize, messageLength) {
+    messageBubble.style.width = `${Math.floor(messageLength)}vw`;
+    messageContainer.style.width = `${Math.floor(messageLength)}vw`;
+}
+
 
     // Handle size selection
     gridSizeSelector.addEventListener("change", (event) => {
@@ -333,7 +342,6 @@
 
     // Initialize with default size
     setGridSize(parseInt(gridSizeSelector.value, 10));
-
     
     let grid = imposeSpiral(gridSize, word, start);
 
@@ -449,6 +457,7 @@
 
         if (selectedWord === word && !isValidMatrix(selectedCells)) {
             message.textContent = "Invalid selection. Make sure to form a square!";
+            setBubbleSize(parseInt(gridSizeSelector.value, 10), message.textContent.length)
             message.className = "text-danger message-bubble show";
 
             // Reset the selection colors
@@ -464,6 +473,7 @@
             
         } else if (selectedWord === word && isValidMatrix(selectedCells)) {
             message.textContent = "Congratulations! You found the word!";
+            setBubbleSize(parseInt(gridSizeSelector.value, 10), message.textContent.length)
             message.className = "text-success message-bubble show";
 
             // Increase the score by 100
@@ -485,6 +495,7 @@
 
         } else {
             message.textContent = "Try again. Keep looking!";
+            setBubbleSize(parseInt(gridSizeSelector.value, 10), message.textContent.length)
             message.className = "text-danger message-bubble show";
 
             // Reset the selection colors
