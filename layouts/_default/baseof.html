@@ -165,59 +165,79 @@
         margin-top: 10px;
     }
 
-/* Media Queries for Responsive Design */
-@media (max-width: 768px) {
-  #size-selector-container {
-    padding: 8px;
-    top: 5px;
-    left: 5px;
-    max-width: 15vw;
-  }
+    /* Media Queries for Responsive Design */
+    @media (max-width: 768px) {
+      #size-selector-container {
+        padding: 8px;
+        top: 5px;
+        left: 5px;
+        max-width: 15vw;
+      }
 
-  #grid-size-selector {
-    max-width: 10vw;
-  }
+      #grid-size-selector {
+        max-width: 10vw;
+      }
 
-  #hamburger-button {
-    font-size: 20px;
-  }
+      #hamburger-button {
+        font-size: 20px;
+      }
 
-  #close-button {
-    font-size: 16px;
-  }
+      #close-button {
+        font-size: 16px;
+      }
 
-  #grid-size-menu {
-    font-size: 12px;
-  }
-}
+      #grid-size-menu {
+        font-size: 12px;
+      }
+    }
 
-@media (min-width: 769px) and (max-width: 1024px) {
-  #hamburger-button {
-    font-size: 22px;
-  }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      #hamburger-button {
+        font-size: 22px;
+      }
 
-  #close-button {
-    font-size: 18px;
-  }
+      #close-button {
+        font-size: 18px;
+      }
 
-  #grid-size-menu {
-    font-size: 14px;
-  }
-}
+      #grid-size-menu {
+        font-size: 14px;
+      }
+    }
 
-@media (min-width: 1025px) {
-  #hamburger-button {
-    font-size: 24px;
-  }
+    @media (min-width: 1025px) {
+      #hamburger-button {
+        font-size: 24px;
+      }
 
-  #close-button {
-    font-size: 18px;
-  }
+      #close-button {
+        font-size: 18px;
+      }
 
-  #grid-size-menu {
-    font-size: 16px;
-  }
-}
+      #grid-size-menu {
+        font-size: 16px;
+      }
+    }
+
+        #mute-button {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 100;
+        background-color: transparent;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        outline: none;
+    }
+
+    #mute-button:hover {
+        color: #ffeb3b; /* Optional hover effect */
+        transition: color 0.2s;
+    }
+
 
 
   </style>
@@ -239,6 +259,7 @@
           </div>
         </div>
         <button id="hamburger-button" aria-label="Toggle Grid Size Selector">☰</button>
+        <button id="mute-button">🔊</button>
       </div>
       
     <div id="game-grid"></div>
@@ -397,13 +418,28 @@
         return rowRange === colRange && rowRange === Math.sqrt(selectedCells.length);
     }
 
+    const muteButton = document.getElementById('mute-button');
+    let isMuted = false; // Keeps track of mute state
+
+    muteButton.addEventListener('click', () => {
+        isMuted = !isMuted; // Toggle mute state
+        if (isMuted) {
+            muteButton.textContent = '🔇'; // Change icon to unmute
+        } else {
+            muteButton.textContent = '🔊'; // Change icon to mute
+        }
+        console.log(isMuted)
+    });
+    
     // Stop dragging
     function stopDrag() {
         isDragging = false;
         const selectedWord = selectedCells.map(cell => cell.letter).join("");
         const message = document.getElementById("message");
 
-        playSound(); // Play the sound
+        if (!isMuted) {
+          playSound(); // Play the sound
+        }
 
         if (selectedWord === word && !isValidMatrix(selectedCells)) {
             message.textContent = "Invalid selection. Make sure to form a square!";
@@ -507,6 +543,7 @@
         document.getElementById("size-selector-container").style.display = "none";
         document.getElementById("hamburger-button").style.display = "block"; // Show the hamburger button again
     });
+
 
     // Spiral generation functions (from earlier implementation)
     function imposeSpiral(gridSize, word, start) {
