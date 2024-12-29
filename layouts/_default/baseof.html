@@ -101,6 +101,7 @@
         margin: 1vh 1vw 1vh 1vw;
         opacity: 0;
         transition: opacity 0.3s ease-in-out;
+        padding: 0 1vw;
     }
 
     .message-container {
@@ -109,6 +110,7 @@
         justify-content: center;
         align-items: center;
         margin: 0 auto;
+        padding: 0 1vw;
     }
 
     .score {
@@ -323,9 +325,10 @@
 
     // Dynamically set bubble size
     function setBubbleSize(gridSize, messageLength) {
-    messageBubble.style.width = `${Math.floor(messageLength)}vw`;
-    messageContainer.style.width = `${Math.floor(messageLength)}vw`;
-}
+
+      messageBubble.style.maxWidth = `${Math.floor(messageLength)+0.5}vw`;
+      messageContainer.style.maxWidth = `${Math.floor(messageLength)+0.5}vw`;
+    }
 
 
     // Handle size selection
