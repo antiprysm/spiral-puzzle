@@ -260,7 +260,7 @@
 <body>
   <div class="container">
     <h1 class="text-center mb-2 text-shadow">Spiral Word Puzzle</h1>
-    <p class="subtitle mx-auto w-50">Current Word: <span id="word-key"></span></p>
+    <p class="subtitle mx-auto w-50" style="font-size: calc(2vmin)">Current Word: <span id="word-key" style="font-weight: 700"></span></p>
     <div id="size-selector-wrapper">
         <div id="size-selector-container" style="display: none;">
           <button id="close-button" aria-label="Close Grid Size Selector">✖</button>
@@ -283,11 +283,45 @@
     <p class="instructions">Click and Drag to make your selection in one stroke</p>
   </div>
   <script>
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function shuffleWordList(wordList) {
+      // Group words by length
+      const groupedWords = wordList.reduce((groups, word) => {
+        const length = word.length;
+        if (!groups[length]) {
+          groups[length] = [];
+        }
+        groups[length].push(word);
+        return groups;
+      }, {});
+
+      // Shuffle each group
+      for (const length in groupedWords) {
+        shuffleArray(groupedWords[length]);
+      }
+
+      // Concatenate groups in increasing order of word length
+      const shuffledWordList = [
+        ...(groupedWords[9] || []),
+        ...(groupedWords[16] || []),
+        ...(groupedWords[25] || []),
+      ];
+
+      return shuffledWordList;
+    }
+
     var gridSize = 10;
     let wordIndex = 0;
     let score = 0; // Initialize score
 
-    const wordList = [
+    var wordList = [
         "HAMBURGER", "FLUMMOXED", "SWIZZLING", "JUKEBOXES", "BLACKJACK", "QUANTIZED", "JAWBONING",
         "ZOMBIFIED", "JELLYFISH", "JUMPSHOTS", "FUZZINESS", "SCUZZBAGS", "HIGHJINKS", "COOKSHACK",
         "FREQUENCY", "EXEMPLIFY", "ALCHEMIZE", "EXQUISITE", "HUNCHBACK", "JUXTAPOSE", "XYLOPHAGE",
@@ -299,6 +333,7 @@
          "DISESTABLISHMENTARIANISMS", "IMMUNOELECTROPHORETICALLY", "HYPOBETALIPOPROTEINAEMIAS", "MICROCRYSTALLOGRAPHICALLY",
          "BALLISTOCARDIOGRAPHICALLY", "AMYGDALOHIPPOCAMPECTOMIES", "QUINQUAGINTATRECENTILLION", "UNDECILLIONSEDECILLIARDTH"
         ]; // Example word list
+    wordList = shuffleWordList(wordList)
     let word = wordList[wordIndex]; // Current word
     
     document.getElementById("word-key").textContent = word;
