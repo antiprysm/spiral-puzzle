@@ -117,6 +117,7 @@
       font-weight: bold;
       margin: 0 auto;
     }
+
     .instructions {
         font-size: calc(1.5vmin);
         font-weight: bold;
@@ -369,8 +370,8 @@
 
     // Dynamically set bubble size
     function setBubbleSize(gridSize, messageLength) {
-      messageBubble.style.maxWidth = `${Math.floor(messageLength)+0.5}vw`;
-      messageContainer.style.maxWidth = `${Math.floor(messageLength)+0.5}vw`;
+      messageBubble.style.maxWidth = `${Math.floor(messageLength)+2}vw`;
+      messageContainer.style.maxWidth = `${Math.floor(messageLength)+2}vw`;
     }
 
 
@@ -527,6 +528,9 @@
             document.getElementById("score").textContent = score;
 
             // Start over with the next word in the list
+            if (wordIndex + 1 === wordList.length) {
+              wordList = shuffleWordList(wordList)
+            }
             wordIndex = (wordIndex + 1) % wordList.length;
             word = wordList[wordIndex];
             document.getElementById("word-key").textContent = word;
