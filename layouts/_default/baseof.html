@@ -122,7 +122,7 @@
         font-size: calc(1.5vmin);
         font-weight: bold;
         margin-top:10px;
-        padding-bottom: 5vw;
+        padding-bottom: 2vw;
      }
 
      #message.disappear {
@@ -245,7 +245,16 @@
         transition: color 0.2s;
     }
 
-
+      .ios-download-container {
+      text-align: center;
+      margin: 2rem 0;
+      padding-bottom: 2vw;
+    }
+    .apple-badge {
+      height: 3rem; /* or whichever height suits your design */
+      width: auto;
+      display: inline-block;
+    }
 
   </style>
 </head>
@@ -282,6 +291,20 @@
     <div class="message-container" id="message-container"><p id="message" class="message-bubble mt-3"></p></div>
     <p class="score text-shadow">Score: <span id="score">0</span></p>
     <p class="instructions">Click and Drag to make your selection in one stroke</p>
+
+    <div class="ios-download-container">
+      <a
+        href="https://apps.apple.com/app/id6740406577"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="/img/Download_on_the_App_Store_Badge.png"
+          alt="Download on the App Store"
+          class="apple-badge"
+        />
+      </a>
+    </div>
   </div>
   <script>
 
