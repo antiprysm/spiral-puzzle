@@ -25,30 +25,61 @@
       text-align: center;
     }
 
+    h2 {
+      margin-top: 1.5em;
+    }
+
     p {
-      line-height: 1.5;
+      line-height: 1.6;
       font-size: 1rem;
       color: #333;
-      text-align: center;
+    }
+
+    ul {
+      margin-left: 1.5em;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Privacy Policy</h1>
+    <p><strong>Effective Date:</strong> 01/15/25</p>
+    <p><em>Last updated: 03/31/25</em></p>
+
+    <h2>Information We Collect</h2>
     <p>
-      Effective Date: 01/15/25<br><br>
-      
-      Spiral Word Puzzle iOS App does not collect, store, or share any personal or non-personal user data.<br><br>
-      
-      <strong>Third-Party Services</strong><br>
-      Our app does not integrate with third-party services that collect data.<br><br>
-      
-      <strong>Changes to This Policy</strong><br>
-      If we make changes to our app that affect this policy, we will update this page accordingly.<br><br>
-      
-      <strong>Contact Us</strong><br>
-      For questions about this policy, please contact us at selvais.christophe@gmail.com.
+      Spiral Word Puzzle iOS App collects a limited amount of user information solely for leaderboard functionality.
+    </p>
+    <ul>
+      <li><strong>Authentication Information (Required):</strong> When submitting a high score, we collect a username or unique identifier to associate scores with players.</li>
+      <li><strong>Country Location (Optional):</strong> You may optionally choose your country from a list when submitting a high score. This is not automatically collected and is only stored if selected by you.</li>
+    </ul>
+
+    <h2>Data Storage and Usage</h2>
+    <p>
+      All collected information is stored securely in a private SQL database hosted by the app developer.
+      No personal information such as email address, real name, phone number, or device location is collected.
+      The data is used only to display scores on the leaderboard and will never be sold or shared with third parties.
+    </p>
+
+    <h2>Third-Party Services</h2>
+    <p>
+      The app uses the following SDKs and dependencies, none of which are used in a way that collects or shares personal information:
+    </p>
+    <ul>
+      <li><strong>React Native Firebase (Core only):</strong> Used for app functionality, not analytics or crash reporting.</li>
+      <li><strong>AdMob (react-native-google-mobile-ads):</strong> May collect anonymized device and usage data per <a href="https://policies.google.com/technologies/ads" target="_blank">Google's AdMob policies</a>. Users under 13 will receive child-appropriate ads.</li>
+      <li><strong>Other Modules:</strong> SDKs such as AsyncStorage, Expo, Lottie, and country picker are used only for local functionality and do not collect user data.</li>
+    </ul>
+
+    <h2>Changes to This Policy</h2>
+    <p>
+      If we make changes to our app that affect this policy, we will update this page accordingly.
+    </p>
+
+    <h2>Contact Us</h2>
+    <p>
+      For questions about this policy, please contact us at: <a href="mailto:selvais.christophe@gmail.com">selvais.christophe@gmail.com</a>
     </p>
   </div>
 </body>
