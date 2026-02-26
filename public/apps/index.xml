@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apps on Hambungle</title>
+    <link>http://localhost:1313/apps/</link>
+    <description>Recent content in Apps on Hambungle</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/apps/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CatchLedger</title>
+      <link>http://localhost:1313/apps/catchledger/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/apps/catchledger/</guid>
+      <description>&lt;p&gt;CatchLedger helps you keep activity logs organized without clutter.&lt;/p&gt;&#xA;&lt;h3 id=&#34;highlights&#34;&gt;Highlights&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Create quick entries for each catch.&lt;/li&gt;&#xA;&lt;li&gt;Keep lightweight notes for location, date, and details.&lt;/li&gt;&#xA;&lt;li&gt;Review your history in one place.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Spiral Word Puzzle</title>
+      <link>http://localhost:1313/apps/spiral-puzzle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/apps/spiral-puzzle/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

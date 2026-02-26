@@ -7,5 +7,40 @@
     <generator>Hugo</generator>
     <language>en-us</language>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CatchLedger</title>
+      <link>http://localhost:1313/apps/catchledger/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/apps/catchledger/</guid>
+      <description>&lt;p&gt;CatchLedger helps you keep activity logs organized without clutter.&lt;/p&gt;&#xA;&lt;h3 id=&#34;highlights&#34;&gt;Highlights&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Create quick entries for each catch.&lt;/li&gt;&#xA;&lt;li&gt;Keep lightweight notes for location, date, and details.&lt;/li&gt;&#xA;&lt;li&gt;Review your history in one place.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Contact</title>
+      <link>http://localhost:1313/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/contact/</guid>
+      <description>&lt;p&gt;For support, collaboration, or questions, email us at &lt;a href=&#34;mailto:hello@hambungle.com&#34;&gt;hello@hambungle.com&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Privacy</title>
+      <link>http://localhost:1313/privacy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/privacy/</guid>
+      <description>&lt;p&gt;Hambungle respects your privacy. We only collect the minimum data required to operate our apps and improve reliability.&lt;/p&gt;&#xA;&lt;p&gt;If app-specific privacy details differ, those details are documented within the app or store listing.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Spiral Word Puzzle</title>
+      <link>http://localhost:1313/apps/spiral-puzzle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/apps/spiral-puzzle/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Terms</title>
+      <link>http://localhost:1313/terms/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/terms/</guid>
+      <description>&lt;p&gt;By using Hambungle apps and this website, you agree to use them lawfully and responsibly.&lt;/p&gt;&#xA;&lt;p&gt;We provide our apps as-is and may update, modify, or discontinue features at any time.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

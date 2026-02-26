@@ -2,58 +2,191 @@
 <html lang="en">
 <head>
 	<meta name="generator" content="Hugo 0.140.2"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hambungle | Hambungle</title>
-
+  <meta name="description" content="Hambungle builds playful, thoughtfully-crafted apps.">
   <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
-
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <link rel="canonical" href="http://localhost:1313/">
-    
-        <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    
-    <link rel="stylesheet" href="/css/styles.css">
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</head>
-
+  <link rel="stylesheet" href="/css/site.css">
   
+<style>
+   
+  .studio-home { color: #e5e7eb; }
+
+  .studio-home .hero{
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid #1f2937;
+    background: radial-gradient(circle at 20% 20%, #1f2937 0%, #0b1020 55%, #060912 100%);
+    min-height: 420px;
+    padding: 2.25rem;
+  }
+
+  .studio-home .hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 70% 60%,
+    rgba(11,16,32,0) 0%,
+    rgba(11,16,32,0.6) 65%,
+    rgba(6,9,18,0.9) 100%
+  );
+  pointer-events: none;
+  z-index: 1;  
+}
+
+  .studio-home .hero-copy { position: relative; z-index: 3; max-width: 560px; }
+  .studio-home .eyebrow { color: #93c5fd; letter-spacing: 0.08em; }
+  .studio-home .hero h1 { color: #f9fafb; margin-bottom: 0.85rem; }
+  .studio-home .hero p { color: #cbd5e1; }
+
+  .hambone-stage {
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  transform: translateY(-30%);
+  width: clamp(260px, 38vw, 480px);
+  height: 100%;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.hambone-stage model-viewer {
+  opacity: 0.35;
+  mix-blend-mode: screen;    
+  filter: saturate(0.95) contrast(0.95);
+}
+
+   
+  .hambone-stage model-viewer{
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: transparent;
+  }
+
+  .studio-home .section-title { color: #f3f4f6; }
+  .studio-home .app-card { background: #0b1220; border-color: #1f2937; }
+  .studio-home .app-card h3 { color: #f9fafb; }
+  .studio-home .app-card p { color: #94a3b8; }
+
+  .video-cinematic{
+    margin-top: 1.5rem;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #1f2937;
+    background: #020617;
+  }
+  .video-cinematic video{
+    width: 100%;
+    display: block;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    max-height: min(75vh, 720px);
+    background: #000;
+  }
+
+  @media (max-width: 900px){
+    .studio-home .hero{ min-height: 560px; padding: 1.5rem; }
+    .hambone-stage{ top: auto; bottom: 0; width: 100%; height: 52%; }
+    .studio-home .hero-copy{ max-width: 100%; padding-right: 0; }
+  }
+</style>
+
 </head>
 <body>
-  
-    <div class="bgimg">
-        <video autoplay muted loop poster="poster.jpg">
-            
-                <source src="bg.mp4" type="video/mp4">
-            
-        </video>
-        
-        <div class="topleft">
-            
-                <p>Coming Soon HUGO</p>
-            
-        </div>
-        <div class="middle">
-            
-                <h1>COMING SOON</h1>
-            
-            <hr>
-            <p id="demo"></p>
-            <div id="countdown" data-release=""></div>
-        </div>
-        <div class="bottomleft">
-            <p>
-            </p>
-        </div>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="/">Hambungle</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="/">Studio</a>
+        <a href="/apps/spiral-puzzle/">Spiral Puzzle</a>
+        <a href="/apps/catchledger/">CatchLedger</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="/contact/">Contact</a>
+      </nav>
     </div>
-    <div class="left">
-        
-    </div>
-        <script src="/js/script.js"></script>
+  </header>
+  <main class="wrap">
+    
 
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+<div class="studio-home">
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Hambungle Studio</p>
+      <h1>Playful products, cinematic polish.</h1>
+      <p>We craft modern, lightweight app experiences with personality. Explore our games and tools built for speed, clarity, and delight.</p>
+    </div>
+
+    
+    <div class="hambone-stage" aria-hidden="true">
+      <model-viewer
+        src="/models/hambone.glb"
+        camera-controls
+        interaction-prompt="none"
+        auto-rotate
+        auto-rotate-delay="0"
+        rotation-per-second="12deg"
+        exposure="1.0"
+        shadow-intensity="0.8"
+        environment-image="neutral"
+        disable-zoom
+      ></model-viewer>
+    </div>
+  </section>
+
+  <section class="section-block">
+    <h2 class="section-title">Apps</h2>
+    <div class="card-grid">
+      <article class="app-card">
+        <p class="badge">Game</p>
+        <h3>Spiral Puzzle</h3>
+        <p>Find hidden words embedded in spirals. Fast rounds, tactile interactions, and a satisfying challenge curve.</p>
+        <a class="btn" href="/apps/spiral-puzzle/">Open app</a>
+      </article>
+
+      <article class="app-card">
+        <p class="badge">Finance</p>
+        <h3>CatchLedger</h3>
+        <p>Track catches, log entries, and keep your records organized with a straightforward ledger workflow.</p>
+        <a class="btn" href="/apps/catchledger/">View app</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="video-cinematic" aria-label="Hambungle cinematic reel">
+    <video id="cinematic-video" muted playsinline preload="metadata" loop>
+      <source src="/video/splash.mp4" type="video/mp4">
+    </video>
+  </section>
+</div>
+
+<script>
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    const video = document.getElementById("cinematic-video");
+    if (video && "IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.45) video.play().catch(() => {});
+          else video.pause();
+        });
+      }, { threshold: [0, 0.45, 0.75] });
+      observer.observe(video);
+    }
+  });
+</script>
+
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 Hambungle Studio</p>
+    </div>
+  </footer>
 </body>
 </html>
