@@ -1,26 +1,275 @@
+{{ define "head" }}
+<style>
+  /* Homepage-only dark studio styling */
+  .studio-home {
+    color: #e5e7eb;
+  }
+
+  .studio-home .hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid #1f2937;
+    background: radial-gradient(circle at 20% 20%, #1f2937 0%, #0b1020 55%, #060912 100%);
+    min-height: 420px;
+    padding: 2.25rem;
+  }
+
+  .studio-home .hero-copy {
+    position: relative;
+    z-index: 2;
+    max-width: 560px;
+  }
+
+  .studio-home .eyebrow {
+    color: #93c5fd;
+    letter-spacing: 0.08em;
+  }
+
+  .studio-home .hero h1 {
+    color: #f9fafb;
+    margin-bottom: 0.85rem;
+  }
+
+  .studio-home .hero p {
+    color: #cbd5e1;
+  }
+
+  .hambone-stage {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: clamp(240px, 36vw, 420px);
+    height: 100%;
+    z-index: 1;
+    pointer-events: auto;
+  }
+
+  .hambone-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: none;
+  }
+
+  .studio-home .section-title {
+    color: #f3f4f6;
+  }
+
+  .studio-home .app-card {
+    background: #0b1220;
+    border-color: #1f2937;
+  }
+
+  .studio-home .app-card h3 {
+    color: #f9fafb;
+  }
+
+  .studio-home .app-card p {
+    color: #94a3b8;
+  }
+
+  .video-cinematic {
+    margin-top: 1.5rem;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #1f2937;
+    background: #020617;
+  }
+
+  .video-cinematic video {
+    width: 100%;
+    display: block;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    max-height: min(75vh, 720px);
+    background: #000;
+  }
+
+  @media (max-width: 900px) {
+    .studio-home .hero {
+      min-height: 560px;
+      padding: 1.5rem;
+    }
+
+    .hambone-stage {
+      top: auto;
+      bottom: 0;
+      width: 100%;
+      height: 52%;
+    }
+
+    .studio-home .hero-copy {
+      max-width: 100%;
+      padding-right: 0;
+    }
+  }
+</style>
+{{ end }}
+
 {{ define "main" }}
-<section class="hero">
-  <p class="eyebrow">Hambungle Studio</p>
-  <h1>Playful apps, clean experiences.</h1>
-  <p>Hambungle is an independent studio focused on lightweight utility and game experiences with a polished, modern feel.</p>
-</section>
+<div class="studio-home">
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Hambungle Studio</p>
+      <h1>Playful products, cinematic polish.</h1>
+      <p>We craft modern, lightweight app experiences with personality. Explore our games and tools built for speed, clarity, and delight.</p>
+    </div>
 
-<section class="section-block">
-  <h2>Apps</h2>
-  <div class="card-grid">
-    <article class="app-card">
-      <p class="badge">Game</p>
-      <h3>Spiral Puzzle</h3>
-      <p>Find hidden words embedded in spirals. Fast rounds, tactile interactions, and a satisfying challenge curve.</p>
-      <a class="btn" href="{{ "/apps/spiral-puzzle/" | relURL }}">Open app</a>
-    </article>
+    <!-- Floating interactive 3D Hambone stage -->
+    <div class="hambone-stage" aria-hidden="true">
+      <canvas id="hambone-canvas" class="hambone-canvas"></canvas>
+    </div>
+  </section>
 
-    <article class="app-card">
-      <p class="badge">Finance</p>
-      <h3>CatchLedger</h3>
-      <p>Track catches, log entries, and keep your records organized with a straightforward ledger workflow.</p>
-      <a class="btn" href="{{ "/apps/catchledger/" | relURL }}">View app</a>
-    </article>
-  </div>
-</section>
+  <section class="section-block">
+    <h2 class="section-title">Apps</h2>
+    <div class="card-grid">
+      <article class="app-card">
+        <p class="badge">Game</p>
+        <h3>Spiral Puzzle</h3>
+        <p>Find hidden words embedded in spirals. Fast rounds, tactile interactions, and a satisfying challenge curve.</p>
+        <a class="btn" href="{{ "/apps/spiral-puzzle/" | relURL }}">Open app</a>
+      </article>
+
+      <article class="app-card">
+        <p class="badge">Finance</p>
+        <h3>CatchLedger</h3>
+        <p>Track catches, log entries, and keep your records organized with a straightforward ledger workflow.</p>
+        <a class="btn" href="{{ "/apps/catchledger/" | relURL }}">View app</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- Scroll-triggered cinematic video section -->
+  <section class="video-cinematic" aria-label="Hambungle cinematic reel">
+    <video id="cinematic-video" muted playsinline preload="metadata" loop>
+      <source src="{{ "/video/splash.mp4" | relURL }}" type="video/mp4">
+    </video>
+  </section>
+</div>
+
+<!-- Three.js via CDN (no framework dependency) -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const canvas = document.getElementById("hambone-canvas");
+    const stage = canvas?.parentElement;
+
+    if (canvas && stage && window.THREE) {
+      // Renderer tuned for performance on desktop/mobile.
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+      camera.position.set(0, 0.45, 4.8);
+
+      // Placeholder "Hambone" mesh: capsule + torus knot accent.
+      const hambone = new THREE.Group();
+      const core = new THREE.Mesh(
+        new THREE.CapsuleGeometry(0.7, 1.35, 10, 20),
+        new THREE.MeshStandardMaterial({ color: 0x93c5fd, metalness: 0.2, roughness: 0.35 })
+      );
+      const ring = new THREE.Mesh(
+        new THREE.TorusKnotGeometry(0.42, 0.13, 120, 16),
+        new THREE.MeshStandardMaterial({ color: 0x60a5fa, metalness: 0.45, roughness: 0.2 })
+      );
+      ring.rotation.x = Math.PI / 2;
+      hambone.add(core, ring);
+      scene.add(hambone);
+
+      // Lighting with subtle hover boost effect.
+      const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+      const keyLight = new THREE.PointLight(0x93c5fd, 1.1, 14, 2);
+      keyLight.position.set(1.6, 1.2, 2.6);
+      const rimLight = new THREE.PointLight(0x60a5fa, 0.55, 12, 2);
+      rimLight.position.set(-1.8, -0.8, -1.4);
+      scene.add(ambient, keyLight, rimLight);
+
+      let targetLightIntensity = keyLight.intensity;
+      let isDragging = false;
+      let lastX = 0;
+      let lastY = 0;
+      let velocityX = 0;
+      let velocityY = 0;
+
+      const resize = () => {
+        const w = stage.clientWidth || 320;
+        const h = stage.clientHeight || 320;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      };
+      resize();
+      window.addEventListener("resize", resize, { passive: true });
+
+      // Pointer-driven rotation (mouse + touch via pointer events).
+      canvas.addEventListener("pointerdown", (e) => {
+        isDragging = true;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        canvas.setPointerCapture(e.pointerId);
+      });
+
+      canvas.addEventListener("pointermove", (e) => {
+        if (!isDragging) return;
+        const dx = e.clientX - lastX;
+        const dy = e.clientY - lastY;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        velocityY = dx * 0.0036;
+        velocityX = dy * 0.0036;
+        hambone.rotation.y += velocityY;
+        hambone.rotation.x += velocityX;
+      });
+
+      const stopDrag = () => { isDragging = false; };
+      canvas.addEventListener("pointerup", stopDrag);
+      canvas.addEventListener("pointercancel", stopDrag);
+      canvas.addEventListener("pointerleave", stopDrag);
+
+      stage.addEventListener("mouseenter", () => { targetLightIntensity = 1.45; });
+      stage.addEventListener("mouseleave", () => { targetLightIntensity = 1.1; });
+
+      let rafId;
+      const animate = () => {
+        hambone.rotation.y += 0.005 + (velocityY * 0.35);
+        hambone.rotation.x += velocityX * 0.2;
+        velocityX *= 0.93;
+        velocityY *= 0.93;
+
+        keyLight.intensity += (targetLightIntensity - keyLight.intensity) * 0.06;
+        renderer.render(scene, camera);
+        rafId = requestAnimationFrame(animate);
+      };
+      animate();
+
+      // Pause rendering when tab is hidden for battery savings.
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          cancelAnimationFrame(rafId);
+        } else {
+          animate();
+        }
+      });
+    }
+
+    // IntersectionObserver controls cinematic video playback by viewport visibility.
+    const video = document.getElementById("cinematic-video");
+    if (video && "IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.45) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      }, { threshold: [0, 0.45, 0.75] });
+
+      observer.observe(video);
+    }
+  });
+</script>
 {{ end }}
