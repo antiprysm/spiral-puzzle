@@ -77,6 +77,36 @@
     background: #000;
     }
 
+    .studio-break {
+        padding: 6rem 2rem;
+        background: linear-gradient(
+            to bottom,
+            #0b1220 0%,
+            #0f172a 50%,
+            #020617 100%
+        );
+        border-radius: 20px;
+        margin-top: 2rem;
+        }
+
+        .studio-break-inner {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+        }
+
+        .studio-break h2 {
+        font-size: 2rem;
+        color: #f9fafb;
+        margin-bottom: 1rem;
+        }
+
+        .studio-break p {
+        color: #94a3b8;
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }   
+
   @media (max-width: 900px){
     .studio-home .hero{ min-height: 560px; padding: 1.5rem; }
     .hambone-stage{ top: auto; bottom: 0; width: 100%; height: 52%; }
@@ -130,6 +160,17 @@
         <p>Track catches, log entries, and keep your records organized with a straightforward ledger workflow.</p>
         <a class="btn" href="{{ "/apps/catchledger/" | relURL }}">View app</a>
       </article>
+    </div>
+  </section>
+
+  <section class="studio-break">
+    <div class="studio-break-inner">
+      <h2>Crafted with intention.</h2>
+      <p>
+        Every Hambungle product is designed with clarity, motion, and personality.
+        From tactile puzzle mechanics to clean financial tools, we focus on
+        lightweight builds and cinematic polish.
+      </p>
     </div>
   </section>
 
