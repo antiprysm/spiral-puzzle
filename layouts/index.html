@@ -1,56 +1,33 @@
-
 {{ define "main" }}
-    <div class="bgimg">
-        <video autoplay muted loop poster="poster.jpg">
-            {{ if .Site.Params.background }}
-                <source src="{{ .Site.Params.background }}" type="video/mp4">
-            {{ else }}
-                <source src="bg.mp4" type="video/mp4">
-            {{ end }}
-        </video>
-        {{ if .Site.Params.twitter.enable }}
-            <div class="topright"> 
-                {{ partial "twitter-feed.html" . }}
-            </div>        
-        {{ end }}
-        <div class="topleft">
-            {{ if .Site.Params.title }}
-                <p>{{ .Site.Params.title }}</p>
-            {{ else }}
-                <p>Coming Soon HUGO</p>
-            {{ end }}
-        </div>
-        <div class="middle">
-            {{ if .Site.Params.message }}
-                <h1>{{ .Site.Params.message }}</h1>
-            {{ else }}
-                <h1>COMING SOON</h1>
-            {{ end }}
-            <hr>
-            <p id="demo"></p>
-            <div id="countdown" data-release="{{ .Site.Params.release }}"></div>
-        </div>
-        <div class="bottomleft">
-            <p>
-            {{ .Site.Params.description}}</p>
-        </div>
+<header>
+  <nav class="nav">
+    <a class="brand" href="/">Hambungle</a>
+    <div class="nav-links"><a href="/apps/">Apps</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/contact/">Contact</a></div>
+  </nav>
+</header>
+<main>
+  <section class="hero">
+    <span class="badge">Hambungle Studio</span>
+    <h1>We build focused apps that are simple and fun to use.</h1>
+    <p class="muted">Hambungle is the parent studio for our mobile apps. This site is the central home for product info, support, and compliance documents.</p>
+    <a class="btn" href="/apps/">View Apps</a>
+    <a class="btn" href="/privacy/">Privacy Policies</a>
+  </section>
+  <section>
+    <h2>Featured Apps</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>Spiral Word Puzzle</h3>
+        <p>Word-building puzzle game with leaderboard competition and daily challenge energy.</p>
+        <a href="/apps/spiral-puzzle/">Open app page →</a>
+      </article>
+      <article class="card">
+        <h3>CatchLedger</h3>
+        <p>Catch tracking and trip logging tool that helps anglers record catches, spots, and trends.</p>
+        <a href="/apps/catchledger/">Open app page →</a>
+      </article>
     </div>
-    <div class="left">
-        {{ if isset .Site.Params "socialicons" }}
-        <section class="social-icons">
-            <ul class="social-icons-list">
-                {{ range .Site.Params.SocialIcons }}
-                <li class="social-icon">
-                    {{ $iconName := .name }}
-                    <a href="{{ if eq $iconName "email" }}mailto:{{ .url }} {{ else }}{{ .url }}{{ end }}"
-                       {{ if .rel }}rel="{{ .rel }}"{{ end }}>
-                        <img src="{{ $.Site.BaseURL }}/svg/icons/{{ .name }}.svg" alt="test" />
-                    </a>
-                </li>
-                {{ end }}
-            </ul>
-        </section>
-        {{ end }}
-    </div>
-        <script src="{{ "/js/script.js" | relURL }}"></script>
+  </section>
+</main>
+<footer>© Hambungle. All rights reserved.</footer>
 {{ end }}
