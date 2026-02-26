@@ -40,8 +40,3 @@ The app uses the following SDKs and dependencies:
 ## Changes to This Policy
 
 If we make changes to our app that affect this policy, we will update this page accordingly.
-
-## Contact Us
-
-For questions about this policy, contact:  
-[selvais.christophe@gmail.com](mailto:selvais.christophe@gmail.com)
