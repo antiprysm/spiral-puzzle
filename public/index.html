@@ -19,7 +19,7 @@
     border-radius: 20px;
     border: 1px solid #1f2937;
     background: radial-gradient(circle at 20% 20%, #1f2937 0%, #0b1020 55%, #060912 100%);
-    min-height: 420px;
+    min-height: 480px;
     padding: 2.25rem;
   }
 
@@ -46,9 +46,9 @@
   position: absolute;
   top: 50%;
   right: 0%;
-  transform: translateY(-30%);
+  transform: translateY(-40%);
   width: clamp(260px, 38vw, 480px);
-  height: 100%;
+  height: 80%;
   z-index: 2;
   pointer-events: auto;
 }
@@ -73,7 +73,7 @@
   .studio-home .app-card p { color: #94a3b8; }
 
   .video-cinematic{
-    margin-top: 1.5rem;
+    margin-top: 6rem;
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid #1f2937;
@@ -81,12 +81,11 @@
   }
   .video-cinematic video{
     width: 100%;
+    height: auto;           
     display: block;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    max-height: min(75vh, 720px);
+    object-fit: contain;    
     background: #000;
-  }
+    }
 
   @media (max-width: 900px){
     .studio-home .hero{ min-height: 560px; padding: 1.5rem; }
@@ -160,27 +159,35 @@
   </section>
 
   <section class="video-cinematic" aria-label="Hambungle cinematic reel">
-    <video id="cinematic-video" muted playsinline preload="metadata" loop>
+    <video id="cinematic-video" muted playsinline preload="metadata">
       <source src="/video/splash.mp4" type="video/mp4">
     </video>
   </section>
 </div>
 
 <script>
-  
-  document.addEventListener("DOMContentLoaded", () => {
-    const video = document.getElementById("cinematic-video");
-    if (video && "IntersectionObserver" in window) {
+    document.addEventListener("DOMContentLoaded", () => {
+      const video = document.getElementById("cinematic-video");
+      if (!video || !("IntersectionObserver" in window)) return;
+    
+      let hasPlayed = false;
+    
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.45) video.play().catch(() => {});
-          else video.pause();
-        });
+        for (const entry of entries) {
+          if (hasPlayed) return;
+    
+          if (entry.isIntersecting && entry.intersectionRatio > 0.45) {
+            hasPlayed = true;
+            video.play().catch(() => {});
+            observer.disconnect(); 
+          }
+        }
       }, { threshold: [0, 0.45, 0.75] });
+    
       observer.observe(video);
-    }
-  });
-</script>
+      video.addEventListener("ended", () => video.setAttribute("controls", "controls"), { once: true });
+    });
+    </script>
 
   </main>
   <footer class="site-footer">
