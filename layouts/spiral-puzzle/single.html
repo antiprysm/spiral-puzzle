@@ -1,0 +1,688 @@
+{{ define "head" }}
+
+  <!-- Spiral Puzzle Page Title Override -->
+  <title>Spiral Word Puzzle | {{ .Site.Title }}</title>
+
+  <!-- Spiral Puzzle Styles -->
+  <style>
+    * {
+      box-sizing: content-box !important;
+    }
+
+    body {
+      height: 100vh;
+      margin: 0;
+      background-image: url('/img/spiral-bg.jpg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 80vw;
+      max-height: 80vh;
+      padding-top: 1vh;
+    }
+
+    #game-grid {
+      display: grid;
+      width: 80vw;
+      height: 80vw;
+      max-height: 80vh;
+      max-width: 80vh;
+      background-color: #ddd;
+      margin: 0 auto;
+      touch-action: manipulation;
+      border: 1px solid #ccc;
+      overflow: hidden;
+    }
+
+    .grid-cell {
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: calc(2vmin);
+      font-weight: bold;
+      aspect-ratio: 1 / 1;
+      user-select: none;
+    }
+
+    .grid-cell.selected {
+      background-color: #ffeb3b;
+    }
+
+    .subtitle {
+      font-size: calc(1.5vmin);
+      color: #555;
+      background-color: #eee;
+    }
+
+    .text-shadow {
+      text-shadow: 2px 2px 4px rgba(237, 211, 196, 0.5);
+    }
+
+    .score {
+      font-size: calc(2.5vmin);
+      font-weight: bold;
+      margin: 0 auto;
+    }
+
+    .instructions {
+      font-size: calc(1.5vmin);
+      font-weight: bold;
+      margin-top: 10px;
+      padding-bottom: 2vw;
+    }
+
+    #mute-button {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 100;
+      background-color: transparent;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+
+    .ios-download-container {
+      text-align: center;
+      margin: 2rem 0;
+      padding-bottom: 2vw;
+    }
+
+    .apple-badge {
+      height: 3rem;
+      width: auto;
+      display: inline-block;
+    }
+  </style>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NMZ42QKWK6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NMZ42QKWK6');
+  </script>
+
+{{ end }}
+
+{{ define "main" }}
+
+<div class="container">
+  <h1 class="text-center mb-2 text-shadow">Spiral Word Puzzle</h1>
+  <p class="subtitle mx-auto w-50" style="font-size: calc(2vmin)">
+    Current Word: <span id="word-key" style="font-weight: 700"></span>
+  </p>
+
+  <div id="size-selector-wrapper">
+    <div id="size-selector-container" style="display: none;">
+      <button id="close-button" aria-label="Close Grid Size Selector">✖</button>
+      <div id="grid-size-menu">
+        <label for="grid-size-selector">Select Grid Size:</label>
+        <select id="grid-size-selector">
+          <option value="10">10 x 10</option>
+          <option value="15">15 x 15</option>
+          <option value="20">20 x 20</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="hamburger-button" aria-label="Toggle Grid Size Selector">☰</button>
+    <button id="mute-button">🔊</button>
+  </div>
+
+  <div id="game-grid"></div>
+
+  <div class="message-container" id="message-container">
+    <p id="message" class="message-bubble mt-3"></p>
+  </div>
+
+  <p class="score text-shadow">Score: <span id="score">0</span></p>
+  <p class="instructions">Click and Drag to make your selection in one stroke</p>
+
+  <div class="ios-download-container">
+    <a href="https://apps.apple.com/app/id6740406577" target="_blank" rel="noopener noreferrer">
+      <img
+        src="/img/Download_on_the_App_Store_Badge.png"
+        alt="Download on the App Store"
+        class="apple-badge"
+      />
+    </a>
+  </div>
+</div>
+
+<script>
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  function shuffleWordList(wordList) {
+    // Group words by length
+    const groupedWords = wordList.reduce((groups, word) => {
+      const length = word.length;
+      if (!groups[length]) {
+        groups[length] = [];
+      }
+      groups[length].push(word);
+      return groups;
+    }, {});
+
+    // Shuffle each group
+    for (const length in groupedWords) {
+      shuffleArray(groupedWords[length]);
+    }
+
+    // Concatenate groups in increasing order of word length
+    const shuffledWordList = [
+      ...(groupedWords[9] || []),
+      ...(groupedWords[16] || []),
+      ...(groupedWords[25] || []),
+    ];
+
+    return shuffledWordList;
+  }
+
+  var gridSize = 10;
+  let wordIndex = 0;
+  let score = 0; // Initialize score
+
+  var wordList = [
+    "HAMBURGER", "FLUMMOXED", "SWIZZLING", "JUKEBOXES", "BLACKJACK", "QUANTIZED", "JAWBONING",
+    "ZOMBIFIED", "JELLYFISH", "JUMPSHOTS", "FUZZINESS", "SCUZZBAGS", "HIGHJINKS", "COOKSHACK",
+    "FREQUENCY", "EXEMPLIFY", "ALCHEMIZE", "EXQUISITE", "HUNCHBACK", "JUXTAPOSE", "XYLOPHAGE",
+    "EQUIVOQUE", "ABSOLVENT", "GALLERIST", "RACLETTES", "OBJECTING", "VAPIDNESS", "NANOFIBER",
+    "ACQUAINTANCESHIP", "COUNTERREACTIONS", "DIABOLICALNESSES", "ANTHROPOMORPHISM", "ADVANTAGEOUSNESS",
+    "INCOMPLETENESSES", "ORGANIZATIONALLY", "SUBCONSCIOUSNESS", "MICROELECTRONICS", "LIGHTHEARTEDNESS",
+    "QUARTERFINALISTS", "VIDEOCONFERENCES", "ENVIRONMENTALIST", "COUNTERMOVEMENTS", "GREGARIOUSNESSES",
+    "HYPERINTELLIGENT", "TRANSFORMATIONAL", "DISCOMBOBULATION", "LUGUBRIOUSNESSES", "ULTRASONOGRAPHER",
+    "DISESTABLISHMENTARIANISMS", "IMMUNOELECTROPHORETICALLY", "HYPOBETALIPOPROTEINAEMIAS", "MICROCRYSTALLOGRAPHICALLY",
+    "BALLISTOCARDIOGRAPHICALLY", "AMYGDALOHIPPOCAMPECTOMIES", "QUINQUAGINTATRECENTILLION", "UNDECILLIONSEDECILLIARDTH"
+  ];
+
+  wordList = shuffleWordList(wordList)
+  let word = wordList[wordIndex]; // Current word
+
+  document.getElementById("word-key").textContent = word;
+  document.getElementById("score").textContent = score; // Display initial score
+
+  // Function to get a random start position
+  function getRandomStart() {
+    const positions = ['tl', 'tr', 'bl', 'br'];
+    const randomIndex = Math.floor(Math.random() * positions.length);
+    return positions[randomIndex];
+  }
+
+  // Function to randomly select 'true' or 'false' for the reversed parameter
+  function getRandomBoolean() {
+    return Math.random() < 0.5;  // Returns true or false with equal probability
+  }
+
+  // Generate and display the grid
+  const gridContainer = document.getElementById("game-grid");
+  const gridSizeSelector = document.getElementById("grid-size-selector");
+
+  // Generate bubble size
+  const messageBubble = document.getElementById("message");
+  const messageContainer = document.getElementById("message-container")
+
+  // Dynamically set grid size
+  function setGridSize(size) {
+    gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+    gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  }
+
+  // Dynamically set bubble size
+  function setBubbleSize(gridSize, messageLength) {
+    messageBubble.style.maxWidth = `${Math.floor(messageLength)+2}vw`;
+    messageContainer.style.maxWidth = `${Math.floor(messageLength)+2}vw`;
+  }
+
+  // Handle size selection
+  gridSizeSelector.addEventListener("change", (event) => {
+    const size = parseInt(event.target.value, 10);
+    setGridSize(size);
+  });
+
+  // Ensure grid fits on screen on resize
+  window.addEventListener("resize", () => {
+    const size = parseInt(gridSizeSelector.value, 10);
+    setGridSize(size);
+  });
+
+  // Initialize with default size
+  setGridSize(parseInt(gridSizeSelector.value, 10));
+
+  // Spiral generation functions
+  function imposeSpiral(gridSize, word, start) {
+    const reversed = getRandomBoolean();
+    const rotation = getRandomBoolean();
+    const grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(''));
+    const n = Math.ceil(Math.sqrt(word.length));
+    const spiralWordGrid = spiral(word, start, reversed, rotation);
+
+    const maxStart = gridSize - n;
+    const startRow = Math.floor(Math.random() * (maxStart + 1));
+    const startCol = Math.floor(Math.random() * (maxStart + 1));
+
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        if (spiralWordGrid[i] && spiralWordGrid[i][j]) {
+          grid[startRow + i][startCol + j] = spiralWordGrid[i][j];
+        }
+      }
+    }
+
+    const randomLetters = word.split('').sort(() => Math.random() - 0.5);
+    for (let i = 0; i < gridSize; i++) {
+      for (let j = 0; j < gridSize; j++) {
+        if (grid[i][j] === '') {
+          let randomIndex = Math.floor(Math.random() * randomLetters.length);
+          grid[i][j] = randomLetters[randomIndex];
+        }
+      }
+    }
+
+    return grid;
+  }
+
+  function spiral(word, start, reversed, clockwise) {
+    const n = Math.ceil(Math.sqrt(word.length)); // Determine the size of the grid
+    const grid = Array.from({ length: n }, () => Array(n).fill(''));
+    let left = 0, right = n - 1, top = 0, bottom = n - 1;
+    let index = reversed ? word.length - 1 : 0;
+    const increment = reversed ? -1 : 1;
+
+    while (left <= right && top <= bottom) {
+      if (start === "tl") {
+        // Start from top-left
+        if (clockwise) {
+          for (let i = left; i <= right && index >= 0 && index < word.length; i++) {
+            grid[top][i] = word[index];
+            index += increment;
+          }
+          top++;
+          for (let i = top; i <= bottom && index >= 0 && index < word.length; i++) {
+            grid[i][right] = word[index];
+            index += increment;
+          }
+          right--;
+          for (let i = right; i >= left && index >= 0 && index < word.length; i--) {
+            grid[bottom][i] = word[index];
+            index += increment;
+          }
+          bottom--;
+          for (let i = bottom; i >= top && index >= 0 && index < word.length; i--) {
+            grid[i][left] = word[index];
+            index += increment;
+          }
+          left++;
+        } else {
+          for (let i = top; i <= bottom && index >= 0 && index < word.length; i++) {
+            grid[i][left] = word[index];
+            index += increment;
+          }
+          left++;
+          for (let i = left; i <= right && index >= 0 && index < word.length; i++) {
+            grid[bottom][i] = word[index];
+            index += increment;
+          }
+          bottom--;
+          for (let i = bottom; i >= top && index >= 0 && index < word.length; i--) {
+            grid[i][right] = word[index];
+            index += increment;
+          }
+          right--;
+          for (let i = right; i >= left && index >= 0 && index < word.length; i--) {
+            grid[top][i] = word[index];
+            index += increment;
+          }
+          top++;
+        }
+      } else if (start === "tr") {
+        // Start from top-right
+        if (clockwise) {
+          for (let i = right; i >= left && index >= 0 && index < word.length; i--) {
+            grid[top][i] = word[index];
+            index += increment;
+          }
+          top++;
+          for (let i = top; i <= bottom && index >= 0 && index < word.length; i++) {
+            grid[i][left] = word[index];
+            index += increment;
+          }
+          left++;
+          for (let i = left; i <= right && index >= 0 && index < word.length; i++) {
+            grid[bottom][i] = word[index];
+            index += increment;
+          }
+          bottom--;
+          for (let i = bottom; i >= top && index >= 0 && index < word.length; i--) {
+            grid[i][right] = word[index];
+            index += increment;
+          }
+          right--;
+        } else {
+          // Counterclockwise
+          for (let i = top; i <= bottom && index >= 0 && index < word.length; i++) {
+            grid[i][right] = word[index];
+            index += increment;
+          }
+          right--;
+          for (let i = right; i >= left && index >= 0 && index < word.length; i--) {
+            grid[bottom][i] = word[index];
+            index += increment;
+          }
+          bottom--;
+          for (let i = bottom; i >= top && index >= 0 && index < word.length; i--) {
+            grid[i][left] = word[index];
+            index += increment;
+          }
+          left++;
+          for (let i = left; i <= right && index >= 0 && index < word.length; i++) {
+            grid[top][i] = word[index];
+            index += increment;
+          }
+          top++;
+        }
+      } else if (start === "bl") {
+        // Start from bottom-left
+        if (clockwise) {
+          // Clockwise from bottom-left
+          for (let i = bottom; i >= top && index >= 0 && index < word.length; i--) {
+            grid[i][left] = word[index];
+            index += increment;
+          }
+          left++;
+          for (let i = left; i <= right && index >= 0 && index < word.length; i++) {
+            grid[top][i] = word[index];
+            index += increment;
+          }
+          top++;
+          for (let i = top; i <= bottom && index >= 0 && index < word.length; i++) {
+            grid[i][right] = word[index];
+            index += increment;
+          }
+          right--;
+          for (let i = right; i >= left && index >= 0 && index < word.length; i--) {
+            grid[bottom][i] = word[index];
+            index += increment;
+          }
+          bottom--;
+        } else {
+          // Counterclockwise from bottom-left
+          for (let i = left; i <= right && index >= 0 && index < word.length; i++) {
+            grid[bottom][i] = word[index];
+            index += increment;
+          }
+          bottom--;
+          for (let i = bottom; i >= top && index >= 0 && index < word.length; i--) {
+            grid[i][right] = word[index];
+            index += increment;
+          }
+          right--;
+          for (let i = right; i >= left && index >= 0 && index < word.length; i--) {
+            grid[top][i] = word[index];
+            index += increment;
+          }
+          top++;
+          for (let i = top; i <= bottom && index >= 0 && index < word.length; i++) {
+            grid[i][left] = word[index];
+            index += increment;
+          }
+          left++;
+        }
+      } else if (start === "br") {
+        // Start from bottom-right
+        if (clockwise) {
+          // Clockwise from bottom-right
+          for (let i = bottom; i >= top && index >= 0 && index < word.length; i--) {
+            grid[i][right] = word[index];
+            index += increment;
+          }
+          right--;
+          for (let i = right; i >= left && index >= 0 && index < word.length; i--) {
+            grid[top][i] = word[index];
+            index += increment;
+          }
+          top++;
+          for (let i = top; i <= bottom && index >= 0 && index < word.length; i++) {
+            grid[i][left] = word[index];
+            index += increment;
+          }
+          left++;
+          for (let i = left; i <= right && index >= 0 && index < word.length; i++) {
+            grid[bottom][i] = word[index];
+            index += increment;
+          }
+          bottom--;
+        } else {
+          // Counterclockwise from bottom-right
+          for (let i = right; i >= left && index >= 0 && index < word.length; i--) {
+            grid[bottom][i] = word[index];
+            index += increment;
+          }
+          bottom--;
+          for (let i = bottom; i >= top && index >= 0 && index < word.length; i--) {
+            grid[i][left] = word[index];
+            index += increment;
+          }
+          left++;
+          for (let i = left; i <= right && index >= 0 && index < word.length; i++) {
+            grid[top][i] = word[index];
+            index += increment;
+          }
+          top++;
+          for (let i = top; i <= bottom && index >= 0 && index < word.length; i++) {
+            grid[i][right] = word[index];
+            index += increment;
+          }
+          right--;
+        }
+      }
+    }
+    return grid;
+  }
+
+  document.getElementById("word-key").textContent = word;
+
+  let grid = imposeSpiral(gridSize, word, getRandomStart());
+
+  function generateGrid(gridSize) {
+    gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+    gridContainer.innerHTML = "";
+    const start = getRandomStart();
+    grid = imposeSpiral(gridSize, word, start);
+    gridContainer.innerHTML = '';
+    grid.forEach((row, rowIndex) => {
+      row.forEach((cell, colIndex) => {
+        const div = document.createElement("div");
+        div.classList.add("grid-cell");
+        div.dataset.row = rowIndex;
+        div.dataset.col = colIndex;
+        div.textContent = cell;
+        gridContainer.appendChild(div);
+      });
+    });
+  }
+
+  generateGrid(gridSize);
+
+  const successSound = new Audio('audio/mixkit-game-ball-tap-2073.wav');
+  function playSound() { successSound.play(); }
+
+  const selectedCells = [];
+  let isDragging = false;
+
+  function generateColor(word) {
+    const offset = Math.floor(Math.random() * 360) + 1;
+    const wordLength = word.length;
+    const saturation = 70;
+    const lightness = 60;
+    const hue = (offset + (wordLength * 137)) % 360;
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+  }
+
+  function startDrag(cell) {
+    if (cell.classList.contains("grid-cell")) {
+      isDragging = true;
+      selectedCells.length = 0;
+      cell.classList.add("selected");
+      const selectedWord = selectedCells.map(cell => cell.letter).join("");
+      const color = generateColor(selectedWord);
+      cell.style.backgroundColor = color;
+      selectedCells.push({ row: cell.dataset.row, col: cell.dataset.col, letter: cell.textContent });
+    }
+  }
+
+  function dragOver(cell) {
+    if (isDragging && cell.classList.contains("grid-cell") && !cell.classList.contains("selected")) {
+      cell.classList.add("selected");
+      const selectedWord = selectedCells.map(cell => cell.letter).join("");
+      const color = generateColor(selectedWord);
+      cell.style.backgroundColor = color;
+      selectedCells.push({ row: cell.dataset.row, col: cell.dataset.col, letter: cell.textContent });
+    }
+  }
+
+  function isValidMatrix(selectedCells) {
+    if (selectedCells.length === 0) return false;
+    const rows = selectedCells.map(cell => cell.row).sort((a, b) => a - b);
+    const cols = selectedCells.map(cell => cell.col).sort((a, b) => a - b);
+    const rowRange = rows[rows.length - 1] - rows[0] + 1;
+    const colRange = cols[cols.length - 1] - cols[0] + 1;
+    return rowRange === colRange && rowRange === Math.sqrt(selectedCells.length);
+  }
+
+  const muteButton = document.getElementById('mute-button');
+  let isMuted = false;
+
+  muteButton.addEventListener('click', () => {
+    isMuted = !isMuted;
+    muteButton.textContent = isMuted ? '🔇' : '🔊';
+  });
+
+  function stopDrag() {
+    isDragging = false;
+    const selectedWord = selectedCells.map(cell => cell.letter).join("");
+    const message = document.getElementById("message");
+
+    if (!isMuted) playSound();
+
+    if (selectedWord === word && !isValidMatrix(selectedCells)) {
+      message.textContent = "Invalid selection. Make sure to form a square!";
+      setBubbleSize(parseInt(gridSizeSelector.value, 10), message.textContent.length)
+      message.className = "text-danger message-bubble show";
+
+      document.querySelectorAll(".grid-cell").forEach(cell => {
+        cell.classList.remove("selected");
+        cell.style.backgroundColor = "#ffffff";
+      });
+
+      selectedCells.length = 0;
+      setTimeout(() => {
+        message.classList.add("disappear");
+        message.classList.remove("show");
+      }, 5000);
+
+    } else if (selectedWord === word && isValidMatrix(selectedCells)) {
+      message.textContent = "Congratulations! You found the word!";
+      setBubbleSize(parseInt(gridSizeSelector.value, 10), message.textContent.length)
+      message.className = "text-success message-bubble show";
+
+      score += 100;
+      document.getElementById("score").textContent = score;
+
+      if (wordIndex + 1 === wordList.length) {
+        wordList = shuffleWordList(wordList)
+      }
+      wordIndex = (wordIndex + 1) % wordList.length;
+      word = wordList[wordIndex];
+      document.getElementById("word-key").textContent = word;
+
+      selectedCells.length = 0;
+      generateGrid(gridSize);
+
+      setTimeout(() => {
+        message.classList.add("disappear");
+        message.classList.remove("show");
+      }, 5000);
+
+    } else {
+      message.textContent = "Try again. Keep looking!";
+      setBubbleSize(parseInt(gridSizeSelector.value, 10), message.textContent.length)
+      message.className = "text-danger message-bubble show";
+
+      document.querySelectorAll(".grid-cell").forEach(cell => {
+        cell.classList.remove("selected");
+        cell.style.backgroundColor = "#ffffff";
+      });
+
+      selectedCells.length = 0;
+      setTimeout(() => {
+        message.classList.add("disappear");
+        message.classList.remove("show");
+      }, 5000);
+    }
+  }
+
+  gridContainer.addEventListener("mousedown", (event) => {
+    startDrag(event.target);
+  });
+
+  gridContainer.addEventListener("mouseover", (event) => {
+    if (event.buttons === 1) {
+      dragOver(event.target);
+    }
+  });
+
+  gridContainer.addEventListener("mouseup", stopDrag);
+
+  gridContainer.addEventListener("touchstart", (event) => {
+    event.preventDefault();
+    const touch = event.touches[0];
+    const cell = document.elementFromPoint(touch.clientX, touch.clientY);
+    startDrag(cell);
+  }, { passive: false });
+
+  gridContainer.addEventListener("touchmove", (event) => {
+    event.preventDefault();
+    const touch = event.touches[0];
+    const cell = document.elementFromPoint(touch.clientX, touch.clientY);
+    dragOver(cell);
+  }, { passive: false });
+
+  gridContainer.addEventListener("touchend", (event) => {
+    event.preventDefault();
+    stopDrag();
+  }, { passive: false });
+
+  gridSizeSelector.addEventListener("change", (event) => {
+    gridSize = parseInt(event.target.value, 10);
+    generateGrid(gridSize);
+    score = 0;
+    document.getElementById("score").textContent = score
+  });
+
+  document.getElementById("hamburger-button").addEventListener("click", function () {
+    document.getElementById("size-selector-container").style.display = "block";
+    this.style.display = "none";
+  });
+
+  document.getElementById("close-button").addEventListener("click", function () {
+    document.getElementById("size-selector-container").style.display = "none";
+    document.getElementById("hamburger-button").style.display = "block";
+  });
+</script>
+{{ end }}
