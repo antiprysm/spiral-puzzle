@@ -1,8 +1,31 @@
 {{ define "main" }}
+
 <article class="page-card">
   <h1>{{ .Title }}</h1>
-  {{ with .Description }}<p class="privacy-description">{{ . }}</p>{{ end }}
-  <div class="content">{{ .Content }}</div>
+
+  {{ if .Params.description }}
+    <p class="privacy-description">{{ .Params.description }}</p>
+  {{ end }}
+
+  <div class="content">
+    {{ .Content }}
+  </div>
+
+  <!-- Selector UI -->
+  <div class="privacy-selector" role="group" aria-label="Choose app privacy policy">
+    <button type="button" class="privacy-option" data-app="spiral">
+      Spiral Word Puzzle
+    </button>
+
+    <button type="button" class="privacy-option" data-app="catchledger">
+      CatchLedger
+    </button>
+  </div>
+
+  <!-- Dynamic injection area -->
+  <div id="policy" aria-live="polite"></div>
 </article>
-<script src="{{ "js/privacy-loader.js" | relURL }}" defer></script>
+
+<script src="/js/privacy-loader.js" defer></script>
+
 {{ end }}

@@ -14,6 +14,10 @@
   </url><url>
     <loc>http://localhost:1313/privacy/</loc>
   </url><url>
+    <loc>http://localhost:1313/privacy/catchledger/</loc>
+  </url><url>
+    <loc>http://localhost:1313/privacy/spiral-word-puzzle/</loc>
+  </url><url>
     <loc>http://localhost:1313/apps/spiral-puzzle/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>

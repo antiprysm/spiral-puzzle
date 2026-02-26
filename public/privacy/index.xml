@@ -1,26 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hambungle</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content on Hambungle</description>
+    <title>Privacy Policy on Hambungle</title>
+    <link>http://localhost:1313/privacy/</link>
+    <description>Recent content in Privacy Policy on Hambungle</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>CatchLedger</title>
-      <link>http://localhost:1313/apps/catchledger/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/apps/catchledger/</guid>
-      <description>&lt;p&gt;CatchLedger helps you keep activity logs organized without clutter.&lt;/p&gt;&#xA;&lt;h3 id=&#34;highlights&#34;&gt;Highlights&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Create quick entries for each catch.&lt;/li&gt;&#xA;&lt;li&gt;Keep lightweight notes for location, date, and details.&lt;/li&gt;&#xA;&lt;li&gt;Review your history in one place.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>Contact</title>
-      <link>http://localhost:1313/contact/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/contact/</guid>
-      <description>&lt;p&gt;For support, collaboration, or questions, email us at &lt;a href=&#34;mailto:hello@hambungle.com&#34;&gt;hello@hambungle.com&lt;/a&gt;.&lt;/p&gt;</description>
-    </item>
+    <atom:link href="http://localhost:1313/privacy/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Privacy Policy — CatchLedger</title>
       <link>http://localhost:1313/privacy/catchledger/</link>
@@ -34,20 +20,6 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/privacy/spiral-word-puzzle/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Effective Date:&lt;/strong&gt; 01/15/25&lt;br&gt;&#xA;&lt;em&gt;Last updated: 03/31/25&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;information-we-collect&#34;&gt;Information We Collect&lt;/h2&gt;&#xA;&lt;p&gt;Spiral Word Puzzle collects a limited amount of user information solely for leaderboard functionality.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Authentication Information (Required):&lt;/strong&gt;&lt;br&gt;&#xA;When submitting a high score, we collect a username or unique identifier to associate scores with players.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Country Location (Optional):&lt;/strong&gt;&lt;br&gt;&#xA;You may optionally choose your country from a list when submitting a high score. This is not automatically collected and is only stored if selected by you.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Spiral Word Puzzle</title>
-      <link>http://localhost:1313/apps/spiral-puzzle/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/apps/spiral-puzzle/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Terms</title>
-      <link>http://localhost:1313/terms/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/terms/</guid>
-      <description>&lt;p&gt;By using Hambungle apps and this website, you agree to use them lawfully and responsibly.&lt;/p&gt;&#xA;&lt;p&gt;We provide our apps as-is and may update, modify, or discontinue features at any time.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

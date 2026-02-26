@@ -1,6 +1,8 @@
 {{ define "main" }}
 <article class="page-card">
   <h1>{{ .Title }}</h1>
-  <div class="content">{{ .Content }}</div>
+  <div class="content" id="policy-fragment">
+    {{ .Content }}
+  </div>
 </article>
 {{ end }}
