@@ -1,6 +1,7 @@
 ---
-title: "Privacy Policy"
-description: "Privacy policy for Spiral Word Puzzle."
+title: "Privacy Policy — Spiral Word Puzzle"
+slug: "spiral-word-puzzle"
+type: "privacy-doc"
 ---
 
 **Effective Date:** 01/15/25  

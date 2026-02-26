@@ -1,0 +1,8 @@
+{{ define "main" }}
+<article class="page-card">
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="privacy-description">{{ . }}</p>{{ end }}
+  <div class="content">{{ .Content }}</div>
+</article>
+<script src="{{ "js/privacy-loader.js" | relURL }}" defer></script>
+{{ end }}

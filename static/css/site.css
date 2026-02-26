@@ -154,3 +154,40 @@ h2 { margin: 0 0 1rem; }
 }
 .message-bubble.show { display: inline-block; }
 .message-bubble.disappear { opacity: 0; transition: opacity 0.4s ease; }
+
+.privacy-description {
+  color: var(--muted);
+  margin-top: 0;
+}
+
+.privacy-selector {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.privacy-option {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  padding: 0.5rem 0.85rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.privacy-option:hover {
+  border-color: #cbd5e1;
+}
+
+.privacy-option.is-active {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+}
+
+#policy {
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
