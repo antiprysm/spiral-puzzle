@@ -9,5 +9,7 @@
         <link rel="icon" type="image/x-icon" href="{{ relURL "favicon.ico"}}">
     {{ end }}
     <link rel="stylesheet" href="{{ "/css/styles.css" | relURL }}">
+    <link rel="preload" href="{{ "/models/hambone.glb" | relURL }}" as="fetch" crossorigin>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>

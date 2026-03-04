@@ -34,8 +34,8 @@
 
   .hambone-stage {
   position: absolute;
-  top: 50%;
-  right: 0%;
+  top: 40%;
+  right: 2%;
   transform: translateY(-40%);
   width: clamp(260px, 38vw, 480px);
   height: 80%;
@@ -44,18 +44,36 @@
 }
 
 .hambone-stage model-viewer {
-  opacity: 0.35;
-  mix-blend-mode: screen;   /* try soft-light / overlay / screen */
-  filter: saturate(0.95) contrast(0.95);
+  opacity: 0;
+  transform: translateY(10px) scale(0.98);
+  filter: blur(6px) saturate(0.95) contrast(0.95);
+  transition:
+    opacity 600ms ease,
+    transform 700ms cubic-bezier(.2,.8,.2,1),
+    filter 700ms ease;
+  will-change: opacity, transform, filter;
 }
 
-  /* Make model-viewer fill the stage */
-  .hambone-stage model-viewer{
-    width: 100%;
-    height: 100%;
-    display: block;
-    background: transparent;
+/* When loaded, fade in */
+.hambone-stage model-viewer.is-loaded {
+  opacity: 0.35; /* keep your blended look */
+  transform: translateY(0) scale(1);
+  filter: saturate(0.95) contrast(0.95);
+  mix-blend-mode: screen;
+}
+
+@media (max-width: 900px) {
+  .hambone-stage {
+    transform: translateY(-15%);
   }
+}
+
+/* Optional: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hambone-stage model-viewer {
+    transition: none;
+  }
+}
 
   .studio-home .section-title { color: #f3f4f6; }
   .studio-home .app-card { background: #0b1220; border-color: #1f2937; }
@@ -71,9 +89,9 @@
   }
   .video-cinematic video{
     width: 100%;
-    height: auto;          /* let it size naturally */
+    height: auto;
     display: block;
-    object-fit: contain;   /* IMPORTANT: no cropping */
+    object-fit: contain;
     background: #000;
     }
 
@@ -130,8 +148,12 @@
     <!-- Floating interactive 3D Hambone -->
     <div class="hambone-stage" aria-hidden="true">
       <model-viewer
+        id="hambone"
         src="{{ "/models/hambone.glb" | relURL }}"
         camera-controls
+        preload
+        reveal="auto"
+        style="width: 100%; height: 100%; background: transparent;"
         interaction-prompt="none"
         auto-rotate
         auto-rotate-delay="0"
@@ -203,5 +225,21 @@
       observer.observe(video);
       video.addEventListener("ended", () => video.setAttribute("controls", "controls"), { once: true });
     });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const mv = document.getElementById("hambone");
+        if (!mv) return;
+    
+        // If it’s already loaded (cached), apply immediately
+        if (mv.loaded) {
+          mv.classList.add("is-loaded");
+          return;
+        }
+    
+        mv.addEventListener("load", () => {
+          mv.classList.add("is-loaded");
+        }, { once: true });
+      });
     </script>
 {{ end }}
