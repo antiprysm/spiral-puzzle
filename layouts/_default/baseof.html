@@ -17,16 +17,6 @@
 
   <!-- Register <model-viewer> -->
   <script type="module" src="{{ "js/model-viewer.min.js" | relURL }}"></script>
-
-  <!-- If you use data-src, set src after DOM exists -->
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const mv = document.getElementById('hambone');
-      if (!mv) return;
-      const src = mv.getAttribute('data-src');
-      if (src && !mv.getAttribute('src')) mv.setAttribute('src', src);
-    });
-  </script>
 </head>
 
 <body>
