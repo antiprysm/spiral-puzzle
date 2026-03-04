@@ -54,6 +54,7 @@
   will-change: opacity, transform, filter;
 }
 
+
 /* When loaded, fade in */
 .hambone-stage model-viewer.is-loaded {
   opacity: 0.35; /* keep your blended look */
@@ -134,8 +135,6 @@
 {{ end }}
 
 {{ define "main" }}
-<!-- load model-viewer once on the page -->
-<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
 <div class="studio-home">
   <section class="hero">
@@ -146,23 +145,19 @@
     </div>
 
     <!-- Floating interactive 3D Hambone -->
-    <div class="hambone-stage" aria-hidden="true">
+    <div class="hambone-stage">
       <model-viewer
-        id="hambone"
-        src="{{ "/models/hambone.glb" | relURL }}"
-        camera-controls
-        preload
-        reveal="auto"
-        style="width: 100%; height: 100%; background: transparent;"
-        interaction-prompt="none"
-        auto-rotate
-        auto-rotate-delay="0"
-        rotation-per-second="12deg"
-        exposure="1.0"
-        shadow-intensity="0.8"
-        environment-image="neutral"
-        disable-zoom
-      ></model-viewer>
+      id="hambone"
+      data-src="{{ "/models/hambone.glb" | relURL }}"
+      camera-controls
+      auto-rotate
+      interaction-prompt="none"
+      environment-image="neutral"
+      exposure="1"
+      shadow-intensity="0.8"
+      disable-zoom
+      style="width:100%; height:100%; background:transparent;"
+    ></model-viewer>
     </div>
   </section>
 
@@ -203,6 +198,8 @@
   </section>
 </div>
 
+
+
 <script>
     document.addEventListener("DOMContentLoaded", () => {
       const video = document.getElementById("cinematic-video");
@@ -226,20 +223,18 @@
       video.addEventListener("ended", () => video.setAttribute("controls", "controls"), { once: true });
     });
     </script>
+
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const mv = document.getElementById("hambone");
         if (!mv) return;
-    
-        // If it’s already loaded (cached), apply immediately
-        if (mv.loaded) {
-          mv.classList.add("is-loaded");
-          return;
-        }
-    
-        mv.addEventListener("load", () => {
-          mv.classList.add("is-loaded");
-        }, { once: true });
+
+        // Trigger loading after decoder setup (baseof already set it up)
+        const src = mv.getAttribute("data-src");
+        if (src && !mv.getAttribute("src")) mv.setAttribute("src", src);
+
+        mv.addEventListener("load", () => mv.classList.add("is-loaded"), { once: true });
       });
     </script>
+    
 {{ end }}

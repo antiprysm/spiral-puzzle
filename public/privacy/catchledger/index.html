@@ -8,7 +8,27 @@
   <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   <link rel="stylesheet" href="/css/site.css">
   
+
+  
+  <script>
+    window.ModelViewerElement = window.ModelViewerElement || {};
+    window.ModelViewerElement.meshoptDecoderLocation = '\/js\/meshopt_decoder.module.js';
+  </script>
+
+  
+  <script type="module" src="/js/model-viewer.min.js"></script>
+
+  
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const mv = document.getElementById('hambone');
+      if (!mv) return;
+      const src = mv.getAttribute('data-src');
+      if (src && !mv.getAttribute('src')) mv.setAttribute('src', src);
+    });
+  </script>
 </head>
+
 <body>
   <header class="site-header">
     <div class="wrap nav">
@@ -23,6 +43,7 @@
       </nav>
     </div>
   </header>
+
   <main class="wrap">
     
 <article class="page-card">
@@ -61,6 +82,7 @@ We do not sell personal information.</p>
 </article>
 
   </main>
+
   <footer class="site-footer">
     <div class="wrap">
       <p>© 2026 Hambungle Studio</p>

@@ -8,7 +8,27 @@
   <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   <link rel="stylesheet" href="{{ "css/site.css" | relURL }}">
   {{ block "head" . }}{{ end }}
+
+  <!-- IMPORTANT: configure meshopt BEFORE model-viewer is loaded / before any <model-viewer> is created -->
+  <script>
+    window.ModelViewerElement = window.ModelViewerElement || {};
+    window.ModelViewerElement.meshoptDecoderLocation = '{{ "js/meshopt_decoder.module.js" | relURL }}';
+  </script>
+
+  <!-- Register <model-viewer> -->
+  <script type="module" src="{{ "js/model-viewer.min.js" | relURL }}"></script>
+
+  <!-- If you use data-src, set src after DOM exists -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const mv = document.getElementById('hambone');
+      if (!mv) return;
+      const src = mv.getAttribute('data-src');
+      if (src && !mv.getAttribute('src')) mv.setAttribute('src', src);
+    });
+  </script>
 </head>
+
 <body>
   <header class="site-header">
     <div class="wrap nav">
@@ -23,9 +43,11 @@
       </nav>
     </div>
   </header>
+
   <main class="wrap">
     {{ block "main" . }}{{ end }}
   </main>
+
   <footer class="site-footer">
     <div class="wrap">
       <p>© {{ now.Year }} Hambungle Studio</p>
