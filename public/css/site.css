@@ -1,3 +1,14 @@
+@font-face {
+  font-family: "KetchupManis";
+  src:
+    url("/fonts/ketchup-manis.woff2") format("woff2"),
+    url("/fonts/ketchup-manis.woff") format("woff"),
+    url("/fonts/ketchup-manis.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg: #f4f5f7;
   --surface: #ffffff;
@@ -48,7 +59,12 @@ a:hover { text-decoration: underline; }
   align-items: center;
 }
 
-.brand { font-weight: 700; letter-spacing: 0.01em; color: var(--text); }
+.brand {
+  font-family: "KetchupManis", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: #c92a2a;
+  text-shadow: 2px 2px 0 #bdbdbd;
+}
 
 .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; }
 .nav-links a { color: var(--muted); font-size: 0.95rem; }
