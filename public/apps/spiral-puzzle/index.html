@@ -148,16 +148,6 @@
 
   
   <script type="module" src="/js/model-viewer.min.js"></script>
-
-  
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const mv = document.getElementById('hambone');
-      if (!mv) return;
-      const src = mv.getAttribute('data-src');
-      if (src && !mv.getAttribute('src')) mv.setAttribute('src', src);
-    });
-  </script>
 </head>
 
 <body>
