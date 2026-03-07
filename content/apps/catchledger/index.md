@@ -1,6 +1,7 @@
 ---
 title: "CatchLedger"
 description: "Simple catch and ledger tracking app."
+translationKey: "apps-catchledger"
 ---
 CatchLedger helps you keep activity logs organized without clutter.
 

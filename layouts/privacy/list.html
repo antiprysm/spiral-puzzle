@@ -1,24 +1,28 @@
 {{ define "main" }}
 
-<article class="page-card">
-  <h1>{{ .Title }}</h1>
+{{ $defaultSite := index (where .Sites "Language.Lang" site.DefaultContentLanguage) 0 }}
+{{ $privacySpiralURL := site.Home.RelPermalink }}
+{{ with site.GetPage "/privacy/spiral-word-puzzle" }}{{ $privacySpiralURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/privacy/spiral-word-puzzle" }}{{ $privacySpiralURL = .RelPermalink }}{{ end }}{{ end }}
+{{ $privacyCatchledgerURL := site.Home.RelPermalink }}
+{{ with site.GetPage "/privacy/catchledger" }}{{ $privacyCatchledgerURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/privacy/catchledger" }}{{ $privacyCatchledgerURL = .RelPermalink }}{{ end }}{{ end }}
 
-  {{ if .Params.description }}
-    <p class="privacy-description">{{ .Params.description }}</p>
-  {{ end }}
+<article class="page-card">
+  <h1>{{ i18n "pages.privacy.index.title" }}</h1>
+  <p class="privacy-description">{{ i18n "pages.privacy.index.description" }}</p>
 
   <div class="content">
-    {{ .Content }}
+    <p>{{ i18n "pages.privacy.index.body.p1" }}</p>
+    <p>{{ i18n "pages.privacy.index.body.p2" }}</p>
   </div>
 
   <!-- Selector UI -->
-  <div class="privacy-selector" role="group" aria-label="Choose app privacy policy">
+  <div class="privacy-selector" role="group" aria-label="{{ i18n "privacy.selector.aria_label" }}">
     <button type="button" class="privacy-option" data-app="spiral">
-      Spiral Word Puzzle
+      {{ i18n "privacy.selector.spiral_word_puzzle" }}
     </button>
 
     <button type="button" class="privacy-option" data-app="catchledger">
-      CatchLedger
+      {{ i18n "privacy.selector.catchledger" }}
     </button>
   </div>
 
@@ -26,6 +30,18 @@
   <div id="policy" aria-live="polite"></div>
 </article>
 
+<script>
+  window.hambunglePrivacyI18n = {
+    selectorSpiral: {{ i18n "privacy.selector.spiral_word_puzzle" | jsonify }},
+    selectorCatchledger: {{ i18n "privacy.selector.catchledger" | jsonify }},
+    loadingPolicy: {{ i18n "privacy.loader.loading_policy" | jsonify }},
+    errorLoadPage: {{ i18n "privacy.loader.error.load_page" | jsonify }},
+    errorContentNotFound: {{ i18n "privacy.loader.error.content_not_found" | jsonify }},
+    errorGeneric: {{ i18n "privacy.loader.error.generic" | jsonify }},
+    urlSpiral: {{ $privacySpiralURL | jsonify }},
+    urlCatchledger: {{ $privacyCatchledgerURL | jsonify }}
+  };
+</script>
 <script src="/js/privacy-loader.js" defer></script>
 
 {{ end }}

@@ -5,13 +5,13 @@
 {{ define "main" }}
 <article class="page-card feedback-card" id="feedback-card" data-feedback-page="true">
   <header class="feedback-card__header">
-    <h1 id="feedback-title" data-base-title="{{ .Title }}">{{ .Title }}</h1>
-    <p id="feedback-subtitle">{{ with .Params.subtitle }}{{ . }}{{ else }}{{ .Description }}{{ end }}</p>
+    <h1 id="feedback-title" data-base-title="{{ i18n "pages.feedback.index.title" }}">{{ i18n "pages.feedback.index.title" }}</h1>
+    <p id="feedback-subtitle">{{ i18n "pages.feedback.index.subtitle" }}</p>
   </header>
 
   <section class="feedback-card__meta" aria-live="polite">
-    <p><strong>Source:</strong> <span id="feedback-source">Not provided</span></p>
-    <p><strong>Category:</strong> <span id="feedback-category">General feedback</span></p>
+    <p><strong>{{ i18n "feedback.meta.source_label" }}</strong> <span id="feedback-source">{{ i18n "feedback.meta.source_not_provided" }}</span></p>
+    <p><strong>{{ i18n "feedback.meta.category_label" }}</strong> <span id="feedback-category">{{ i18n "feedback.category.general" }}</span></p>
   </section>
 
   <form
@@ -24,36 +24,75 @@
     <!-- For Netlify Forms, replace action/method with netlify attributes:
          <form name="feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field"> -->
 
-    <input type="hidden" name="_subject" id="feedback-subject" value="Feedback submission">
+    <input type="hidden" name="_subject" id="feedback-subject" value="{{ i18n "feedback.form.subject_default" }}">
     <input type="hidden" name="_next" value="{{ "/feedback/thanks/" | absURL }}">
     <input type="hidden" name="_replyto" id="feedback-replyto" value="">
 
     <p class="sr-only" aria-hidden="true">
-      <label for="feedback-bot-field">Leave this field empty</label>
+      <label for="feedback-bot-field">{{ i18n "feedback.form.bottrap.label" }}</label>
       <input id="feedback-bot-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
     </p>
 
-    <label id="feedback-message-label" for="feedback-message">Message <span aria-hidden="true">*</span></label>
-    <textarea id="feedback-message" name="message" rows="6" required placeholder="Tell us what happened, what you expected, and any details that may help."></textarea>
+    <label id="feedback-message-label" for="feedback-message">{{ i18n "feedback.form.message.label" }} <span aria-hidden="true">*</span></label>
+    <textarea id="feedback-message" name="message" rows="6" required placeholder="{{ i18n "feedback.form.message.placeholder_default" }}"></textarea>
 
-    <label for="feedback-email">Email (optional)</label>
-    <input id="feedback-email" name="email" type="email" placeholder="you@example.com" autocomplete="email">
+    <label for="feedback-email">{{ i18n "feedback.form.email.label" }}</label>
+    <input id="feedback-email" name="email" type="email" placeholder="{{ i18n "feedback.form.email.placeholder" }}" autocomplete="email">
 
-    <label for="feedback-device">Device / platform (optional)</label>
-    <input id="feedback-device" name="device" type="text" placeholder="e.g., iPhone 15 (iOS 18), Pixel 8 (Android 15), Web Chrome">
+    <label for="feedback-device">{{ i18n "feedback.form.device.label" }}</label>
+    <input id="feedback-device" name="device" type="text" placeholder="{{ i18n "feedback.form.device.placeholder" }}">
 
-    <label for="feedback-app-name">App</label>
-    <input id="feedback-app-name" name="app_name" type="text" readonly value="Hambungle App">
+    <label for="feedback-app-name">{{ i18n "feedback.form.app.label" }}</label>
+    <input id="feedback-app-name" name="app_name" type="text" readonly value="{{ i18n "feedback.form.app.default" }}">
 
-    <label for="feedback-category-name">Feedback category</label>
-    <input id="feedback-category-name" name="feedback_category_name" type="text" readonly value="General feedback">
+    <label for="feedback-category-name">{{ i18n "feedback.form.category.label" }}</label>
+    <input id="feedback-category-name" name="feedback_category_name" type="text" readonly value="{{ i18n "feedback.category.general" }}">
 
     <input id="feedback-source-input" name="source" type="hidden" value="unknown">
     <input id="feedback-type-input" name="type" type="hidden" value="general">
 
-    <button id="feedback-submit" type="submit">Send feedback</button>
+    <button id="feedback-submit" type="submit">{{ i18n "feedback.form.submit" }}</button>
   </form>
 </article>
 
+<script>
+  window.hambungleFeedbackI18n = {
+    sourceMap: {
+      catchledger: {{ i18n "feedback.source.catchledger" | jsonify }},
+      spiral: {{ i18n "feedback.source.spiral_word_puzzle" | jsonify }},
+      spiralwordpuzzle: {{ i18n "feedback.source.spiral_word_puzzle" | jsonify }},
+      "spiral-word-puzzle": {{ i18n "feedback.source.spiral_word_puzzle" | jsonify }}
+    },
+    defaults: {
+      appName: {{ i18n "feedback.form.app.default" | jsonify }},
+      category: {{ i18n "feedback.category.general" | jsonify }}
+    },
+    typeMap: {
+      general: {
+        category: {{ i18n "feedback.category.general" | jsonify }},
+        subtitle: {{ i18n "feedback.type.general.subtitle" | jsonify }},
+        titlePrefix: {{ i18n "feedback.type.general.title_prefix" | jsonify }},
+        messageLabel: {{ i18n "feedback.type.general.message_label" | jsonify }},
+        messagePlaceholder: {{ i18n "feedback.type.general.message_placeholder" | jsonify }}
+      },
+      improvement: {
+        category: {{ i18n "feedback.category.improvement" | jsonify }},
+        subtitle: {{ i18n "feedback.type.improvement.subtitle" | jsonify }},
+        titlePrefix: {{ i18n "feedback.type.improvement.title_prefix" | jsonify }},
+        messageLabel: {{ i18n "feedback.type.improvement.message_label" | jsonify }},
+        messagePlaceholder: {{ i18n "feedback.type.improvement.message_placeholder" | jsonify }}
+      },
+      bug: {
+        category: {{ i18n "feedback.category.bug" | jsonify }},
+        subtitle: {{ i18n "feedback.type.bug.subtitle" | jsonify }},
+        titlePrefix: {{ i18n "feedback.type.bug.title_prefix" | jsonify }},
+        messageLabel: {{ i18n "feedback.type.bug.message_label" | jsonify }},
+        messagePlaceholder: {{ i18n "feedback.type.bug.message_placeholder" | jsonify }}
+      }
+    },
+    titleTemplate: {{ i18n "feedback.dynamic.title_for_app" | jsonify }},
+    subjectTemplate: {{ i18n "feedback.dynamic.subject_for_app" | jsonify }}
+  };
+</script>
 <script src='{{ "js/feedback.js" | relURL }}' defer></script>
 {{ end }}
