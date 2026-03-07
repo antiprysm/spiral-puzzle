@@ -1,0 +1,356 @@
+# Hugo i18n es source
+# Mirrors keys from i18n/en.toml
+
+["common.meta.description_fallback"]
+other = "Hambungle crea aplicaciones lúdicas y cuidadosamente diseñadas."
+
+["common.nav.main_aria_label"]
+other = "Navegación principal"
+
+["common.nav.studio"]
+other = "Estudio"
+
+["common.nav.spiral_puzzle"]
+other = "Spiral Puzzle"
+
+["common.nav.catchledger"]
+other = "CatchLedger"
+
+["common.nav.privacy"]
+other = "Privacidad"
+
+["common.nav.terms"]
+other = "Términos"
+
+["common.nav.contact"]
+other = "Contacto"
+
+["common.footer.copyright"]
+other = "© {{ .year }} Hambungle Studio"
+
+["common.brand.hambungle"]
+other = "Hambungle"
+
+["common.brand.hambungle_studio"]
+other = "Hambungle Studio"
+
+["common.brand.spiral_puzzle"]
+other = "Spiral Puzzle"
+
+["common.brand.spiral_word_puzzle"]
+other = "Spiral Word Puzzle"
+
+["common.brand.catchledger"]
+other = "CatchLedger"
+
+["home.hero.eyebrow"]
+other = "Hambungle Studio"
+
+["home.hero.title"]
+other = "Productos divertidos, con acabado cinematográfico."
+
+["home.hero.body"]
+other = "Creamos experiencias de apps modernas y ligeras con personalidad. Explora nuestros juegos y herramientas creados para la velocidad, la claridad y el disfrute."
+
+["home.section.apps_title"]
+other = "Apps"
+
+["home.card.shared.cta_open_app"]
+other = "Abrir app"
+
+["home.card.shared.cta_view_app"]
+other = "Ver app"
+
+["home.card.spiral.badge"]
+other = "Juego"
+
+["home.card.spiral.description"]
+other = "Encuentra palabras ocultas en espirales. Rondas rápidas, interacciones táctiles y una curva de desafío satisfactoria."
+
+["home.card.catchledger.badge"]
+other = "Finanzas"
+
+["home.card.catchledger.description"]
+other = "Registra capturas, anota entradas y mantén tus registros organizados con un flujo de libro mayor sencillo."
+
+["home.break.title"]
+other = "Creado con intención."
+
+["home.break.body"]
+other = "Cada producto de Hambungle está diseñado con claridad, movimiento y personalidad. Desde mecánicas de rompecabezas táctiles hasta herramientas financieras limpias, nos enfocamos en desarrollos ligeros y acabado cinematográfico."
+
+["home.video.aria_label"]
+other = "Reel cinematográfico de Hambungle"
+
+["spiral.page.title"]
+other = "Spiral Word Puzzle"
+
+["spiral.current_word.label"]
+other = "Palabra actual:"
+
+["spiral.grid_size.label"]
+other = "Seleccionar tamaño de cuadrícula:"
+
+["spiral.grid_size.option"]
+other = "{{ .size }} x {{ .size }}"
+
+["spiral.score.label"]
+other = "Puntuación:"
+
+["spiral.instructions.drag_select"]
+other = "Haz clic y arrastra para hacer tu selección en un solo trazo"
+
+["spiral.a11y.close_grid_size_selector"]
+other = "Cerrar selector de tamaño de cuadrícula"
+
+["spiral.a11y.toggle_grid_size_selector"]
+other = "Mostrar/ocultar selector de tamaño de cuadrícula"
+
+["spiral.store.apple_alt"]
+other = "Descargar en el App Store"
+
+["spiral.store.google_alt"]
+other = "Consíguelo en Google Play"
+
+["spiral.status.invalid_selection"]
+other = "Selección inválida. ¡Asegúrate de formar un cuadrado!"
+
+["spiral.status.success_found_word"]
+other = "¡Felicidades! ¡Encontraste la palabra!"
+
+["spiral.status.try_again"]
+other = "Inténtalo de nuevo. ¡Sigue buscando!"
+
+["privacy.selector.aria_label"]
+other = "Elige la política de privacidad de la app"
+
+["privacy.selector.spiral_word_puzzle"]
+other = "Spiral Word Puzzle"
+
+["privacy.selector.catchledger"]
+other = "CatchLedger"
+
+["privacy.loader.loading_policy"]
+other = "Cargando la política de {{ .app }}…"
+
+["privacy.loader.error.load_page"]
+other = "No se pudo cargar la página de política."
+
+["privacy.loader.error.content_not_found"]
+other = "No se encontró el contenido de la política."
+
+["privacy.loader.error.generic"]
+other = "No se puede cargar esta política en este momento."
+
+["feedback.meta.source_label"]
+other = "Origen:"
+
+["feedback.meta.source_not_provided"]
+other = "No proporcionado"
+
+["feedback.meta.category_label"]
+other = "Categoría:"
+
+["feedback.form.subject_default"]
+other = "Envío de comentarios"
+
+["feedback.form.bottrap.label"]
+other = "Deja este campo vacío"
+
+["feedback.form.message.label"]
+other = "Mensaje"
+
+["feedback.form.message.placeholder_default"]
+other = "Cuéntanos qué pasó, qué esperabas y cualquier detalle que pueda ayudar."
+
+["feedback.form.email.label"]
+other = "Correo electrónico (opcional)"
+
+["feedback.form.email.placeholder"]
+other = "you@example.com"
+
+["feedback.form.device.label"]
+other = "Dispositivo / plataforma (opcional)"
+
+["feedback.form.device.placeholder"]
+other = "p. ej., iPhone 15 (iOS 18), Pixel 8 (Android 15), Chrome web"
+
+["feedback.form.app.label"]
+other = "App"
+
+["feedback.form.app.default"]
+other = "App de Hambungle"
+
+["feedback.form.category.label"]
+other = "Categoría de comentarios"
+
+["feedback.form.submit"]
+other = "Enviar comentarios"
+
+["feedback.category.general"]
+other = "Comentarios generales"
+
+["feedback.category.improvement"]
+other = "Sugerencia de mejora"
+
+["feedback.category.bug"]
+other = "Reporte de error"
+
+["feedback.type.general.subtitle"]
+other = "Comparte cualquier comentario, pregunta o feedback general."
+
+["feedback.type.general.title_prefix"]
+other = "Comentarios generales"
+
+["feedback.type.general.message_label"]
+other = "Mensaje"
+
+["feedback.type.general.message_placeholder"]
+other = "Comparte tus ideas, comentarios o preguntas."
+
+["feedback.type.improvement.subtitle"]
+other = "Cuéntanos qué podría mejorar y por qué ayudaría."
+
+["feedback.type.improvement.title_prefix"]
+other = "Sugerencia de mejora"
+
+["feedback.type.improvement.message_label"]
+other = "Detalles de la sugerencia"
+
+["feedback.type.improvement.message_placeholder"]
+other = "¿Qué deberíamos mejorar? Incluye el comportamiento actual y tu cambio propuesto."
+
+["feedback.type.bug.subtitle"]
+other = "Describe qué salió mal y cómo podemos reproducirlo."
+
+["feedback.type.bug.title_prefix"]
+other = "Reporte de error"
+
+["feedback.type.bug.message_label"]
+other = "Detalles del error"
+
+["feedback.type.bug.message_placeholder"]
+other = "¿Qué pasó, qué esperabas y cómo podemos reproducir el problema?"
+
+["feedback.dynamic.title_for_app"]
+other = "{{ .type }} para {{ .app }}"
+
+["feedback.dynamic.subject_for_app"]
+other = "{{ .category }} - {{ .app }}"
+
+["feedback.source.catchledger"]
+other = "CatchLedger"
+
+["feedback.source.spiral_word_puzzle"]
+other = "Spiral Word Puzzle"
+
+["pages.contact.title"]
+other = "Contacto"
+
+["pages.contact.description"]
+other = "Ponte en contacto con Hambungle Studio."
+
+["pages.contact.body"]
+other = "Para soporte, colaboración o preguntas, escríbenos a [hello@hambungle.com](mailto:hello@hambungle.com)."
+
+["pages.terms.title"]
+other = "Términos"
+
+["pages.terms.description"]
+other = "Términos de uso de las apps y el sitio web de Hambungle."
+
+["pages.terms.body.p1"]
+other = "Al usar las apps de Hambungle y este sitio web, aceptas usarlos de forma legal y responsable."
+
+["pages.terms.body.p2"]
+other = "Ofrecemos nuestras apps tal cual y podemos actualizar, modificar o discontinuar funciones en cualquier momento."
+
+["pages.privacy.index.title"]
+other = "Política de privacidad"
+
+["pages.privacy.index.description"]
+other = "Elige una app para ver su política de privacidad."
+
+["pages.privacy.index.body.p1"]
+other = "Bienvenido al centro de políticas de privacidad de Hambungle."
+
+["pages.privacy.index.body.p2"]
+other = "Elige una app abajo para ver su política actual."
+
+["pages.privacy.spiral.title"]
+other = "Política de privacidad — Spiral Word Puzzle"
+
+["pages.privacy.catchledger.title"]
+other = "Política de privacidad — CatchLedger"
+
+["pages.feedback.index.title"]
+other = "Comentarios"
+
+["pages.feedback.index.description"]
+other = "Comparte comentarios sobre CatchLedger."
+
+["pages.feedback.index.subtitle"]
+other = "Cuéntanos qué funciona, qué no y qué deberíamos construir después."
+
+["pages.feedback.index.body"]
+other = "Usa el formulario de abajo para enviar comentarios. El asunto y la categoría pueden completarse automáticamente desde el enlace de la app."
+
+["pages.feedback.thanks.title"]
+other = "Gracias"
+
+["pages.feedback.thanks.body"]
+other = "Gracias por tus comentarios."
+
+["social.twitter.tweets_by"]
+other = "Tweets de {{ .username }}"
+
+["pages.privacy.spiral.meta.effective_date_label"]
+other = "Fecha de vigencia:"
+
+["pages.privacy.spiral.meta.last_updated_label"]
+other = "Última actualización:"
+
+["pages.privacy.spiral.section.information_we_collect"]
+other = "Información que recopilamos"
+
+["pages.privacy.spiral.section.data_storage_and_usage"]
+other = "Almacenamiento y uso de datos"
+
+["pages.privacy.spiral.section.third_party_services"]
+other = "Servicios de terceros"
+
+["pages.privacy.spiral.section.changes_to_policy"]
+other = "Cambios en esta política"
+
+["pages.privacy.catchledger.meta.effective_date_label"]
+other = "Fecha de vigencia:"
+
+["pages.privacy.catchledger.meta.last_updated_label"]
+other = "Última actualización:"
+
+["pages.privacy.catchledger.section.information_we_collect"]
+other = "Información que recopilamos"
+
+["pages.privacy.catchledger.section.data_storage_and_usage"]
+other = "Almacenamiento y uso de datos"
+
+["pages.privacy.catchledger.section.third_party_services"]
+other = "Servicios de terceros"
+
+["pages.privacy.catchledger.section.your_choices"]
+other = "Tus opciones"
+
+["pages.privacy.catchledger.section.changes_to_policy"]
+other = "Cambios en esta política"
+
+["common.meta.title_with_page"]
+other = "{{ .page }} | {{ .site }}"
+
+["common.meta.title_home"]
+other = "{{ .site }}"
+
+["common.language.selector_aria"]
+other = "Selector de idioma"
+
+["common.language.selector_label"]
+other = "Idioma"

@@ -139,9 +139,9 @@
 <div class="studio-home">
   <section class="hero">
     <div class="hero-copy">
-      <p class="eyebrow">Hambungle Studio</p>
-      <h1>Playful products, cinematic polish.</h1>
-      <p>We craft modern, lightweight app experiences with personality. Explore our games and tools built for speed, clarity, and delight.</p>
+      <p class="eyebrow">{{ i18n "home.hero.eyebrow" }}</p>
+      <h1>{{ i18n "home.hero.title" }}</h1>
+      <p>{{ i18n "home.hero.body" }}</p>
     </div>
 
     <!-- Floating interactive 3D Hambone -->
@@ -163,36 +163,32 @@
   </section>
 
   <section class="section-block">
-    <h2 class="section-title">Apps</h2>
+    <h2 class="section-title">{{ i18n "home.section.apps_title" }}</h2>
     <div class="card-grid">
       <article class="app-card">
-        <p class="badge">Game</p>
-        <h3>Spiral Puzzle</h3>
-        <p>Find hidden words embedded in spirals. Fast rounds, tactile interactions, and a satisfying challenge curve.</p>
-        <a class="btn" href="{{ "/apps/spiral-puzzle/" | relURL }}">Open app</a>
+        <p class="badge">{{ i18n "home.card.spiral.badge" }}</p>
+        <h3>{{ i18n "common.brand.spiral_puzzle" }}</h3>
+        <p>{{ i18n "home.card.spiral.description" }}</p>
+        <a class="btn" href="{{ "/apps/spiral-puzzle/" | relLangURL }}">{{ i18n "home.card.shared.cta_open_app" }}</a>
       </article>
 
       <article class="app-card">
-        <p class="badge">Finance</p>
-        <h3>CatchLedger</h3>
-        <p>Track catches, log entries, and keep your records organized with a straightforward ledger workflow.</p>
-        <a class="btn" href="{{ "/apps/catchledger/" | relURL }}">View app</a>
+        <p class="badge">{{ i18n "home.card.catchledger.badge" }}</p>
+        <h3>{{ i18n "common.brand.catchledger" }}</h3>
+        <p>{{ i18n "home.card.catchledger.description" }}</p>
+        <a class="btn" href="{{ "/apps/catchledger/" | relLangURL }}">{{ i18n "home.card.shared.cta_view_app" }}</a>
       </article>
     </div>
   </section>
 
   <section class="studio-break">
     <div class="studio-break-inner">
-      <h2>Crafted with intention.</h2>
-      <p>
-        Every Hambungle product is designed with clarity, motion, and personality.
-        From tactile puzzle mechanics to clean financial tools, we focus on
-        lightweight builds and cinematic polish.
-      </p>
+      <h2>{{ i18n "home.break.title" }}</h2>
+      <p>{{ i18n "home.break.body" }}</p>
     </div>
   </section>
 
-  <section class="video-cinematic" aria-label="Hambungle cinematic reel">
+  <section class="video-cinematic" aria-label="{{ i18n "home.video.aria_label" }}">
     <video id="cinematic-video" muted playsinline preload="metadata">
       <source src="{{ "/video/splash.mp4" | relURL }}" type="video/mp4">
     </video>

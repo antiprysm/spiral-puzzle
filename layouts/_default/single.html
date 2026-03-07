@@ -1,6 +1,26 @@
 {{ define "main" }}
 <article class="page-card">
-  <h1>{{ .Title }}</h1>
-  <div class="content">{{ .Content }}</div>
+  {{ $title := .Title }}
+  {{ if eq .RelPermalink "/contact/" }}
+    {{ $title = i18n "pages.contact.title" }}
+  {{ else if eq .RelPermalink "/terms/" }}
+    {{ $title = i18n "pages.terms.title" }}
+  {{ else if eq .RelPermalink "/feedback/thanks/" }}
+    {{ $title = i18n "pages.feedback.thanks.title" }}
+  {{ end }}
+  <h1>{{ $title }}</h1>
+
+  <div class="content">
+    {{ if eq .RelPermalink "/contact/" }}
+      {{ i18n "pages.contact.body" | markdownify }}
+    {{ else if eq .RelPermalink "/terms/" }}
+      <p>{{ i18n "pages.terms.body.p1" }}</p>
+      <p>{{ i18n "pages.terms.body.p2" }}</p>
+    {{ else if eq .RelPermalink "/feedback/thanks/" }}
+      <p>{{ i18n "pages.feedback.thanks.body" }}</p>
+    {{ else }}
+      {{ .Content }}
+    {{ end }}
+  </div>
 </article>
 {{ end }}

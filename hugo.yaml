@@ -1,6 +1,35 @@
 baseURL: "http://localhost:1313/"
 languageCode: "en-us"
 title: "Hambungle"
+defaultContentLanguage: "en"
+defaultContentLanguageInSubdir: false
+
+languages:
+  en:
+    languageName: "English"
+    languageCode: "en-US"
+    languageDirection: "ltr"
+    weight: 1
+  ar:
+    languageName: "العربية"
+    languageCode: "ar"
+    languageDirection: "rtl"
+    weight: 2
+  es:
+    languageName: "Español"
+    languageCode: "es"
+    languageDirection: "ltr"
+    weight: 3
+  hi:
+    languageName: "हिन्दी"
+    languageCode: "hi"
+    languageDirection: "ltr"
+    weight: 4
+  zh:
+    languageName: "中文"
+    languageCode: "zh"
+    languageDirection: "ltr"
+    weight: 5
 
 markup:
   goldmark:

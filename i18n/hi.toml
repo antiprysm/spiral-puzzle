@@ -1,0 +1,356 @@
+# Hugo i18n hi source
+# Mirrors keys from i18n/en.toml
+
+["common.meta.description_fallback"]
+other = "Hambungle आनंददायक और सोच-समझकर बनाए गए ऐप्स बनाता है।"
+
+["common.nav.main_aria_label"]
+other = "मुख्य नेविगेशन"
+
+["common.nav.studio"]
+other = "स्टूडियो"
+
+["common.nav.spiral_puzzle"]
+other = "Spiral Puzzle"
+
+["common.nav.catchledger"]
+other = "CatchLedger"
+
+["common.nav.privacy"]
+other = "गोपनीयता"
+
+["common.nav.terms"]
+other = "शर्तें"
+
+["common.nav.contact"]
+other = "संपर्क"
+
+["common.footer.copyright"]
+other = "© {{ .year }} Hambungle Studio"
+
+["common.brand.hambungle"]
+other = "Hambungle"
+
+["common.brand.hambungle_studio"]
+other = "Hambungle Studio"
+
+["common.brand.spiral_puzzle"]
+other = "Spiral Puzzle"
+
+["common.brand.spiral_word_puzzle"]
+other = "Spiral Word Puzzle"
+
+["common.brand.catchledger"]
+other = "CatchLedger"
+
+["home.hero.eyebrow"]
+other = "Hambungle Studio"
+
+["home.hero.title"]
+other = "खेलपूर्ण उत्पाद, सिनेमाई निखार के साथ।"
+
+["home.hero.body"]
+other = "हम व्यक्तित्व से भरपूर आधुनिक और हल्के ऐप अनुभव बनाते हैं। गति, स्पष्टता और आनंद के लिए बने हमारे गेम और टूल्स देखें।"
+
+["home.section.apps_title"]
+other = "ऐप्स"
+
+["home.card.shared.cta_open_app"]
+other = "ऐप खोलें"
+
+["home.card.shared.cta_view_app"]
+other = "ऐप देखें"
+
+["home.card.spiral.badge"]
+other = "गेम"
+
+["home.card.spiral.description"]
+other = "सर्पिलों में छिपे शब्द खोजें। तेज राउंड, स्पर्श आधारित इंटरैक्शन और संतोषजनक चुनौती वक्र।"
+
+["home.card.catchledger.badge"]
+other = "वित्त"
+
+["home.card.catchledger.description"]
+other = "कैच ट्रैक करें, एंट्रियाँ लॉग करें, और सरल लेजर वर्कफ़्लो से अपने रिकॉर्ड व्यवस्थित रखें।"
+
+["home.break.title"]
+other = "इरादे के साथ तैयार किया गया।"
+
+["home.break.body"]
+other = "हर Hambungle उत्पाद स्पष्टता, गति और व्यक्तित्व के साथ डिज़ाइन किया गया है। स्पर्श आधारित पहेली मैकेनिक्स से लेकर साफ़ वित्तीय टूल्स तक, हमारा ध्यान हल्के निर्माण और सिनेमाई निखार पर है।"
+
+["home.video.aria_label"]
+other = "Hambungle सिनेमैटिक रील"
+
+["spiral.page.title"]
+other = "Spiral Word Puzzle"
+
+["spiral.current_word.label"]
+other = "वर्तमान शब्द:"
+
+["spiral.grid_size.label"]
+other = "ग्रिड आकार चुनें:"
+
+["spiral.grid_size.option"]
+other = "{{ .size }} x {{ .size }}"
+
+["spiral.score.label"]
+other = "स्कोर:"
+
+["spiral.instructions.drag_select"]
+other = "एक ही स्ट्रोक में चयन करने के लिए क्लिक करें और ड्रैग करें"
+
+["spiral.a11y.close_grid_size_selector"]
+other = "ग्रिड आकार चयनकर्ता बंद करें"
+
+["spiral.a11y.toggle_grid_size_selector"]
+other = "ग्रिड आकार चयनकर्ता टॉगल करें"
+
+["spiral.store.apple_alt"]
+other = "App Store पर डाउनलोड करें"
+
+["spiral.store.google_alt"]
+other = "Google Play पर प्राप्त करें"
+
+["spiral.status.invalid_selection"]
+other = "अमान्य चयन। सुनिश्चित करें कि एक वर्ग बने!"
+
+["spiral.status.success_found_word"]
+other = "बधाई हो! आपने शब्द ढूँढ लिया!"
+
+["spiral.status.try_again"]
+other = "फिर से कोशिश करें। खोज जारी रखें!"
+
+["privacy.selector.aria_label"]
+other = "ऐप गोपनीयता नीति चुनें"
+
+["privacy.selector.spiral_word_puzzle"]
+other = "Spiral Word Puzzle"
+
+["privacy.selector.catchledger"]
+other = "CatchLedger"
+
+["privacy.loader.loading_policy"]
+other = "{{ .app }} की नीति लोड हो रही है…"
+
+["privacy.loader.error.load_page"]
+other = "नीति पृष्ठ लोड नहीं हो सका।"
+
+["privacy.loader.error.content_not_found"]
+other = "नीति सामग्री नहीं मिली।"
+
+["privacy.loader.error.generic"]
+other = "अभी यह नीति लोड नहीं की जा सकती।"
+
+["feedback.meta.source_label"]
+other = "स्रोत:"
+
+["feedback.meta.source_not_provided"]
+other = "प्रदान नहीं किया गया"
+
+["feedback.meta.category_label"]
+other = "श्रेणी:"
+
+["feedback.form.subject_default"]
+other = "फ़ीडबैक सबमिशन"
+
+["feedback.form.bottrap.label"]
+other = "इस फ़ील्ड को खाली छोड़ें"
+
+["feedback.form.message.label"]
+other = "संदेश"
+
+["feedback.form.message.placeholder_default"]
+other = "हमें बताएं क्या हुआ, आपकी क्या अपेक्षा थी, और कोई भी विवरण जो मदद कर सके।"
+
+["feedback.form.email.label"]
+other = "ईमेल (वैकल्पिक)"
+
+["feedback.form.email.placeholder"]
+other = "you@example.com"
+
+["feedback.form.device.label"]
+other = "डिवाइस / प्लेटफ़ॉर्म (वैकल्पिक)"
+
+["feedback.form.device.placeholder"]
+other = "जैसे, iPhone 15 (iOS 18), Pixel 8 (Android 15), Web Chrome"
+
+["feedback.form.app.label"]
+other = "ऐप"
+
+["feedback.form.app.default"]
+other = "Hambungle App"
+
+["feedback.form.category.label"]
+other = "फ़ीडबैक श्रेणी"
+
+["feedback.form.submit"]
+other = "फ़ीडबैक भेजें"
+
+["feedback.category.general"]
+other = "सामान्य फ़ीडबैक"
+
+["feedback.category.improvement"]
+other = "सुधार सुझाव"
+
+["feedback.category.bug"]
+other = "बग रिपोर्ट"
+
+["feedback.type.general.subtitle"]
+other = "कोई भी टिप्पणी, प्रश्न या समग्र फ़ीडबैक साझा करें।"
+
+["feedback.type.general.title_prefix"]
+other = "सामान्य फ़ीडबैक"
+
+["feedback.type.general.message_label"]
+other = "संदेश"
+
+["feedback.type.general.message_placeholder"]
+other = "अपने विचार, टिप्पणियाँ या प्रश्न साझा करें।"
+
+["feedback.type.improvement.subtitle"]
+other = "हमें बताएं क्या बेहतर हो सकता है और क्यों मदद करेगा।"
+
+["feedback.type.improvement.title_prefix"]
+other = "सुधार सुझाव"
+
+["feedback.type.improvement.message_label"]
+other = "सुझाव का विवरण"
+
+["feedback.type.improvement.message_placeholder"]
+other = "हमें क्या सुधारना चाहिए? वर्तमान व्यवहार और आपका प्रस्तावित बदलाव शामिल करें।"
+
+["feedback.type.bug.subtitle"]
+other = "बताएं क्या गलत हुआ और हम इसे कैसे दोहरा सकते हैं।"
+
+["feedback.type.bug.title_prefix"]
+other = "बग रिपोर्ट"
+
+["feedback.type.bug.message_label"]
+other = "बग विवरण"
+
+["feedback.type.bug.message_placeholder"]
+other = "क्या हुआ, आपकी क्या अपेक्षा थी, और हम इस समस्या को कैसे दोहरा सकते हैं?"
+
+["feedback.dynamic.title_for_app"]
+other = "{{ .app }} के लिए {{ .type }}"
+
+["feedback.dynamic.subject_for_app"]
+other = "{{ .category }} - {{ .app }}"
+
+["feedback.source.catchledger"]
+other = "CatchLedger"
+
+["feedback.source.spiral_word_puzzle"]
+other = "Spiral Word Puzzle"
+
+["pages.contact.title"]
+other = "संपर्क"
+
+["pages.contact.description"]
+other = "Hambungle Studio से संपर्क करें।"
+
+["pages.contact.body"]
+other = "सहायता, सहयोग या प्रश्नों के लिए हमें [hello@hambungle.com](mailto:hello@hambungle.com) पर ईमेल करें।"
+
+["pages.terms.title"]
+other = "शर्तें"
+
+["pages.terms.description"]
+other = "Hambungle ऐप्स और वेबसाइट के उपयोग की शर्तें।"
+
+["pages.terms.body.p1"]
+other = "Hambungle ऐप्स और इस वेबसाइट का उपयोग करके, आप इन्हें कानूनी और जिम्मेदारी से उपयोग करने के लिए सहमत होते हैं।"
+
+["pages.terms.body.p2"]
+other = "हम अपने ऐप्स जैसे हैं वैसे प्रदान करते हैं और किसी भी समय सुविधाओं को अपडेट, संशोधित या बंद कर सकते हैं।"
+
+["pages.privacy.index.title"]
+other = "गोपनीयता नीति"
+
+["pages.privacy.index.description"]
+other = "उसकी गोपनीयता नीति देखने के लिए एक ऐप चुनें।"
+
+["pages.privacy.index.body.p1"]
+other = "Hambungle के गोपनीयता नीति केंद्र में आपका स्वागत है।"
+
+["pages.privacy.index.body.p2"]
+other = "उसकी वर्तमान नीति देखने के लिए नीचे से ऐप चुनें।"
+
+["pages.privacy.spiral.title"]
+other = "गोपनीयता नीति — Spiral Word Puzzle"
+
+["pages.privacy.catchledger.title"]
+other = "गोपनीयता नीति — CatchLedger"
+
+["pages.feedback.index.title"]
+other = "फ़ीडबैक"
+
+["pages.feedback.index.description"]
+other = "CatchLedger के बारे में फ़ीडबैक साझा करें।"
+
+["pages.feedback.index.subtitle"]
+other = "हमें बताएं क्या काम कर रहा है, क्या नहीं, और आगे क्या बनाना चाहिए।"
+
+["pages.feedback.index.body"]
+other = "फ़ीडबैक भेजने के लिए नीचे दिया गया फ़ॉर्म उपयोग करें। विषय और श्रेणी ऐप लिंक से पहले से भरे जा सकते हैं।"
+
+["pages.feedback.thanks.title"]
+other = "धन्यवाद"
+
+["pages.feedback.thanks.body"]
+other = "आपके फ़ीडबैक के लिए धन्यवाद।"
+
+["social.twitter.tweets_by"]
+other = "{{ .username }} द्वारा ट्वीट"
+
+["pages.privacy.spiral.meta.effective_date_label"]
+other = "प्रभावी तिथि:"
+
+["pages.privacy.spiral.meta.last_updated_label"]
+other = "अंतिम अपडेट:"
+
+["pages.privacy.spiral.section.information_we_collect"]
+other = "हम कौन-सी जानकारी एकत्र करते हैं"
+
+["pages.privacy.spiral.section.data_storage_and_usage"]
+other = "डेटा संग्रहण और उपयोग"
+
+["pages.privacy.spiral.section.third_party_services"]
+other = "तृतीय-पक्ष सेवाएँ"
+
+["pages.privacy.spiral.section.changes_to_policy"]
+other = "इस नीति में परिवर्तन"
+
+["pages.privacy.catchledger.meta.effective_date_label"]
+other = "प्रभावी तिथि:"
+
+["pages.privacy.catchledger.meta.last_updated_label"]
+other = "अंतिम अपडेट:"
+
+["pages.privacy.catchledger.section.information_we_collect"]
+other = "हम कौन-सी जानकारी एकत्र करते हैं"
+
+["pages.privacy.catchledger.section.data_storage_and_usage"]
+other = "डेटा संग्रहण और उपयोग"
+
+["pages.privacy.catchledger.section.third_party_services"]
+other = "तृतीय-पक्ष सेवाएँ"
+
+["pages.privacy.catchledger.section.your_choices"]
+other = "आपके विकल्प"
+
+["pages.privacy.catchledger.section.changes_to_policy"]
+other = "इस नीति में परिवर्तन"
+
+["common.meta.title_with_page"]
+other = "{{ .page }} | {{ .site }}"
+
+["common.meta.title_home"]
+other = "{{ .site }}"
+
+["common.language.selector_aria"]
+other = "भाषा चयनकर्ता"
+
+["common.language.selector_label"]
+other = "भाषा"

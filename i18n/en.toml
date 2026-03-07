@@ -1,0 +1,357 @@
+# Hugo i18n English source
+# Key format: domain.section.item (quoted TOML tables to preserve dots)
+
+["common.meta.description_fallback"]
+other = "Hambungle builds playful, thoughtfully-crafted apps."
+
+["common.nav.main_aria_label"]
+other = "Main navigation"
+
+["common.nav.studio"]
+other = "Studio"
+
+["common.nav.spiral_puzzle"]
+other = "Spiral Puzzle"
+
+["common.nav.catchledger"]
+other = "CatchLedger"
+
+["common.nav.privacy"]
+other = "Privacy"
+
+["common.nav.terms"]
+other = "Terms"
+
+["common.nav.contact"]
+other = "Contact"
+
+["common.footer.copyright"]
+other = "© {{ .year }} Hambungle Studio"
+
+["common.brand.hambungle"]
+other = "Hambungle"
+
+["common.brand.hambungle_studio"]
+other = "Hambungle Studio"
+
+["common.brand.spiral_puzzle"]
+other = "Spiral Puzzle"
+
+["common.brand.spiral_word_puzzle"]
+other = "Spiral Word Puzzle"
+
+["common.brand.catchledger"]
+other = "CatchLedger"
+
+["home.hero.eyebrow"]
+other = "Hambungle Studio"
+
+["home.hero.title"]
+other = "Playful products, cinematic polish."
+
+["home.hero.body"]
+other = "We craft modern, lightweight app experiences with personality. Explore our games and tools built for speed, clarity, and delight."
+
+["home.section.apps_title"]
+other = "Apps"
+
+["home.card.shared.cta_open_app"]
+other = "Open app"
+
+["home.card.shared.cta_view_app"]
+other = "View app"
+
+["home.card.spiral.badge"]
+other = "Game"
+
+["home.card.spiral.description"]
+other = "Find hidden words embedded in spirals. Fast rounds, tactile interactions, and a satisfying challenge curve."
+
+["home.card.catchledger.badge"]
+other = "Finance"
+
+["home.card.catchledger.description"]
+other = "Track catches, log entries, and keep your records organized with a straightforward ledger workflow."
+
+["home.break.title"]
+other = "Crafted with intention."
+
+["home.break.body"]
+other = "Every Hambungle product is designed with clarity, motion, and personality. From tactile puzzle mechanics to clean financial tools, we focus on lightweight builds and cinematic polish."
+
+["home.video.aria_label"]
+other = "Hambungle cinematic reel"
+
+["spiral.page.title"]
+other = "Spiral Word Puzzle"
+
+["spiral.current_word.label"]
+other = "Current Word:"
+
+["spiral.grid_size.label"]
+other = "Select Grid Size:"
+
+["spiral.grid_size.option"]
+other = "{{ .size }} x {{ .size }}"
+
+["spiral.score.label"]
+other = "Score:"
+
+["spiral.instructions.drag_select"]
+other = "Click and Drag to make your selection in one stroke"
+
+["spiral.a11y.close_grid_size_selector"]
+other = "Close Grid Size Selector"
+
+["spiral.a11y.toggle_grid_size_selector"]
+other = "Toggle Grid Size Selector"
+
+["spiral.store.apple_alt"]
+other = "Download on the App Store"
+
+["spiral.store.google_alt"]
+other = "Get it on Google Play"
+
+["spiral.status.invalid_selection"]
+other = "Invalid selection. Make sure to form a square!"
+
+["spiral.status.success_found_word"]
+other = "Congratulations! You found the word!"
+
+["spiral.status.try_again"]
+other = "Try again. Keep looking!"
+
+["privacy.selector.aria_label"]
+other = "Choose app privacy policy"
+
+["privacy.selector.spiral_word_puzzle"]
+other = "Spiral Word Puzzle"
+
+["privacy.selector.catchledger"]
+other = "CatchLedger"
+
+["privacy.loader.loading_policy"]
+other = "Loading {{ .app }} policy…"
+
+["privacy.loader.error.load_page"]
+other = "Unable to load policy page."
+
+["privacy.loader.error.content_not_found"]
+other = "Policy content not found."
+
+["privacy.loader.error.generic"]
+other = "Unable to load this policy right now."
+
+["feedback.meta.source_label"]
+other = "Source:"
+
+["feedback.meta.source_not_provided"]
+other = "Not provided"
+
+["feedback.meta.category_label"]
+other = "Category:"
+
+["feedback.form.subject_default"]
+other = "Feedback submission"
+
+["feedback.form.bottrap.label"]
+other = "Leave this field empty"
+
+["feedback.form.message.label"]
+other = "Message"
+
+["feedback.form.message.placeholder_default"]
+other = "Tell us what happened, what you expected, and any details that may help."
+
+["feedback.form.email.label"]
+other = "Email (optional)"
+
+["feedback.form.email.placeholder"]
+other = "you@example.com"
+
+["feedback.form.device.label"]
+other = "Device / platform (optional)"
+
+["feedback.form.device.placeholder"]
+other = "e.g., iPhone 15 (iOS 18), Pixel 8 (Android 15), Web Chrome"
+
+["feedback.form.app.label"]
+other = "App"
+
+["feedback.form.app.default"]
+other = "Hambungle App"
+
+["feedback.form.category.label"]
+other = "Feedback category"
+
+["feedback.form.submit"]
+other = "Send feedback"
+
+["feedback.category.general"]
+other = "General feedback"
+
+["feedback.category.improvement"]
+other = "Improvement suggestion"
+
+["feedback.category.bug"]
+other = "Bug report"
+
+["feedback.type.general.subtitle"]
+other = "Share any comments, questions, or overall feedback."
+
+["feedback.type.general.title_prefix"]
+other = "General feedback"
+
+["feedback.type.general.message_label"]
+other = "Message"
+
+["feedback.type.general.message_placeholder"]
+other = "Share your thoughts, comments, or questions."
+
+["feedback.type.improvement.subtitle"]
+other = "Tell us what could be better and why it would help."
+
+["feedback.type.improvement.title_prefix"]
+other = "Improvement suggestion"
+
+["feedback.type.improvement.message_label"]
+other = "Suggestion details"
+
+["feedback.type.improvement.message_placeholder"]
+other = "What should we improve? Include the current behavior and your proposed change."
+
+["feedback.type.bug.subtitle"]
+other = "Describe what went wrong and how we can reproduce it."
+
+["feedback.type.bug.title_prefix"]
+other = "Bug report"
+
+["feedback.type.bug.message_label"]
+other = "Bug details"
+
+["feedback.type.bug.message_placeholder"]
+other = "What happened, what did you expect, and how can we reproduce the issue?"
+
+["feedback.dynamic.title_for_app"]
+other = "{{ .type }} for {{ .app }}"
+
+["feedback.dynamic.subject_for_app"]
+other = "{{ .category }} - {{ .app }}"
+
+["feedback.source.catchledger"]
+other = "CatchLedger"
+
+["feedback.source.spiral_word_puzzle"]
+other = "Spiral Word Puzzle"
+
+["pages.contact.title"]
+other = "Contact"
+
+["pages.contact.description"]
+other = "Get in touch with Hambungle Studio."
+
+["pages.contact.body"]
+other = "For support, collaboration, or questions, email us at [hello@hambungle.com](mailto:hello@hambungle.com)."
+
+["pages.terms.title"]
+other = "Terms"
+
+["pages.terms.description"]
+other = "Terms of use for Hambungle apps and website."
+
+["pages.terms.body.p1"]
+other = "By using Hambungle apps and this website, you agree to use them lawfully and responsibly."
+
+["pages.terms.body.p2"]
+other = "We provide our apps as-is and may update, modify, or discontinue features at any time."
+
+["pages.privacy.index.title"]
+other = "Privacy Policy"
+
+["pages.privacy.index.description"]
+other = "Choose an app to view its privacy policy."
+
+["pages.privacy.index.body.p1"]
+other = "Welcome to Hambungle’s privacy policy center."
+
+["pages.privacy.index.body.p2"]
+other = "Choose an app below to view its current policy."
+
+["pages.privacy.spiral.title"]
+other = "Privacy Policy — Spiral Word Puzzle"
+
+["pages.privacy.catchledger.title"]
+other = "Privacy Policy — CatchLedger"
+
+["pages.feedback.index.title"]
+other = "Feedback"
+
+["pages.feedback.index.description"]
+other = "Share feedback about CatchLedger."
+
+["pages.feedback.index.subtitle"]
+other = "Tell us what’s working, what’s not, and what we should build next."
+
+["pages.feedback.index.body"]
+other = "Use the form below to send feedback. The subject and category can be pre-filled from the app link."
+
+["pages.feedback.thanks.title"]
+other = "Thank You"
+
+["pages.feedback.thanks.body"]
+other = "Thanks for your feedback."
+
+["social.twitter.tweets_by"]
+other = "Tweets by {{ .username }}"
+
+# Privacy document scaffolding (for future migration from markdown content files)
+["pages.privacy.spiral.meta.effective_date_label"]
+other = "Effective Date:"
+
+["pages.privacy.spiral.meta.last_updated_label"]
+other = "Last updated:"
+
+["pages.privacy.spiral.section.information_we_collect"]
+other = "Information We Collect"
+
+["pages.privacy.spiral.section.data_storage_and_usage"]
+other = "Data Storage and Usage"
+
+["pages.privacy.spiral.section.third_party_services"]
+other = "Third-Party Services"
+
+["pages.privacy.spiral.section.changes_to_policy"]
+other = "Changes to This Policy"
+
+["pages.privacy.catchledger.meta.effective_date_label"]
+other = "Effective Date:"
+
+["pages.privacy.catchledger.meta.last_updated_label"]
+other = "Last updated:"
+
+["pages.privacy.catchledger.section.information_we_collect"]
+other = "Information We Collect"
+
+["pages.privacy.catchledger.section.data_storage_and_usage"]
+other = "Data Storage and Usage"
+
+["pages.privacy.catchledger.section.third_party_services"]
+other = "Third-Party Services"
+
+["pages.privacy.catchledger.section.your_choices"]
+other = "Your Choices"
+
+["pages.privacy.catchledger.section.changes_to_policy"]
+other = "Changes to This Policy"
+
+["common.meta.title_with_page"]
+other = "{{ .page }} | {{ .site }}"
+
+["common.meta.title_home"]
+other = "{{ .site }}"
+
+["common.language.selector_aria"]
+other = "Language selector"
+
+["common.language.selector_label"]
+other = "Language"
