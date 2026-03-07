@@ -1,0 +1,58 @@
+{{ define "head" }}
+<link rel="stylesheet" href="{{ "css/feedback.css" | relURL }}">
+{{ end }}
+
+{{ define "main" }}
+<article class="page-card feedback-card" id="feedback-card" data-feedback-page="true">
+  <header class="feedback-card__header">
+    <h1 id="feedback-title" data-base-title="{{ .Title }}">{{ .Title }}</h1>
+    <p id="feedback-subtitle">{{ with .Params.subtitle }}{{ . }}{{ else }}{{ .Description }}{{ end }}</p>
+  </header>
+
+  <section class="feedback-card__meta" aria-live="polite">
+    <p><strong>Source:</strong> <span id="feedback-source">Not provided</span></p>
+    <p><strong>Category:</strong> <span id="feedback-category">General feedback</span></p>
+  </section>
+
+  <form
+    id="feedback-form-shell"
+    class="feedback-form"
+    action="https://formspree.io/f/your-form-id"
+    method="post"
+    novalidate
+  >
+    <!-- For Netlify Forms, replace action/method with netlify attributes:
+         <form name="feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field"> -->
+
+    <input type="hidden" name="_subject" id="feedback-subject" value="Feedback submission">
+    <input type="hidden" name="_next" value="{{ "/feedback/thanks/" | absURL }}">
+
+    <p class="sr-only" aria-hidden="true">
+      <label for="feedback-bot-field">Leave this field empty</label>
+      <input id="feedback-bot-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+    </p>
+
+    <label id="feedback-message-label" for="feedback-message">Message <span aria-hidden="true">*</span></label>
+    <textarea id="feedback-message" name="message" rows="6" required placeholder="Tell us what happened, what you expected, and any details that may help."></textarea>
+
+    <label for="feedback-email">Email (optional)</label>
+    <input id="feedback-email" name="email" type="email" placeholder="you@example.com" autocomplete="email">
+
+    <label for="feedback-device">Device / platform (optional)</label>
+    <input id="feedback-device" name="device" type="text" placeholder="e.g., iPhone 15 (iOS 18), Pixel 8 (Android 15), Web Chrome">
+
+    <label for="feedback-app-name">App</label>
+    <input id="feedback-app-name" name="app_name" type="text" readonly value="Hambungle App">
+
+    <label for="feedback-category-name">Feedback category</label>
+    <input id="feedback-category-name" name="feedback_category_name" type="text" readonly value="General feedback">
+
+    <input id="feedback-source-input" name="source" type="hidden" value="unknown">
+    <input id="feedback-type-input" name="type" type="hidden" value="general">
+
+    <button id="feedback-submit" type="submit">Send feedback</button>
+  </form>
+</article>
+
+<script src='{{ "js/feedback.js" | relURL }}' defer></script>
+{{ end }}
