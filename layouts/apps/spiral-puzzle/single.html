@@ -1,11 +1,13 @@
 {{ define "head" }}
 
   <!-- Spiral Puzzle Page Title Override -->
-  <title>Spiral Word Puzzle | {{ .Site.Title }}</title>
+  <title>{{ i18n "spiral.page.title" }} | {{ .Site.Title }}</title>
 
   <!-- Spiral Puzzle Styles -->
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
+    * {
+      box-sizing: content-box !important;
+    }
 
     body {
         display: flex;
@@ -20,10 +22,11 @@
     }
 
     .container {
-      margin: 0 auto;
-      width: min(92vw, 900px);
       text-align: center;
+      max-width: 80vw;
+      max-height: 80vh;
       padding-top: 1vh;
+      flex: 1 0 auto
     }
 
     #game-grid {
@@ -69,7 +72,6 @@
       font-size: calc(2.5vmin);
       font-weight: bold;
       margin: 0 auto;
-      padding-top: 100px;
     }
 
     .instructions {
@@ -110,7 +112,6 @@
     gap: 14px;
     margin: 18px 0 28px;
     flex-wrap: wrap;
-    padding-bottom: 100px;
     }
 
     .store-badge{
@@ -118,6 +119,13 @@
     width: auto;
     display: block;
     }
+
+
+    [dir="rtl"] #mute-button {
+      right: auto;
+      left: 10px;
+    }
+
   </style>
 
   <!-- Google Analytics -->
@@ -134,25 +142,25 @@
 {{ define "main" }}
 
 <div class="container">
-  <h1 class="text-center mb-2 text-shadow">Spiral Word Puzzle</h1>
+  <h1 class="text-center mb-2 text-shadow">{{ i18n "spiral.page.title" }}</h1>
   <p class="subtitle mx-auto w-50" style="font-size: calc(2vmin)">
-    Current Word: <span id="word-key" style="font-weight: 700"></span>
+    {{ i18n "spiral.current_word.label" }} <span id="word-key" style="font-weight: 700"></span>
   </p>
 
   <div id="size-selector-wrapper">
     <div id="size-selector-container" style="display: none;">
-      <button id="close-button" aria-label="Close Grid Size Selector">✖</button>
+      <button id="close-button" aria-label="{{ i18n "spiral.a11y.close_grid_size_selector" }}">✖</button>
       <div id="grid-size-menu">
-        <label for="grid-size-selector">Select Grid Size:</label>
+        <label for="grid-size-selector">{{ i18n "spiral.grid_size.label" }}</label>
         <select id="grid-size-selector">
-          <option value="10">10 x 10</option>
-          <option value="15">15 x 15</option>
-          <option value="20">20 x 20</option>
+          <option value="10">{{ i18n "spiral.grid_size.option" (dict "size" 10) }}</option>
+          <option value="15">{{ i18n "spiral.grid_size.option" (dict "size" 15) }}</option>
+          <option value="20">{{ i18n "spiral.grid_size.option" (dict "size" 20) }}</option>
         </select>
       </div>
     </div>
 
-    <button id="hamburger-button" aria-label="Toggle Grid Size Selector">☰</button>
+    <button id="hamburger-button" aria-label="{{ i18n "spiral.a11y.toggle_grid_size_selector" }}">☰</button>
     <button id="mute-button">🔊</button>
   </div>
 
@@ -162,16 +170,16 @@
     <p id="message" class="message-bubble mt-3"></p>
   </div>
 
-  <p class="score text-shadow">Score: <span id="score">0</span></p>
-  <p class="instructions">Click and Drag to make your selection in one stroke</p>
+  <p class="score text-shadow">{{ i18n "spiral.score.label" }} <span id="score">0</span></p>
+  <p class="instructions">{{ i18n "spiral.instructions.drag_select" }}</p>
 
   <div class="store-badges">
     <a href="https://apps.apple.com/app/id6740406577" target="_blank" rel="noopener noreferrer">
-      <img src="/img/Download_on_the_App_Store_Badge.png" alt="Download on the App Store" class="store-badge" />
+      <img src="/img/Download_on_the_App_Store_Badge.png" alt="{{ i18n "spiral.store.apple_alt" }}" class="store-badge" />
     </a>
   
-    <a href="https://play.google.com/store/apps/details?id=com.hambungle.spiralpuzzle" target="_blank" rel="noopener noreferrer">
-      <img src="/img/get-it-on-google-play-download.png" alt="Get it on Google Play" class="store-badge" />
+    <a href="https://play.google.com/store/apps/details?id=YOUR.PACKAGE.ID" target="_blank" rel="noopener noreferrer">
+      <img src="/img/get-it-on-google-play-download.png" alt="{{ i18n "spiral.store.google_alt" }}" class="store-badge" />
     </a>
   </div>
 </div>
@@ -599,7 +607,7 @@
     if (!isMuted) playSound();
 
     if (selectedWord === word && !isValidMatrix(selectedCells)) {
-      message.textContent = "Invalid selection. Make sure to form a square!";
+      message.textContent = {{ i18n "spiral.status.invalid_selection" | jsonify }};
       setBubbleSize(parseInt(gridSizeSelector.value, 10), message.textContent.length)
       message.className = "text-danger message-bubble show";
 
@@ -615,7 +623,7 @@
       }, 5000);
 
     } else if (selectedWord === word && isValidMatrix(selectedCells)) {
-      message.textContent = "Congratulations! You found the word!";
+      message.textContent = {{ i18n "spiral.status.success_found_word" | jsonify }};
       setBubbleSize(parseInt(gridSizeSelector.value, 10), message.textContent.length)
       message.className = "text-success message-bubble show";
 
@@ -638,7 +646,7 @@
       }, 5000);
 
     } else {
-      message.textContent = "Try again. Keep looking!";
+      message.textContent = {{ i18n "spiral.status.try_again" | jsonify }};
       setBubbleSize(parseInt(gridSizeSelector.value, 10), message.textContent.length)
       message.className = "text-danger message-bubble show";
 

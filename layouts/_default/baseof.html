@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ site.Language.Lang }}" dir="{{ or site.Language.LanguageDirection "ltr" }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
-  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}Hambungle builds playful, thoughtfully-crafted apps.{{ end }}">
+  {{ $siteTitle := .Site.Title }}
+  {{ $pageTitle := .Title }}
+  <title>{{ if $pageTitle }}{{ i18n "common.meta.title_with_page" (dict "page" $pageTitle "site" $siteTitle) }}{{ else }}{{ i18n "common.meta.title_home" (dict "site" $siteTitle) }}{{ end }}</title>
+  {{ $metaDescription := .Description }}
+  {{ if eq .RelPermalink "/contact/" }}{{ $metaDescription = i18n "pages.contact.description" }}{{ end }}
+  {{ if eq .RelPermalink "/terms/" }}{{ $metaDescription = i18n "pages.terms.description" }}{{ end }}
+  {{ if eq .RelPermalink "/privacy/" }}{{ $metaDescription = i18n "pages.privacy.index.description" }}{{ end }}
+  {{ if eq .RelPermalink "/feedback/" }}{{ $metaDescription = i18n "pages.feedback.index.description" }}{{ end }}
+  <meta name="description" content="{{ with $metaDescription }}{{ . }}{{ else }}{{ i18n "common.meta.description_fallback" }}{{ end }}">
   <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   <link rel="stylesheet" href="{{ "css/site.css" | relURL }}">
   {{ block "head" . }}{{ end }}
@@ -22,15 +29,38 @@
 <body>
   <header class="site-header">
     <div class="wrap nav">
-      <a class="brand" href="{{ "/" | relURL }}">Hambungle</a>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="{{ "/" | relURL }}">Studio</a>
-        <a href="{{ "/apps/spiral-puzzle/" | relURL }}">Spiral Puzzle</a>
-        <a href="{{ "/apps/catchledger/" | relURL }}">CatchLedger</a>
-        <a href="{{ "/privacy/" | relURL }}">Privacy</a>
-        <a href="{{ "/terms/" | relURL }}">Terms</a>
-        <a href="{{ "/contact/" | relURL }}">Contact</a>
+      <a class="brand" href="{{ "/" | relLangURL }}">{{ i18n "common.brand.hambungle" }}</a>
+      <nav class="nav-links" aria-label="{{ i18n "common.nav.main_aria_label" }}">
+        <a href="{{ "/" | relLangURL }}">{{ i18n "common.nav.studio" }}</a>
+        <a href="{{ "/apps/spiral-puzzle/" | relLangURL }}">{{ i18n "common.nav.spiral_puzzle" }}</a>
+        <a href="{{ "/apps/catchledger/" | relLangURL }}">{{ i18n "common.nav.catchledger" }}</a>
+        <a href="{{ "/privacy/" | relLangURL }}">{{ i18n "common.nav.privacy" }}</a>
+        <a href="{{ "/terms/" | relLangURL }}">{{ i18n "common.nav.terms" }}</a>
+        <a href="{{ "/contact/" | relLangURL }}">{{ i18n "common.nav.contact" }}</a>
       </nav>
+      <div class="language-switcher" role="navigation" aria-label="{{ i18n "common.language.selector_aria" }}">
+        {{ $pageTranslations := dict }}
+        {{ range .AllTranslations }}
+          {{ $pageTranslations = merge $pageTranslations (dict .Lang .RelPermalink) }}
+        {{ end }}
+        {{ $homeTranslations := dict }}
+        {{ range site.Home.AllTranslations }}
+          {{ $homeTranslations = merge $homeTranslations (dict .Lang .RelPermalink) }}
+        {{ end }}
+        <label class="sr-only" for="language-switcher-select">{{ i18n "common.language.selector_label" }}</label>
+        <select id="language-switcher-select" onchange="if (this.value) window.location.href=this.value;">
+          {{ range site.Languages }}
+            {{ $target := index $pageTranslations .Lang }}
+            {{ if not $target }}
+              {{ $target = index $homeTranslations .Lang }}
+            {{ end }}
+            <option value="{{ $target }}" {{ if eq $.Site.Language.Lang .Lang }}selected{{ end }}>
+              {{ .LanguageName }}
+            </option>
+          {{ end }}
+        </select>
+      </div>
+
     </div>
   </header>
 
@@ -40,7 +70,7 @@
 
   <footer class="site-footer">
     <div class="wrap">
-      <p>© {{ now.Year }} Hambungle Studio</p>
+      <p>{{ i18n "common.footer.copyright" (dict "year" now.Year) }}</p>
     </div>
   </footer>
 </body>

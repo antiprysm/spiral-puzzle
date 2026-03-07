@@ -1,1 +1,1 @@
-<a class="twitter-timeline" href="https://twitter.com/{{ .Site.Params.twitter.username }}" data-height="450" data-theme="dark">Tweets by {{ .Site.Params.twitter.username }}</a>
+<a class="twitter-timeline" href="https://twitter.com/{{ .Site.Params.twitter.username }}" data-height="450" data-theme="dark">{{ i18n "social.twitter.tweets_by" (dict "username" .Site.Params.twitter.username) }}</a>
