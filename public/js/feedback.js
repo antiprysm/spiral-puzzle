@@ -1,4 +1,5 @@
 (function () {
+  console.log("feedback.js loaded");
   var params = new URLSearchParams(window.location.search);
   var rawSource = (params.get("source") || "").trim().toLowerCase();
   var rawType = (params.get("type") || "").trim().toLowerCase();
@@ -168,6 +169,7 @@
   if (!form) return;
 
   form.addEventListener("submit", async function (event) {
+    console.log("feedback form submit intercepted");
     event.preventDefault();
     syncReplyTo();
 

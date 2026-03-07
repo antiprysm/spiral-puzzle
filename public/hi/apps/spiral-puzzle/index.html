@@ -39,25 +39,10 @@
       background-size: cover;
     }
   
-    .container {
-      margin: 0 auto;
-      width: min(92vw, 900px);
-      text-align: center;
-      padding-top: 1vh;
-      padding-bottom: 100px;
-    }
-  
     #game-grid {
       display: grid;
-      width: 80vw;
-      height: 80vw;
-      max-height: 80vh;
-      max-width: 80vh;
-      background-color: #ddd;
-      margin: 0 auto;
-      touch-action: manipulation;
-      border: 1px solid #ccc;
-      overflow: hidden;
+      width: 100%;
+      height: min(80vw, 80vh);
     }
   
     .grid-cell {
@@ -77,40 +62,53 @@
     }
   
     .subtitle {
-      font-size: calc(1.5vmin);
+      width: min(80vw, 80vh);
+      margin: 0 auto 12px;
+      font-size: calc(2vmin);
       color: #555;
       background-color: #eee;
+      text-align: center;
+    }
+    .title {
+      width: min(80vw, 80vh);
+      margin: 0 auto 12px;
+      font-size: calc(3vmin);
     }
   
     .text-shadow {
       text-shadow: 2px 2px 4px rgba(237, 211, 196, 0.5);
     }
   
-    .score {
-      font-size: calc(2.5vmin);
-      font-weight: bold;
-      margin: 0 auto;
-      padding-top: 100px;
-    }
-  
+    .score,
     .instructions {
-      font-size: calc(1.5vmin);
-      font-weight: bold;
-      margin-top: 10px;
-      padding-bottom: 2vw;
+      width: min(80vw, 80vh);
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
     }
-  
-    #mute-button {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      z-index: 100;
-      background-color: transparent;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      color: white;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+
+    .score {
+      margin-top: 12px;
+      margin-bottom: 8px;
+      padding-top: 0;
+      font-size: calc(2vmin);
+      font-weight: 800;
+    }
+
+    .instructions {
+      margin-top: 0;
+      margin-bottom: 18px;
+    }
+
+    .store-badges {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      width: min(80vw, 80vh);
+      margin: 18px auto 0;
+      padding-bottom: 100px;
     }
   
     .ios-download-container {
@@ -123,15 +121,6 @@
       height: 3rem;
       width: auto;
       display: inline-block;
-    }
-  
-    .store-badges {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      margin: 18px 0 28px;
-      flex-wrap: wrap;
-      padding-bottom: 100px;
     }
   
     .store-badge {
@@ -157,6 +146,98 @@
     [dir="rtl"] #mute-button {
       right: auto;
       left: 10px;
+    }
+
+    .spiral-container {
+      margin: 0 auto;
+      max-width: min(80vw, 80vh);
+    }
+
+    .spiral-board {
+      width: min(80vw, 80vh);
+      margin: 0 auto;
+    }
+
+    #size-selector-wrapper {
+      position: relative;
+      width: min(80vw, 80vh);
+      margin: 0 auto;
+    }
+
+    #hamburger-button,
+    #mute-button {
+      position: static;
+      z-index: 2;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 10px;
+      background: rgba(255, 255, 255, 0.9);
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    #size-selector-container {
+      position: absolute;
+      top: -6px;
+      left: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      padding: 0.75rem;
+      min-width: 220px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    }
+
+    #close-button {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      float: right;
+    }
+
+    #mute-button {
+      color: #111827;
+      text-shadow: none;
+    }
+
+    [dir="rtl"] .spiral-controls {
+      flex-direction: row-reverse;
+    }
+
+    .spiral-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: min(80vw, 80vh);
+      margin: 12px auto 18px;
+    }
+
+    .message-container {
+      width: min(80vw, 80vh);
+      margin: 14px auto 0;
+      text-align: center;
+      min-height: 44px;
+    }
+
+    .message-bubble {
+      display: none;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(15, 23, 42, 0.1);
+      border-radius: 10px;
+      padding: 0.45rem 0.8rem;
+      font-size: 0.95rem;
+      line-height: 1.2;
+      margin: 0 auto;
+    }
+
+    .message-bubble.show {
+      display: inline-block;
+    }
+
+    .message-bubble.disappear {
+      opacity: 0;
+      transition: opacity 0.4s ease;
     }
   </style>
 
@@ -314,13 +395,13 @@
   <main class="wrap">
     
 
-<div class="container">
-  <h1 class="text-center mb-2 text-shadow">Spiral Word Puzzle</h1>
-  <p class="subtitle mx-auto w-50" style="font-size: calc(2vmin)">
-    वर्तमान शब्द: <span id="word-key" style="font-weight: 700"></span>
-  </p>
-
+<div class="spiral-container">
   <div id="size-selector-wrapper">
+    <div class="spiral-controls">
+      <button id="hamburger-button" aria-label="ग्रिड आकार चयनकर्ता टॉगल करें">☰</button>
+      <button id="mute-button">🔊</button>
+    </div>
+
     <div id="size-selector-container" style="display: none;">
       <button id="close-button" aria-label="ग्रिड आकार चयनकर्ता बंद करें">✖</button>
       <div id="grid-size-menu">
@@ -332,16 +413,20 @@
         </select>
       </div>
     </div>
-
-    <button id="hamburger-button" aria-label="ग्रिड आकार चयनकर्ता टॉगल करें">☰</button>
-    <button id="mute-button">🔊</button>
   </div>
+
+  <h1 class="title text-center mb-2 text-shadow">Spiral Word Puzzle</h1>
+  <p class="subtitle">
+    वर्तमान शब्द: <span id="word-key" style="font-weight: 700"></span>
+  </p>
 
   <div id="game-grid"></div>
-
   <div class="message-container" id="message-container">
-    <p id="message" class="message-bubble mt-3"></p>
+    <p id="message" class="message-bubble"></p>
   </div>
+  </div>
+
+  
 
   <p class="score text-shadow">स्कोर: <span id="score">0</span></p>
   <p class="instructions">एक ही स्ट्रोक में चयन करने के लिए क्लिक करें और ड्रैग करें</p>
@@ -350,14 +435,15 @@
     <a href="https://apps.apple.com/app/id6740406577" target="_blank" rel="noopener noreferrer">
       <img src="/img/Download_on_the_App_Store_Badge.png" alt="App Store पर डाउनलोड करें" class="store-badge" />
     </a>
-  
+
     <a href="https://play.google.com/store/apps/details?id=com.hambungle.spiralpuzzle" target="_blank" rel="noopener noreferrer">
       <img src="/img/get-it-on-google-play-download.png" alt="Google Play पर प्राप्त करें" class="store-badge" />
     </a>
   </div>
+  <audio id="game-ball-sound" preload="auto">
+    <source src="/audio/mixkit-game-ball-tap-2073.wav" type="audio/wav">
+  </audio>
 </div>
-
-
 
 <script>
   function shuffleArray(array) {
@@ -718,8 +804,15 @@
 
   generateGrid(gridSize);
 
-  const successSound = new Audio('audio/mixkit-game-ball-tap-2073.wav');
-  function playSound() { successSound.play(); }
+  const successSound = new Audio('/audio/mixkit-game-ball-tap-2073.wav');
+  successSound.preload = 'auto';
+
+  function playSound() {
+    successSound.currentTime = 0;
+    successSound.play().catch((err) => {
+      console.log('sound playback failed', err);
+    });
+  }
 
   const selectedCells = [];
   let isDragging = false;
