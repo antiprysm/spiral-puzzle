@@ -348,7 +348,7 @@
         
       
         <label class="sr-only" for="language-switcher-select">भाषा</label>
-        <select id="language-switcher-select" onchange="if (this.value) window.location.href=this.value;">
+        <select id="language-switcher-select" onchange="switchSiteLanguage(this.value)">
           
             
       
@@ -535,6 +535,11 @@
   let currentSpiralMeta = null;
   const spiralOverlay = document.getElementById("spiral-overlay");
   const gridStage = document.getElementById("grid-stage");
+
+  const selectedCells = [];
+  let isDragging = false;
+  const selectionOrder = [];
+  const cellColors = {};
 
   document.getElementById("word-key").textContent = word;
   document.getElementById("score").textContent = score; 
@@ -746,10 +751,7 @@ function spiral(word, start, reversed, clockwise) {
     });
   }
 
-  const selectedCells = [];
-  let isDragging = false;
-  const selectionOrder = [];
-  const cellColors = {};
+  
 
   function getCellIndex(row, col) {
     return Number(row) * gridSize + Number(col);
@@ -1123,15 +1125,15 @@ window.addEventListener("resize", () => {
 
       if (!isMuted) playShineSound();
 
-      clearSelectionUI();
-      selectedCells.length = 0;
-      selectionOrder.length = 0;
-      Object.keys(cellColors).forEach(key => delete cellColors[key]);
-
       playSpiralOverlay();
 
       setTimeout(() => {
         hideSpiralOverlay();
+
+        clearSelectionUI();
+        selectedCells.length = 0;
+        selectionOrder.length = 0;
+        Object.keys(cellColors).forEach(key => delete cellColors[key]);
 
         if (wordIndex + 1 === wordList.length) {
           wordList = shuffleWordList(wordList);
@@ -1223,5 +1225,16 @@ window.addEventListener("resize", () => {
       <p>© 2026 Hambungle Studio</p>
     </div>
   </footer>
+  <script>
+    function switchSiteLanguage(target) {
+      if (!target) return;
+  
+      var cleanTarget = String(target).split("?")[0].split("#")[0];
+      var search = window.location.search || "";
+      var hash = window.location.hash || "";
+  
+      window.location.assign(cleanTarget + search + hash);
+    }
+  </script>
 </body>
 </html>

@@ -87,7 +87,7 @@
         {{ end }}
       
         <label class="sr-only" for="language-switcher-select">{{ i18n "common.language.selector_label" }}</label>
-        <select id="language-switcher-select" onchange="if (this.value) window.location.href=this.value;">
+        <select id="language-switcher-select" onchange="switchSiteLanguage(this.value)">
           {{ range .Site.Languages }}
             {{ $target := index $pageTranslations .Lang }}
       
@@ -129,5 +129,16 @@
       <p>{{ i18n "common.footer.copyright" (dict "year" now.Year) }}</p>
     </div>
   </footer>
+  <script>
+    function switchSiteLanguage(target) {
+      if (!target) return;
+  
+      var cleanTarget = String(target).split("?")[0].split("#")[0];
+      var search = window.location.search || "";
+      var hash = window.location.hash || "";
+  
+      window.location.assign(cleanTarget + search + hash);
+    }
+  </script>
 </body>
 </html>
