@@ -377,6 +377,11 @@
   const spiralOverlay = document.getElementById("spiral-overlay");
   const gridStage = document.getElementById("grid-stage");
 
+  const selectedCells = [];
+  let isDragging = false;
+  const selectionOrder = [];
+  const cellColors = {};
+
   document.getElementById("word-key").textContent = word;
   document.getElementById("score").textContent = score; // Display initial score
 
@@ -557,6 +562,9 @@ function spiral(word, start, reversed, clockwise) {
   function generateGrid(gridSize) {
     gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
     gridContainer.innerHTML = "";
+    selectedCells.length = 0;
+    selectionOrder.length = 0;
+    Object.keys(cellColors).forEach(key => delete cellColors[key]);
     const start = getRandomStart();
     grid = imposeSpiral(gridSize, word, start);
     gridContainer.innerHTML = '';
@@ -584,8 +592,90 @@ function spiral(word, start, reversed, clockwise) {
     });
   }
 
-  const selectedCells = [];
-  let isDragging = false;
+  
+
+  function getCellIndex(row, col) {
+    return Number(row) * gridSize + Number(col);
+  }
+
+  function clearSelectionUI() {
+    document.querySelectorAll(".grid-cell").forEach(cell => {
+      cell.classList.remove("selected");
+      cell.style.backgroundColor = "#ffffff";
+    });
+  }
+
+  function addOrRemoveCellFromSelection(cell) {
+  if (!cell || !cell.classList.contains("grid-cell")) return;
+
+  const row = Number(cell.dataset.row);
+  const col = Number(cell.dataset.col);
+  const index = getCellIndex(row, col);
+
+  if (selectionOrder.length === 0) {
+    selectedCells.length = 0;
+    selectionOrder.length = 0;
+  }
+
+  const duplicateIndex = selectionOrder.indexOf(index);
+
+  if (duplicateIndex !== -1) {
+    // Backtrack to that cell
+    const backtrackedIndexes = selectionOrder.slice(duplicateIndex + 1);
+
+    backtrackedIndexes.forEach((backtrackIndex) => {
+      delete cellColors[backtrackIndex];
+    });
+
+    selectionOrder.length = duplicateIndex + 1;
+
+    selectedCells.length = 0;
+    selectionOrder.forEach((keptIndex) => {
+      const keptRow = Math.floor(keptIndex / gridSize);
+      const keptCol = keptIndex % gridSize;
+      const keptCell = document.querySelector(
+        `.grid-cell[data-row="${keptRow}"][data-col="${keptCol}"]`
+      );
+      if (keptCell) {
+        selectedCells.push({
+          row: keptRow,
+          col: keptCol,
+          letter: keptCell.textContent,
+          index: keptIndex,
+        });
+      }
+    });
+
+    clearSelectionUI();
+
+    selectedCells.forEach((selected) => {
+      const selectedCell = document.querySelector(
+        `.grid-cell[data-row="${selected.row}"][data-col="${selected.col}"]`
+      );
+      if (selectedCell) {
+        selectedCell.classList.add("selected");
+        selectedCell.style.backgroundColor = cellColors[selected.index] || "#ffeb3b";
+      }
+    });
+  } else {
+    // Add a new cell
+    const selectedWord = selectedCells.map(cell => cell.letter).join("");
+    const color = generateColor(selectedWord);
+
+    selectionOrder.push(index);
+    cellColors[index] = color;
+
+    selectedCells.push({
+      row,
+      col,
+      letter: cell.textContent,
+      index
+    });
+
+    cell.classList.add("selected");
+    cell.style.backgroundColor = color;
+  }
+}
 
   function generateColor(word) {
     const offset = Math.floor(Math.random() * 360) + 1;
@@ -597,24 +687,20 @@ function spiral(word, start, reversed, clockwise) {
   }
 
   function startDrag(cell) {
-    if (cell.classList.contains("grid-cell")) {
+    if (cell && cell.classList.contains("grid-cell")) {
       isDragging = true;
       selectedCells.length = 0;
-      cell.classList.add("selected");
-      const selectedWord = selectedCells.map(cell => cell.letter).join("");
-      const color = generateColor(selectedWord);
-      cell.style.backgroundColor = color;
-      selectedCells.push({ row: cell.dataset.row, col: cell.dataset.col, letter: cell.textContent });
+      selectionOrder.length = 0;
+      Object.keys(cellColors).forEach(key => delete cellColors[key]);
+      clearSelectionUI();
+
+      addOrRemoveCellFromSelection(cell);
     }
   }
 
   function dragOver(cell) {
-    if (isDragging && cell.classList.contains("grid-cell") && !cell.classList.contains("selected")) {
-      cell.classList.add("selected");
-      const selectedWord = selectedCells.map(cell => cell.letter).join("");
-      const color = generateColor(selectedWord);
-      cell.style.backgroundColor = color;
-      selectedCells.push({ row: cell.dataset.row, col: cell.dataset.col, letter: cell.textContent });
+    if (isDragging && cell && cell.classList.contains("grid-cell")) {
+      addOrRemoveCellFromSelection(cell);
     }
   }
 
@@ -866,12 +952,11 @@ window.addEventListener("resize", () => {
 
       if (!isMuted) playSound();
 
-      document.querySelectorAll(".grid-cell").forEach(cell => {
-        cell.classList.remove("selected");
-        cell.style.backgroundColor = "#ffffff";
-      });
-
+      clearSelectionUI();
       selectedCells.length = 0;
+      selectionOrder.length = 0;
+      Object.keys(cellColors).forEach(key => delete cellColors[key]);
+
       setTimeout(() => {
         message.classList.add("disappear");
         message.classList.remove("show");
@@ -887,16 +972,15 @@ window.addEventListener("resize", () => {
 
       if (!isMuted) playShineSound();
 
-      document.querySelectorAll(".grid-cell").forEach(cell => {
-        cell.classList.remove("selected");
-      });
-
-      selectedCells.length = 0;
-
       playSpiralOverlay();
 
       setTimeout(() => {
         hideSpiralOverlay();
+
+        clearSelectionUI();
+        selectedCells.length = 0;
+        selectionOrder.length = 0;
+        Object.keys(cellColors).forEach(key => delete cellColors[key]);
 
         if (wordIndex + 1 === wordList.length) {
           wordList = shuffleWordList(wordList);
@@ -918,14 +1002,13 @@ window.addEventListener("resize", () => {
       setBubbleSize(parseInt(gridSizeSelector.value, 10), message.textContent.length)
       message.className = "text-danger message-bubble show";
 
-      document.querySelectorAll(".grid-cell").forEach(cell => {
-        cell.classList.remove("selected");
-        cell.style.backgroundColor = "#ffffff";
-      });
+      clearSelectionUI();
+      selectedCells.length = 0;
+      selectionOrder.length = 0;
+      Object.keys(cellColors).forEach(key => delete cellColors[key]);
 
       if (!isMuted) playSound();
 
-      selectedCells.length = 0;
       setTimeout(() => {
         message.classList.add("disappear");
         message.classList.remove("show");
