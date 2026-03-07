@@ -1,5 +1,11 @@
 {{ define "main" }}
 
+{{ $defaultSite := index (where .Sites "Language.Lang" site.DefaultContentLanguage) 0 }}
+{{ $privacySpiralURL := site.Home.RelPermalink }}
+{{ with site.GetPage "/privacy/spiral-word-puzzle" }}{{ $privacySpiralURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/privacy/spiral-word-puzzle" }}{{ $privacySpiralURL = .RelPermalink }}{{ end }}{{ end }}
+{{ $privacyCatchledgerURL := site.Home.RelPermalink }}
+{{ with site.GetPage "/privacy/catchledger" }}{{ $privacyCatchledgerURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/privacy/catchledger" }}{{ $privacyCatchledgerURL = .RelPermalink }}{{ end }}{{ end }}
+
 <article class="page-card">
   <h1>{{ i18n "pages.privacy.index.title" }}</h1>
   <p class="privacy-description">{{ i18n "pages.privacy.index.description" }}</p>
@@ -32,8 +38,8 @@
     errorLoadPage: {{ i18n "privacy.loader.error.load_page" | jsonify }},
     errorContentNotFound: {{ i18n "privacy.loader.error.content_not_found" | jsonify }},
     errorGeneric: {{ i18n "privacy.loader.error.generic" | jsonify }},
-    urlSpiral: {{ "/privacy/spiral-word-puzzle/" | relLangURL | jsonify }},
-    urlCatchledger: {{ "/privacy/catchledger/" | relLangURL | jsonify }}
+    urlSpiral: {{ $privacySpiralURL | jsonify }},
+    urlCatchledger: {{ $privacyCatchledgerURL | jsonify }}
   };
 </script>
 <script src="/js/privacy-loader.js" defer></script>

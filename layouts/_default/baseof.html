@@ -29,14 +29,26 @@
 <body>
   <header class="site-header">
     <div class="wrap nav">
-      <a class="brand" href="{{ "/" | relLangURL }}">{{ i18n "common.brand.hambungle" }}</a>
+      {{ $defaultSite := index (where .Sites "Language.Lang" site.DefaultContentLanguage) 0 }}
+      {{ $homeURL := site.Home.RelPermalink }}
+      {{ $spiralURL := $homeURL }}
+      {{ with site.GetPage "/apps/spiral-puzzle" }}{{ $spiralURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/apps/spiral-puzzle" }}{{ $spiralURL = .RelPermalink }}{{ end }}{{ end }}
+      {{ $catchledgerURL := $homeURL }}
+      {{ with site.GetPage "/apps/catchledger" }}{{ $catchledgerURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/apps/catchledger" }}{{ $catchledgerURL = .RelPermalink }}{{ end }}{{ end }}
+      {{ $privacyURL := $homeURL }}
+      {{ with site.GetPage "/privacy" }}{{ $privacyURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/privacy" }}{{ $privacyURL = .RelPermalink }}{{ end }}{{ end }}
+      {{ $termsURL := $homeURL }}
+      {{ with site.GetPage "/terms" }}{{ $termsURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/terms" }}{{ $termsURL = .RelPermalink }}{{ end }}{{ end }}
+      {{ $contactURL := $homeURL }}
+      {{ with site.GetPage "/contact" }}{{ $contactURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/contact" }}{{ $contactURL = .RelPermalink }}{{ end }}{{ end }}
+      <a class="brand" href="{{ $homeURL }}">{{ i18n "common.brand.hambungle" }}</a>
       <nav class="nav-links" aria-label="{{ i18n "common.nav.main_aria_label" }}">
-        <a href="{{ "/" | relLangURL }}">{{ i18n "common.nav.studio" }}</a>
-        <a href="{{ "/apps/spiral-puzzle/" | relLangURL }}">{{ i18n "common.nav.spiral_puzzle" }}</a>
-        <a href="{{ "/apps/catchledger/" | relLangURL }}">{{ i18n "common.nav.catchledger" }}</a>
-        <a href="{{ "/privacy/" | relLangURL }}">{{ i18n "common.nav.privacy" }}</a>
-        <a href="{{ "/terms/" | relLangURL }}">{{ i18n "common.nav.terms" }}</a>
-        <a href="{{ "/contact/" | relLangURL }}">{{ i18n "common.nav.contact" }}</a>
+        <a href="{{ $homeURL }}">{{ i18n "common.nav.studio" }}</a>
+        <a href="{{ $spiralURL }}">{{ i18n "common.nav.spiral_puzzle" }}</a>
+        <a href="{{ $catchledgerURL }}">{{ i18n "common.nav.catchledger" }}</a>
+        <a href="{{ $privacyURL }}">{{ i18n "common.nav.privacy" }}</a>
+        <a href="{{ $termsURL }}">{{ i18n "common.nav.terms" }}</a>
+        <a href="{{ $contactURL }}">{{ i18n "common.nav.contact" }}</a>
       </nav>
       <div class="language-switcher" role="navigation" aria-label="{{ i18n "common.language.selector_aria" }}">
         {{ $pageTranslations := dict }}
