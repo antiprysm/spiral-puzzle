@@ -1,0 +1,356 @@
+# Hugo i18n zh source
+# Mirrors keys from i18n/en.toml
+
+["common.meta.description_fallback"]
+other = "Hambungle 打造有趣且精心设计的应用。"
+
+["common.nav.main_aria_label"]
+other = "主导航"
+
+["common.nav.studio"]
+other = "工作室"
+
+["common.nav.spiral_puzzle"]
+other = "Spiral Puzzle"
+
+["common.nav.catchledger"]
+other = "CatchLedger"
+
+["common.nav.privacy"]
+other = "隐私"
+
+["common.nav.terms"]
+other = "条款"
+
+["common.nav.contact"]
+other = "联系"
+
+["common.footer.copyright"]
+other = "© {{ .year }} Hambungle Studio"
+
+["common.brand.hambungle"]
+other = "Hambungle"
+
+["common.brand.hambungle_studio"]
+other = "Hambungle Studio"
+
+["common.brand.spiral_puzzle"]
+other = "Spiral Puzzle"
+
+["common.brand.spiral_word_puzzle"]
+other = "Spiral Word Puzzle"
+
+["common.brand.catchledger"]
+other = "CatchLedger"
+
+["home.hero.eyebrow"]
+other = "Hambungle Studio"
+
+["home.hero.title"]
+other = "有趣的产品，电影级打磨。"
+
+["home.hero.body"]
+other = "我们打造现代、轻量且富有个性的应用体验。探索我们为速度、清晰与愉悦而构建的游戏和工具。"
+
+["home.section.apps_title"]
+other = "应用"
+
+["home.card.shared.cta_open_app"]
+other = "打开应用"
+
+["home.card.shared.cta_view_app"]
+other = "查看应用"
+
+["home.card.spiral.badge"]
+other = "游戏"
+
+["home.card.spiral.description"]
+other = "在螺旋中寻找隐藏单词。快节奏回合、触感交互，以及令人满足的挑战曲线。"
+
+["home.card.catchledger.badge"]
+other = "财务"
+
+["home.card.catchledger.description"]
+other = "记录渔获、登记条目，并通过简洁的账本流程保持记录井然有序。"
+
+["home.break.title"]
+other = "用心打造。"
+
+["home.break.body"]
+other = "每一款 Hambungle 产品都以清晰、动感和个性为设计核心。从触感解谜机制到简洁的财务工具，我们专注于轻量构建与电影级打磨。"
+
+["home.video.aria_label"]
+other = "Hambungle 电影短片"
+
+["spiral.page.title"]
+other = "Spiral Word Puzzle"
+
+["spiral.current_word.label"]
+other = "当前单词："
+
+["spiral.grid_size.label"]
+other = "选择网格大小："
+
+["spiral.grid_size.option"]
+other = "{{ .size }} x {{ .size }}"
+
+["spiral.score.label"]
+other = "得分："
+
+["spiral.instructions.drag_select"]
+other = "点击并拖动，一次完成选择"
+
+["spiral.a11y.close_grid_size_selector"]
+other = "关闭网格大小选择器"
+
+["spiral.a11y.toggle_grid_size_selector"]
+other = "切换网格大小选择器"
+
+["spiral.store.apple_alt"]
+other = "在 App Store 下载"
+
+["spiral.store.google_alt"]
+other = "在 Google Play 获取"
+
+["spiral.status.invalid_selection"]
+other = "选择无效。请确保形成正方形！"
+
+["spiral.status.success_found_word"]
+other = "恭喜！你找到了单词！"
+
+["spiral.status.try_again"]
+other = "再试一次，继续寻找！"
+
+["privacy.selector.aria_label"]
+other = "选择应用隐私政策"
+
+["privacy.selector.spiral_word_puzzle"]
+other = "Spiral Word Puzzle"
+
+["privacy.selector.catchledger"]
+other = "CatchLedger"
+
+["privacy.loader.loading_policy"]
+other = "正在加载 {{ .app }} 的隐私政策…"
+
+["privacy.loader.error.load_page"]
+other = "无法加载政策页面。"
+
+["privacy.loader.error.content_not_found"]
+other = "未找到政策内容。"
+
+["privacy.loader.error.generic"]
+other = "当前无法加载此政策。"
+
+["feedback.meta.source_label"]
+other = "来源："
+
+["feedback.meta.source_not_provided"]
+other = "未提供"
+
+["feedback.meta.category_label"]
+other = "类别："
+
+["feedback.form.subject_default"]
+other = "反馈提交"
+
+["feedback.form.bottrap.label"]
+other = "请将此字段留空"
+
+["feedback.form.message.label"]
+other = "消息"
+
+["feedback.form.message.placeholder_default"]
+other = "请告诉我们发生了什么、你的预期是什么，以及任何可能有帮助的细节。"
+
+["feedback.form.email.label"]
+other = "电子邮箱（可选）"
+
+["feedback.form.email.placeholder"]
+other = "you@example.com"
+
+["feedback.form.device.label"]
+other = "设备 / 平台（可选）"
+
+["feedback.form.device.placeholder"]
+other = "例如：iPhone 15 (iOS 18)、Pixel 8 (Android 15)、网页 Chrome"
+
+["feedback.form.app.label"]
+other = "应用"
+
+["feedback.form.app.default"]
+other = "Hambungle 应用"
+
+["feedback.form.category.label"]
+other = "反馈类别"
+
+["feedback.form.submit"]
+other = "发送反馈"
+
+["feedback.category.general"]
+other = "一般反馈"
+
+["feedback.category.improvement"]
+other = "改进建议"
+
+["feedback.category.bug"]
+other = "错误报告"
+
+["feedback.type.general.subtitle"]
+other = "欢迎分享任何评论、问题或总体反馈。"
+
+["feedback.type.general.title_prefix"]
+other = "一般反馈"
+
+["feedback.type.general.message_label"]
+other = "消息"
+
+["feedback.type.general.message_placeholder"]
+other = "分享你的想法、评论或问题。"
+
+["feedback.type.improvement.subtitle"]
+other = "告诉我们哪些地方可以更好，以及为什么会有帮助。"
+
+["feedback.type.improvement.title_prefix"]
+other = "改进建议"
+
+["feedback.type.improvement.message_label"]
+other = "建议详情"
+
+["feedback.type.improvement.message_placeholder"]
+other = "我们应该改进什么？请包含当前行为以及你的改动建议。"
+
+["feedback.type.bug.subtitle"]
+other = "请描述哪里出了问题，以及我们如何复现。"
+
+["feedback.type.bug.title_prefix"]
+other = "错误报告"
+
+["feedback.type.bug.message_label"]
+other = "错误详情"
+
+["feedback.type.bug.message_placeholder"]
+other = "发生了什么、你的预期是什么，以及我们如何复现该问题？"
+
+["feedback.dynamic.title_for_app"]
+other = "{{ .app }} 的{{ .type }}"
+
+["feedback.dynamic.subject_for_app"]
+other = "{{ .category }} - {{ .app }}"
+
+["feedback.source.catchledger"]
+other = "CatchLedger"
+
+["feedback.source.spiral_word_puzzle"]
+other = "Spiral Word Puzzle"
+
+["pages.contact.title"]
+other = "联系"
+
+["pages.contact.description"]
+other = "与 Hambungle Studio 取得联系。"
+
+["pages.contact.body"]
+other = "如需支持、合作或咨询，请发送邮件至 [hello@hambungle.com](mailto:hello@hambungle.com)。"
+
+["pages.terms.title"]
+other = "条款"
+
+["pages.terms.description"]
+other = "Hambungle 应用和网站使用条款。"
+
+["pages.terms.body.p1"]
+other = "使用 Hambungle 应用和本网站即表示你同意以合法、负责的方式使用它们。"
+
+["pages.terms.body.p2"]
+other = "我们的应用按“现状”提供，且可能随时更新、修改或停止某些功能。"
+
+["pages.privacy.index.title"]
+other = "隐私政策"
+
+["pages.privacy.index.description"]
+other = "选择一个应用以查看其隐私政策。"
+
+["pages.privacy.index.body.p1"]
+other = "欢迎来到 Hambungle 隐私政策中心。"
+
+["pages.privacy.index.body.p2"]
+other = "请选择下方应用以查看其当前政策。"
+
+["pages.privacy.spiral.title"]
+other = "隐私政策 — Spiral Word Puzzle"
+
+["pages.privacy.catchledger.title"]
+other = "隐私政策 — CatchLedger"
+
+["pages.feedback.index.title"]
+other = "反馈"
+
+["pages.feedback.index.description"]
+other = "分享你对 CatchLedger 的反馈。"
+
+["pages.feedback.index.subtitle"]
+other = "告诉我们哪些做得好、哪些不足，以及我们下一步该做什么。"
+
+["pages.feedback.index.body"]
+other = "使用下方表单发送反馈。主题和类别可从应用链接中预填。"
+
+["pages.feedback.thanks.title"]
+other = "谢谢"
+
+["pages.feedback.thanks.body"]
+other = "感谢你的反馈。"
+
+["social.twitter.tweets_by"]
+other = "{{ .username }} 的推文"
+
+["pages.privacy.spiral.meta.effective_date_label"]
+other = "生效日期："
+
+["pages.privacy.spiral.meta.last_updated_label"]
+other = "最后更新："
+
+["pages.privacy.spiral.section.information_we_collect"]
+other = "我们收集的信息"
+
+["pages.privacy.spiral.section.data_storage_and_usage"]
+other = "数据存储与使用"
+
+["pages.privacy.spiral.section.third_party_services"]
+other = "第三方服务"
+
+["pages.privacy.spiral.section.changes_to_policy"]
+other = "本政策的变更"
+
+["pages.privacy.catchledger.meta.effective_date_label"]
+other = "生效日期："
+
+["pages.privacy.catchledger.meta.last_updated_label"]
+other = "最后更新："
+
+["pages.privacy.catchledger.section.information_we_collect"]
+other = "我们收集的信息"
+
+["pages.privacy.catchledger.section.data_storage_and_usage"]
+other = "数据存储与使用"
+
+["pages.privacy.catchledger.section.third_party_services"]
+other = "第三方服务"
+
+["pages.privacy.catchledger.section.your_choices"]
+other = "你的选择"
+
+["pages.privacy.catchledger.section.changes_to_policy"]
+other = "本政策的变更"
+
+["common.meta.title_with_page"]
+other = "{{ .page }} | {{ .site }}"
+
+["common.meta.title_home"]
+other = "{{ .site }}"
+
+["common.language.selector_aria"]
+other = "语言选择器"
+
+["common.language.selector_label"]
+other = "语言"

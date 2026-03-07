@@ -2,14 +2,16 @@
   var policyContainer = document.getElementById('policy');
   if (!policyContainer) return;
 
+  var i18n = window.hambunglePrivacyI18n || {};
+
   var appMap = {
     spiral: {
-      label: 'Spiral Word Puzzle',
-      url: '/privacy/spiral-word-puzzle/'
+      label: i18n.selectorSpiral || '',
+      url: i18n.urlSpiral || '/privacy/spiral-word-puzzle/'
     },
     catchledger: {
-      label: 'CatchLedger',
-      url: '/privacy/catchledger/'
+      label: i18n.selectorCatchledger || '',
+      url: i18n.urlCatchledger || '/privacy/catchledger/'
     }
   };
 
@@ -41,6 +43,12 @@
     });
   }
 
+
+  function applyTemplate(template, data) {
+    return template
+      .replace('{{ .app }}', data.app || '');
+  }
+
   function updateUrl(app) {
     var params = new URLSearchParams(window.location.search);
     params.set('app', app);
@@ -51,29 +59,30 @@
   function renderPolicy(app) {
     var item = appMap[app] || appMap.spiral;
     setActiveButton(app);
-    policyContainer.innerHTML = '<p>Loading ' + item.label + ' policy…</p>';
+    var loadingTemplate = i18n.loadingPolicy || '';
+    policyContainer.innerHTML = '<p>' + applyTemplate(loadingTemplate, { app: item.label }) + '</p>';
 
     fetch(item.url)
       .then(function (response) {
         if (!response.ok) {
-          throw new Error('Unable to load policy page.');
+          throw new Error(i18n.errorLoadPage || '');
         }
         return response.text();
       })
       .then(function (html) {
         var doc = new DOMParser().parseFromString(html, 'text/html');
         var content =
-  doc.querySelector('#policy-fragment') ||
-  doc.querySelector('article.page-card .content') ||
-  doc.querySelector('main');
+          doc.querySelector('#policy-fragment') ||
+          doc.querySelector('article.page-card .content') ||
+          doc.querySelector('main');
         if (!content) {
-          throw new Error('Policy content not found.');
+          throw new Error(i18n.errorContentNotFound || '');
         }
         policyContainer.innerHTML = content.innerHTML;
         updateUrl(app);
       })
       .catch(function () {
-        policyContainer.innerHTML = '<p class="text-danger">Unable to load this policy right now.</p>';
+        policyContainer.innerHTML = '<p class="text-danger">' + (i18n.errorGeneric || '') + '</p>';
       });
   }
 

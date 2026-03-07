@@ -1,0 +1,356 @@
+# Hugo i18n ar source
+# Mirrors keys from i18n/en.toml
+
+["common.meta.description_fallback"]
+other = "تبني Hambungle تطبيقات مرحة ومصممة بعناية."
+
+["common.nav.main_aria_label"]
+other = "التنقل الرئيسي"
+
+["common.nav.studio"]
+other = "الاستوديو"
+
+["common.nav.spiral_puzzle"]
+other = "Spiral Puzzle"
+
+["common.nav.catchledger"]
+other = "CatchLedger"
+
+["common.nav.privacy"]
+other = "الخصوصية"
+
+["common.nav.terms"]
+other = "الشروط"
+
+["common.nav.contact"]
+other = "اتصل بنا"
+
+["common.footer.copyright"]
+other = "© {{ .year }} Hambungle Studio"
+
+["common.brand.hambungle"]
+other = "Hambungle"
+
+["common.brand.hambungle_studio"]
+other = "Hambungle Studio"
+
+["common.brand.spiral_puzzle"]
+other = "Spiral Puzzle"
+
+["common.brand.spiral_word_puzzle"]
+other = "Spiral Word Puzzle"
+
+["common.brand.catchledger"]
+other = "CatchLedger"
+
+["home.hero.eyebrow"]
+other = "Hambungle Studio"
+
+["home.hero.title"]
+other = "منتجات مرِحة بلمسة سينمائية متقنة."
+
+["home.hero.body"]
+other = "نصمم تجارب تطبيقات حديثة وخفيفة بطابع مميز. استكشف ألعابنا وأدواتنا المبنية للسرعة والوضوح والمتعة."
+
+["home.section.apps_title"]
+other = "التطبيقات"
+
+["home.card.shared.cta_open_app"]
+other = "افتح التطبيق"
+
+["home.card.shared.cta_view_app"]
+other = "عرض التطبيق"
+
+["home.card.spiral.badge"]
+other = "لعبة"
+
+["home.card.spiral.description"]
+other = "اعثر على كلمات مخفية داخل حلزونات. جولات سريعة وتفاعلات لمسية ومنحنى تحدٍ مُرضٍ."
+
+["home.card.catchledger.badge"]
+other = "المالية"
+
+["home.card.catchledger.description"]
+other = "تتبّع عمليات الصيد، وسجّل الإدخالات، وحافظ على تنظيم سجلاتك عبر سير عمل دفتر بسيط."
+
+["home.break.title"]
+other = "مصنوع بعناية وهدف."
+
+["home.break.body"]
+other = "كل منتج من Hambungle مصمم بوضوح وحركة وشخصية. من آليات الألغاز اللمسية إلى الأدوات المالية النظيفة، نركز على البناء الخفيف واللمسة السينمائية المتقنة."
+
+["home.video.aria_label"]
+other = "عرض Hambungle السينمائي"
+
+["spiral.page.title"]
+other = "Spiral Word Puzzle"
+
+["spiral.current_word.label"]
+other = "الكلمة الحالية:"
+
+["spiral.grid_size.label"]
+other = "اختر حجم الشبكة:"
+
+["spiral.grid_size.option"]
+other = "{{ .size }} × {{ .size }}"
+
+["spiral.score.label"]
+other = "النتيجة:"
+
+["spiral.instructions.drag_select"]
+other = "انقر واسحب لإجراء اختيارك بحركة واحدة"
+
+["spiral.a11y.close_grid_size_selector"]
+other = "إغلاق محدد حجم الشبكة"
+
+["spiral.a11y.toggle_grid_size_selector"]
+other = "تبديل محدد حجم الشبكة"
+
+["spiral.store.apple_alt"]
+other = "حمّل من App Store"
+
+["spiral.store.google_alt"]
+other = "احصل عليه من Google Play"
+
+["spiral.status.invalid_selection"]
+other = "اختيار غير صالح. تأكد من تكوين مربع!"
+
+["spiral.status.success_found_word"]
+other = "تهانينا! لقد وجدت الكلمة!"
+
+["spiral.status.try_again"]
+other = "حاول مرة أخرى. واصل البحث!"
+
+["privacy.selector.aria_label"]
+other = "اختر سياسة خصوصية التطبيق"
+
+["privacy.selector.spiral_word_puzzle"]
+other = "Spiral Word Puzzle"
+
+["privacy.selector.catchledger"]
+other = "CatchLedger"
+
+["privacy.loader.loading_policy"]
+other = "جارٍ تحميل سياسة {{ .app }}…"
+
+["privacy.loader.error.load_page"]
+other = "تعذر تحميل صفحة السياسة."
+
+["privacy.loader.error.content_not_found"]
+other = "لم يتم العثور على محتوى السياسة."
+
+["privacy.loader.error.generic"]
+other = "تعذر تحميل هذه السياسة الآن."
+
+["feedback.meta.source_label"]
+other = "المصدر:"
+
+["feedback.meta.source_not_provided"]
+other = "غير متوفر"
+
+["feedback.meta.category_label"]
+other = "الفئة:"
+
+["feedback.form.subject_default"]
+other = "إرسال ملاحظات"
+
+["feedback.form.bottrap.label"]
+other = "اترك هذا الحقل فارغًا"
+
+["feedback.form.message.label"]
+other = "الرسالة"
+
+["feedback.form.message.placeholder_default"]
+other = "أخبرنا بما حدث وما الذي كنت تتوقعه وأي تفاصيل قد تساعد."
+
+["feedback.form.email.label"]
+other = "البريد الإلكتروني (اختياري)"
+
+["feedback.form.email.placeholder"]
+other = "you@example.com"
+
+["feedback.form.device.label"]
+other = "الجهاز / المنصة (اختياري)"
+
+["feedback.form.device.placeholder"]
+other = "مثال: iPhone 15 (iOS 18)، Pixel 8 (Android 15)، Web Chrome"
+
+["feedback.form.app.label"]
+other = "التطبيق"
+
+["feedback.form.app.default"]
+other = "تطبيق Hambungle"
+
+["feedback.form.category.label"]
+other = "فئة الملاحظات"
+
+["feedback.form.submit"]
+other = "إرسال الملاحظات"
+
+["feedback.category.general"]
+other = "ملاحظات عامة"
+
+["feedback.category.improvement"]
+other = "اقتراح تحسين"
+
+["feedback.category.bug"]
+other = "بلاغ خطأ"
+
+["feedback.type.general.subtitle"]
+other = "شارك أي تعليقات أو أسئلة أو ملاحظات عامة."
+
+["feedback.type.general.title_prefix"]
+other = "ملاحظات عامة"
+
+["feedback.type.general.message_label"]
+other = "الرسالة"
+
+["feedback.type.general.message_placeholder"]
+other = "شارك أفكارك أو تعليقاتك أو أسئلتك."
+
+["feedback.type.improvement.subtitle"]
+other = "أخبرنا بما يمكن تحسينه ولماذا سيكون مفيدًا."
+
+["feedback.type.improvement.title_prefix"]
+other = "اقتراح تحسين"
+
+["feedback.type.improvement.message_label"]
+other = "تفاصيل الاقتراح"
+
+["feedback.type.improvement.message_placeholder"]
+other = "ما الذي ينبغي تحسينه؟ أدرج السلوك الحالي والتغيير المقترح."
+
+["feedback.type.bug.subtitle"]
+other = "صف ما حدث بشكل خاطئ وكيف يمكننا إعادة المشكلة."
+
+["feedback.type.bug.title_prefix"]
+other = "بلاغ خطأ"
+
+["feedback.type.bug.message_label"]
+other = "تفاصيل الخطأ"
+
+["feedback.type.bug.message_placeholder"]
+other = "ما الذي حدث، وما الذي كنت تتوقعه، وكيف يمكننا إعادة المشكلة؟"
+
+["feedback.dynamic.title_for_app"]
+other = "{{ .type }} لـ {{ .app }}"
+
+["feedback.dynamic.subject_for_app"]
+other = "{{ .category }} - {{ .app }}"
+
+["feedback.source.catchledger"]
+other = "CatchLedger"
+
+["feedback.source.spiral_word_puzzle"]
+other = "Spiral Word Puzzle"
+
+["pages.contact.title"]
+other = "اتصل بنا"
+
+["pages.contact.description"]
+other = "تواصل مع Hambungle Studio."
+
+["pages.contact.body"]
+other = "للدعم أو التعاون أو الأسئلة، راسلنا عبر البريد الإلكتروني على [hello@hambungle.com](mailto:hello@hambungle.com)."
+
+["pages.terms.title"]
+other = "الشروط"
+
+["pages.terms.description"]
+other = "شروط استخدام تطبيقات وموقع Hambungle."
+
+["pages.terms.body.p1"]
+other = "باستخدام تطبيقات Hambungle وهذا الموقع، فإنك توافق على استخدامها بشكل قانوني ومسؤول."
+
+["pages.terms.body.p2"]
+other = "نقدم تطبيقاتنا كما هي، وقد نقوم بتحديث الميزات أو تعديلها أو إيقافها في أي وقت."
+
+["pages.privacy.index.title"]
+other = "سياسة الخصوصية"
+
+["pages.privacy.index.description"]
+other = "اختر تطبيقًا لعرض سياسة الخصوصية الخاصة به."
+
+["pages.privacy.index.body.p1"]
+other = "مرحبًا بك في مركز سياسات الخصوصية لدى Hambungle."
+
+["pages.privacy.index.body.p2"]
+other = "اختر تطبيقًا أدناه لعرض سياسته الحالية."
+
+["pages.privacy.spiral.title"]
+other = "سياسة الخصوصية — Spiral Word Puzzle"
+
+["pages.privacy.catchledger.title"]
+other = "سياسة الخصوصية — CatchLedger"
+
+["pages.feedback.index.title"]
+other = "الملاحظات"
+
+["pages.feedback.index.description"]
+other = "شارك ملاحظاتك حول CatchLedger."
+
+["pages.feedback.index.subtitle"]
+other = "أخبرنا بما يعمل جيدًا وما لا يعمل وما الذي يجب أن نبنيه بعد ذلك."
+
+["pages.feedback.index.body"]
+other = "استخدم النموذج أدناه لإرسال الملاحظات. يمكن تعبئة الموضوع والفئة مسبقًا من رابط التطبيق."
+
+["pages.feedback.thanks.title"]
+other = "شكرًا لك"
+
+["pages.feedback.thanks.body"]
+other = "شكرًا لملاحظاتك."
+
+["social.twitter.tweets_by"]
+other = "تغريدات بواسطة {{ .username }}"
+
+["pages.privacy.spiral.meta.effective_date_label"]
+other = "تاريخ السريان:"
+
+["pages.privacy.spiral.meta.last_updated_label"]
+other = "آخر تحديث:"
+
+["pages.privacy.spiral.section.information_we_collect"]
+other = "المعلومات التي نجمعها"
+
+["pages.privacy.spiral.section.data_storage_and_usage"]
+other = "تخزين البيانات واستخدامها"
+
+["pages.privacy.spiral.section.third_party_services"]
+other = "خدمات الطرف الثالث"
+
+["pages.privacy.spiral.section.changes_to_policy"]
+other = "التغييرات على هذه السياسة"
+
+["pages.privacy.catchledger.meta.effective_date_label"]
+other = "تاريخ السريان:"
+
+["pages.privacy.catchledger.meta.last_updated_label"]
+other = "آخر تحديث:"
+
+["pages.privacy.catchledger.section.information_we_collect"]
+other = "المعلومات التي نجمعها"
+
+["pages.privacy.catchledger.section.data_storage_and_usage"]
+other = "تخزين البيانات واستخدامها"
+
+["pages.privacy.catchledger.section.third_party_services"]
+other = "خدمات الطرف الثالث"
+
+["pages.privacy.catchledger.section.your_choices"]
+other = "خياراتك"
+
+["pages.privacy.catchledger.section.changes_to_policy"]
+other = "التغييرات على هذه السياسة"
+
+["common.meta.title_with_page"]
+other = "{{ .page }} | {{ .site }}"
+
+["common.meta.title_home"]
+other = "{{ .site }}"
+
+["common.language.selector_aria"]
+other = "مُبدّل اللغة"
+
+["common.language.selector_label"]
+other = "اللغة"

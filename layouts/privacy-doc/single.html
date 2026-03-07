@@ -1,6 +1,12 @@
 {{ define "main" }}
 <article class="page-card">
-  <h1>{{ .Title }}</h1>
+  {{ $title := .Title }}
+  {{ if eq .Slug "spiral-word-puzzle" }}
+    {{ $title = i18n "pages.privacy.spiral.title" }}
+  {{ else if eq .Slug "catchledger" }}
+    {{ $title = i18n "pages.privacy.catchledger.title" }}
+  {{ end }}
+  <h1>{{ $title }}</h1>
   <div class="content" id="policy-fragment">
     {{ .Content }}
   </div>
