@@ -244,6 +244,12 @@ other = "CatchLedger"
 ["feedback.source.spiral_word_puzzle"]
 other = "Spiral Word Puzzle"
 
+["feedback.form.sending"]
+other = "Enviando..."
+
+["feedback.form.submit_error"]
+other = "No se puede enviar la opinión en este momento."
+
 ["pages.contact.title"]
 other = "Contacto"
 

@@ -1,7 +1,7 @@
 ---
-title: "Thank You"
+title: "شكرًا لك"
 type: "feedback"
 layout: "single"
 translationKey: "feedback-thanks"
 ---
-Thanks for your feedback.
+شكرًا على ملاحظاتك.

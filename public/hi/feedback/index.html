@@ -179,11 +179,12 @@
     action="https://formspree.io/f/mnjgqlyy"
     method="post"
     novalidate
+    data-ajax="true"
   >
     
 
     <input type="hidden" name="_subject" id="feedback-subject" value="फ़ीडबैक सबमिशन">
-    <input type="hidden" name="_next" value="http://localhost:1313/feedback/thanks/">
+    <input type="hidden" name="_next" id="feedback-next" value="http://localhost:1313/hi/feedback/thanks/">
     <input type="hidden" name="_replyto" id="feedback-replyto" value="">
 
     <p class="sr-only" aria-hidden="true">
@@ -224,6 +225,10 @@
     defaults: {
       appName: "\"Hambungle App\"",
       category: "\"सामान्य फ़ीडबैक\""
+    },
+    messages: {
+      sending: "\"भेजा जा रहा है...\"",
+      submitError: "\"अभी फ़ीडबैक भेजा नहीं जा सका।\""
     },
     typeMap: {
       general: {

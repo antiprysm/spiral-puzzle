@@ -181,11 +181,12 @@
     action="https://formspree.io/f/mnjgqlyy"
     method="post"
     novalidate
+    data-ajax="true"
   >
     
 
     <input type="hidden" name="_subject" id="feedback-subject" value="Feedback submission">
-    <input type="hidden" name="_next" value="http://localhost:1313/feedback/thanks/">
+    <input type="hidden" name="_next" id="feedback-next" value="http://localhost:1313/feedback/thanks/">
     <input type="hidden" name="_replyto" id="feedback-replyto" value="">
 
     <p class="sr-only" aria-hidden="true">
@@ -226,6 +227,10 @@
     defaults: {
       appName: "\"Hambungle App\"",
       category: "\"General feedback\""
+    },
+    messages: {
+      sending: "\"Sending...\"",
+      submitError: "\"Unable to send feedback right now.\""
     },
     typeMap: {
       general: {

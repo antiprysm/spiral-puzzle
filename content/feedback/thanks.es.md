@@ -1,7 +1,7 @@
 ---
-title: "Thank You"
+title: "Gracias"
 type: "feedback"
 layout: "single"
 translationKey: "feedback-thanks"
 ---
-Thanks for your feedback.
+Gracias por tus comentarios.

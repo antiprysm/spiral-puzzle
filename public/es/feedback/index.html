@@ -179,11 +179,11 @@
     action="https://formspree.io/f/mnjgqlyy"
     method="post"
     novalidate
+    data-ajax="true"
   >
-    
 
     <input type="hidden" name="_subject" id="feedback-subject" value="Envío de comentarios">
-    <input type="hidden" name="_next" value="http://localhost:1313/feedback/thanks/">
+    <input type="hidden" name="_next" id="feedback-next" value="http://localhost:1313/es/feedback/thanks/">
     <input type="hidden" name="_replyto" id="feedback-replyto" value="">
 
     <p class="sr-only" aria-hidden="true">
@@ -225,6 +225,10 @@
       appName: "\"App de Hambungle\"",
       category: "\"Comentarios generales\""
     },
+    messages: {
+      sending: "\"Enviando...\"",
+      submitError: "\"No se puede enviar la opinión en este momento.\""
+    },
     typeMap: {
       general: {
         category: "\"Comentarios generales\"",
@@ -252,7 +256,7 @@
     subjectTemplate: "\"__CATEGORY__ - __APP__\""
   };
 </script>
-<script src='/js/feedback.js' defer></script>
+<script src="/js/feedback.js" defer></script>
 
   </main>
 

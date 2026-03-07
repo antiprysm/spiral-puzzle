@@ -244,6 +244,12 @@ other = "CatchLedger"
 ["feedback.source.spiral_word_puzzle"]
 other = "Spiral Word Puzzle"
 
+["feedback.form.sending"]
+other = "भेजा जा रहा है..."
+
+["feedback.form.submit_error"]
+other = "अभी फ़ीडबैक भेजा नहीं जा सका।"
+
 ["pages.contact.title"]
 other = "संपर्क"
 

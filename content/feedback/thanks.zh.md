@@ -1,7 +1,7 @@
 ---
-title: "Thank You"
+title: "谢谢"
 type: "feedback"
 layout: "single"
 translationKey: "feedback-thanks"
 ---
-Thanks for your feedback.
+感谢你的反馈。

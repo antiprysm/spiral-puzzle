@@ -20,12 +20,11 @@
     action="https://formspree.io/f/mnjgqlyy"
     method="post"
     novalidate
+    data-ajax="true"
   >
-    <!-- For Netlify Forms, replace action/method with netlify attributes:
-         <form name="feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field"> -->
 
     <input type="hidden" name="_subject" id="feedback-subject" value="{{ i18n "feedback.form.subject_default" }}">
-    <input type="hidden" name="_next" value="{{ "/feedback/thanks/" | absURL }}">
+    <input type="hidden" name="_next" id="feedback-next" value="{{ "feedback/thanks/" | absLangURL }}">
     <input type="hidden" name="_replyto" id="feedback-replyto" value="">
 
     <p class="sr-only" aria-hidden="true">
@@ -67,6 +66,10 @@
       appName: {{ i18n "feedback.form.app.default" | jsonify }},
       category: {{ i18n "feedback.category.general" | jsonify }}
     },
+    messages: {
+      sending: {{ i18n "feedback.form.sending" | jsonify }},
+      submitError: {{ i18n "feedback.form.submit_error" | jsonify }}
+    },
     typeMap: {
       general: {
         category: {{ i18n "feedback.category.general" | jsonify }},
@@ -94,5 +97,5 @@
     subjectTemplate: {{ i18n "feedback.dynamic.subject_for_app" | jsonify }}
   };
 </script>
-<script src='{{ "js/feedback.js" | relURL }}' defer></script>
+<script src="{{ "js/feedback.js" | relURL }}" defer></script>
 {{ end }}

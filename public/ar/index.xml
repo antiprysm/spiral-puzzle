@@ -49,5 +49,12 @@
       <guid>http://localhost:1313/ar/privacy/spiral-word-puzzle/</guid>
       <description>&lt;p&gt;&lt;strong&gt;تاريخ السريان:&lt;/strong&gt; 01/15/25&lt;br&gt;&#xA;&lt;em&gt;آخر تحديث: 03/31/25&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;المعلومات-التي-نجمعها&#34;&gt;المعلومات التي نجمعها&lt;/h2&gt;&#xA;&lt;p&gt;يجمع تطبيق Spiral Word Puzzle كمية محدودة من معلومات المستخدم فقط من أجل وظيفة لوحة المتصدرين.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;معلومات المصادقة (مطلوبة):&lt;/strong&gt;&lt;br&gt;&#xA;عند إرسال نتيجة عالية، نقوم بجمع اسم مستخدم أو معرف فريد لربط النتائج باللاعبين.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;موقع الدولة (اختياري):&lt;/strong&gt;&lt;br&gt;&#xA;يمكنك اختيار بلدك من قائمة عند إرسال نتيجة عالية. لا يتم جمع هذه المعلومة تلقائيًا ويتم تخزينها فقط إذا قمت بتحديدها بنفسك.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;تخزين-البيانات-واستخدامها&#34;&gt;تخزين البيانات واستخدامها&lt;/h2&gt;&#xA;&lt;p&gt;يتم تخزين جميع المعلومات التي يتم جمعها بشكل آمن في قاعدة بيانات SQL خاصة مستضافة من قبل مطور التطبيق.&lt;br&gt;&#xA;لا يتم جمع أي معلومات شخصية مثل عنوان البريد الإلكتروني أو الاسم الحقيقي أو رقم الهاتف أو موقع الجهاز.&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>شكرًا لك</title>
+      <link>http://localhost:1313/ar/feedback/thanks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/ar/feedback/thanks/</guid>
+      <description>&lt;p&gt;شكرًا على ملاحظاتك.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
