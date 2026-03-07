@@ -10,6 +10,8 @@
   </url><url>
     <loc>http://localhost:1313/contact/</loc>
   </url><url>
+    <loc>http://localhost:1313/feedback/</loc>
+  </url><url>
     <loc>http://localhost:1313/</loc>
   </url><url>
     <loc>http://localhost:1313/privacy/</loc>
@@ -23,5 +25,7 @@
     <loc>http://localhost:1313/tags/</loc>
   </url><url>
     <loc>http://localhost:1313/terms/</loc>
+  </url><url>
+    <loc>http://localhost:1313/feedback/thanks/</loc>
   </url>
 </urlset>

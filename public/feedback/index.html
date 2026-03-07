@@ -1,12 +1,47 @@
-{{ define "head" }}
-<link rel="stylesheet" href="{{ "css/feedback.css" | relURL }}">
-{{ end }}
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Feedback | Hambungle</title>
+  <meta name="description" content="Share feedback about CatchLedger.">
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  <link rel="stylesheet" href="/css/site.css">
+  
+<link rel="stylesheet" href="/css/feedback.css">
 
-{{ define "main" }}
+
+  
+  <script>
+    window.ModelViewerElement = window.ModelViewerElement || {};
+    window.ModelViewerElement.meshoptDecoderLocation = '\/js\/meshopt_decoder.module.js';
+  </script>
+
+  
+  <script type="module" src="/js/model-viewer.min.js"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="/">Hambungle</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="/">Studio</a>
+        <a href="/apps/spiral-puzzle/">Spiral Puzzle</a>
+        <a href="/apps/catchledger/">CatchLedger</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    
 <article class="page-card feedback-card" id="feedback-card" data-feedback-page="true">
   <header class="feedback-card__header">
-    <h1 id="feedback-title" data-base-title="{{ .Title }}">{{ .Title }}</h1>
-    <p id="feedback-subtitle">{{ with .Params.subtitle }}{{ . }}{{ else }}{{ .Description }}{{ end }}</p>
+    <h1 id="feedback-title" data-base-title="Feedback">Feedback</h1>
+    <p id="feedback-subtitle">Tell us what’s working, what’s not, and what we should build next.</p>
   </header>
 
   <section class="feedback-card__meta" aria-live="polite">
@@ -17,15 +52,15 @@
   <form
     id="feedback-form-shell"
     class="feedback-form"
-    action="https://formspree.io/f/your-form-id"
+    action="https://formspree.io/f/mnjgqlyy"
     method="post"
     novalidate
   >
-    <!-- For Netlify Forms, replace action/method with netlify attributes:
-         <form name="feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field"> -->
+    
 
     <input type="hidden" name="_subject" id="feedback-subject" value="Feedback submission">
-    <input type="hidden" name="_next" value="{{ "/feedback/thanks/" | absURL }}">
+    <input type="hidden" name="_next" value="http://localhost:1313/feedback/thanks/">
+    <input type="hidden" name="_replyto" id="feedback-replyto" value="">
 
     <p class="sr-only" aria-hidden="true">
       <label for="feedback-bot-field">Leave this field empty</label>
@@ -54,5 +89,14 @@
   </form>
 </article>
 
-<script src='{{ "js/feedback.js" | relURL }}' defer></script>
-{{ end }}
+<script src='/js/feedback.js' defer></script>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 Hambungle Studio</p>
+    </div>
+  </footer>
+</body>
+</html>
