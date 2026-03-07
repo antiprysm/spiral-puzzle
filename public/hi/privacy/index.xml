@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Privacies on Hambungle</title>
+    <link>http://localhost:1313/hi/privacy/</link>
+    <description>Recent content in Privacies on Hambungle</description>
+    <generator>Hugo</generator>
+    <language>hi</language>
+    <atom:link href="http://localhost:1313/hi/privacy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>गोपनीयता नीति — CatchLedger</title>
+      <link>http://localhost:1313/hi/privacy/catchledger/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/hi/privacy/catchledger/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;प्रभावी तिथि:&lt;/strong&gt; 01/15/25&lt;br&gt;&#xA;&lt;em&gt;अंतिम अपडेट: 03/31/25&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;हम-कन-स-जनकर-एकतर-करत-ह&#34;&gt;हम कौन-सी जानकारी एकत्र करते हैं&lt;/h2&gt;&#xA;&lt;p&gt;CatchLedger उपयोगकर्ताओं को अपनी पकड़ और यात्रा के आँकड़ों को ट्रैक करने में मदद करने के लिए बनाया गया है। हम केवल वही डेटा एकत्र करते हैं जो इस कार्यक्षमता को प्रदान करने के लिए आवश्यक है।&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;खाता या पहचानकर्ता जानकारी (वैकल्पिक):&lt;/strong&gt;&lt;br&gt;&#xA;यदि आप खाता बनाना या साइन इन करना चुनते हैं, तो हम वह पहचानकर्ता संग्रहीत करते हैं जो आपकी प्रविष्टियों को सिंक रखने के लिए आवश्यक होता है।&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>गोपनीयता नीति — Spiral Word Puzzle</title>
+      <link>http://localhost:1313/hi/privacy/spiral-word-puzzle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/hi/privacy/spiral-word-puzzle/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;प्रभावी तिथि:&lt;/strong&gt; 01/15/25&lt;br&gt;&#xA;&lt;em&gt;अंतिम अपडेट: 03/31/25&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;हम-कन-स-जनकर-एकतर-करत-ह&#34;&gt;हम कौन-सी जानकारी एकत्र करते हैं&lt;/h2&gt;&#xA;&lt;p&gt;Spiral Word Puzzle केवल लीडरबोर्ड कार्यक्षमता के लिए सीमित मात्रा में उपयोगकर्ता जानकारी एकत्र करता है।&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;प्रमाणीकरण जानकारी (आवश्यक):&lt;/strong&gt;&lt;br&gt;&#xA;जब आप उच्च स्कोर सबमिट करते हैं, तो हम स्कोर को खिलाड़ियों से जोड़ने के लिए एक उपयोगकर्ता नाम या विशिष्ट पहचानकर्ता एकत्र करते हैं।&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;देश का स्थान (वैकल्पिक):&lt;/strong&gt;&lt;br&gt;&#xA;उच्च स्कोर सबमिट करते समय आप सूची से अपना देश चुन सकते हैं। यह जानकारी स्वतः एकत्र नहीं की जाती और केवल तभी संग्रहीत होती है जब आप स्वयं इसे चुनते हैं।&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

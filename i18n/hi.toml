@@ -233,10 +233,10 @@ other = "बग विवरण"
 other = "क्या हुआ, आपकी क्या अपेक्षा थी, और हम इस समस्या को कैसे दोहरा सकते हैं?"
 
 ["feedback.dynamic.title_for_app"]
-other = "{{ .app }} के लिए {{ .type }}"
+other = "__APP__ के लिए __TYPE__"
 
 ["feedback.dynamic.subject_for_app"]
-other = "{{ .category }} - {{ .app }}"
+other = "__CATEGORY__ - __APP__"
 
 ["feedback.source.catchledger"]
 other = "CatchLedger"

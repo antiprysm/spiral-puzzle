@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hambungle</title>
+    <link>http://localhost:1313/ar/</link>
+    <description>Recent content on Hambungle</description>
+    <generator>Hugo</generator>
+    <language>ar</language>
+    <atom:link href="http://localhost:1313/ar/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CatchLedger</title>
+      <link>http://localhost:1313/ar/apps/catchledger/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/ar/apps/catchledger/</guid>
+      <description>&lt;p&gt;يساعدك CatchLedger على إبقاء سجلات النشاط منظمة دون تعقيد.&lt;/p&gt;&#xA;&lt;h3 id=&#34;أبرز-الميزات&#34;&gt;أبرز الميزات&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;إنشاء إدخالات سريعة لكل عملية صيد.&lt;/li&gt;&#xA;&lt;li&gt;الاحتفاظ بملاحظات خفيفة حول الموقع والتاريخ والتفاصيل.&lt;/li&gt;&#xA;&lt;li&gt;مراجعة السجل الكامل في مكان واحد.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Spiral Puzzle</title>
+      <link>http://localhost:1313/ar/apps/spiral-puzzle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/ar/apps/spiral-puzzle/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>اتصل بنا</title>
+      <link>http://localhost:1313/ar/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/ar/contact/</guid>
+      <description>&lt;p&gt;للدعم أو التعاون أو الاستفسارات، راسلنا عبر البريد الإلكتروني على &lt;a href=&#34;mailto:hello@hambungle.com&#34;&gt;hello@hambungle.com&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>الشروط</title>
+      <link>http://localhost:1313/ar/terms/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/ar/terms/</guid>
+      <description>&lt;p&gt;باستخدام تطبيقات Hambungle وهذا الموقع، فإنك توافق على استخدامهما بشكل قانوني ومسؤول.&lt;/p&gt;&#xA;&lt;p&gt;نحن نقدم تطبيقاتنا كما هي، وقد نقوم بتحديث الميزات أو تعديلها أو إيقافها في أي وقت.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>سياسة الخصوصية — CatchLedger</title>
+      <link>http://localhost:1313/ar/privacy/catchledger/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/ar/privacy/catchledger/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;تاريخ السريان:&lt;/strong&gt; 01/15/25&lt;br&gt;&#xA;&lt;em&gt;آخر تحديث: 03/31/25&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;المعلومات-التي-نجمعها&#34;&gt;المعلومات التي نجمعها&lt;/h2&gt;&#xA;&lt;p&gt;تم تصميم CatchLedger لمساعدة المستخدمين على تتبع المصيد وإحصاءات الرحلات. نحن نجمع فقط البيانات اللازمة لتوفير هذه الوظيفة.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;معلومات الحساب أو المعرّف (اختياري):&lt;/strong&gt;&lt;br&gt;&#xA;إذا اخترت إنشاء حساب أو تسجيل الدخول، فإننا نخزن المعرّف اللازم للحفاظ على مزامنة إدخالاتك.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;إدخالات المصيد والرحلات (يقدمها المستخدم):&lt;/strong&gt;&lt;br&gt;&#xA;يتم تخزين المعلومات التي تدخلها، مثل أنواع الأسماك والتواريخ والملاحظات والقياسات، حتى يمكن عرضها لك مرة أخرى.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;بيانات الموقع التقريبية (اختياري):&lt;/strong&gt;&lt;br&gt;&#xA;إذا اخترت حفظ المواقع للإدخالات، فسيتم تخزين تلك المواقع مع سجلاتك.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>سياسة الخصوصية — Spiral Word Puzzle</title>
+      <link>http://localhost:1313/ar/privacy/spiral-word-puzzle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/ar/privacy/spiral-word-puzzle/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;تاريخ السريان:&lt;/strong&gt; 01/15/25&lt;br&gt;&#xA;&lt;em&gt;آخر تحديث: 03/31/25&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;المعلومات-التي-نجمعها&#34;&gt;المعلومات التي نجمعها&lt;/h2&gt;&#xA;&lt;p&gt;يجمع تطبيق Spiral Word Puzzle كمية محدودة من معلومات المستخدم فقط من أجل وظيفة لوحة المتصدرين.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;معلومات المصادقة (مطلوبة):&lt;/strong&gt;&lt;br&gt;&#xA;عند إرسال نتيجة عالية، نقوم بجمع اسم مستخدم أو معرف فريد لربط النتائج باللاعبين.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;موقع الدولة (اختياري):&lt;/strong&gt;&lt;br&gt;&#xA;يمكنك اختيار بلدك من قائمة عند إرسال نتيجة عالية. لا يتم جمع هذه المعلومة تلقائيًا ويتم تخزينها فقط إذا قمت بتحديدها بنفسك.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;تخزين-البيانات-واستخدامها&#34;&gt;تخزين البيانات واستخدامها&lt;/h2&gt;&#xA;&lt;p&gt;يتم تخزين جميع المعلومات التي يتم جمعها بشكل آمن في قاعدة بيانات SQL خاصة مستضافة من قبل مطور التطبيق.&lt;br&gt;&#xA;لا يتم جمع أي معلومات شخصية مثل عنوان البريد الإلكتروني أو الاسم الحقيقي أو رقم الهاتف أو موقع الجهاز.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

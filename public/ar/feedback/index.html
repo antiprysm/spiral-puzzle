@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <title>التعليقات | Hambungle</title>
+
+  
+  
+  
+
+  
+
+  <meta name="description" content="شارك ملاحظاتك حول CatchLedger.">
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  <link rel="stylesheet" href="/css/site.css">
+  
+<link rel="stylesheet" href="/css/feedback.css">
+
+
+  <script>
+    window.ModelViewerElement = window.ModelViewerElement || {};
+    window.ModelViewerElement.meshoptDecoderLocation = '\/js\/meshopt_decoder.module.js';
+  </script>
+
+  <script type="module" src="/js/model-viewer.min.js"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      
+      
+
+      
+      
+        
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
+      <a class="brand" href="/ar/">Hambungle</a>
+
+      <nav class="nav-links" aria-label="التنقل الرئيسي">
+        <a href="/ar/">الاستوديو</a>
+        <a href="/ar/apps/spiral-puzzle/">Spiral Puzzle</a>
+        <a href="/ar/apps/catchledger/">CatchLedger</a>
+        <a href="/ar/privacy/">الخصوصية</a>
+        <a href="/ar/terms/">الشروط</a>
+        <a href="/ar/contact/">اتصل بنا</a>
+      </nav>
+
+      <div class="language-switcher" role="navigation" aria-label="مُبدّل اللغة">
+        
+        
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+        <label class="sr-only" for="language-switcher-select">اللغة</label>
+        <select id="language-switcher-select" onchange="if (this.value) window.location.href=this.value;">
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/feedback/" >
+              English
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/ar/feedback/" selected>
+              العربية
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/es/feedback/" >
+              Español
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/hi/feedback/" >
+              हिन्दी
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/zh/feedback/" >
+              中文
+            </option>
+          
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    
+<article class="page-card feedback-card" id="feedback-card" data-feedback-page="true">
+  <header class="feedback-card__header">
+    <h1 id="feedback-title" data-base-title="الملاحظات">الملاحظات</h1>
+    <p id="feedback-subtitle">أخبرنا بما يعمل جيدًا وما لا يعمل وما الذي يجب أن نبنيه بعد ذلك.</p>
+  </header>
+
+  <section class="feedback-card__meta" aria-live="polite">
+    <p><strong>المصدر:</strong> <span id="feedback-source">غير متوفر</span></p>
+    <p><strong>الفئة:</strong> <span id="feedback-category">ملاحظات عامة</span></p>
+  </section>
+
+  <form
+    id="feedback-form-shell"
+    class="feedback-form"
+    action="https://formspree.io/f/mnjgqlyy"
+    method="post"
+    novalidate
+  >
+    
+
+    <input type="hidden" name="_subject" id="feedback-subject" value="إرسال ملاحظات">
+    <input type="hidden" name="_next" value="http://localhost:1313/feedback/thanks/">
+    <input type="hidden" name="_replyto" id="feedback-replyto" value="">
+
+    <p class="sr-only" aria-hidden="true">
+      <label for="feedback-bot-field">اترك هذا الحقل فارغًا</label>
+      <input id="feedback-bot-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+    </p>
+
+    <label id="feedback-message-label" for="feedback-message">الرسالة <span aria-hidden="true">*</span></label>
+    <textarea id="feedback-message" name="message" rows="6" required placeholder="أخبرنا بما حدث وما الذي كنت تتوقعه وأي تفاصيل قد تساعد."></textarea>
+
+    <label for="feedback-email">البريد الإلكتروني (اختياري)</label>
+    <input id="feedback-email" name="email" type="email" placeholder="you@example.com" autocomplete="email">
+
+    <label for="feedback-device">الجهاز / المنصة (اختياري)</label>
+    <input id="feedback-device" name="device" type="text" placeholder="مثال: iPhone 15 (iOS 18)، Pixel 8 (Android 15)، Web Chrome">
+
+    <label for="feedback-app-name">التطبيق</label>
+    <input id="feedback-app-name" name="app_name" type="text" readonly value="تطبيق Hambungle">
+
+    <label for="feedback-category-name">فئة الملاحظات</label>
+    <input id="feedback-category-name" name="feedback_category_name" type="text" readonly value="ملاحظات عامة">
+
+    <input id="feedback-source-input" name="source" type="hidden" value="unknown">
+    <input id="feedback-type-input" name="type" type="hidden" value="general">
+
+    <button id="feedback-submit" type="submit">إرسال الملاحظات</button>
+  </form>
+</article>
+
+<script>
+  window.hambungleFeedbackI18n = {
+    sourceMap: {
+      catchledger: "\"CatchLedger\"",
+      spiral: "\"Spiral Word Puzzle\"",
+      spiralwordpuzzle: "\"Spiral Word Puzzle\"",
+      "spiral-word-puzzle": "\"Spiral Word Puzzle\""
+    },
+    defaults: {
+      appName: "\"تطبيق Hambungle\"",
+      category: "\"ملاحظات عامة\""
+    },
+    typeMap: {
+      general: {
+        category: "\"ملاحظات عامة\"",
+        subtitle: "\"شارك أي تعليقات أو أسئلة أو ملاحظات عامة.\"",
+        titlePrefix: "\"ملاحظات عامة\"",
+        messageLabel: "\"الرسالة\"",
+        messagePlaceholder: "\"شارك أفكارك أو تعليقاتك أو أسئلتك.\""
+      },
+      improvement: {
+        category: "\"اقتراح تحسين\"",
+        subtitle: "\"أخبرنا بما يمكن تحسينه ولماذا سيكون مفيدًا.\"",
+        titlePrefix: "\"اقتراح تحسين\"",
+        messageLabel: "\"تفاصيل الاقتراح\"",
+        messagePlaceholder: "\"ما الذي ينبغي تحسينه؟ أدرج السلوك الحالي والتغيير المقترح.\""
+      },
+      bug: {
+        category: "\"بلاغ خطأ\"",
+        subtitle: "\"صف ما حدث بشكل خاطئ وكيف يمكننا إعادة المشكلة.\"",
+        titlePrefix: "\"بلاغ خطأ\"",
+        messageLabel: "\"تفاصيل الخطأ\"",
+        messagePlaceholder: "\"ما الذي حدث، وما الذي كنت تتوقعه، وكيف يمكننا إعادة المشكلة؟\""
+      }
+    },
+    titleTemplate: "\"__TYPE__ لـ __APP__\"",
+    subjectTemplate: "\"__CATEGORY__ - __APP__\""
+  };
+</script>
+<script src='/js/feedback.js' defer></script>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 Hambungle Studio</p>
+    </div>
+  </footer>
+</body>
+</html>

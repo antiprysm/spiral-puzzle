@@ -2,6 +2,7 @@
 title: "Privacy Policy — Spiral Word Puzzle"
 slug: "spiral-word-puzzle"
 type: "privacy-doc"
+translationKey: "privacy-spiral-word-puzzle"
 ---
 
 **Effective Date:** 01/15/25  

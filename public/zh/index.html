@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+<head>
+	<meta name="generator" content="Hugo 0.140.2"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <title>Hambungle | Hambungle</title>
+
+  
+  
+  
+
+  
+
+  <meta name="description" content="Hambungle 打造有趣且精心设计的应用。">
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  <link rel="stylesheet" href="/css/site.css">
+  
+<style>
+   
+  .studio-home { color: #e5e7eb; }
+
+  .studio-home .hero{
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid #1f2937;
+    background: radial-gradient(circle at 20% 20%, #1f2937 0%, #0b1020 55%, #060912 100%);
+    min-height: 480px;
+    padding: 2.25rem;
+  }
+
+  .studio-home .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 70% 60%,
+      rgba(11,16,32,0) 0%,
+      rgba(11,16,32,0.6) 65%,
+      rgba(6,9,18,0.9) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .studio-home .hero-copy {
+    position: relative;
+    z-index: 3;
+    max-width: 560px;
+  }
+
+  .studio-home .eyebrow { color: #93c5fd; letter-spacing: 0.08em; }
+  .studio-home .hero h1 { color: #f9fafb; margin-bottom: 0.85rem; }
+  .studio-home .hero p { color: #cbd5e1; }
+
+  .hambone-stage {
+    position: absolute;
+    top: 40%;
+    right: 2%;
+    transform: translateY(-40%);
+    width: clamp(260px, 38vw, 480px);
+    height: 80%;
+    z-index: 2;
+    pointer-events: auto;
+  }
+
+  [dir="rtl"] .hambone-stage {
+    right: auto;
+    left: 2%;
+  }
+
+  .hambone-stage model-viewer {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+    filter: blur(6px) saturate(0.95) contrast(0.95);
+    transition:
+      opacity 600ms ease,
+      transform 700ms cubic-bezier(.2,.8,.2,1),
+      filter 700ms ease;
+    will-change: opacity, transform, filter;
+  }
+
+  .hambone-stage model-viewer.is-loaded {
+    opacity: 0.35;
+    transform: translateY(0) scale(1);
+    filter: saturate(0.95) contrast(0.95);
+    mix-blend-mode: screen;
+  }
+
+  @media (max-width: 900px) {
+    .hambone-stage {
+      transform: translateY(-15%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hambone-stage model-viewer {
+      transition: none;
+    }
+  }
+
+  .studio-home .section-title { color: #f3f4f6; }
+  .studio-home .app-card { background: #0b1220; border-color: #1f2937; }
+  .studio-home .app-card h3 { color: #f9fafb; }
+  .studio-home .app-card p { color: #94a3b8; }
+
+  .video-cinematic{
+    margin-top: 6rem;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #1f2937;
+    background: #020617;
+  }
+
+  .video-cinematic video{
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    background: #000;
+  }
+
+  .studio-break {
+    padding: 6rem 2rem;
+    background: linear-gradient(
+      to bottom,
+      #0b1220 0%,
+      #0f172a 50%,
+      #020617 100%
+    );
+    border-radius: 20px;
+    margin-top: 2rem;
+  }
+
+  .studio-break-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .studio-break h2 {
+    font-size: 2rem;
+    color: #f9fafb;
+    margin-bottom: 1rem;
+  }
+
+  .studio-break p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 900px){
+    .studio-home .hero { min-height: 560px; padding: 1.5rem; }
+    .hambone-stage { top: auto; bottom: 0; width: 100%; height: 52%; }
+    .studio-home .hero-copy { max-width: 100%; padding-right: 0; }
+
+    [dir="rtl"] .hambone-stage {
+      left: 0;
+      right: auto;
+    }
+  }
+</style>
+
+
+  <script>
+    window.ModelViewerElement = window.ModelViewerElement || {};
+    window.ModelViewerElement.meshoptDecoderLocation = '\/js\/meshopt_decoder.module.js';
+  </script>
+
+  <script type="module" src="/js/model-viewer.min.js"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      
+      
+
+      
+      
+        
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
+      <a class="brand" href="/zh/">Hambungle</a>
+
+      <nav class="nav-links" aria-label="主导航">
+        <a href="/zh/">工作室</a>
+        <a href="/zh/apps/spiral-puzzle/">Spiral Puzzle</a>
+        <a href="/zh/apps/catchledger/">CatchLedger</a>
+        <a href="/zh/privacy/">隐私</a>
+        <a href="/zh/terms/">条款</a>
+        <a href="/zh/contact/">联系</a>
+      </nav>
+
+      <div class="language-switcher" role="navigation" aria-label="语言选择器">
+        
+        
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+        <label class="sr-only" for="language-switcher-select">语言</label>
+        <select id="language-switcher-select" onchange="if (this.value) window.location.href=this.value;">
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/" >
+              English
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/ar/" >
+              العربية
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/es/" >
+              Español
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/hi/" >
+              हिन्दी
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/zh/" selected>
+              中文
+            </option>
+          
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    
+
+
+
+
+
+
+
+<div class="studio-home">
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Hambungle Studio</p>
+      <h1>有趣的产品，电影级打磨。</h1>
+      <p>我们打造现代、轻量且富有个性的应用体验。探索我们为速度、清晰与愉悦而构建的游戏和工具。</p>
+    </div>
+
+    <div class="hambone-stage">
+      <model-viewer
+        id="hambone"
+        src="/models/hambone.glb"
+        camera-controls
+        auto-rotate
+        preload
+        interaction-prompt="none"
+        environment-image="neutral"
+        exposure="1"
+        shadow-intensity="0.8"
+        disable-zoom
+        style="width:100%; height:100%; background:transparent;"
+      ></model-viewer>
+    </div>
+  </section>
+
+  <section class="section-block">
+    <h2 class="section-title">应用</h2>
+    <div class="card-grid">
+      <article class="app-card">
+        <p class="badge">游戏</p>
+        <h3>Spiral Puzzle</h3>
+        <p>在螺旋中寻找隐藏单词。快节奏回合、触感交互，以及令人满足的挑战曲线。</p>
+        <a class="btn" href="/zh/apps/spiral-puzzle/">打开应用</a>
+      </article>
+
+      <article class="app-card">
+        <p class="badge">财务</p>
+        <h3>CatchLedger</h3>
+        <p>记录渔获、登记条目，并通过简洁的账本流程保持记录井然有序。</p>
+        <a class="btn" href="/zh/apps/catchledger/">查看应用</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="studio-break">
+    <div class="studio-break-inner">
+      <h2>用心打造。</h2>
+      <p>每一款 Hambungle 产品都以清晰、动感和个性为设计核心。从触感解谜机制到简洁的财务工具，我们专注于轻量构建与电影级打磨。</p>
+    </div>
+  </section>
+
+  <section class="video-cinematic" aria-label="Hambungle 电影短片">
+    <video id="cinematic-video" muted playsinline preload="metadata">
+      <source src="/video/splash.mp4" type="video/mp4">
+    </video>
+  </section>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const video = document.getElementById("cinematic-video");
+    if (!video || !("IntersectionObserver" in window)) return;
+
+    let hasPlayed = false;
+
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (hasPlayed) return;
+
+        if (entry.isIntersecting && entry.intersectionRatio > 0.45) {
+          hasPlayed = true;
+          video.play().catch(() => {});
+          observer.disconnect();
+        }
+      }
+    }, { threshold: [0, 0.45, 0.75] });
+
+    observer.observe(video);
+    video.addEventListener("ended", () => video.setAttribute("controls", "controls"), { once: true });
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const mv = document.getElementById("hambone");
+    if (!mv) return;
+
+    const src = mv.getAttribute("data-src");
+    if (src && !mv.getAttribute("src")) mv.setAttribute("src", src);
+
+    mv.addEventListener("load", () => mv.classList.add("is-loaded"), { once: true });
+  });
+</script>
+
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 Hambungle Studio</p>
+    </div>
+  </footer>
+</body>
+</html>

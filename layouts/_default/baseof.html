@@ -1,47 +1,68 @@
 <!DOCTYPE html>
-<html lang="{{ site.Language.Lang }}" dir="{{ or site.Language.LanguageDirection "ltr" }}">
+<html lang="{{ .Site.Language.Lang }}" dir="{{ or .Site.Language.LanguageDirection "ltr" }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {{ $siteTitle := .Site.Title }}
   {{ $pageTitle := .Title }}
   <title>{{ if $pageTitle }}{{ i18n "common.meta.title_with_page" (dict "page" $pageTitle "site" $siteTitle) }}{{ else }}{{ i18n "common.meta.title_home" (dict "site" $siteTitle) }}{{ end }}</title>
+
   {{ $metaDescription := .Description }}
-  {{ if eq .RelPermalink "/contact/" }}{{ $metaDescription = i18n "pages.contact.description" }}{{ end }}
-  {{ if eq .RelPermalink "/terms/" }}{{ $metaDescription = i18n "pages.terms.description" }}{{ end }}
-  {{ if eq .RelPermalink "/privacy/" }}{{ $metaDescription = i18n "pages.privacy.index.description" }}{{ end }}
-  {{ if eq .RelPermalink "/feedback/" }}{{ $metaDescription = i18n "pages.feedback.index.description" }}{{ end }}
+  {{ $baseFile := "" }}
+  {{ if .File }}{{ $baseFile = .File.BaseFileName }}{{ end }}
+
+  {{ if eq $baseFile "contact" }}
+    {{ $metaDescription = i18n "pages.contact.description" }}
+  {{ else if eq $baseFile "terms" }}
+    {{ $metaDescription = i18n "pages.terms.description" }}
+  {{ else if eq .Section "privacy" }}
+    {{ $metaDescription = i18n "pages.privacy.index.description" }}
+  {{ else if and (eq .Section "feedback") (eq $baseFile "_index") }}
+    {{ $metaDescription = i18n "pages.feedback.index.description" }}
+  {{ end }}
+
   <meta name="description" content="{{ with $metaDescription }}{{ . }}{{ else }}{{ i18n "common.meta.description_fallback" }}{{ end }}">
   <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   <link rel="stylesheet" href="{{ "css/site.css" | relURL }}">
   {{ block "head" . }}{{ end }}
 
-  <!-- IMPORTANT: configure meshopt BEFORE model-viewer is loaded / before any <model-viewer> is created -->
   <script>
     window.ModelViewerElement = window.ModelViewerElement || {};
     window.ModelViewerElement.meshoptDecoderLocation = '{{ "js/meshopt_decoder.module.js" | relURL }}';
   </script>
 
-  <!-- Register <model-viewer> -->
   <script type="module" src="{{ "js/model-viewer.min.js" | relURL }}"></script>
 </head>
 
 <body>
   <header class="site-header">
     <div class="wrap nav">
-      {{ $defaultSite := index (where .Sites "Language.Lang" site.DefaultContentLanguage) 0 }}
-      {{ $homeURL := site.Home.RelPermalink }}
-      {{ $spiralURL := $homeURL }}
-      {{ with site.GetPage "/apps/spiral-puzzle" }}{{ $spiralURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/apps/spiral-puzzle" }}{{ $spiralURL = .RelPermalink }}{{ end }}{{ end }}
+      {{ $defaultSite := index .Sites 0 }}
+      {{ $homeURL := .Site.Home.RelPermalink }}
+
+      {{ $spiralURL := .Site.Home.RelPermalink }}
+      {{ with .Site.GetPage "/apps/spiral-puzzle" }}
+        {{ $spiralURL = .RelPermalink }}
+      {{ else }}
+        {{ with $defaultSite.GetPage "/apps/spiral-puzzle" }}
+          {{ $spiralURL = .RelPermalink }}
+        {{ end }}
+      {{ end }}
+
       {{ $catchledgerURL := $homeURL }}
-      {{ with site.GetPage "/apps/catchledger" }}{{ $catchledgerURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/apps/catchledger" }}{{ $catchledgerURL = .RelPermalink }}{{ end }}{{ end }}
+      {{ with .Site.GetPage "/apps/catchledger" }}{{ $catchledgerURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/apps/catchledger" }}{{ $catchledgerURL = .RelPermalink }}{{ end }}{{ end }}
+
       {{ $privacyURL := $homeURL }}
-      {{ with site.GetPage "/privacy" }}{{ $privacyURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/privacy" }}{{ $privacyURL = .RelPermalink }}{{ end }}{{ end }}
+      {{ with .Site.GetPage "/privacy" }}{{ $privacyURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/privacy" }}{{ $privacyURL = .RelPermalink }}{{ end }}{{ end }}
+
       {{ $termsURL := $homeURL }}
-      {{ with site.GetPage "/terms" }}{{ $termsURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/terms" }}{{ $termsURL = .RelPermalink }}{{ end }}{{ end }}
+      {{ with .Site.GetPage "/terms" }}{{ $termsURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/terms" }}{{ $termsURL = .RelPermalink }}{{ end }}{{ end }}
+
       {{ $contactURL := $homeURL }}
-      {{ with site.GetPage "/contact" }}{{ $contactURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/contact" }}{{ $contactURL = .RelPermalink }}{{ end }}{{ end }}
+      {{ with .Site.GetPage "/contact" }}{{ $contactURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/contact" }}{{ $contactURL = .RelPermalink }}{{ end }}{{ end }}
+
       <a class="brand" href="{{ $homeURL }}">{{ i18n "common.brand.hambungle" }}</a>
+
       <nav class="nav-links" aria-label="{{ i18n "common.nav.main_aria_label" }}">
         <a href="{{ $homeURL }}">{{ i18n "common.nav.studio" }}</a>
         <a href="{{ $spiralURL }}">{{ i18n "common.nav.spiral_puzzle" }}</a>
@@ -50,29 +71,52 @@
         <a href="{{ $termsURL }}">{{ i18n "common.nav.terms" }}</a>
         <a href="{{ $contactURL }}">{{ i18n "common.nav.contact" }}</a>
       </nav>
+
       <div class="language-switcher" role="navigation" aria-label="{{ i18n "common.language.selector_aria" }}">
-        {{ $pageTranslations := dict }}
+        {{ $currentLang := .Site.Language.Lang }}
+        {{ $currentURL := .RelPermalink }}
+      
+        {{ $pageTranslations := dict $currentLang $currentURL }}
         {{ range .AllTranslations }}
           {{ $pageTranslations = merge $pageTranslations (dict .Lang .RelPermalink) }}
         {{ end }}
-        {{ $homeTranslations := dict }}
-        {{ range site.Home.AllTranslations }}
+      
+        {{ $homeTranslations := dict $currentLang .Site.Home.RelPermalink }}
+        {{ range .Site.Home.AllTranslations }}
           {{ $homeTranslations = merge $homeTranslations (dict .Lang .RelPermalink) }}
         {{ end }}
+      
         <label class="sr-only" for="language-switcher-select">{{ i18n "common.language.selector_label" }}</label>
         <select id="language-switcher-select" onchange="if (this.value) window.location.href=this.value;">
-          {{ range site.Languages }}
+          {{ range .Site.Languages }}
             {{ $target := index $pageTranslations .Lang }}
+      
+            {{ if and (not $target) (eq $.Section "feedback") }}
+              {{ if eq .Lang "en" }}
+                {{ $target = "/feedback/" | relURL }}
+              {{ else }}
+                {{ $target = printf "/%s/feedback/" .Lang }}
+              {{ end }}
+            {{ end }}
+      
+            {{ if and (not $target) (eq $.Section "privacy") (eq $.File.BaseFileName "_index") }}
+              {{ if eq .Lang "en" }}
+                {{ $target = "/privacy/" | relURL }}
+              {{ else }}
+                {{ $target = printf "/%s/privacy/" .Lang }}
+              {{ end }}
+            {{ end }}
+      
             {{ if not $target }}
               {{ $target = index $homeTranslations .Lang }}
             {{ end }}
+      
             <option value="{{ $target }}" {{ if eq $.Site.Language.Lang .Lang }}selected{{ end }}>
               {{ .LanguageName }}
             </option>
           {{ end }}
         </select>
       </div>
-
     </div>
   </header>
 

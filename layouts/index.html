@@ -14,67 +14,74 @@
   }
 
   .studio-home .hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at 70% 60%,
-    rgba(11,16,32,0) 0%,
-    rgba(11,16,32,0.6) 65%,
-    rgba(6,9,18,0.9) 100%
-  );
-  pointer-events: none;
-  z-index: 1; /* overlay layer */
-}
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 70% 60%,
+      rgba(11,16,32,0) 0%,
+      rgba(11,16,32,0.6) 65%,
+      rgba(6,9,18,0.9) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
 
-  .studio-home .hero-copy { position: relative; z-index: 3; max-width: 560px; }
+  .studio-home .hero-copy {
+    position: relative;
+    z-index: 3;
+    max-width: 560px;
+  }
+
   .studio-home .eyebrow { color: #93c5fd; letter-spacing: 0.08em; }
   .studio-home .hero h1 { color: #f9fafb; margin-bottom: 0.85rem; }
   .studio-home .hero p { color: #cbd5e1; }
 
   .hambone-stage {
-  position: absolute;
-  top: 40%;
-  right: 2%;
-  transform: translateY(-40%);
-  width: clamp(260px, 38vw, 480px);
-  height: 80%;
-  z-index: 2;
-  pointer-events: auto;
-}
-
-.hambone-stage model-viewer {
-  opacity: 0;
-  transform: translateY(10px) scale(0.98);
-  filter: blur(6px) saturate(0.95) contrast(0.95);
-  transition:
-    opacity 600ms ease,
-    transform 700ms cubic-bezier(.2,.8,.2,1),
-    filter 700ms ease;
-  will-change: opacity, transform, filter;
-}
-
-
-/* When loaded, fade in */
-.hambone-stage model-viewer.is-loaded {
-  opacity: 0.35; /* keep your blended look */
-  transform: translateY(0) scale(1);
-  filter: saturate(0.95) contrast(0.95);
-  mix-blend-mode: screen;
-}
-
-@media (max-width: 900px) {
-  .hambone-stage {
-    transform: translateY(-15%);
+    position: absolute;
+    top: 40%;
+    right: 2%;
+    transform: translateY(-40%);
+    width: clamp(260px, 38vw, 480px);
+    height: 80%;
+    z-index: 2;
+    pointer-events: auto;
   }
-}
 
-/* Optional: respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
+  [dir="rtl"] .hambone-stage {
+    right: auto;
+    left: 2%;
+  }
+
   .hambone-stage model-viewer {
-    transition: none;
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+    filter: blur(6px) saturate(0.95) contrast(0.95);
+    transition:
+      opacity 600ms ease,
+      transform 700ms cubic-bezier(.2,.8,.2,1),
+      filter 700ms ease;
+    will-change: opacity, transform, filter;
   }
-}
+
+  .hambone-stage model-viewer.is-loaded {
+    opacity: 0.35;
+    transform: translateY(0) scale(1);
+    filter: saturate(0.95) contrast(0.95);
+    mix-blend-mode: screen;
+  }
+
+  @media (max-width: 900px) {
+    .hambone-stage {
+      transform: translateY(-15%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hambone-stage model-viewer {
+      transition: none;
+    }
+  }
 
   .studio-home .section-title { color: #f3f4f6; }
   .studio-home .app-card { background: #0b1220; border-color: #1f2937; }
@@ -88,59 +95,65 @@
     border: 1px solid #1f2937;
     background: #020617;
   }
+
   .video-cinematic video{
     width: 100%;
     height: auto;
     display: block;
     object-fit: contain;
     background: #000;
-    }
+  }
 
-    .studio-break {
-        padding: 6rem 2rem;
-        background: linear-gradient(
-            to bottom,
-            #0b1220 0%,
-            #0f172a 50%,
-            #020617 100%
-        );
-        border-radius: 20px;
-        margin-top: 2rem;
-        }
+  .studio-break {
+    padding: 6rem 2rem;
+    background: linear-gradient(
+      to bottom,
+      #0b1220 0%,
+      #0f172a 50%,
+      #020617 100%
+    );
+    border-radius: 20px;
+    margin-top: 2rem;
+  }
 
-        .studio-break-inner {
-        max-width: 900px;
-        margin: 0 auto;
-        text-align: center;
-        }
+  .studio-break-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
 
-        .studio-break h2 {
-        font-size: 2rem;
-        color: #f9fafb;
-        margin-bottom: 1rem;
-        }
+  .studio-break h2 {
+    font-size: 2rem;
+    color: #f9fafb;
+    margin-bottom: 1rem;
+  }
 
-        .studio-break p {
-        color: #94a3b8;
-        font-size: 1.1rem;
-        line-height: 1.6;
-    }   
+  .studio-break p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
 
   @media (max-width: 900px){
-    .studio-home .hero{ min-height: 560px; padding: 1.5rem; }
-    .hambone-stage{ top: auto; bottom: 0; width: 100%; height: 52%; }
-    .studio-home .hero-copy{ max-width: 100%; padding-right: 0; }
+    .studio-home .hero { min-height: 560px; padding: 1.5rem; }
+    .hambone-stage { top: auto; bottom: 0; width: 100%; height: 52%; }
+    .studio-home .hero-copy { max-width: 100%; padding-right: 0; }
+
+    [dir="rtl"] .hambone-stage {
+      left: 0;
+      right: auto;
+    }
   }
 </style>
 {{ end }}
 
 {{ define "main" }}
 
-{{ $defaultSite := index (where .Sites "Language.Lang" site.DefaultContentLanguage) 0 }}
-{{ $spiralURL := site.Home.RelPermalink }}
-{{ with site.GetPage "/apps/spiral-puzzle" }}{{ $spiralURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/apps/spiral-puzzle" }}{{ $spiralURL = .RelPermalink }}{{ end }}{{ end }}
-{{ $catchledgerURL := site.Home.RelPermalink }}
-{{ with site.GetPage "/apps/catchledger" }}{{ $catchledgerURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/apps/catchledger" }}{{ $catchledgerURL = .RelPermalink }}{{ end }}{{ end }}
+{{ $defaultSite := index .Sites 0 }}
+{{ $spiralURL := .Site.Home.RelPermalink }}
+{{ with .Site.GetPage "/apps/spiral-puzzle" }}{{ $spiralURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/apps/spiral-puzzle" }}{{ $spiralURL = .RelPermalink }}{{ end }}{{ end }}
+{{ $catchledgerURL := .Site.Home.RelPermalink }}
+{{ with .Site.GetPage "/apps/catchledger" }}{{ $catchledgerURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/apps/catchledger" }}{{ $catchledgerURL = .RelPermalink }}{{ end }}{{ end }}
 
 <div class="studio-home">
   <section class="hero">
@@ -150,21 +163,20 @@
       <p>{{ i18n "home.hero.body" }}</p>
     </div>
 
-    <!-- Floating interactive 3D Hambone -->
     <div class="hambone-stage">
       <model-viewer
-      id="hambone"
-      src="{{ "/models/hambone.glb" | relURL }}"
-      camera-controls
-      auto-rotate
-      preload
-      interaction-prompt="none"
-      environment-image="neutral"
-      exposure="1"
-      shadow-intensity="0.8"
-      disable-zoom
-      style="width:100%; height:100%; background:transparent;"
-    ></model-viewer>
+        id="hambone"
+        src="{{ "/models/hambone.glb" | relURL }}"
+        camera-controls
+        auto-rotate
+        preload
+        interaction-prompt="none"
+        environment-image="neutral"
+        exposure="1"
+        shadow-intensity="0.8"
+        disable-zoom
+        style="width:100%; height:100%; background:transparent;"
+      ></model-viewer>
     </div>
   </section>
 
@@ -201,43 +213,40 @@
   </section>
 </div>
 
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const video = document.getElementById("cinematic-video");
+    if (!video || !("IntersectionObserver" in window)) return;
 
+    let hasPlayed = false;
+
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (hasPlayed) return;
+
+        if (entry.isIntersecting && entry.intersectionRatio > 0.45) {
+          hasPlayed = true;
+          video.play().catch(() => {});
+          observer.disconnect();
+        }
+      }
+    }, { threshold: [0, 0.45, 0.75] });
+
+    observer.observe(video);
+    video.addEventListener("ended", () => video.setAttribute("controls", "controls"), { once: true });
+  });
+</script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const video = document.getElementById("cinematic-video");
-      if (!video || !("IntersectionObserver" in window)) return;
-    
-      let hasPlayed = false;
-    
-      const observer = new IntersectionObserver((entries) => {
-        for (const entry of entries) {
-          if (hasPlayed) return;
-    
-          if (entry.isIntersecting && entry.intersectionRatio > 0.45) {
-            hasPlayed = true;
-            video.play().catch(() => {});
-            observer.disconnect(); // stop observing once started
-          }
-        }
-      }, { threshold: [0, 0.45, 0.75] });
-    
-      observer.observe(video);
-      video.addEventListener("ended", () => video.setAttribute("controls", "controls"), { once: true });
-    });
-    </script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const mv = document.getElementById("hambone");
+    if (!mv) return;
 
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const mv = document.getElementById("hambone");
-        if (!mv) return;
+    const src = mv.getAttribute("data-src");
+    if (src && !mv.getAttribute("src")) mv.setAttribute("src", src);
 
-        // Trigger loading after decoder setup (baseof already set it up)
-        const src = mv.getAttribute("data-src");
-        if (src && !mv.getAttribute("src")) mv.setAttribute("src", src);
+    mv.addEventListener("load", () => mv.classList.add("is-loaded"), { once: true });
+  });
+</script>
 
-        mv.addEventListener("load", () => mv.classList.add("is-loaded"), { once: true });
-      });
-    </script>
-    
 {{ end }}

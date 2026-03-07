@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hambungle</title>
+    <link>http://localhost:1313/es/</link>
+    <description>Recent content on Hambungle</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <atom:link href="http://localhost:1313/es/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CatchLedger</title>
+      <link>http://localhost:1313/es/apps/catchledger/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/apps/catchledger/</guid>
+      <description>&lt;p&gt;CatchLedger te ayuda a mantener tus registros de actividad organizados sin complicaciones.&lt;/p&gt;&#xA;&lt;h3 id=&#34;funciones-destacadas&#34;&gt;Funciones destacadas&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Crea entradas rápidas para cada captura.&lt;/li&gt;&#xA;&lt;li&gt;Guarda notas ligeras sobre ubicación, fecha y detalles.&lt;/li&gt;&#xA;&lt;li&gt;Revisa tu historial completo en un solo lugar.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Contacto</title>
+      <link>http://localhost:1313/es/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/contact/</guid>
+      <description>&lt;p&gt;Para soporte, colaboración o preguntas, envíanos un correo a &lt;a href=&#34;mailto:hello@hambungle.com&#34;&gt;hello@hambungle.com&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Política de privacidad — CatchLedger</title>
+      <link>http://localhost:1313/es/privacy/catchledger/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/privacy/catchledger/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Fecha de entrada en vigor:&lt;/strong&gt; 01/15/25&lt;br&gt;&#xA;&lt;em&gt;Última actualización: 03/31/25&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;información-que-recopilamos&#34;&gt;Información que recopilamos&lt;/h2&gt;&#xA;&lt;p&gt;CatchLedger está diseñado para ayudar a los usuarios a registrar capturas y estadísticas de viajes. Solo recopilamos los datos necesarios para proporcionar esa funcionalidad.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Información de cuenta o identificador (opcional):&lt;/strong&gt;&lt;br&gt;&#xA;Si decides crear una cuenta o iniciar sesión, almacenamos el identificador necesario para mantener tus registros sincronizados.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Registros de capturas y viajes (proporcionados por el usuario):&lt;/strong&gt;&lt;br&gt;&#xA;La información que ingresas, como especies de peces, fechas, notas y medidas, se almacena para poder mostrártela nuevamente.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Política de privacidad — Spiral Word Puzzle</title>
+      <link>http://localhost:1313/es/privacy/spiral-word-puzzle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/privacy/spiral-word-puzzle/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Fecha de entrada en vigor:&lt;/strong&gt; 01/15/25&lt;br&gt;&#xA;&lt;em&gt;Última actualización: 03/31/25&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;información-que-recopilamos&#34;&gt;Información que recopilamos&lt;/h2&gt;&#xA;&lt;p&gt;Spiral Word Puzzle recopila una cantidad limitada de información del usuario únicamente para la funcionalidad de la tabla de clasificación.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Información de autenticación (requerida):&lt;/strong&gt;&lt;br&gt;&#xA;Al enviar una puntuación alta, recopilamos un nombre de usuario o identificador único para asociar las puntuaciones con los jugadores.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Ubicación del país (opcional):&lt;/strong&gt;&lt;br&gt;&#xA;Puedes elegir opcionalmente tu país de una lista al enviar una puntuación alta. Esta información no se recopila automáticamente y solo se almacena si la seleccionas.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Spiral Puzzle</title>
+      <link>http://localhost:1313/es/apps/spiral-puzzle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/apps/spiral-puzzle/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Términos</title>
+      <link>http://localhost:1313/es/terms/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/terms/</guid>
+      <description>&lt;p&gt;Al usar las aplicaciones de Hambungle y este sitio web, aceptas utilizarlos de forma legal y responsable.&lt;/p&gt;&#xA;&lt;p&gt;Proporcionamos nuestras aplicaciones tal como están y podemos actualizar, modificar o discontinuar funciones en cualquier momento.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

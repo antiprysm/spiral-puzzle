@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Spiral Word Puzzle | Hambungle</title>
-  <meta name="description" content="Interactive word puzzle game by Hambungle.">
+  
+  
+  <title>Spiral Puzzle | Hambungle</title>
+
+  
+  
+  
+
+  
+
+  <meta name="description" content="Hambungle builds playful, thoughtfully-crafted apps.">
   <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   <link rel="stylesheet" href="/css/site.css">
   
@@ -14,27 +23,30 @@
 
   
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+  
     body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
       background-image: url('/img/spiral-bg.jpg');
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: cover;
     }
-
+  
     .container {
       margin: 0 auto;
       width: min(92vw, 900px);
       text-align: center;
       padding-top: 1vh;
+      padding-bottom: 100px;
     }
-
+  
     #game-grid {
       display: grid;
       width: 80vw;
@@ -47,7 +59,7 @@
       border: 1px solid #ccc;
       overflow: hidden;
     }
-
+  
     .grid-cell {
       background-color: #ffffff;
       border: 1px solid #ddd;
@@ -59,35 +71,35 @@
       aspect-ratio: 1 / 1;
       user-select: none;
     }
-
+  
     .grid-cell.selected {
       background-color: #ffeb3b;
     }
-
+  
     .subtitle {
       font-size: calc(1.5vmin);
       color: #555;
       background-color: #eee;
     }
-
+  
     .text-shadow {
       text-shadow: 2px 2px 4px rgba(237, 211, 196, 0.5);
     }
-
+  
     .score {
       font-size: calc(2.5vmin);
       font-weight: bold;
       margin: 0 auto;
       padding-top: 100px;
     }
-
+  
     .instructions {
       font-size: calc(1.5vmin);
       font-weight: bold;
       margin-top: 10px;
       padding-bottom: 2vw;
     }
-
+  
     #mute-button {
       position: fixed;
       top: 10px;
@@ -100,32 +112,51 @@
       color: white;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
     }
-
+  
     .ios-download-container {
       text-align: center;
       margin: 2rem 0;
       padding-bottom: 2vw;
     }
-
+  
     .apple-badge {
       height: 3rem;
       width: auto;
       display: inline-block;
     }
-
-    .store-badges{
-    display: flex;
-    justify-content: center;
-    gap: 14px;
-    margin: 18px 0 28px;
-    flex-wrap: wrap;
-    padding-bottom: 100px;
+  
+    .store-badges {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin: 18px 0 28px;
+      flex-wrap: wrap;
+      padding-bottom: 100px;
+    }
+  
+    .store-badge {
+      height: 48px;
+      width: auto;
+      display: block;
     }
 
-    .store-badge{
-    height: 48px;
-    width: auto;
-    display: block;
+    .site-footer {
+      color: #ffffff;
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .site-footer a {
+      color: #ffffff;
+    }
+
+    .site-footer a:hover {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: underline;
+    }
+  
+    [dir="rtl"] #mute-button {
+      right: auto;
+      left: 10px;
     }
   </style>
 
@@ -140,20 +171,39 @@
 
 
 
-  
   <script>
     window.ModelViewerElement = window.ModelViewerElement || {};
     window.ModelViewerElement.meshoptDecoderLocation = '\/js\/meshopt_decoder.module.js';
   </script>
 
-  
   <script type="module" src="/js/model-viewer.min.js"></script>
 </head>
 
 <body>
   <header class="site-header">
     <div class="wrap nav">
+      
+      
+
+      
+      
+        
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
       <a class="brand" href="/">Hambungle</a>
+
       <nav class="nav-links" aria-label="Main navigation">
         <a href="/">Studio</a>
         <a href="/apps/spiral-puzzle/">Spiral Puzzle</a>
@@ -162,6 +212,102 @@
         <a href="/terms/">Terms</a>
         <a href="/contact/">Contact</a>
       </nav>
+
+      <div class="language-switcher" role="navigation" aria-label="Language selector">
+        
+        
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+        <label class="sr-only" for="language-switcher-select">Language</label>
+        <select id="language-switcher-select" onchange="if (this.value) window.location.href=this.value;">
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/apps/spiral-puzzle/" selected>
+              English
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/ar/apps/spiral-puzzle/" >
+              العربية
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/es/apps/spiral-puzzle/" >
+              Español
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/hi/apps/spiral-puzzle/" >
+              हिन्दी
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/zh/apps/spiral-puzzle/" >
+              中文
+            </option>
+          
+        </select>
+      </div>
     </div>
   </header>
 
@@ -634,7 +780,7 @@
     if (!isMuted) playSound();
 
     if (selectedWord === word && !isValidMatrix(selectedCells)) {
-      message.textContent = "Invalid selection. Make sure to form a square!";
+      message.textContent = "\"Invalid selection. Make sure to form a square!\"";
       setBubbleSize(parseInt(gridSizeSelector.value, 10), message.textContent.length)
       message.className = "text-danger message-bubble show";
 
@@ -650,7 +796,7 @@
       }, 5000);
 
     } else if (selectedWord === word && isValidMatrix(selectedCells)) {
-      message.textContent = "Congratulations! You found the word!";
+      message.textContent = "\"Congratulations! You found the word!\"";
       setBubbleSize(parseInt(gridSizeSelector.value, 10), message.textContent.length)
       message.className = "text-success message-bubble show";
 
@@ -673,7 +819,7 @@
       }, 5000);
 
     } else {
-      message.textContent = "Try again. Keep looking!";
+      message.textContent = "\"Try again. Keep looking!\"";
       setBubbleSize(parseInt(gridSizeSelector.value, 10), message.textContent.length)
       message.className = "text-danger message-bubble show";
 

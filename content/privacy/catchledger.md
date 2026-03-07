@@ -2,6 +2,7 @@
 title: "Privacy Policy — CatchLedger"
 slug: "catchledger"
 type: "privacy-doc"
+translationKey: "privacy-catchledger"
 ---
 
 **Effective Date:** 01/15/25  

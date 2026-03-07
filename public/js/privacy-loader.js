@@ -1,88 +1,119 @@
-(function () {
-  var policyContainer = document.getElementById('policy');
+document.addEventListener("DOMContentLoaded", function () {
+  var policyContainer = document.getElementById("policy");
   if (!policyContainer) return;
 
-  var appMap = {
-    spiral: {
-      label: 'Spiral Word Puzzle',
-      url: '/privacy/spiral-word-puzzle/'
-    },
-    catchledger: {
-      label: 'CatchLedger',
-      url: '/privacy/catchledger/'
-    }
-  };
+  var i18nEl = document.getElementById("privacy-i18n");
+  var i18n = {};
 
-  var buttons = Array.prototype.slice.call(document.querySelectorAll('.privacy-option'));
+  try {
+    i18n = i18nEl ? JSON.parse(i18nEl.textContent) : {};
+  } catch (err) {
+    console.error("Failed to parse privacy i18n JSON:", err);
+  }
+
+  var buttons = Array.prototype.slice.call(
+    document.querySelectorAll(".privacy-option")
+  );
+
+  if (!buttons.length) {
+    console.error("No privacy buttons found.");
+    return;
+  }
 
   function normalizeApp(value) {
     if (!value) return null;
-    var normalized = value.toLowerCase().replace(/[^a-z]/g, '');
-    if (normalized === 'spiralwordpuzzle') return 'spiral';
-    if (normalized === 'catchledger') return 'catchledger';
-    if (normalized === 'spiral') return 'spiral';
-    return appMap[normalized] ? normalized : null;
+    var normalized = value.toLowerCase().replace(/[^a-z]/g, "");
+    if (normalized === "spiral" || normalized === "spiralwordpuzzle") return "spiral";
+    if (normalized === "catchledger") return "catchledger";
+    return null;
+  }
+
+  function getButtonForApp(app) {
+    return buttons.find(function (button) {
+      return button.getAttribute("data-app") === app;
+    });
   }
 
   function getSelectedApp() {
     var params = new URLSearchParams(window.location.search);
     return (
-      normalizeApp(params.get('app')) ||
-      normalizeApp(window.location.hash.replace(/^#/, '')) ||
-      'spiral'
+      normalizeApp(params.get("app")) ||
+      normalizeApp(window.location.hash.replace(/^#/, "")) ||
+      "spiral"
     );
   }
 
   function setActiveButton(app) {
     buttons.forEach(function (button) {
-      var isActive = button.getAttribute('data-app') === app;
-      button.classList.toggle('is-active', isActive);
-      button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      var isActive = button.getAttribute("data-app") === app;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", isActive ? "true" : "false");
     });
+  }
+
+  function applyTemplate(template, data) {
+    return String(template || "").replace("{{ .app }}", data.app || "");
   }
 
   function updateUrl(app) {
     var params = new URLSearchParams(window.location.search);
-    params.set('app', app);
-    var next = window.location.pathname + '?' + params.toString() + '#' + app;
-    window.history.replaceState({}, '', next);
+    params.set("app", app);
+    var next = window.location.pathname + "?" + params.toString() + "#" + app;
+    window.history.replaceState({}, "", next);
   }
 
   function renderPolicy(app) {
-    var item = appMap[app] || appMap.spiral;
-    setActiveButton(app);
-    policyContainer.innerHTML = '<p>Loading ' + item.label + ' policy…</p>';
+    var button = getButtonForApp(app) || getButtonForApp("spiral");
+    if (!button) return;
 
-    fetch(item.url)
+    var url = button.getAttribute("data-url");
+    var label = button.getAttribute("data-label") || "";
+    var loadingTemplate = i18n.loadingPolicy || "";
+
+    setActiveButton(button.getAttribute("data-app"));
+    updateUrl(button.getAttribute("data-app"));
+
+    policyContainer.innerHTML =
+      "<p>" + applyTemplate(loadingTemplate, { app: label }) + "</p>";
+
+    if (!url) {
+      console.error("Missing privacy URL for app:", app);
+      policyContainer.innerHTML =
+        '<p class="text-danger">' + (i18n.errorGeneric || "Unable to load policy right now.") + "</p>";
+      return;
+    }
+
+    console.log("Fetching privacy policy from:", url);
+
+    fetch(url, { credentials: "same-origin" })
       .then(function (response) {
         if (!response.ok) {
-          throw new Error('Unable to load policy page.');
+          throw new Error("HTTP " + response.status + " for " + url);
         }
         return response.text();
       })
       .then(function (html) {
-        var doc = new DOMParser().parseFromString(html, 'text/html');
-        var content =
-  doc.querySelector('#policy-fragment') ||
-  doc.querySelector('article.page-card .content') ||
-  doc.querySelector('main');
-        if (!content) {
-          throw new Error('Policy content not found.');
+        var doc = new DOMParser().parseFromString(html, "text/html");
+        var fragment = doc.getElementById("policy-fragment");
+
+        if (!fragment) {
+          throw new Error("policy-fragment not found in " + url);
         }
-        policyContainer.innerHTML = content.innerHTML;
-        updateUrl(app);
+
+        policyContainer.innerHTML = fragment.innerHTML;
       })
-      .catch(function () {
-        policyContainer.innerHTML = '<p class="text-danger">Unable to load this policy right now.</p>';
+      .catch(function (err) {
+        console.error("Privacy loader error:", err);
+        policyContainer.innerHTML =
+          '<p class="text-danger">' + (i18n.errorGeneric || "Unable to load policy right now.") + "</p>";
       });
   }
 
   buttons.forEach(function (button) {
-    button.addEventListener('click', function () {
-      var app = button.getAttribute('data-app');
-      renderPolicy(app);
+    button.addEventListener("click", function () {
+      renderPolicy(button.getAttribute("data-app"));
     });
   });
 
   renderPolicy(getSelectedApp());
-})();
+});

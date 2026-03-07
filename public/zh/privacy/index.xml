@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Privacies on Hambungle</title>
+    <link>http://localhost:1313/zh/privacy/</link>
+    <description>Recent content in Privacies on Hambungle</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <atom:link href="http://localhost:1313/zh/privacy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>隐私政策 — CatchLedger</title>
+      <link>http://localhost:1313/zh/privacy/catchledger/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/zh/privacy/catchledger/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;生效日期：&lt;/strong&gt; 01/15/25&lt;br&gt;&#xA;&lt;em&gt;最后更新：03/31/25&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;我们收集的信息&#34;&gt;我们收集的信息&lt;/h2&gt;&#xA;&lt;p&gt;CatchLedger 旨在帮助用户记录捕获记录和钓鱼行程统计。我们只收集提供这些功能所需的必要数据。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;账户或标识符信息（可选）：&lt;/strong&gt;&lt;br&gt;&#xA;如果您选择创建账户或登录，我们会存储用于保持您的记录同步所需的标识符。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;捕获记录和行程记录（用户提供）：&lt;/strong&gt;&lt;br&gt;&#xA;您输入的信息，例如鱼类种类、日期、备注和尺寸，会被存储以便在应用中显示给您。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;大致位置数据（可选）：&lt;/strong&gt;&lt;br&gt;&#xA;如果您选择为记录保存位置，这些位置会与您的记录一起存储。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;数据存储和使用&#34;&gt;数据存储和使用&lt;/h2&gt;&#xA;&lt;p&gt;您的 CatchLedger 数据仅用于提供应用的核心功能，例如活动记录、统计摘要以及备份/同步功能。&lt;/p&gt;&#xA;&lt;p&gt;我们不会出售个人信息。&lt;/p&gt;&#xA;&lt;p&gt;这些信息会一直保留，直到您删除记录或请求删除账户。&lt;/p&gt;&#xA;&lt;h2 id=&#34;第三方服务&#34;&gt;第三方服务&lt;/h2&gt;&#xA;&lt;p&gt;CatchLedger 可能会依赖第三方服务来提供托管、身份验证以及运行应用所需的基础分析功能。这些服务提供商可能会根据其自身的隐私政策处理有限的技术数据。&lt;/p&gt;&#xA;&lt;h2 id=&#34;您的选择&#34;&gt;您的选择&lt;/h2&gt;&#xA;&lt;p&gt;您可以选择在应用中添加、编辑或删除哪些信息。所有可选字段仍然是可选的，您也可以在不输入非必要信息的情况下使用应用。&lt;/p&gt;&#xA;&lt;h2 id=&#34;本政策的变更&#34;&gt;本政策的变更&lt;/h2&gt;&#xA;&lt;p&gt;如果 CatchLedger 的隐私实践发生变化，本政策将会在本页面进行更新。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>隐私政策 — Spiral Word Puzzle</title>
+      <link>http://localhost:1313/zh/privacy/spiral-word-puzzle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/zh/privacy/spiral-word-puzzle/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;生效日期：&lt;/strong&gt; 01/15/25&lt;br&gt;&#xA;&lt;em&gt;最后更新：03/31/25&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;我们收集的信息&#34;&gt;我们收集的信息&lt;/h2&gt;&#xA;&lt;p&gt;Spiral Word Puzzle 仅为排行榜功能收集有限的用户信息。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;身份验证信息（必需）：&lt;/strong&gt;&lt;br&gt;&#xA;当您提交高分时，我们会收集用户名或唯一标识符，以便将分数与玩家关联。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;国家位置（可选）：&lt;/strong&gt;&lt;br&gt;&#xA;在提交高分时，您可以选择从列表中选择您的国家。该信息不会自动收集，只有在您主动选择时才会存储。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;数据存储和使用&#34;&gt;数据存储和使用&lt;/h2&gt;&#xA;&lt;p&gt;所有收集的信息都安全地存储在由应用开发者托管的私有 SQL 数据库中。&lt;br&gt;&#xA;我们不会收集电子邮件地址、真实姓名、电话号码或设备位置等个人信息。&lt;/p&gt;&#xA;&lt;p&gt;这些数据仅用于在排行榜上显示分数，并且不会出售或与第三方共享。&lt;/p&gt;&#xA;&lt;h2 id=&#34;第三方服务&#34;&gt;第三方服务&lt;/h2&gt;&#xA;&lt;p&gt;该应用使用以下 SDK 和依赖项：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;React Native Firebase（仅 Core）：&lt;/strong&gt;&lt;br&gt;&#xA;用于应用的基本功能，而不是分析或崩溃报告。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;AdMob（react-native-google-mobile-ads）：&lt;/strong&gt;&lt;br&gt;&#xA;可能会根据 Google 的广告政策收集匿名设备和使用数据：&lt;br&gt;&#xA;&lt;a href=&#34;https://policies.google.com/technologies/ads&#34;&gt;https://policies.google.com/technologies/ads&lt;/a&gt;&lt;br&gt;&#xA;13 岁以下用户将看到适合儿童的广告。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;其他模块：&lt;/strong&gt;&lt;br&gt;&#xA;AsyncStorage、Expo、Lottie 和国家选择器等模块仅用于本地功能，不会收集用户数据。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;本政策的变更&#34;&gt;本政策的变更&lt;/h2&gt;&#xA;&lt;p&gt;如果我们对应用进行更改并影响到本隐私政策，我们将在本页面更新该政策。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

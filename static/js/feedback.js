@@ -40,6 +40,12 @@
   var appName = sourceMap[source] || (i18n.defaults && i18n.defaults.appName) || '';
   var type = typeMap[rawType] ? rawType : 'general';
   var typeConfig = typeMap[type];
+  appName = clean(appName);
+  typeConfig.category = clean(typeConfig.category);
+  typeConfig.titlePrefix = clean(typeConfig.titlePrefix);
+  typeConfig.subtitle = clean(typeConfig.subtitle);
+  typeConfig.messageLabel = clean(typeConfig.messageLabel);
+  typeConfig.messagePlaceholder = clean(typeConfig.messagePlaceholder);
 
   var title = document.getElementById('feedback-title');
   var subtitle = document.getElementById('feedback-subtitle');
@@ -63,11 +69,19 @@
     replyToInput.value = emailInput.value.trim();
   }
 
+  function clean(value) {
+    return String(value || "")
+      .replace(/^["'“”]+|["'“”]+$/g, "")
+      .trim();
+  }
+  
   function applyTemplate(template, data) {
-    return template
-      .replace('{{ .type }}', data.type)
-      .replace('{{ .app }}', data.app)
-      .replace('{{ .category }}', data.category);
+    var result = String(template || "")
+      .replace("__TYPE__", clean(data.type))
+      .replace("__APP__", clean(data.app))
+      .replace("__CATEGORY__", clean(data.category));
+  
+    return clean(result);
   }
 
   var titleTemplate = i18n.titleTemplate || '';

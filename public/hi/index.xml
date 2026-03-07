@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hambungle</title>
+    <link>http://localhost:1313/hi/</link>
+    <description>Recent content on Hambungle</description>
+    <generator>Hugo</generator>
+    <language>hi</language>
+    <atom:link href="http://localhost:1313/hi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CatchLedger</title>
+      <link>http://localhost:1313/hi/apps/catchledger/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/hi/apps/catchledger/</guid>
+      <description>&lt;p&gt;CatchLedger आपकी गतिविधि लॉग को बिना अनावश्यक जटिलता के व्यवस्थित रखने में मदद करता है।&lt;/p&gt;&#xA;&lt;h3 id=&#34;मखय-वशषतए&#34;&gt;मुख्य विशेषताएँ&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;हर कैच के लिए तुरंत एंट्री बनाएं।&lt;/li&gt;&#xA;&lt;li&gt;स्थान, तारीख और विवरण के लिए हल्के नोट्स रखें।&lt;/li&gt;&#xA;&lt;li&gt;अपना पूरा इतिहास एक ही जगह देखें।&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Spiral Puzzle</title>
+      <link>http://localhost:1313/hi/apps/spiral-puzzle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/hi/apps/spiral-puzzle/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>गोपनीयता नीति — CatchLedger</title>
+      <link>http://localhost:1313/hi/privacy/catchledger/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/hi/privacy/catchledger/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;प्रभावी तिथि:&lt;/strong&gt; 01/15/25&lt;br&gt;&#xA;&lt;em&gt;अंतिम अपडेट: 03/31/25&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;हम-कन-स-जनकर-एकतर-करत-ह&#34;&gt;हम कौन-सी जानकारी एकत्र करते हैं&lt;/h2&gt;&#xA;&lt;p&gt;CatchLedger उपयोगकर्ताओं को अपनी पकड़ और यात्रा के आँकड़ों को ट्रैक करने में मदद करने के लिए बनाया गया है। हम केवल वही डेटा एकत्र करते हैं जो इस कार्यक्षमता को प्रदान करने के लिए आवश्यक है।&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;खाता या पहचानकर्ता जानकारी (वैकल्पिक):&lt;/strong&gt;&lt;br&gt;&#xA;यदि आप खाता बनाना या साइन इन करना चुनते हैं, तो हम वह पहचानकर्ता संग्रहीत करते हैं जो आपकी प्रविष्टियों को सिंक रखने के लिए आवश्यक होता है।&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>गोपनीयता नीति — Spiral Word Puzzle</title>
+      <link>http://localhost:1313/hi/privacy/spiral-word-puzzle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/hi/privacy/spiral-word-puzzle/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;प्रभावी तिथि:&lt;/strong&gt; 01/15/25&lt;br&gt;&#xA;&lt;em&gt;अंतिम अपडेट: 03/31/25&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;हम-कन-स-जनकर-एकतर-करत-ह&#34;&gt;हम कौन-सी जानकारी एकत्र करते हैं&lt;/h2&gt;&#xA;&lt;p&gt;Spiral Word Puzzle केवल लीडरबोर्ड कार्यक्षमता के लिए सीमित मात्रा में उपयोगकर्ता जानकारी एकत्र करता है।&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;प्रमाणीकरण जानकारी (आवश्यक):&lt;/strong&gt;&lt;br&gt;&#xA;जब आप उच्च स्कोर सबमिट करते हैं, तो हम स्कोर को खिलाड़ियों से जोड़ने के लिए एक उपयोगकर्ता नाम या विशिष्ट पहचानकर्ता एकत्र करते हैं।&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;देश का स्थान (वैकल्पिक):&lt;/strong&gt;&lt;br&gt;&#xA;उच्च स्कोर सबमिट करते समय आप सूची से अपना देश चुन सकते हैं। यह जानकारी स्वतः एकत्र नहीं की जाती और केवल तभी संग्रहीत होती है जब आप स्वयं इसे चुनते हैं।&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>नियम और शर्तें</title>
+      <link>http://localhost:1313/hi/terms/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/hi/terms/</guid>
+      <description>&lt;p&gt;Hambungle ऐप्स और इस वेबसाइट का उपयोग करके, आप उन्हें कानूनी और जिम्मेदार तरीके से उपयोग करने के लिए सहमत होते हैं।&lt;/p&gt;&#xA;&lt;p&gt;हम अपने ऐप्स को जैसा है वैसा प्रदान करते हैं और किसी भी समय सुविधाओं को अपडेट, संशोधित या बंद कर सकते हैं।&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>संपर्क</title>
+      <link>http://localhost:1313/hi/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/hi/contact/</guid>
+      <description>&lt;p&gt;सहायता, सहयोग, या प्रश्नों के लिए हमें &lt;a href=&#34;mailto:hello@hambungle.com&#34;&gt;hello@hambungle.com&lt;/a&gt; पर ईमेल करें।&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

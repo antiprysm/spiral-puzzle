@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="hi" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <title>फ़ीडबैक | Hambungle</title>
+
+  
+  
+  
+
+  
+
+  <meta name="description" content="CatchLedger के बारे में फ़ीडबैक साझा करें।">
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  <link rel="stylesheet" href="/css/site.css">
+  
+<link rel="stylesheet" href="/css/feedback.css">
+
+
+  <script>
+    window.ModelViewerElement = window.ModelViewerElement || {};
+    window.ModelViewerElement.meshoptDecoderLocation = '\/js\/meshopt_decoder.module.js';
+  </script>
+
+  <script type="module" src="/js/model-viewer.min.js"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      
+      
+
+      
+      
+        
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
+      
+      
+
+      <a class="brand" href="/hi/">Hambungle</a>
+
+      <nav class="nav-links" aria-label="मुख्य नेविगेशन">
+        <a href="/hi/">स्टूडियो</a>
+        <a href="/hi/apps/spiral-puzzle/">Spiral Puzzle</a>
+        <a href="/hi/apps/catchledger/">CatchLedger</a>
+        <a href="/hi/privacy/">गोपनीयता</a>
+        <a href="/hi/terms/">शर्तें</a>
+        <a href="/hi/contact/">संपर्क</a>
+      </nav>
+
+      <div class="language-switcher" role="navigation" aria-label="भाषा चयनकर्ता">
+        
+        
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+        <label class="sr-only" for="language-switcher-select">भाषा</label>
+        <select id="language-switcher-select" onchange="if (this.value) window.location.href=this.value;">
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/feedback/" >
+              English
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/ar/feedback/" >
+              العربية
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/es/feedback/" >
+              Español
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/hi/feedback/" selected>
+              हिन्दी
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/zh/feedback/" >
+              中文
+            </option>
+          
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    
+<article class="page-card feedback-card" id="feedback-card" data-feedback-page="true">
+  <header class="feedback-card__header">
+    <h1 id="feedback-title" data-base-title="फ़ीडबैक">फ़ीडबैक</h1>
+    <p id="feedback-subtitle">हमें बताएं क्या काम कर रहा है, क्या नहीं, और आगे क्या बनाना चाहिए।</p>
+  </header>
+
+  <section class="feedback-card__meta" aria-live="polite">
+    <p><strong>स्रोत:</strong> <span id="feedback-source">प्रदान नहीं किया गया</span></p>
+    <p><strong>श्रेणी:</strong> <span id="feedback-category">सामान्य फ़ीडबैक</span></p>
+  </section>
+
+  <form
+    id="feedback-form-shell"
+    class="feedback-form"
+    action="https://formspree.io/f/mnjgqlyy"
+    method="post"
+    novalidate
+  >
+    
+
+    <input type="hidden" name="_subject" id="feedback-subject" value="फ़ीडबैक सबमिशन">
+    <input type="hidden" name="_next" value="http://localhost:1313/feedback/thanks/">
+    <input type="hidden" name="_replyto" id="feedback-replyto" value="">
+
+    <p class="sr-only" aria-hidden="true">
+      <label for="feedback-bot-field">इस फ़ील्ड को खाली छोड़ें</label>
+      <input id="feedback-bot-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+    </p>
+
+    <label id="feedback-message-label" for="feedback-message">संदेश <span aria-hidden="true">*</span></label>
+    <textarea id="feedback-message" name="message" rows="6" required placeholder="हमें बताएं क्या हुआ, आपकी क्या अपेक्षा थी, और कोई भी विवरण जो मदद कर सके।"></textarea>
+
+    <label for="feedback-email">ईमेल (वैकल्पिक)</label>
+    <input id="feedback-email" name="email" type="email" placeholder="you@example.com" autocomplete="email">
+
+    <label for="feedback-device">डिवाइस / प्लेटफ़ॉर्म (वैकल्पिक)</label>
+    <input id="feedback-device" name="device" type="text" placeholder="जैसे, iPhone 15 (iOS 18), Pixel 8 (Android 15), Web Chrome">
+
+    <label for="feedback-app-name">ऐप</label>
+    <input id="feedback-app-name" name="app_name" type="text" readonly value="Hambungle App">
+
+    <label for="feedback-category-name">फ़ीडबैक श्रेणी</label>
+    <input id="feedback-category-name" name="feedback_category_name" type="text" readonly value="सामान्य फ़ीडबैक">
+
+    <input id="feedback-source-input" name="source" type="hidden" value="unknown">
+    <input id="feedback-type-input" name="type" type="hidden" value="general">
+
+    <button id="feedback-submit" type="submit">फ़ीडबैक भेजें</button>
+  </form>
+</article>
+
+<script>
+  window.hambungleFeedbackI18n = {
+    sourceMap: {
+      catchledger: "\"CatchLedger\"",
+      spiral: "\"Spiral Word Puzzle\"",
+      spiralwordpuzzle: "\"Spiral Word Puzzle\"",
+      "spiral-word-puzzle": "\"Spiral Word Puzzle\""
+    },
+    defaults: {
+      appName: "\"Hambungle App\"",
+      category: "\"सामान्य फ़ीडबैक\""
+    },
+    typeMap: {
+      general: {
+        category: "\"सामान्य फ़ीडबैक\"",
+        subtitle: "\"कोई भी टिप्पणी, प्रश्न या समग्र फ़ीडबैक साझा करें।\"",
+        titlePrefix: "\"सामान्य फ़ीडबैक\"",
+        messageLabel: "\"संदेश\"",
+        messagePlaceholder: "\"अपने विचार, टिप्पणियाँ या प्रश्न साझा करें।\""
+      },
+      improvement: {
+        category: "\"सुधार सुझाव\"",
+        subtitle: "\"हमें बताएं क्या बेहतर हो सकता है और क्यों मदद करेगा।\"",
+        titlePrefix: "\"सुधार सुझाव\"",
+        messageLabel: "\"सुझाव का विवरण\"",
+        messagePlaceholder: "\"हमें क्या सुधारना चाहिए? वर्तमान व्यवहार और आपका प्रस्तावित बदलाव शामिल करें।\""
+      },
+      bug: {
+        category: "\"बग रिपोर्ट\"",
+        subtitle: "\"बताएं क्या गलत हुआ और हम इसे कैसे दोहरा सकते हैं।\"",
+        titlePrefix: "\"बग रिपोर्ट\"",
+        messageLabel: "\"बग विवरण\"",
+        messagePlaceholder: "\"क्या हुआ, आपकी क्या अपेक्षा थी, और हम इस समस्या को कैसे दोहरा सकते हैं?\""
+      }
+    },
+    titleTemplate: "\"__APP__ के लिए __TYPE__\"",
+    subjectTemplate: "\"__CATEGORY__ - __APP__\""
+  };
+</script>
+<script src='/js/feedback.js' defer></script>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 Hambungle Studio</p>
+    </div>
+  </footer>
+</body>
+</html>

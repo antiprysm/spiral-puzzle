@@ -3,41 +3,49 @@
   var rawSource = (params.get('source') || '').trim().toLowerCase();
   var rawType = (params.get('type') || '').trim().toLowerCase();
 
-  var sourceMap = {
-    catchledger: 'CatchLedger',
-    spiral: 'Spiral Word Puzzle',
-    spiralwordpuzzle: 'Spiral Word Puzzle',
-    'spiral-word-puzzle': 'Spiral Word Puzzle'
+  var i18n = window.hambungleFeedbackI18n || {};
+
+  var sourceMap = i18n.sourceMap || {
+    catchledger: '',
+    spiral: '',
+    spiralwordpuzzle: '',
+    'spiral-word-puzzle': ''
   };
 
-  var typeMap = {
+  var typeMap = i18n.typeMap || {
     general: {
-      category: 'General feedback',
-      subtitle: 'Share any comments, questions, or overall feedback.',
-      titlePrefix: 'General feedback',
-      messageLabel: 'Message *',
-      messagePlaceholder: 'Share your thoughts, comments, or questions.'
+      category: '',
+      subtitle: '',
+      titlePrefix: '',
+      messageLabel: '',
+      messagePlaceholder: ''
     },
     improvement: {
-      category: 'Improvement suggestion',
-      subtitle: 'Tell us what could be better and why it would help.',
-      titlePrefix: 'Improvement suggestion',
-      messageLabel: 'Suggestion details *',
-      messagePlaceholder: 'What should we improve? Include the current behavior and your proposed change.'
+      category: '',
+      subtitle: '',
+      titlePrefix: '',
+      messageLabel: '',
+      messagePlaceholder: ''
     },
     bug: {
-      category: 'Bug report',
-      subtitle: 'Describe what went wrong and how we can reproduce it.',
-      titlePrefix: 'Bug report',
-      messageLabel: 'Bug details *',
-      messagePlaceholder: 'What happened, what did you expect, and how can we reproduce the issue?'
+      category: '',
+      subtitle: '',
+      titlePrefix: '',
+      messageLabel: '',
+      messagePlaceholder: ''
     }
   };
 
   var source = sourceMap[rawSource] ? rawSource : 'unknown';
-  var appName = sourceMap[source] || 'Hambungle App';
+  var appName = sourceMap[source] || (i18n.defaults && i18n.defaults.appName) || '';
   var type = typeMap[rawType] ? rawType : 'general';
   var typeConfig = typeMap[type];
+  appName = clean(appName);
+  typeConfig.category = clean(typeConfig.category);
+  typeConfig.titlePrefix = clean(typeConfig.titlePrefix);
+  typeConfig.subtitle = clean(typeConfig.subtitle);
+  typeConfig.messageLabel = clean(typeConfig.messageLabel);
+  typeConfig.messagePlaceholder = clean(typeConfig.messagePlaceholder);
 
   var title = document.getElementById('feedback-title');
   var subtitle = document.getElementById('feedback-subtitle');
@@ -61,15 +69,37 @@
     replyToInput.value = emailInput.value.trim();
   }
 
+  function clean(value) {
+    return String(value || "")
+      .replace(/^["'“”]+|["'“”]+$/g, "")
+      .trim();
+  }
+  
+  function applyTemplate(template, data) {
+    var result = String(template || "")
+      .replace("__TYPE__", clean(data.type))
+      .replace("__APP__", clean(data.app))
+      .replace("__CATEGORY__", clean(data.category));
+  
+    return clean(result);
+  }
+
+  var titleTemplate = i18n.titleTemplate || '';
+  var subjectTemplate = i18n.subjectTemplate || '';
+
   if (title) {
-    title.textContent = typeConfig.titlePrefix + ' for ' + appName;
+    title.textContent = applyTemplate(titleTemplate, {
+      type: typeConfig.titlePrefix,
+      app: appName,
+      category: typeConfig.category
+    });
   }
   if (subtitle) subtitle.textContent = typeConfig.subtitle;
   if (sourceLabel) sourceLabel.textContent = appName;
   if (categoryLabel) categoryLabel.textContent = typeConfig.category;
   if (messageLabel) {
     while (messageLabel.firstChild) messageLabel.removeChild(messageLabel.firstChild);
-    messageLabel.appendChild(document.createTextNode(typeConfig.messageLabel.replace(' *', '')));
+    messageLabel.appendChild(document.createTextNode(typeConfig.messageLabel));
     var requiredMarker = document.createElement('span');
     requiredMarker.setAttribute('aria-hidden', 'true');
     requiredMarker.textContent = ' *';
@@ -81,7 +111,13 @@
   if (typeInput) typeInput.value = type;
   if (appNameInput) appNameInput.value = appName;
   if (categoryNameInput) categoryNameInput.value = typeConfig.category;
-  if (subjectInput) subjectInput.value = typeConfig.category + ' - ' + appName;
+  if (subjectInput) {
+    subjectInput.value = applyTemplate(subjectTemplate, {
+      type: typeConfig.titlePrefix,
+      app: appName,
+      category: typeConfig.category
+    });
+  }
 
   if (emailInput) {
     emailInput.addEventListener('input', syncReplyTo);
