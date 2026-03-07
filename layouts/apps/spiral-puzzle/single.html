@@ -859,12 +859,12 @@ window.addEventListener("resize", () => {
     const selectedWord = selectedCells.map(cell => cell.letter).join("");
     const message = document.getElementById("message");
 
-    if (!isMuted) playSound();
-
     if (selectedWord === word && !isValidMatrix(selectedCells)) {
       message.textContent = {{ i18n "spiral.status.invalid_selection" | jsonify }};
       setBubbleSize(parseInt(gridSizeSelector.value, 10), message.textContent.length)
       message.className = "text-danger message-bubble show";
+
+      if (!isMuted) playSound();
 
       document.querySelectorAll(".grid-cell").forEach(cell => {
         cell.classList.remove("selected");
@@ -922,6 +922,8 @@ window.addEventListener("resize", () => {
         cell.classList.remove("selected");
         cell.style.backgroundColor = "#ffffff";
       });
+
+      if (!isMuted) playSound();
 
       selectedCells.length = 0;
       setTimeout(() => {
