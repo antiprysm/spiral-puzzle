@@ -262,6 +262,108 @@
       background: transparent;
       object-fit: fill;
     }
+
+    .score-row {
+  width: min(80vw, 80vh);
+  margin: 12px auto 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.upload-score-button,
+.primary-button,
+.secondary-button {
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.upload-score-button,
+.primary-button {
+  background: #111827;
+  color: #fff;
+}
+
+.secondary-button {
+  background: #fff;
+  color: #111827;
+  border: 1px solid #d1d5db;
+}
+
+.upload-modal.hidden,
+.upload-step.hidden,
+.upload-error.hidden {
+  display: none;
+}
+
+.upload-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+}
+
+.upload-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.upload-modal-card {
+  position: relative;
+  z-index: 1;
+  width: min(92vw, 460px);
+  margin: 10vh auto 0;
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.upload-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.upload-input {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 0.8rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.upload-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.upload-error {
+  color: #b91c1c;
+  background: #fef2f2;
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.95rem;
+}
+
+.upload-score-preview {
+  text-align: center;
+  font-weight: 700;
+  margin-top: 6px;
+}
   </style>
 
   
@@ -458,7 +560,10 @@
   </div>
   
 
-  <p class="score text-shadow">स्कोर: <span id="score">0</span></p>
+  <div class="score-row">
+    <p class="score text-shadow">स्कोर: <span id="score">0</span></p>
+    <button id="upload-score-button" class="upload-score-button">☁ Upload Score</button>
+  </div>
   <p class="instructions">एक ही स्ट्रोक में चयन करने के लिए क्लिक करें और ड्रैग करें</p>
 
   <div class="store-badges">
@@ -476,6 +581,50 @@
   <audio id="shine-sound" preload="auto">
     <source src="/audio/shine-10-268906.mp3" type="audio/mpeg">
   </audio>
+  <div id="upload-modal" class="upload-modal hidden">
+    <div class="upload-modal-backdrop"></div>
+    <div class="upload-modal-card">
+      <button id="upload-close-button" class="upload-close-button" aria-label="Close">✖</button>
+  
+      <div id="upload-step-prompt" class="upload-step">
+        <h3>Upload Score</h3>
+        <p>Do you want to upload your score to the leaderboard?</p>
+        <div class="upload-actions">
+          <button id="upload-yes-button" class="primary-button">Yes</button>
+          <button id="upload-later-button" class="secondary-button">Later</button>
+        </div>
+      </div>
+  
+      <div id="upload-step-form" class="upload-step hidden">
+        <h3>Enter Your Details</h3>
+  
+        <input
+          id="upload-username"
+          class="upload-input"
+          type="text"
+          placeholder="Enter Username"
+          maxlength="15"
+          autocomplete="nickname"
+        />
+  
+        <select id="upload-country" class="upload-input"></select>
+  
+        <p id="upload-error" class="upload-error hidden"></p>
+        <p class="upload-score-preview">Current Score: <span id="upload-score-preview">0</span></p>
+  
+        <div class="upload-actions">
+          <button id="upload-submit-button" class="primary-button">Submit Score</button>
+        </div>
+      </div>
+  
+      <div id="upload-step-result" class="upload-step hidden">
+        <h3 id="upload-result-text">Done</h3>
+        <div class="upload-actions">
+          <button id="upload-result-close-button" class="primary-button">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -1189,7 +1338,7 @@ window.addEventListener("resize", () => {
   }, { passive: false });
 
   gridContainer.addEventListener("touchmove", (event) => {
-    event.preventDefault();
+    event.preventDefault();  
     const touch = event.touches[0];
     const cell = document.elementFromPoint(touch.clientX, touch.clientY);
     dragOver(cell);
@@ -1216,6 +1365,276 @@ window.addEventListener("resize", () => {
     document.getElementById("size-selector-container").style.display = "none";
     document.getElementById("hamburger-button").style.display = "block";
   });
+
+  const API_URL = "https://scores.hambungle.com";
+
+  const PENDING_SCORES_KEY = "spiral_pending_scores";
+
+  const COUNTRIES = [
+    { code: "", name: "Select Country" },
+    { code: "US", name: "United States" },
+    { code: "CA", name: "Canada" },
+    { code: "MX", name: "Mexico" },
+    { code: "GB", name: "United Kingdom" },
+    { code: "FR", name: "France" },
+    { code: "DE", name: "Germany" },
+    { code: "ES", name: "Spain" },
+    { code: "IT", name: "Italy" },
+    { code: "NL", name: "Netherlands" },
+    { code: "BE", name: "Belgium" },
+    { code: "IE", name: "Ireland" },
+    { code: "PT", name: "Portugal" },
+    { code: "CH", name: "Switzerland" },
+    { code: "AT", name: "Austria" },
+    { code: "SE", name: "Sweden" },
+    { code: "NO", name: "Norway" },
+    { code: "DK", name: "Denmark" },
+    { code: "FI", name: "Finland" },
+    { code: "PL", name: "Poland" },
+    { code: "CZ", name: "Czech Republic" },
+    { code: "HU", name: "Hungary" },
+    { code: "RO", name: "Romania" },
+    { code: "GR", name: "Greece" },
+    { code: "TR", name: "Turkey" },
+    { code: "UA", name: "Ukraine" },
+    { code: "IN", name: "India" },
+    { code: "CN", name: "China" },
+    { code: "JP", name: "Japan" },
+    { code: "KR", name: "South Korea" },
+    { code: "SG", name: "Singapore" },
+    { code: "MY", name: "Malaysia" },
+    { code: "TH", name: "Thailand" },
+    { code: "PH", name: "Philippines" },
+    { code: "VN", name: "Vietnam" },
+    { code: "ID", name: "Indonesia" },
+    { code: "AU", name: "Australia" },
+    { code: "NZ", name: "New Zealand" },
+    { code: "BR", name: "Brazil" },
+    { code: "AR", name: "Argentina" },
+    { code: "CL", name: "Chile" },
+    { code: "CO", name: "Colombia" },
+    { code: "PE", name: "Peru" },
+    { code: "ZA", name: "South Africa" },
+    { code: "NG", name: "Nigeria" },
+    { code: "EG", name: "Egypt" },
+    { code: "MA", name: "Morocco" }
+  ];
+
+  const uploadScoreButton = document.getElementById("upload-score-button");
+  const uploadModal = document.getElementById("upload-modal");
+  const uploadCloseButton = document.getElementById("upload-close-button");
+  const uploadYesButton = document.getElementById("upload-yes-button");
+  const uploadLaterButton = document.getElementById("upload-later-button");
+  const uploadSubmitButton = document.getElementById("upload-submit-button");
+  const uploadResultCloseButton = document.getElementById("upload-result-close-button");
+
+  const uploadStepPrompt = document.getElementById("upload-step-prompt");
+  const uploadStepForm = document.getElementById("upload-step-form");
+  const uploadStepResult = document.getElementById("upload-step-result");
+
+  const uploadUsername = document.getElementById("upload-username");
+  const uploadCountry = document.getElementById("upload-country");
+  const uploadError = document.getElementById("upload-error");
+  const uploadResultText = document.getElementById("upload-result-text");
+  const uploadScorePreview = document.getElementById("upload-score-preview");
+  const uploadBackdrop = uploadModal.querySelector(".upload-modal-backdrop");
+
+  function populateCountrySelect() {
+    uploadCountry.innerHTML = "";
+    COUNTRIES.forEach(country => {
+      const option = document.createElement("option");
+      option.value = country.code;
+      option.textContent = country.name;
+      uploadCountry.appendChild(option);
+    });
+  }
+
+  function openUploadModal() {
+    uploadScorePreview.textContent = score;
+    uploadError.textContent = "";
+    uploadError.classList.add("hidden");
+
+    uploadStepPrompt.classList.remove("hidden");
+    uploadStepForm.classList.add("hidden");
+    uploadStepResult.classList.add("hidden");
+
+    uploadModal.classList.remove("hidden");
+  }
+
+  function closeUploadModal() {
+    uploadModal.classList.add("hidden");
+    uploadUsername.value = "";
+    uploadCountry.value = "";
+    uploadError.textContent = "";
+    uploadError.classList.add("hidden");
+  }
+
+  function showUploadForm() {
+    uploadStepPrompt.classList.add("hidden");
+    uploadStepForm.classList.remove("hidden");
+    uploadStepResult.classList.add("hidden");
+    uploadScorePreview.textContent = score;
+  }
+
+  function showUploadResult(message) {
+    uploadStepPrompt.classList.add("hidden");
+    uploadStepForm.classList.add("hidden");
+    uploadStepResult.classList.remove("hidden");
+    uploadResultText.textContent = message;
+  }
+
+  function getUsernameError(name) {
+    const trimmedName = name.trim();
+    if (trimmedName.length === 0) return "Username is required.";
+    if (trimmedName.length < 3 || trimmedName.length > 15) return "Username must be 3-15 characters long.";
+    if (!/[a-zA-Z]{2}/.test(trimmedName)) return "Must have at least two letters side-by-side.";
+    if (/(.)\1{2}/.test(trimmedName)) return "Cannot have three repeating characters.";
+    if (!/^([a-zA-Z0-9_.-]+)$/.test(trimmedName)) return "Only letters, numbers, dashes, underscores, and dots allowed.";
+    if (trimmedName.startsWith("_") || trimmedName.startsWith(".") || trimmedName.startsWith("-")) return "Cannot start with a dash, dot, or underscore.";
+    if (trimmedName.endsWith("_") || trimmedName.endsWith(".") || trimmedName.endsWith("-")) return "Cannot end with a dash, dot, or underscore.";
+    if (!/^[a-zA-Z].*/.test(trimmedName)) return "Must begin with a letter.";
+    return "";
+  }
+
+  function getPendingScores() {
+    try {
+      const raw = localStorage.getItem(PENDING_SCORES_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function savePendingScores(scores) {
+    localStorage.setItem(PENDING_SCORES_KEY, JSON.stringify(scores));
+  }
+
+  function queuePendingScore(scoreData) {
+    const pending = getPendingScores();
+    pending.push(scoreData);
+    savePendingScores(pending);
+  }
+
+  function dedupeScores(scores) {
+    const seen = new Set();
+    return scores.filter(item => {
+      const key = `${item.username}|${item.countryISO}|${item.score}|${item.table_size}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
+  async function postScore(scoreData) {
+  console.log("[upload] sending scoreData:", scoreData);
+
+  const response = await fetch(`${API_URL}/api/highscores`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(scoreData)
+  });
+
+  let responseText = "";
+  try {
+    responseText = await response.text();
+  } catch (err) {
+    console.error("[upload] failed reading response text:", err);
+  }
+
+  console.log("[upload] status:", response.status);
+  console.log("[upload] response text:", responseText);
+
+  if (!response.ok) {
+    throw new Error(`Upload failed with status ${response.status}: ${responseText}`);
+  }
+
+  return responseText;
+}
+
+  async function retryPendingScores() {
+    if (!navigator.onLine) return;
+
+    let pending = dedupeScores(getPendingScores());
+    if (pending.length === 0) return;
+
+    const remaining = [];
+
+    for (const scoreData of pending) {
+      try {
+        await postScore(scoreData);
+      } catch (error) {
+        remaining.push(scoreData);
+      }
+    }
+
+    savePendingScores(remaining);
+  }
+
+  async function submitScoreUpload() {
+    const username = uploadUsername.value.trim();
+    const countryISO = uploadCountry.value;
+    const usernameError = getUsernameError(username);
+
+    console.log("[upload] API_URL:", API_URL);
+    console.log("[upload] navigator.onLine:", navigator.onLine);
+
+    if (usernameError) {
+      uploadError.textContent = usernameError;
+      uploadError.classList.remove("hidden");
+      return;
+    }
+
+    if (!countryISO) {
+      uploadError.textContent = "Please select a country.";
+      uploadError.classList.remove("hidden");
+      return;
+    }
+
+    if (score <= 0) {
+      showUploadResult("Invalid score. Score must be greater than 0.");
+      return;
+    }
+
+    uploadError.textContent = "";
+    uploadError.classList.add("hidden");
+
+    const scoreData = {
+      username,
+      countryISO,
+      score,
+      table_size: gridSize
+    };
+
+    try {
+      if (navigator.onLine) {
+        await postScore(scoreData);
+        showUploadResult("Success! Your score has been uploaded.");
+      } else {
+        queuePendingScore(scoreData);
+        showUploadResult("Score saved offline. It will upload when you're back online.");
+      }
+    } catch (error) {
+      console.error("[upload] submit failed:", error);
+      queuePendingScore(scoreData);
+      showUploadResult("Upload failed right now. Your score was saved and will retry later.");
+    }
+  }
+
+  populateCountrySelect();
+  retryPendingScores();
+
+  window.addEventListener("online", retryPendingScores);
+  window.addEventListener("focus", retryPendingScores);
+
+  uploadScoreButton.addEventListener("click", openUploadModal);
+  uploadCloseButton.addEventListener("click", closeUploadModal);
+  uploadLaterButton.addEventListener("click", closeUploadModal);
+  uploadYesButton.addEventListener("click", showUploadForm);
+  uploadSubmitButton.addEventListener("click", submitScoreUpload);
+  uploadResultCloseButton.addEventListener("click", closeUploadModal);
+  uploadBackdrop.addEventListener("click", closeUploadModal);
 </script>
 
   </main>
