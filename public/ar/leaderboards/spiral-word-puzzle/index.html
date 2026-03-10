@@ -381,13 +381,13 @@
 <script id="leaderboard-i18n" type="application/json">
   {
     "statusLoading": "\"جارٍ تحميل لوحة الصدارة...\"",
-    "statusEmptyForSize": "\"لا توجد نتائج بعد لـ \\u003cno value\\u003e.\"",
-    "statusShowingOne": "\"يتم عرض نتيجة واحدة لـ \\u003cno value\\u003e.\"",
-    "statusShowingMany": "\"يتم عرض \\u003cno value\\u003e نتيجة لـ \\u003cno value\\u003e.\"",
+    "statusEmptyForSize": "\"لا توجد نتائج بعد لـ __SIZE__.\"",
+    "statusShowingOne": "\"يتم عرض نتيجة واحدة لـ __SIZE__.\"",
+    "statusShowingMany": "\"يتم عرض __COUNT__ نتيجة لـ __SIZE__.\"",
     "statusErrorLoad": "\"تعذر تحميل لوحة الصدارة الآن.\"",
     "paginationPrev": "\"← السابق\"",
     "paginationNext": "\"التالي →\"",
-    "paginationPageOf": "\"الصفحة \\u003cno value\\u003e من \\u003cno value\\u003e\""
+    "paginationPageOf": "\"الصفحة __CURRENT__ من __TOTAL__\""
   }
   </script>
   
@@ -411,10 +411,12 @@
   };
 
   function interpolate(template, vars) {
-    return String(template).replace(/\{\{\s*\.(size|count|current|total)\s*\}\}/g, (_, key) => {
-      return Object.prototype.hasOwnProperty.call(vars, key) ? String(vars[key]) : "";
-    });
-  }
+  return String(template)
+    .replaceAll("__SIZE__", vars.size ?? "")
+    .replaceAll("__COUNT__", vars.count ?? "")
+    .replaceAll("__CURRENT__", vars.current ?? "")
+    .replaceAll("__TOTAL__", vars.total ?? "");
+}
 
   function escapeHtml(value) {
     return String(value ?? "")

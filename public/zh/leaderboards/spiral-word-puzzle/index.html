@@ -381,13 +381,13 @@
 <script id="leaderboard-i18n" type="application/json">
   {
     "statusLoading": "\"正在加载排行榜...\"",
-    "statusEmptyForSize": "\"\\u003cno value\\u003e 还没有分数。\"",
-    "statusShowingOne": "\"显示 \\u003cno value\\u003e 的 1 条分数。\"",
-    "statusShowingMany": "\"显示 \\u003cno value\\u003e 的 \\u003cno value\\u003e 条分数。\"",
+    "statusEmptyForSize": "\"__SIZE__ 还没有分数。\"",
+    "statusShowingOne": "\"显示 __SIZE__ 的 1 条分数。\"",
+    "statusShowingMany": "\"显示 __SIZE__ 的 __COUNT__ 条分数。\"",
     "statusErrorLoad": "\"目前无法加载排行榜。\"",
     "paginationPrev": "\"← 上一页\"",
     "paginationNext": "\"下一页 →\"",
-    "paginationPageOf": "\"第 \\u003cno value\\u003e / \\u003cno value\\u003e 页\""
+    "paginationPageOf": "\"第 __CURRENT__ / __TOTAL__ 页\""
   }
   </script>
   
@@ -411,10 +411,12 @@
   };
 
   function interpolate(template, vars) {
-    return String(template).replace(/\{\{\s*\.(size|count|current|total)\s*\}\}/g, (_, key) => {
-      return Object.prototype.hasOwnProperty.call(vars, key) ? String(vars[key]) : "";
-    });
-  }
+  return String(template)
+    .replaceAll("__SIZE__", vars.size ?? "")
+    .replaceAll("__COUNT__", vars.count ?? "")
+    .replaceAll("__CURRENT__", vars.current ?? "")
+    .replaceAll("__TOTAL__", vars.total ?? "");
+}
 
   function escapeHtml(value) {
     return String(value ?? "")
