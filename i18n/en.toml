@@ -361,3 +361,69 @@ other = "Language selector"
 
 ["common.language.selector_label"]
 other = "Language"
+
+["common.nav.leaderboards"]
+other = "Leaderboards"
+
+["leaderboards.hub.title"]
+other = "Leaderboards"
+
+["leaderboards.hub.subtitle"]
+other = "Browse scoreboards across Hambungle apps and games."
+
+["leaderboards.hub.spiral.description"]
+other = "View top scores for 10x10, 15x15, and 20x20 boards."
+
+["leaderboards.hub.spiral.cta_open"]
+other = "Open leaderboard →"
+
+["leaderboards.hub.more_coming_soon.title"]
+other = "More coming soon"
+
+["leaderboards.hub.more_coming_soon.description"]
+other = "Future Hambungle apps and games will appear here."
+
+["leaderboards.hub.more_coming_soon.cta_stay_tuned"]
+other = "Stay tuned"
+
+["leaderboards.spiral.title"]
+other = "Spiral Word Puzzle Leaderboard"
+
+["leaderboards.spiral.subtitle"]
+other = "Top scores across all Spiral Word Puzzle board sizes."
+
+["leaderboards.spiral.status.loading"]
+other = "Loading leaderboard..."
+
+["leaderboards.spiral.table.rank"]
+other = "Rank"
+
+["leaderboards.spiral.table.player"]
+other = "Player"
+
+["leaderboards.spiral.table.country"]
+other = "Country"
+
+["leaderboards.spiral.table.score"]
+other = "Score"
+
+["leaderboards.spiral.status.empty_for_size"]
+other = "No scores yet for {{ .size }}."
+
+["leaderboards.spiral.status.showing_one"]
+other = "Showing 1 score for {{ .size }}."
+
+["leaderboards.spiral.status.showing_many"]
+other = "Showing {{ .count }} scores for {{ .size }}."
+
+["leaderboards.spiral.status.error_load"]
+other = "Could not load leaderboard right now."
+
+["leaderboards.spiral.pagination.prev"]
+other = "← Prev"
+
+["leaderboards.spiral.pagination.next"]
+other = "Next →"
+
+["leaderboards.spiral.pagination.page_of"]
+other = "Page {{ .current }} of {{ .total }}"

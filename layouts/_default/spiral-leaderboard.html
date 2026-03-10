@@ -1,8 +1,8 @@
 {{ define "main" }}
 <div class="wrap spiral-leaderboard-page">
   <div class="leaderboard-hero">
-    <h1>Spiral Word Puzzle Leaderboard</h1>
-    <p>Top scores across all Spiral Word Puzzle board sizes.</p>
+    <h1>{{ i18n "leaderboards.spiral.title" }}</h1>
+    <p>{{ i18n "leaderboards.spiral.subtitle" }}</p>
   </div>
 
   <div class="leaderboard-tabs">
@@ -11,7 +11,7 @@
     <button class="lb-tab" data-size="20x20">20x20</button>
   </div>
 
-  <p id="leaderboard-status" class="leaderboard-status">Loading leaderboard...</p>
+  <p id="leaderboard-status" class="leaderboard-status">{{ i18n "leaderboards.spiral.status.loading" }}</p>
 
   <div class="leaderboard-top3" id="leaderboard-top3"></div>
 
@@ -19,10 +19,10 @@
     <table class="leaderboard-table">
       <thead>
         <tr>
-          <th>Rank</th>
-          <th>Player</th>
-          <th>Country</th>
-          <th>Score</th>
+          <th>{{ i18n "leaderboards.spiral.table.rank" }}</th>
+          <th>{{ i18n "leaderboards.spiral.table.player" }}</th>
+          <th>{{ i18n "leaderboards.spiral.table.country" }}</th>
+          <th>{{ i18n "leaderboards.spiral.table.score" }}</th>
         </tr>
       </thead>
       <tbody id="leaderboard-body"></tbody>
@@ -193,11 +193,37 @@
   font-weight: 700;
   color: #374151;
 }
+
+[dir="rtl"] .leaderboard-tabs,
+[dir="rtl"] .leaderboard-pagination {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .leaderboard-table th,
+[dir="rtl"] .leaderboard-table td {
+  text-align: right;
+}
+
+[dir="rtl"] .leaderboard-hero,
+[dir="rtl"] .leaderboard-status,
+[dir="rtl"] .leaderboard-card {
+  text-align: right;
+}
 </style>
 
 <script>
   const LEADERBOARD_API = "https://scores.hambungle.com/api/highscores";
   const ROWS_PER_PAGE = 10;
+  const leaderboardI18n = {
+    statusLoading: {{ i18n "leaderboards.spiral.status.loading" | jsonify }},
+    statusEmptyForSize: {{ i18n "leaderboards.spiral.status.empty_for_size" | jsonify }},
+    statusShowingOne: {{ i18n "leaderboards.spiral.status.showing_one" | jsonify }},
+    statusShowingMany: {{ i18n "leaderboards.spiral.status.showing_many" | jsonify }},
+    statusErrorLoad: {{ i18n "leaderboards.spiral.status.error_load" | jsonify }},
+    paginationPrev: {{ i18n "leaderboards.spiral.pagination.prev" | jsonify }},
+    paginationNext: {{ i18n "leaderboards.spiral.pagination.next" | jsonify }},
+    paginationPageOf: {{ i18n "leaderboards.spiral.pagination.page_of" | jsonify }}
+  };
 
   let activeLeaderboardSize = "10x10";
   let leaderboardData = {
@@ -210,6 +236,13 @@
     "15x15": 1,
     "20x20": 1,
   };
+
+
+  function interpolate(template, vars) {
+    return String(template).replace(/\{\{\s*\.(size|count|current|total)\s*\}\}/g, (_, key) => {
+      return Object.prototype.hasOwnProperty.call(vars, key) ? String(vars[key]) : "";
+    });
+  }
 
   function escapeHtml(value) {
     return String(value ?? "")
@@ -277,7 +310,7 @@
     const totalPages = Math.max(1, Math.ceil(rows.length / ROWS_PER_PAGE));
 
     const prevBtn = document.createElement("button");
-    prevBtn.textContent = "← Prev";
+    prevBtn.textContent = leaderboardI18n.paginationPrev;
     prevBtn.className = "lb-page-btn";
     prevBtn.disabled = currentPage <= 1;
     prevBtn.addEventListener("click", () => {
@@ -289,10 +322,10 @@
 
     const pageInfo = document.createElement("span");
     pageInfo.className = "lb-page-info";
-    pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+    pageInfo.textContent = interpolate(leaderboardI18n.paginationPageOf, { current: currentPage, total: totalPages });
 
     const nextBtn = document.createElement("button");
-    nextBtn.textContent = "Next →";
+    nextBtn.textContent = leaderboardI18n.paginationNext;
     nextBtn.className = "lb-page-btn";
     nextBtn.disabled = currentPage >= totalPages;
     nextBtn.addEventListener("click", () => {
@@ -316,7 +349,7 @@
       document.getElementById("leaderboard-top3").innerHTML = "";
       document.getElementById("leaderboard-body").innerHTML = "";
       document.getElementById("leaderboard-pagination").innerHTML = "";
-      statusEl.textContent = `No scores yet for ${size}.`;
+      statusEl.textContent = interpolate(leaderboardI18n.statusEmptyForSize, { size });
       return;
     }
 
@@ -325,7 +358,9 @@
       currentPageBySize[size] = totalPages;
     }
 
-    statusEl.textContent = `Showing ${rows.length} score${rows.length === 1 ? "" : "s"} for ${size}.`;
+    statusEl.textContent = rows.length === 1
+      ? interpolate(leaderboardI18n.statusShowingOne, { size })
+      : interpolate(leaderboardI18n.statusShowingMany, { count: rows.length, size });
 
     renderTopThree(rows);
     renderTable(rows, currentPageBySize[size]);
@@ -334,7 +369,7 @@
 
   async function loadSpiralLeaderboard() {
     const statusEl = document.getElementById("leaderboard-status");
-    statusEl.textContent = "Loading leaderboard...";
+    statusEl.textContent = leaderboardI18n.statusLoading;
 
     try {
       const response = await fetch(LEADERBOARD_API);
@@ -356,7 +391,7 @@
       document.getElementById("leaderboard-top3").innerHTML = "";
       document.getElementById("leaderboard-body").innerHTML = "";
       document.getElementById("leaderboard-pagination").innerHTML = "";
-      statusEl.textContent = "Could not load leaderboard right now.";
+      statusEl.textContent = leaderboardI18n.statusErrorLoad;
     }
   }
 
