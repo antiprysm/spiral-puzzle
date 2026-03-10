@@ -360,3 +360,71 @@ other = "مُبدّل اللغة"
 
 ["common.language.selector_label"]
 other = "اللغة"
+
+
+["common.nav.leaderboards"]
+other = "لوحات الصدارة"
+
+["leaderboards.hub.title"]
+other = "لوحات الصدارة"
+
+["leaderboards.hub.subtitle"]
+other = "تصفح لوحات النتائج عبر تطبيقات وألعاب Hambungle."
+
+["leaderboards.hub.spiral.description"]
+other = "اعرض أعلى النتائج للوحات 10x10 و15x15 و20x20."
+
+["leaderboards.hub.spiral.cta_open"]
+other = "افتح لوحة الصدارة →"
+
+["leaderboards.hub.more_coming_soon.title"]
+other = "المزيد قريبًا"
+
+["leaderboards.hub.more_coming_soon.description"]
+other = "ستظهر هنا تطبيقات وألعاب Hambungle القادمة."
+
+["leaderboards.hub.more_coming_soon.cta_stay_tuned"]
+other = "ترقبوا"
+
+["leaderboards.spiral.title"]
+other = "لوحة صدارة Spiral Word Puzzle"
+
+["leaderboards.spiral.subtitle"]
+other = "أعلى النتائج عبر جميع أحجام لوحات Spiral Word Puzzle."
+
+["leaderboards.spiral.status.loading"]
+other = "جارٍ تحميل لوحة الصدارة..."
+
+["leaderboards.spiral.table.rank"]
+other = "الترتيب"
+
+["leaderboards.spiral.table.player"]
+other = "اللاعب"
+
+["leaderboards.spiral.table.country"]
+other = "الدولة"
+
+["leaderboards.spiral.table.score"]
+other = "النقاط"
+
+["leaderboards.spiral.status.empty_for_size"]
+other = "لا توجد نتائج بعد لـ {{ .size }}."
+
+["leaderboards.spiral.status.showing_one"]
+other = "يتم عرض نتيجة واحدة لـ {{ .size }}."
+
+["leaderboards.spiral.status.showing_many"]
+other = "يتم عرض {{ .count }} نتيجة لـ {{ .size }}."
+
+["leaderboards.spiral.status.error_load"]
+other = "تعذر تحميل لوحة الصدارة الآن."
+
+["leaderboards.spiral.pagination.prev"]
+other = "← السابق"
+
+["leaderboards.spiral.pagination.next"]
+other = "التالي →"
+
+["leaderboards.spiral.pagination.page_of"]
+other = "الصفحة {{ .current }} من {{ .total }}"
+

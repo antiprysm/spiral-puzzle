@@ -360,3 +360,71 @@ other = "语言选择器"
 
 ["common.language.selector_label"]
 other = "语言"
+
+
+["common.nav.leaderboards"]
+other = "排行榜"
+
+["leaderboards.hub.title"]
+other = "排行榜"
+
+["leaderboards.hub.subtitle"]
+other = "浏览 Hambungle 各应用和游戏的排行榜。"
+
+["leaderboards.hub.spiral.description"]
+other = "查看 10x10、15x15 和 20x20 棋盘的最高分。"
+
+["leaderboards.hub.spiral.cta_open"]
+other = "打开排行榜 →"
+
+["leaderboards.hub.more_coming_soon.title"]
+other = "更多内容即将推出"
+
+["leaderboards.hub.more_coming_soon.description"]
+other = "未来的 Hambungle 应用和游戏将显示在这里。"
+
+["leaderboards.hub.more_coming_soon.cta_stay_tuned"]
+other = "敬请期待"
+
+["leaderboards.spiral.title"]
+other = "Spiral Word Puzzle 排行榜"
+
+["leaderboards.spiral.subtitle"]
+other = "查看 Spiral Word Puzzle 各棋盘尺寸的最高分。"
+
+["leaderboards.spiral.status.loading"]
+other = "正在加载排行榜..."
+
+["leaderboards.spiral.table.rank"]
+other = "排名"
+
+["leaderboards.spiral.table.player"]
+other = "玩家"
+
+["leaderboards.spiral.table.country"]
+other = "国家"
+
+["leaderboards.spiral.table.score"]
+other = "分数"
+
+["leaderboards.spiral.status.empty_for_size"]
+other = "{{ .size }} 还没有分数。"
+
+["leaderboards.spiral.status.showing_one"]
+other = "显示 {{ .size }} 的 1 条分数。"
+
+["leaderboards.spiral.status.showing_many"]
+other = "显示 {{ .size }} 的 {{ .count }} 条分数。"
+
+["leaderboards.spiral.status.error_load"]
+other = "目前无法加载排行榜。"
+
+["leaderboards.spiral.pagination.prev"]
+other = "← 上一页"
+
+["leaderboards.spiral.pagination.next"]
+other = "下一页 →"
+
+["leaderboards.spiral.pagination.page_of"]
+other = "第 {{ .current }} / {{ .total }} 页"
+

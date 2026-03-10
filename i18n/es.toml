@@ -360,3 +360,71 @@ other = "Selector de idioma"
 
 ["common.language.selector_label"]
 other = "Idioma"
+
+
+["common.nav.leaderboards"]
+other = "Clasificaciones"
+
+["leaderboards.hub.title"]
+other = "Clasificaciones"
+
+["leaderboards.hub.subtitle"]
+other = "Explora las tablas de puntuación de las apps y juegos de Hambungle."
+
+["leaderboards.hub.spiral.description"]
+other = "Ver las mejores puntuaciones para tableros de 10x10, 15x15 y 20x20."
+
+["leaderboards.hub.spiral.cta_open"]
+other = "Abrir clasificación →"
+
+["leaderboards.hub.more_coming_soon.title"]
+other = "Más próximamente"
+
+["leaderboards.hub.more_coming_soon.description"]
+other = "Las futuras apps y juegos de Hambungle aparecerán aquí."
+
+["leaderboards.hub.more_coming_soon.cta_stay_tuned"]
+other = "Mantente al tanto"
+
+["leaderboards.spiral.title"]
+other = "Clasificación de Spiral Word Puzzle"
+
+["leaderboards.spiral.subtitle"]
+other = "Mejores puntuaciones en todos los tamaños de tablero de Spiral Word Puzzle."
+
+["leaderboards.spiral.status.loading"]
+other = "Cargando clasificación..."
+
+["leaderboards.spiral.table.rank"]
+other = "Puesto"
+
+["leaderboards.spiral.table.player"]
+other = "Jugador"
+
+["leaderboards.spiral.table.country"]
+other = "País"
+
+["leaderboards.spiral.table.score"]
+other = "Puntuación"
+
+["leaderboards.spiral.status.empty_for_size"]
+other = "Aún no hay puntuaciones para {{ .size }}."
+
+["leaderboards.spiral.status.showing_one"]
+other = "Mostrando 1 puntuación para {{ .size }}."
+
+["leaderboards.spiral.status.showing_many"]
+other = "Mostrando {{ .count }} puntuaciones para {{ .size }}."
+
+["leaderboards.spiral.status.error_load"]
+other = "No se pudo cargar la clasificación en este momento."
+
+["leaderboards.spiral.pagination.prev"]
+other = "← Anterior"
+
+["leaderboards.spiral.pagination.next"]
+other = "Siguiente →"
+
+["leaderboards.spiral.pagination.page_of"]
+other = "Página {{ .current }} de {{ .total }}"
+

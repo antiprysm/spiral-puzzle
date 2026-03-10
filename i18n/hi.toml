@@ -360,3 +360,71 @@ other = "भाषा चयनकर्ता"
 
 ["common.language.selector_label"]
 other = "भाषा"
+
+
+["common.nav.leaderboards"]
+other = "लीडरबोर्ड"
+
+["leaderboards.hub.title"]
+other = "लीडरबोर्ड"
+
+["leaderboards.hub.subtitle"]
+other = "Hambungle ऐप्स और गेम्स के स्कोरबोर्ड ब्राउज़ करें।"
+
+["leaderboards.hub.spiral.description"]
+other = "10x10, 15x15 और 20x20 बोर्ड के शीर्ष स्कोर देखें।"
+
+["leaderboards.hub.spiral.cta_open"]
+other = "लीडरबोर्ड खोलें →"
+
+["leaderboards.hub.more_coming_soon.title"]
+other = "और जल्द आ रहा है"
+
+["leaderboards.hub.more_coming_soon.description"]
+other = "भविष्य में आने वाले Hambungle ऐप्स और गेम्स यहाँ दिखाई देंगे।"
+
+["leaderboards.hub.more_coming_soon.cta_stay_tuned"]
+other = "बने रहें"
+
+["leaderboards.spiral.title"]
+other = "Spiral Word Puzzle लीडरबोर्ड"
+
+["leaderboards.spiral.subtitle"]
+other = "Spiral Word Puzzle के सभी बोर्ड आकारों के शीर्ष स्कोर।"
+
+["leaderboards.spiral.status.loading"]
+other = "लीडरबोर्ड लोड हो रहा है..."
+
+["leaderboards.spiral.table.rank"]
+other = "रैंक"
+
+["leaderboards.spiral.table.player"]
+other = "खिलाड़ी"
+
+["leaderboards.spiral.table.country"]
+other = "देश"
+
+["leaderboards.spiral.table.score"]
+other = "स्कोर"
+
+["leaderboards.spiral.status.empty_for_size"]
+other = "{{ .size }} के लिए अभी कोई स्कोर नहीं है।"
+
+["leaderboards.spiral.status.showing_one"]
+other = "{{ .size }} के लिए 1 स्कोर दिखाया जा रहा है।"
+
+["leaderboards.spiral.status.showing_many"]
+other = "{{ .size }} के लिए {{ .count }} स्कोर दिखाए जा रहे हैं।"
+
+["leaderboards.spiral.status.error_load"]
+other = "अभी लीडरबोर्ड लोड नहीं हो सका।"
+
+["leaderboards.spiral.pagination.prev"]
+other = "← पिछला"
+
+["leaderboards.spiral.pagination.next"]
+other = "अगला →"
+
+["leaderboards.spiral.pagination.page_of"]
+other = "पेज {{ .current }} / {{ .total }}"
+

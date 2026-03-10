@@ -1,19 +1,19 @@
 {{ define "main" }}
 <div class="wrap lb-hub">
-  <h1>Leaderboards</h1>
-  <p>Browse scoreboards across Hambungle apps and games.</p>
+  <h1>{{ i18n "leaderboards.hub.title" }}</h1>
+  <p>{{ i18n "leaderboards.hub.subtitle" }}</p>
 
   <div class="lb-grid">
-    <a class="lb-card" href="/leaderboards/spiral-word-puzzle/">
-      <h2>Spiral Word Puzzle</h2>
-      <p>View top scores for 10x10, 15x15, and 20x20 boards.</p>
-      <span>Open leaderboard →</span>
+    <a class="lb-card" href="{{ "leaderboards/spiral-word-puzzle/" | relLangURL }}">
+      <h2>{{ i18n "common.brand.spiral_word_puzzle" }}</h2>
+      <p>{{ i18n "leaderboards.hub.spiral.description" }}</p>
+      <span>{{ i18n "leaderboards.hub.spiral.cta_open" }}</span>
     </a>
 
     <div class="lb-card lb-card-muted">
-      <h2>More coming soon</h2>
-      <p>Future Hambungle apps and games will appear here.</p>
-      <span>Stay tuned</span>
+      <h2>{{ i18n "leaderboards.hub.more_coming_soon.title" }}</h2>
+      <p>{{ i18n "leaderboards.hub.more_coming_soon.description" }}</p>
+      <span>{{ i18n "leaderboards.hub.more_coming_soon.cta_stay_tuned" }}</span>
     </div>
   </div>
 </div>
@@ -65,6 +65,11 @@
 
   .lb-card-muted {
     opacity: 0.8;
+  }
+
+  [dir="rtl"] .lb-hub,
+  [dir="rtl"] .lb-hub .lb-card {
+    text-align: right;
   }
 </style>
 {{ end }}
