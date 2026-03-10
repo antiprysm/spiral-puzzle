@@ -1,0 +1,70 @@
+{{ define "main" }}
+<div class="wrap lb-hub">
+  <h1>Leaderboards</h1>
+  <p>Browse scoreboards across Hambungle apps and games.</p>
+
+  <div class="lb-grid">
+    <a class="lb-card" href="/leaderboards/spiral-word-puzzle/">
+      <h2>Spiral Word Puzzle</h2>
+      <p>View top scores for 10x10, 15x15, and 20x20 boards.</p>
+      <span>Open leaderboard →</span>
+    </a>
+
+    <div class="lb-card lb-card-muted">
+      <h2>More coming soon</h2>
+      <p>Future Hambungle apps and games will appear here.</p>
+      <span>Stay tuned</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .lb-hub {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .lb-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .lb-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .lb-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+  }
+
+  .lb-card h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .lb-card p {
+    margin-bottom: 1rem;
+    color: #4b5563;
+  }
+
+  .lb-card span {
+    font-weight: 600;
+  }
+
+  .lb-card-muted {
+    opacity: 0.8;
+  }
+</style>
+{{ end }}

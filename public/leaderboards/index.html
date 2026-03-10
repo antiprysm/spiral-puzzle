@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   
-  <title>الشروط | Hambungle</title>
+  <title>Leaderboards | Hambungle</title>
 
   
   
@@ -13,7 +13,7 @@
 
   
 
-  <meta name="description" content="شروط استخدام تطبيقات وموقع Hambungle.">
+  <meta name="description" content="Hambungle builds playful, thoughtfully-crafted apps.">
   <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   <link rel="stylesheet" href="/css/site.css">
   
@@ -49,20 +49,25 @@
       
       
 
-      <a class="brand" href="/ar/">Hambungle</a>
+      <a class="brand" href="/">Hambungle</a>
 
-      <nav class="nav-links" aria-label="التنقل الرئيسي">
-        <a href="/ar/">الاستوديو</a>
-        <a href="/ar/apps/spiral-puzzle/">Spiral Puzzle</a>
-        <a href="/ar/apps/catchledger/">CatchLedger</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="/">Studio</a>
+        <a href="/apps/spiral-puzzle/">Spiral Puzzle</a>
+        <a href="/apps/catchledger/">CatchLedger</a>
         <a href="/leaderboards/">Leaderboards</a>
-        <a href="/ar/privacy/">الخصوصية</a>
-        <a href="/ar/terms/">الشروط</a>
-        <a href="/ar/contact/">اتصل بنا</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="/contact/">Contact</a>
       </nav>
 
-      <div class="language-switcher" role="navigation" aria-label="مُبدّل اللغة">
+      <div class="language-switcher" role="navigation" aria-label="Language selector">
         
+        
+      
+        
+        
+          
         
       
         
@@ -78,20 +83,7 @@
           
         
       
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
-        <label class="sr-only" for="language-switcher-select">اللغة</label>
+        <label class="sr-only" for="language-switcher-select">Language</label>
         <select id="language-switcher-select" onchange="switchSiteLanguage(this.value)">
           
             
@@ -102,7 +94,7 @@
       
             
       
-            <option value="/terms/" >
+            <option value="/leaderboards/" selected>
               English
             </option>
           
@@ -113,8 +105,10 @@
             
       
             
+              
+            
       
-            <option value="/ar/terms/" selected>
+            <option value="/ar/" >
               العربية
             </option>
           
@@ -125,8 +119,10 @@
             
       
             
+              
+            
       
-            <option value="/es/terms/" >
+            <option value="/es/" >
               Español
             </option>
           
@@ -137,8 +133,10 @@
             
       
             
+              
+            
       
-            <option value="/hi/terms/" >
+            <option value="/hi/" >
               हिन्दी
             </option>
           
@@ -149,8 +147,10 @@
             
       
             
+              
+            
       
-            <option value="/zh/terms/" >
+            <option value="/zh/" >
               中文
             </option>
           
@@ -161,23 +161,74 @@
 
   <main class="wrap">
     
-<article class="page-card">
-  
-  
-  
+<div class="wrap lb-hub">
+  <h1>Leaderboards</h1>
+  <p>Browse scoreboards across Hambungle apps and games.</p>
 
-  
+  <div class="lb-grid">
+    <a class="lb-card" href="/leaderboards/spiral-word-puzzle/">
+      <h2>Spiral Word Puzzle</h2>
+      <p>View top scores for 10x10, 15x15, and 20x20 boards.</p>
+      <span>Open leaderboard →</span>
+    </a>
 
-  <h1>الشروط</h1>
-
-  <div class="content">
-    
-      <p>باستخدام تطبيقات Hambungle وهذا الموقع، فإنك توافق على استخدامهما بشكل قانوني ومسؤول.</p>
-<p>نحن نقدم تطبيقاتنا كما هي، وقد نقوم بتحديث الميزات أو تعديلها أو إيقافها في أي وقت.</p>
-
-    
+    <div class="lb-card lb-card-muted">
+      <h2>More coming soon</h2>
+      <p>Future Hambungle apps and games will appear here.</p>
+      <span>Stay tuned</span>
+    </div>
   </div>
-</article>
+</div>
+
+<style>
+  .lb-hub {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .lb-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .lb-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .lb-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+  }
+
+  .lb-card h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .lb-card p {
+    margin-bottom: 1rem;
+    color: #4b5563;
+  }
+
+  .lb-card span {
+    font-weight: 600;
+  }
+
+  .lb-card-muted {
+    opacity: 0.8;
+  }
+</style>
 
   </main>
 
