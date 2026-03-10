@@ -42,6 +42,11 @@
 
       
       
+        
+      
+      
+      
+      
 
       
       
@@ -66,6 +71,14 @@
         
       
         
+        
+          
+        
+          
+        
+          
+        
+          
         
           
         
@@ -105,10 +118,8 @@
             
       
             
-              
-            
       
-            <option value="/ar/" >
+            <option value="/ar/leaderboards/spiral-word-puzzle/" >
               العربية
             </option>
           
@@ -119,10 +130,8 @@
             
       
             
-              
-            
       
-            <option value="/es/" >
+            <option value="/es/leaderboards/spiral-word-puzzle/" >
               Español
             </option>
           
@@ -133,10 +142,8 @@
             
       
             
-              
-            
       
-            <option value="/hi/" >
+            <option value="/hi/leaderboards/spiral-word-puzzle/" >
               हिन्दी
             </option>
           
@@ -147,10 +154,8 @@
             
       
             
-              
-            
       
-            <option value="/zh/" >
+            <option value="/zh/leaderboards/spiral-word-puzzle/" >
               中文
             </option>
           
@@ -355,11 +360,43 @@
   font-weight: 700;
   color: #374151;
 }
+
+[dir="rtl"] .leaderboard-tabs,
+[dir="rtl"] .leaderboard-pagination {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .leaderboard-table th,
+[dir="rtl"] .leaderboard-table td {
+  text-align: right;
+}
+
+[dir="rtl"] .leaderboard-hero,
+[dir="rtl"] .leaderboard-status,
+[dir="rtl"] .leaderboard-card {
+  text-align: right;
+}
 </style>
 
-<script>
-  const LEADERBOARD_API = "https://scores.hambungle.com/api/highscores";
-  const ROWS_PER_PAGE = 10;
+<script id="leaderboard-i18n" type="application/json">
+  {
+    "statusLoading": "\"Loading leaderboard...\"",
+    "statusEmptyForSize": "\"No scores yet for __SIZE__.\"",
+    "statusShowingOne": "\"Showing 1 score for __SIZE__.\"",
+    "statusShowingMany": "\"Showing __COUNT__ scores for __SIZE__.\"",
+    "statusErrorLoad": "\"Could not load leaderboard right now.\"",
+    "paginationPrev": "\"← Prev\"",
+    "paginationNext": "\"Next →\"",
+    "paginationPageOf": "\"Page __CURRENT__ of __TOTAL__\""
+  }
+  </script>
+  
+  <script>
+    const LEADERBOARD_API = "https://scores.hambungle.com/api/highscores";
+    const ROWS_PER_PAGE = 10;
+    const leaderboardI18n = JSON.parse(
+      document.getElementById("leaderboard-i18n").textContent
+    );
 
   let activeLeaderboardSize = "10x10";
   let leaderboardData = {
@@ -372,6 +409,14 @@
     "15x15": 1,
     "20x20": 1,
   };
+
+  function interpolate(template, vars) {
+  return String(template)
+    .replaceAll("__SIZE__", vars.size ?? "")
+    .replaceAll("__COUNT__", vars.count ?? "")
+    .replaceAll("__CURRENT__", vars.current ?? "")
+    .replaceAll("__TOTAL__", vars.total ?? "");
+}
 
   function escapeHtml(value) {
     return String(value ?? "")
@@ -439,7 +484,7 @@
     const totalPages = Math.max(1, Math.ceil(rows.length / ROWS_PER_PAGE));
 
     const prevBtn = document.createElement("button");
-    prevBtn.textContent = "← Prev";
+    prevBtn.textContent = leaderboardI18n.paginationPrev;
     prevBtn.className = "lb-page-btn";
     prevBtn.disabled = currentPage <= 1;
     prevBtn.addEventListener("click", () => {
@@ -451,10 +496,10 @@
 
     const pageInfo = document.createElement("span");
     pageInfo.className = "lb-page-info";
-    pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+    pageInfo.textContent = interpolate(leaderboardI18n.paginationPageOf, { current: currentPage, total: totalPages });
 
     const nextBtn = document.createElement("button");
-    nextBtn.textContent = "Next →";
+    nextBtn.textContent = leaderboardI18n.paginationNext;
     nextBtn.className = "lb-page-btn";
     nextBtn.disabled = currentPage >= totalPages;
     nextBtn.addEventListener("click", () => {
@@ -478,7 +523,7 @@
       document.getElementById("leaderboard-top3").innerHTML = "";
       document.getElementById("leaderboard-body").innerHTML = "";
       document.getElementById("leaderboard-pagination").innerHTML = "";
-      statusEl.textContent = `No scores yet for ${size}.`;
+      statusEl.textContent = interpolate(leaderboardI18n.statusEmptyForSize, { size });
       return;
     }
 
@@ -487,7 +532,9 @@
       currentPageBySize[size] = totalPages;
     }
 
-    statusEl.textContent = `Showing ${rows.length} score${rows.length === 1 ? "" : "s"} for ${size}.`;
+    statusEl.textContent = rows.length === 1
+      ? interpolate(leaderboardI18n.statusShowingOne, { size })
+      : interpolate(leaderboardI18n.statusShowingMany, { count: rows.length, size });
 
     renderTopThree(rows);
     renderTable(rows, currentPageBySize[size]);
@@ -496,7 +543,7 @@
 
   async function loadSpiralLeaderboard() {
     const statusEl = document.getElementById("leaderboard-status");
-    statusEl.textContent = "Loading leaderboard...";
+    statusEl.textContent = leaderboardI18n.statusLoading;
 
     try {
       const response = await fetch(LEADERBOARD_API);
@@ -518,7 +565,7 @@
       document.getElementById("leaderboard-top3").innerHTML = "";
       document.getElementById("leaderboard-body").innerHTML = "";
       document.getElementById("leaderboard-pagination").innerHTML = "";
-      statusEl.textContent = "Could not load leaderboard right now.";
+      statusEl.textContent = leaderboardI18n.statusErrorLoad;
     }
   }
 

@@ -211,19 +211,25 @@
 }
 </style>
 
-<script>
-  const LEADERBOARD_API = "https://scores.hambungle.com/api/highscores";
-  const ROWS_PER_PAGE = 10;
-  const leaderboardI18n = {
-    statusLoading: {{ i18n "leaderboards.spiral.status.loading" | jsonify }},
-    statusEmptyForSize: {{ i18n "leaderboards.spiral.status.empty_for_size" | jsonify }},
-    statusShowingOne: {{ i18n "leaderboards.spiral.status.showing_one" | jsonify }},
-    statusShowingMany: {{ i18n "leaderboards.spiral.status.showing_many" | jsonify }},
-    statusErrorLoad: {{ i18n "leaderboards.spiral.status.error_load" | jsonify }},
-    paginationPrev: {{ i18n "leaderboards.spiral.pagination.prev" | jsonify }},
-    paginationNext: {{ i18n "leaderboards.spiral.pagination.next" | jsonify }},
-    paginationPageOf: {{ i18n "leaderboards.spiral.pagination.page_of" | jsonify }}
-  };
+<script id="leaderboard-i18n" type="application/json">
+  {
+    "statusLoading": {{ i18n "leaderboards.spiral.status.loading" | jsonify }},
+    "statusEmptyForSize": {{ i18n "leaderboards.spiral.status.empty_for_size" (dict "size" "__SIZE__") | jsonify }},
+    "statusShowingOne": {{ i18n "leaderboards.spiral.status.showing_one" (dict "size" "__SIZE__") | jsonify }},
+    "statusShowingMany": {{ i18n "leaderboards.spiral.status.showing_many" (dict "count" "__COUNT__" "size" "__SIZE__") | jsonify }},
+    "statusErrorLoad": {{ i18n "leaderboards.spiral.status.error_load" | jsonify }},
+    "paginationPrev": {{ i18n "leaderboards.spiral.pagination.prev" | jsonify }},
+    "paginationNext": {{ i18n "leaderboards.spiral.pagination.next" | jsonify }},
+    "paginationPageOf": {{ i18n "leaderboards.spiral.pagination.page_of" (dict "current" "__CURRENT__" "total" "__TOTAL__") | jsonify }}
+  }
+  </script>
+  
+  <script>
+    const LEADERBOARD_API = "https://scores.hambungle.com/api/highscores";
+    const ROWS_PER_PAGE = 10;
+    const leaderboardI18n = JSON.parse(
+      document.getElementById("leaderboard-i18n").textContent
+    );
 
   let activeLeaderboardSize = "10x10";
   let leaderboardData = {
@@ -237,12 +243,13 @@
     "20x20": 1,
   };
 
-
   function interpolate(template, vars) {
-    return String(template).replace(/\{\{\s*\.(size|count|current|total)\s*\}\}/g, (_, key) => {
-      return Object.prototype.hasOwnProperty.call(vars, key) ? String(vars[key]) : "";
-    });
-  }
+  return String(template)
+    .replaceAll("__SIZE__", vars.size ?? "")
+    .replaceAll("__COUNT__", vars.count ?? "")
+    .replaceAll("__CURRENT__", vars.current ?? "")
+    .replaceAll("__TOTAL__", vars.total ?? "");
+}
 
   function escapeHtml(value) {
     return String(value ?? "")

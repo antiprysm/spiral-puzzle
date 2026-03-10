@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <title>Leaderboards | Hambungle</title>
+
+  
+  
+  
+
+  
+
+  <meta name="description" content="Hambungle crea aplicaciones lúdicas y cuidadosamente diseñadas.">
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  <link rel="stylesheet" href="/css/site.css">
+  
+
+  <script>
+    window.ModelViewerElement = window.ModelViewerElement || {};
+    window.ModelViewerElement.meshoptDecoderLocation = '\/js\/meshopt_decoder.module.js';
+  </script>
+
+  <script type="module" src="/js/model-viewer.min.js"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      
+      
+
+      
+      
+        
+      
+
+      
+      
+
+      
+      
+        
+      
+      
+      
+      
+
+      
+      
+
+      
+      
+
+      <a class="brand" href="/es/">Hambungle</a>
+
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="/es/">Estudio</a>
+        <a href="/es/apps/spiral-puzzle/">Spiral Puzzle</a>
+        <a href="/es/apps/catchledger/">CatchLedger</a>
+        <a href="/es/leaderboards/">Clasificaciones</a>
+        <a href="/es/privacy/">Privacidad</a>
+        <a href="/es/terms/">Términos</a>
+        <a href="/es/contact/">Contacto</a>
+      </nav>
+
+      <div class="language-switcher" role="navigation" aria-label="Selector de idioma">
+        
+        
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+        <label class="sr-only" for="language-switcher-select">Idioma</label>
+        <select id="language-switcher-select" onchange="switchSiteLanguage(this.value)">
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/leaderboards/" >
+              English
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/ar/leaderboards/" >
+              العربية
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/es/leaderboards/" selected>
+              Español
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/hi/leaderboards/" >
+              हिन्दी
+            </option>
+          
+            
+      
+            
+      
+            
+      
+            
+      
+            <option value="/zh/leaderboards/" >
+              中文
+            </option>
+          
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    
+<div class="wrap lb-hub">
+  <h1>Clasificaciones</h1>
+  <p>Explora las tablas de puntuación de las apps y juegos de Hambungle.</p>
+
+  <div class="lb-grid">
+    <a class="lb-card" href="/es/leaderboards/spiral-word-puzzle/">
+      <h2>Spiral Word Puzzle</h2>
+      <p>Ver las mejores puntuaciones para tableros de 10x10, 15x15 y 20x20.</p>
+      <span>Abrir clasificación →</span>
+    </a>
+
+    <div class="lb-card lb-card-muted">
+      <h2>Más próximamente</h2>
+      <p>Las futuras apps y juegos de Hambungle aparecerán aquí.</p>
+      <span>Mantente al tanto</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .lb-hub {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .lb-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .lb-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .lb-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+  }
+
+  .lb-card h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .lb-card p {
+    margin-bottom: 1rem;
+    color: #4b5563;
+  }
+
+  .lb-card span {
+    font-weight: 600;
+  }
+
+  .lb-card-muted {
+    opacity: 0.8;
+  }
+
+  [dir="rtl"] .lb-hub,
+  [dir="rtl"] .lb-hub .lb-card {
+    text-align: right;
+  }
+</style>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 Hambungle Studio</p>
+    </div>
+  </footer>
+  <script>
+    function switchSiteLanguage(target) {
+      if (!target) return;
+  
+      var cleanTarget = String(target).split("?")[0].split("#")[0];
+      var search = window.location.search || "";
+      var hash = window.location.hash || "";
+  
+      window.location.assign(cleanTarget + search + hash);
+    }
+  </script>
+</body>
+</html>

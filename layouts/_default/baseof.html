@@ -52,6 +52,15 @@
       {{ $catchledgerURL := $homeURL }}
       {{ with .Site.GetPage "/apps/catchledger" }}{{ $catchledgerURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/apps/catchledger" }}{{ $catchledgerURL = .RelPermalink }}{{ end }}{{ end }}
 
+      {{ $leaderboardsURL := $homeURL }}
+      {{ with .Site.GetPage "/leaderboards" }}
+        {{ $leaderboardsURL = .RelPermalink }}
+      {{ else }}
+        {{ with $defaultSite.GetPage "/leaderboards" }}
+          {{ $leaderboardsURL = .RelPermalink }}
+        {{ end }}
+      {{ end }}
+      
       {{ $privacyURL := $homeURL }}
       {{ with .Site.GetPage "/privacy" }}{{ $privacyURL = .RelPermalink }}{{ else }}{{ with $defaultSite.GetPage "/privacy" }}{{ $privacyURL = .RelPermalink }}{{ end }}{{ end }}
 
@@ -67,7 +76,7 @@
         <a href="{{ $homeURL }}">{{ i18n "common.nav.studio" }}</a>
         <a href="{{ $spiralURL }}">{{ i18n "common.nav.spiral_puzzle" }}</a>
         <a href="{{ $catchledgerURL }}">{{ i18n "common.nav.catchledger" }}</a>
-        <a href="/leaderboards/">Leaderboards</a>
+        <a href="{{ $leaderboardsURL }}">{{ i18n "common.nav.leaderboards" }}</a>
         <a href="{{ $privacyURL }}">{{ i18n "common.nav.privacy" }}</a>
         <a href="{{ $termsURL }}">{{ i18n "common.nav.terms" }}</a>
         <a href="{{ $contactURL }}">{{ i18n "common.nav.contact" }}</a>

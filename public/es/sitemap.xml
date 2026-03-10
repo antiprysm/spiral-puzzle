@@ -191,6 +191,33 @@
                 href="http://localhost:1313/es/"
                 />
   </url><url>
+    <loc>http://localhost:1313/es/leaderboards/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-US"
+                href="http://localhost:1313/leaderboards/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ar"
+                href="http://localhost:1313/ar/leaderboards/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="hi"
+                href="http://localhost:1313/hi/leaderboards/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="http://localhost:1313/zh/leaderboards/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://localhost:1313/es/leaderboards/"
+                />
+  </url><url>
     <loc>http://localhost:1313/es/privacy/catchledger/</loc>
     <xhtml:link
                 rel="alternate"
@@ -297,6 +324,33 @@
                 rel="alternate"
                 hreflang="es"
                 href="http://localhost:1313/es/apps/spiral-puzzle/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/es/leaderboards/spiral-word-puzzle/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-US"
+                href="http://localhost:1313/leaderboards/spiral-word-puzzle/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ar"
+                href="http://localhost:1313/ar/leaderboards/spiral-word-puzzle/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="hi"
+                href="http://localhost:1313/hi/leaderboards/spiral-word-puzzle/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="http://localhost:1313/zh/leaderboards/spiral-word-puzzle/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://localhost:1313/es/leaderboards/spiral-word-puzzle/"
                 />
   </url><url>
     <loc>http://localhost:1313/es/tags/</loc>
