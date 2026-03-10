@@ -21,6 +21,11 @@
   
   <title>Spiral Word Puzzle | Hambungle</title>
 
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css"
+  >
+
   
   <style>
     *, *::before, *::after {
@@ -1376,56 +1381,27 @@ window.addEventListener("resize", () => {
 
   const PENDING_SCORES_KEY = "spiral_pending_scores";
 
-  const COUNTRIES = [
-    { code: "", name: "Select Country" },
-    { code: "US", name: "United States" },
-    { code: "CA", name: "Canada" },
-    { code: "MX", name: "Mexico" },
-    { code: "GB", name: "United Kingdom" },
-    { code: "FR", name: "France" },
-    { code: "DE", name: "Germany" },
-    { code: "ES", name: "Spain" },
-    { code: "IT", name: "Italy" },
-    { code: "NL", name: "Netherlands" },
-    { code: "BE", name: "Belgium" },
-    { code: "IE", name: "Ireland" },
-    { code: "PT", name: "Portugal" },
-    { code: "CH", name: "Switzerland" },
-    { code: "AT", name: "Austria" },
-    { code: "SE", name: "Sweden" },
-    { code: "NO", name: "Norway" },
-    { code: "DK", name: "Denmark" },
-    { code: "FI", name: "Finland" },
-    { code: "PL", name: "Poland" },
-    { code: "CZ", name: "Czech Republic" },
-    { code: "HU", name: "Hungary" },
-    { code: "RO", name: "Romania" },
-    { code: "GR", name: "Greece" },
-    { code: "TR", name: "Turkey" },
-    { code: "UA", name: "Ukraine" },
-    { code: "IN", name: "India" },
-    { code: "CN", name: "China" },
-    { code: "JP", name: "Japan" },
-    { code: "KR", name: "South Korea" },
-    { code: "SG", name: "Singapore" },
-    { code: "MY", name: "Malaysia" },
-    { code: "TH", name: "Thailand" },
-    { code: "PH", name: "Philippines" },
-    { code: "VN", name: "Vietnam" },
-    { code: "ID", name: "Indonesia" },
-    { code: "AU", name: "Australia" },
-    { code: "NZ", name: "New Zealand" },
-    { code: "BR", name: "Brazil" },
-    { code: "AR", name: "Argentina" },
-    { code: "CL", name: "Chile" },
-    { code: "CO", name: "Colombia" },
-    { code: "PE", name: "Peru" },
-    { code: "ZA", name: "South Africa" },
-    { code: "NG", name: "Nigeria" },
-    { code: "EG", name: "Egypt" },
-    { code: "MA", name: "Morocco" }
-  ];
+  async function loadCountries() {
+    const response = await fetch(getCountriesPath());
 
+    if (!response.ok) {
+      throw new Error("Failed to load countries");
+    }
+
+    return response.json();
+  }
+  const SITE_LANG = 'zh';
+  console.log("Rendered SITE_LANG:", SITE_LANG);
+
+  function getCountriesPath() {
+    const supportedLangs = ["en", "es", "zh", "hi", "ar"];
+    const normalizedLang = SITE_LANG.toLowerCase().split("-")[0].trim();
+    const lang = supportedLangs.includes(normalizedLang) ? normalizedLang : "en";
+    return `/data/countries.${lang}.json`;
+  }
+
+console.log("Countries path:", getCountriesPath());
+  
   const uploadScoreButton = document.getElementById("upload-score-button");
   const uploadModal = document.getElementById("upload-modal");
   const uploadCloseButton = document.getElementById("upload-close-button");
@@ -1444,16 +1420,28 @@ window.addEventListener("resize", () => {
   const uploadResultText = document.getElementById("upload-result-text");
   const uploadScorePreview = document.getElementById("upload-score-preview");
   const uploadBackdrop = uploadModal.querySelector(".upload-modal-backdrop");
+  
+  async function populateCountrySelect() {
+  uploadCountry.innerHTML = "";
 
-  function populateCountrySelect() {
-    uploadCountry.innerHTML = "";
-    COUNTRIES.forEach(country => {
+  const placeholder = document.createElement("option");
+  placeholder.value = "";
+  placeholder.textContent = "\"\"";
+  uploadCountry.appendChild(placeholder);
+
+  try {
+    const countries = await loadCountries();
+
+    countries.forEach((country) => {
       const option = document.createElement("option");
       option.value = country.code;
       option.textContent = country.name;
       uploadCountry.appendChild(option);
     });
+  } catch (error) {
+    console.error("Failed to populate country select:", error);
   }
+}
 
   function openUploadModal() {
     uploadScorePreview.textContent = score;
