@@ -433,3 +433,75 @@ other = "اختر الدولة"
 
 ["spiral.upload.no_country"]
 other = "بدون دولة"
+
+["spiral.upload.search_country_placeholder"]
+other = "ابحث عن دولة"
+
+["spiral.upload.button"]
+other = "رفع النتيجة"
+
+["spiral.upload.prompt.title"]
+other = "رفع النتيجة"
+
+["spiral.upload.prompt.message"]
+other = "هل تريد رفع نتيجتك إلى لوحة المتصدرين؟"
+
+["spiral.upload.prompt.yes"]
+other = "نعم"
+
+["spiral.upload.prompt.later"]
+other = "لاحقًا"
+
+["spiral.upload.form.title"]
+other = "أدخل بياناتك"
+
+["spiral.upload.form.username_placeholder"]
+other = "أدخل اسم المستخدم"
+
+["spiral.upload.form.current_score"]
+other = "النتيجة الحالية:"
+
+["spiral.upload.form.submit"]
+other = "إرسال النتيجة"
+
+["spiral.upload.result.done"]
+other = "تم"
+
+["spiral.upload.close"]
+other = "إغلاق"
+
+["spiral.upload.validation.username_required"]
+other = "اسم المستخدم مطلوب."
+
+["spiral.upload.validation.username_length"]
+other = "يجب أن يكون اسم المستخدم بين 3 و15 حرفًا."
+
+["spiral.upload.validation.username_two_letters"]
+other = "يجب أن يحتوي على حرفين متتاليين على الأقل."
+
+["spiral.upload.validation.username_repeating_chars"]
+other = "لا يمكن أن يحتوي على ثلاثة أحرف متكررة."
+
+["spiral.upload.validation.username_allowed_chars"]
+other = "يُسمح فقط بالأحرف والأرقام والشرطات والشرطات السفلية والنقاط."
+
+["spiral.upload.validation.username_start"]
+other = "لا يمكن أن يبدأ بشرطة أو نقطة أو شرطة سفلية."
+
+["spiral.upload.validation.username_end"]
+other = "لا يمكن أن ينتهي بشرطة أو نقطة أو شرطة سفلية."
+
+["spiral.upload.validation.username_begins_with_letter"]
+other = "يجب أن يبدأ بحرف."
+
+["spiral.upload.validation.invalid_score"]
+other = "نتيجة غير صالحة. يجب أن تكون النتيجة أكبر من 0."
+
+["spiral.upload.result.success"]
+other = "نجاح! تم رفع نتيجتك."
+
+["spiral.upload.result.offline_saved"]
+other = "تم حفظ النتيجة بدون اتصال. سيتم رفعها عند عودتك إلى الإنترنت."
+
+["spiral.upload.result.retry_later"]
+other = "فشل الرفع الآن. تم حفظ نتيجتك وستتم إعادة المحاولة لاحقًا."
