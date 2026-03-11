@@ -288,6 +288,10 @@
   display: none;
 }
 
+.country-picker-list.hidden {
+  display: none;
+}
+
 .upload-modal {
   position: fixed;
   inset: 0;
@@ -438,6 +442,32 @@
   font-weight: 700;
   margin-top: 6px;
 }
+
+.country-picker-list.hidden {
+  display: none;
+}
+
+.country-picker-search {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0.75rem 0.8rem;
+  font-size: 0.95rem;
+  outline: none;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.country-picker-search:focus {
+  border-bottom-color: #2563eb;
+}
+
+#upload-country-options {
+  max-height: 190px;
+  overflow-y: auto;
+}
   </style>
 
   <!-- Google Analytics -->
@@ -562,7 +592,16 @@
             role="listbox"
             tabindex="-1"
             aria-label="{{ i18n "spiral.upload.select_country" }}"
-          ></div>
+          >
+            <input
+              id="upload-country-search"
+              class="country-picker-search"
+              type="text"
+              placeholder="Search country"
+              autocomplete="off"
+            />
+            <div id="upload-country-options"></div>
+          </div>
         </div>
   
         <p id="upload-error" class="upload-error hidden"></p>
@@ -705,6 +744,7 @@
   const n = Math.ceil(Math.sqrt(word.length));
   const spiralWordGrid = spiral(word, start, reversed, clockwise);
 
+  let filteredCountryOptions = [];
   const maxStart = gridSize - n;
   const startRow = Math.floor(Math.random() * (maxStart + 1));
   const startCol = Math.floor(Math.random() * (maxStart + 1));
@@ -1377,7 +1417,8 @@ console.log("Countries path:", getCountriesPath());
   const uploadStepPrompt = document.getElementById("upload-step-prompt");
   const uploadStepForm = document.getElementById("upload-step-form");
   const uploadStepResult = document.getElementById("upload-step-result");
-
+  const uploadCountrySearch = document.getElementById("upload-country-search");
+  const uploadCountryOptions = document.getElementById("upload-country-options");
   const uploadUsername = document.getElementById("upload-username");
   const uploadCountry = document.getElementById("upload-country");
   const uploadCountryPicker = document.getElementById("upload-country-picker");
@@ -1390,6 +1431,9 @@ console.log("Countries path:", getCountriesPath());
   const uploadScorePreview = document.getElementById("upload-score-preview");
   const uploadBackdrop = uploadModal.querySelector(".upload-modal-backdrop");
   const countryPlaceholderText = {{ i18n "spiral.upload.select_country" | jsonify }};
+  const cleanedCountryPlaceholder = countryPlaceholderText.replace(/^"(.*)"$/, "$1");
+  const noCountryTextRaw = {{ i18n "spiral.upload.no_country" | jsonify }};
+  const noCountryText = noCountryTextRaw.replace(/^"(.*)"$/, "$1");
 
   let countryOptions = [];
   let highlightedCountryIndex = -1;
@@ -1411,90 +1455,199 @@ console.log("Countries path:", getCountriesPath());
   }
 
   function setSelectedCountry(code) {
-    const country = countryOptions.find((item) => item.code === code);
+  const country = countryOptions.find((item) => item.code === code);
 
-    uploadCountry.value = country ? country.code : "";
-    uploadCountrySelectedText.textContent = country ? country.name : countryPlaceholderText;
-    uploadCountryFlag.className = "country-picker-flag fi";
+  uploadCountry.value = country ? country.code : "";
 
-    if (country) {
-      uploadCountryFlag.classList.remove("hidden-flag");
-      uploadCountryFlag.classList.add(...getFlagClass(country.code).split(" "));
-    } else {
-      uploadCountryFlag.classList.add("hidden-flag");
-    }
+  uploadCountrySelectedText.textContent =
+    country && country.name
+      ? country.name
+      : cleanedCountryPlaceholder;
 
-    const options = uploadCountryListbox.querySelectorAll(".country-picker-option");
-    options.forEach((option) => {
-      option.setAttribute("aria-selected", option.dataset.code === uploadCountry.value ? "true" : "false");
-    });
+  uploadCountryFlag.className = "country-picker-flag fi";
+
+  if (country) {
+    uploadCountryFlag.classList.remove("hidden-flag");
+    uploadCountryFlag.classList.add(...getFlagClass(country.code).split(" "));
+  } else {
+    uploadCountryFlag.classList.add("hidden-flag");
   }
+}
 
   function closeCountryListbox() {
-    uploadCountryButton.setAttribute("aria-expanded", "false");
-    uploadCountryListbox.classList.add("hidden");
-  }
+  uploadCountryButton.setAttribute("aria-expanded", "false");
+  uploadCountryListbox.classList.add("hidden");
+  uploadCountrySearch.value = "";
+}
 
-  function highlightCountryOption(index) {
-    const options = uploadCountryListbox.querySelectorAll(".country-picker-option");
-    if (options.length === 0) return;
+function highlightCountryOption(index) {
+  const options = uploadCountryOptions.querySelectorAll(".country-picker-option");
+  if (options.length === 0) return;
 
-    highlightedCountryIndex = Math.max(0, Math.min(index, options.length - 1));
-    options.forEach((option, optionIndex) => {
-      option.classList.toggle("highlighted", optionIndex === highlightedCountryIndex);
-    });
+  highlightedCountryIndex = Math.max(0, Math.min(index, options.length - 1));
+  options.forEach((option, optionIndex) => {
+    option.classList.toggle("highlighted", optionIndex === highlightedCountryIndex);
+  });
 
-    options[highlightedCountryIndex].scrollIntoView({ block: "nearest" });
-    uploadCountryListbox.setAttribute("aria-activedescendant", options[highlightedCountryIndex].id);
-  }
+  options[highlightedCountryIndex].scrollIntoView({ block: "nearest" });
+  uploadCountryListbox.setAttribute("aria-activedescendant", options[highlightedCountryIndex].id);
+}
 
   function openCountryListbox() {
-    if (!countryOptions.length) return;
+  if (!countryOptions.length) return;
 
-    uploadCountryButton.setAttribute("aria-expanded", "true");
-    uploadCountryListbox.classList.remove("hidden");
+  uploadCountryButton.setAttribute("aria-expanded", "true");
+  uploadCountryListbox.classList.remove("hidden");
+  uploadCountrySearch.value = "";
+  filterCountryOptions("");
+  requestAnimationFrame(() => uploadCountrySearch.focus());
+}
 
-    const selectedIndex = countryOptions.findIndex((country) => country.code === uploadCountry.value);
-    highlightCountryOption(selectedIndex >= 0 ? selectedIndex : 0);
-    uploadCountryListbox.focus();
-  }
+function renderCountryOptions(countries) {
+  filteredCountryOptions = countries;
+  uploadCountryOptions.innerHTML = "";
 
-  function renderCountryOptions(countries) {
-    uploadCountryListbox.innerHTML = "";
+  const clearOption = document.createElement("button");
+  clearOption.type = "button";
+  clearOption.className = "country-picker-option";
+  clearOption.dataset.code = "";
+  clearOption.setAttribute("role", "option");
+  clearOption.setAttribute("aria-selected", uploadCountry.value === "" ? "true" : "false");
 
-    countries.forEach((country, index) => {
-      const option = document.createElement("button");
-      option.type = "button";
-      option.id = `upload-country-option-${country.code.toLowerCase()}`;
-      option.className = "country-picker-option";
-      option.dataset.code = country.code;
-      option.setAttribute("role", "option");
-      option.setAttribute("aria-selected", "false");
+  const clearLabel = document.createElement("span");
+  clearLabel.textContent = noCountryText;
 
-      const flag = document.createElement("span");
-      flag.className = `country-picker-option-flag ${getFlagClass(country.code)}`;
-      flag.setAttribute("aria-hidden", "true");
+  clearOption.appendChild(clearLabel);
 
-      const label = document.createElement("span");
-      label.textContent = country.name;
-
-      option.append(flag, label);
-      option.addEventListener("click", () => {
-        setSelectedCountry(country.code);
-        closeCountryListbox();
-        uploadCountryButton.focus();
-      });
-
-      option.addEventListener("mousemove", () => {
-        highlightCountryOption(index);
-      });
-
-      uploadCountryListbox.appendChild(option);
-    });
-
+  clearOption.addEventListener("click", () => {
     setSelectedCountry("");
     closeCountryListbox();
+    uploadCountryButton.focus();
+  });
+
+  clearOption.addEventListener("mousemove", () => {
+    highlightCountryOption(0);
+  });
+
+  uploadCountryOptions.appendChild(clearOption);
+
+  countries.forEach((country, index) => {
+    const optionIndex = index + 1;
+
+    const option = document.createElement("button");
+    option.type = "button";
+    option.id = `upload-country-option-${country.code.toLowerCase()}`;
+    option.className = "country-picker-option";
+    option.dataset.code = country.code;
+    option.setAttribute("role", "option");
+    option.setAttribute("aria-selected", "false");
+
+    const flag = document.createElement("span");
+    flag.className = `country-picker-option-flag ${getFlagClass(country.code)}`;
+    flag.setAttribute("aria-hidden", "true");
+
+    const optionLabel = document.createElement("span");
+    optionLabel.textContent = country.name;
+
+    option.append(flag, optionLabel);
+
+    option.addEventListener("click", () => {
+      setSelectedCountry(country.code);
+      closeCountryListbox();
+      uploadCountryButton.focus();
+    });
+
+    option.addEventListener("mousemove", () => {
+      highlightCountryOption(optionIndex);
+    });
+
+    uploadCountryOptions.appendChild(option);
+  });
+
+  highlightedCountryIndex = 0;
+  setSelectedCountry(uploadCountry.value);
+  closeCountryListbox();
+}
+
+function filterCountryOptions(query) {
+  const normalized = query.trim().toLowerCase();
+
+  const clearOption = document.createElement("button");
+  clearOption.type = "button";
+  clearOption.id = "upload-country-option-none";
+  clearOption.className = "country-picker-option";
+  clearOption.dataset.code = "";
+  clearOption.setAttribute("role", "option");
+  clearOption.setAttribute("aria-selected", uploadCountry.value === "" ? "true" : "false");
+
+  const clearLabel = document.createElement("span");
+  clearLabel.textContent = cleanedCountryPlaceholder;
+
+  clearOption.appendChild(clearLabel);
+
+  clearOption.addEventListener("click", () => {
+    setSelectedCountry("");
+    closeCountryListbox();
+    uploadCountryButton.focus();
+  });
+
+  clearOption.addEventListener("mousemove", () => {
+    highlightCountryOption(0);
+  });
+
+  uploadCountryOptions.appendChild(clearOption);
+
+  filtered.forEach((country, index) => {
+    const optionIndex = index + 1;
+    return (
+      country.name.toLowerCase().includes(normalized) ||
+      country.code.toLowerCase().includes(normalized)
+    );
+  });
+
+  uploadCountryOptions.innerHTML = "";
+
+  filtered.forEach((country, index) => {
+    const optionIndex = index + 1;
+    const option = document.createElement("button");
+    option.type = "button";
+    option.id = `upload-country-option-${country.code.toLowerCase()}`;
+    option.className = "country-picker-option";
+    option.dataset.code = country.code;
+    option.setAttribute("role", "option");
+    option.setAttribute("aria-selected", country.code === uploadCountry.value ? "true" : "false");
+
+    const flag = document.createElement("span");
+    flag.className = `country-picker-option-flag ${getFlagClass(country.code)}`;
+    flag.setAttribute("aria-hidden", "true");
+
+    const label = document.createElement("span");
+    label.textContent = country.name;
+
+    option.append(flag, label);
+
+    option.addEventListener("click", () => {
+      setSelectedCountry(country.code);
+      closeCountryListbox();
+      uploadCountryButton.focus();
+    });
+
+    option.addEventListener("mousemove", () => {
+  highlightCountryOption(optionIndex);
+});
+
+    uploadCountryOptions.appendChild(option);
+  });
+
+  filteredCountryOptions = filtered;
+  highlightedCountryIndex = filtered.length ? 0 : -1;
+
+  if (filtered.length) {
+    highlightCountryOption(0);
+  } else {
+    uploadCountryListbox.removeAttribute("aria-activedescendant");
   }
+}
 
   function openUploadModal() {
     uploadScorePreview.textContent = score;
@@ -1691,31 +1844,41 @@ console.log("Countries path:", getCountriesPath());
     }
   });
 
-  uploadCountryListbox.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
+  uploadCountrySearch.addEventListener("input", (event) => {
+  filterCountryOptions(event.target.value);
+});
+
+uploadCountrySearch.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowDown") {
+    event.preventDefault();
+    highlightCountryOption(highlightedCountryIndex + 1);
+    return;
+  }
+
+  if (event.key === "ArrowUp") {
+    event.preventDefault();
+    highlightCountryOption(highlightedCountryIndex - 1);
+    return;
+  }
+
+  if (event.key === "Enter") {
+    event.preventDefault();
+    const options = uploadCountryOptions.querySelectorAll(".country-picker-option");
+    if (options[highlightedCountryIndex]) {
+      const selectedCode = options[highlightedCountryIndex].dataset.code;
+      setSelectedCountry(selectedCode);
       closeCountryListbox();
       uploadCountryButton.focus();
-      return;
     }
+    return;
+  }
 
-    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
-      event.preventDefault();
-      const delta = event.key === "ArrowDown" ? 1 : -1;
-      highlightCountryOption(highlightedCountryIndex + delta);
-      return;
-    }
-
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      const options = uploadCountryListbox.querySelectorAll(".country-picker-option");
-      if (options[highlightedCountryIndex]) {
-        const selectedCode = options[highlightedCountryIndex].dataset.code;
-        setSelectedCountry(selectedCode);
-        closeCountryListbox();
-        uploadCountryButton.focus();
-      }
-    }
-  });
+  if (event.key === "Escape") {
+    event.preventDefault();
+    closeCountryListbox();
+    uploadCountryButton.focus();
+  }
+});
 
   document.addEventListener("click", (event) => {
     if (!uploadCountryPicker.contains(event.target)) {

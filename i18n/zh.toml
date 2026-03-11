@@ -428,3 +428,8 @@ other = "下一页 →"
 ["leaderboards.spiral.pagination.page_of"]
 other = "第 {{ .current }} / {{ .total }} 页"
 
+["spiral.upload.select_country"]
+other = "选择国家"
+
+["spiral.upload.no_country"]
+other = "无国家"

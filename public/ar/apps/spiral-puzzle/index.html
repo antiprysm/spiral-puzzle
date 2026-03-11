@@ -306,6 +306,10 @@
   display: none;
 }
 
+.country-picker-list.hidden {
+  display: none;
+}
+
 .upload-modal {
   position: fixed;
   inset: 0;
@@ -348,6 +352,93 @@
   font-size: 1rem;
 }
 
+.country-picker {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.country-picker-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  text-align: left;
+  background: #fff;
+  cursor: pointer;
+}
+
+.country-picker-trigger:focus-visible,
+.country-picker-option:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 1px;
+}
+
+.country-picker-selected-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.country-picker-flag,
+.country-picker-option-flag {
+  width: 1.25em;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
+}
+
+.country-picker-flag.hidden-flag {
+  visibility: hidden;
+}
+
+.country-picker-selected-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.country-picker-caret {
+  color: #475569;
+  font-size: 0.9rem;
+}
+
+.country-picker-list {
+  position: absolute;
+  top: calc(100% - 8px);
+  left: 0;
+  right: 0;
+  max-height: 240px;
+  overflow-y: auto;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  z-index: 5;
+}
+
+.country-picker-option {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #f1f5f9;
+  background: #fff;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.country-picker-option:last-child {
+  border-bottom: none;
+}
+
+.country-picker-option.highlighted,
+.country-picker-option[aria-selected="true"] {
+  background: #eff6ff;
+}
+
 .upload-actions {
   display: flex;
   justify-content: center;
@@ -368,6 +459,32 @@
   text-align: center;
   font-weight: 700;
   margin-top: 6px;
+}
+
+.country-picker-list.hidden {
+  display: none;
+}
+
+.country-picker-search {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0.75rem 0.8rem;
+  font-size: 0.95rem;
+  outline: none;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.country-picker-search:focus {
+  border-bottom-color: #2563eb;
+}
+
+#upload-country-options {
+  max-height: 190px;
+  overflow-y: auto;
 }
   </style>
 
@@ -618,7 +735,39 @@
           autocomplete="nickname"
         />
   
-        <select id="upload-country" class="upload-input"></select>
+        <div id="upload-country-picker" class="country-picker">
+          <input id="upload-country" type="hidden" value="" />
+          <button
+            id="upload-country-button"
+            class="upload-input country-picker-trigger"
+            type="button"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-controls="upload-country-listbox"
+          >
+            <span class="country-picker-selected-wrap">
+              <span id="upload-country-flag" class="country-picker-flag fi hidden-flag" aria-hidden="true"></span>
+              <span id="upload-country-selected-text" class="country-picker-selected-text">اختر الدولة</span>
+            </span>
+            <span class="country-picker-caret" aria-hidden="true">▾</span>
+          </button>
+          <div
+            id="upload-country-listbox"
+            class="country-picker-list hidden"
+            role="listbox"
+            tabindex="-1"
+            aria-label="اختر الدولة"
+          >
+            <input
+              id="upload-country-search"
+              class="country-picker-search"
+              type="text"
+              placeholder="Search country"
+              autocomplete="off"
+            />
+            <div id="upload-country-options"></div>
+          </div>
+        </div>
   
         <p id="upload-error" class="upload-error hidden"></p>
         <p class="upload-score-preview">Current Score: <span id="upload-score-preview">0</span></p>
@@ -760,6 +909,7 @@
   const n = Math.ceil(Math.sqrt(word.length));
   const spiralWordGrid = spiral(word, start, reversed, clockwise);
 
+  let filteredCountryOptions = [];
   const maxStart = gridSize - n;
   const startRow = Math.floor(Math.random() * (maxStart + 1));
   const startCol = Math.floor(Math.random() * (maxStart + 1));
@@ -1382,13 +1532,26 @@ window.addEventListener("resize", () => {
   const PENDING_SCORES_KEY = "spiral_pending_scores";
 
   async function loadCountries() {
-    const response = await fetch(getCountriesPath());
+    const countriesPath = getCountriesPath();
 
-    if (!response.ok) {
-      throw new Error("Failed to load countries");
+    try {
+      const response = await fetch(countriesPath);
+
+      if (!response.ok) {
+        throw new Error(`Failed to load countries: ${countriesPath}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      if (countriesPath !== "/data/countries.en.json") {
+        const fallbackResponse = await fetch("/data/countries.en.json");
+        if (fallbackResponse.ok) {
+          return fallbackResponse.json();
+        }
+      }
+
+      throw error;
     }
-
-    return response.json();
   }
   const SITE_LANG = 'ar';
   console.log("Rendered SITE_LANG:", SITE_LANG);
@@ -1413,33 +1576,233 @@ console.log("Countries path:", getCountriesPath());
   const uploadStepPrompt = document.getElementById("upload-step-prompt");
   const uploadStepForm = document.getElementById("upload-step-form");
   const uploadStepResult = document.getElementById("upload-step-result");
-
+  const uploadCountrySearch = document.getElementById("upload-country-search");
+  const uploadCountryOptions = document.getElementById("upload-country-options");
   const uploadUsername = document.getElementById("upload-username");
   const uploadCountry = document.getElementById("upload-country");
+  const uploadCountryPicker = document.getElementById("upload-country-picker");
+  const uploadCountryButton = document.getElementById("upload-country-button");
+  const uploadCountryListbox = document.getElementById("upload-country-listbox");
+  const uploadCountryFlag = document.getElementById("upload-country-flag");
+  const uploadCountrySelectedText = document.getElementById("upload-country-selected-text");
   const uploadError = document.getElementById("upload-error");
   const uploadResultText = document.getElementById("upload-result-text");
   const uploadScorePreview = document.getElementById("upload-score-preview");
   const uploadBackdrop = uploadModal.querySelector(".upload-modal-backdrop");
+  const countryPlaceholderText = "\"اختر الدولة\"".replace(/^"(.*)"$/, "$1");
+  const noCountryText = "\"بدون دولة\"";
+
+  let countryOptions = [];
+  let highlightedCountryIndex = -1;
   
   async function populateCountrySelect() {
-  uploadCountry.innerHTML = "";
+    try {
+      const countries = await loadCountries();
+      countryOptions = countries;
+      renderCountryOptions(countries);
+    } catch (error) {
+      console.error("Failed to populate country select:", error);
+      countryOptions = [];
+      renderCountryOptions([]);
+    }
+  }
 
-  const placeholder = document.createElement("option");
-  placeholder.value = "";
-  placeholder.textContent = "\"\"";
-  uploadCountry.appendChild(placeholder);
+  function getFlagClass(code) {
+    return `fi fi-${code.toLowerCase()}`;
+  }
 
-  try {
-    const countries = await loadCountries();
+  function setSelectedCountry(code) {
+  const country = countryOptions.find((item) => item.code === code);
 
-    countries.forEach((country) => {
-      const option = document.createElement("option");
-      option.value = country.code;
-      option.textContent = country.name;
-      uploadCountry.appendChild(option);
+  uploadCountry.value = country ? country.code : "";
+
+  uploadCountrySelectedText.textContent =
+    country && country.name
+      ? country.name
+      : cleanedCountryPlaceholder;
+
+  uploadCountryFlag.className = "country-picker-flag fi";
+
+  if (country) {
+    uploadCountryFlag.classList.remove("hidden-flag");
+    uploadCountryFlag.classList.add(...getFlagClass(country.code).split(" "));
+  } else {
+    uploadCountryFlag.classList.add("hidden-flag");
+  }
+}
+
+  function closeCountryListbox() {
+  uploadCountryButton.setAttribute("aria-expanded", "false");
+  uploadCountryListbox.classList.add("hidden");
+  uploadCountrySearch.value = "";
+}
+
+function highlightCountryOption(index) {
+  const options = uploadCountryOptions.querySelectorAll(".country-picker-option");
+  if (options.length === 0) return;
+
+  highlightedCountryIndex = Math.max(0, Math.min(index, options.length - 1));
+  options.forEach((option, optionIndex) => {
+    option.classList.toggle("highlighted", optionIndex === highlightedCountryIndex);
+  });
+
+  options[highlightedCountryIndex].scrollIntoView({ block: "nearest" });
+  uploadCountryListbox.setAttribute("aria-activedescendant", options[highlightedCountryIndex].id);
+}
+
+  function openCountryListbox() {
+  if (!countryOptions.length) return;
+
+  uploadCountryButton.setAttribute("aria-expanded", "true");
+  uploadCountryListbox.classList.remove("hidden");
+  uploadCountrySearch.value = "";
+  filterCountryOptions("");
+  requestAnimationFrame(() => uploadCountrySearch.focus());
+}
+
+function renderCountryOptions(countries) {
+  filteredCountryOptions = countries;
+  uploadCountryOptions.innerHTML = "";
+
+  const clearOption = document.createElement("button");
+  clearOption.type = "button";
+  clearOption.className = "country-picker-option";
+  clearOption.dataset.code = "";
+  clearOption.setAttribute("role", "option");
+  clearOption.setAttribute("aria-selected", uploadCountry.value === "" ? "true" : "false");
+
+  const clearLabel = document.createElement("span");
+  clearLabel.textContent = noCountryText;
+
+  clearOption.appendChild(clearLabel);
+
+  clearOption.addEventListener("click", () => {
+    setSelectedCountry("");
+    closeCountryListbox();
+    uploadCountryButton.focus();
+  });
+
+  clearOption.addEventListener("mousemove", () => {
+    highlightCountryOption(0);
+  });
+
+  uploadCountryOptions.appendChild(clearOption);
+
+  countries.forEach((country, index) => {
+    const optionIndex = index + 1;
+
+    const option = document.createElement("button");
+    option.type = "button";
+    option.id = `upload-country-option-${country.code.toLowerCase()}`;
+    option.className = "country-picker-option";
+    option.dataset.code = country.code;
+    option.setAttribute("role", "option");
+    option.setAttribute("aria-selected", "false");
+
+    const flag = document.createElement("span");
+    flag.className = `country-picker-option-flag ${getFlagClass(country.code)}`;
+    flag.setAttribute("aria-hidden", "true");
+
+    const optionLabel = document.createElement("span");
+    optionLabel.textContent = country.name;
+
+    option.append(flag, optionLabel);
+
+    option.addEventListener("click", () => {
+      setSelectedCountry(country.code);
+      closeCountryListbox();
+      uploadCountryButton.focus();
     });
-  } catch (error) {
-    console.error("Failed to populate country select:", error);
+
+    option.addEventListener("mousemove", () => {
+      highlightCountryOption(optionIndex);
+    });
+
+    uploadCountryOptions.appendChild(option);
+  });
+
+  highlightedCountryIndex = 0;
+  setSelectedCountry(uploadCountry.value);
+  closeCountryListbox();
+}
+
+function filterCountryOptions(query) {
+  const normalized = query.trim().toLowerCase();
+
+  const clearOption = document.createElement("button");
+  clearOption.type = "button";
+  clearOption.id = "upload-country-option-none";
+  clearOption.className = "country-picker-option";
+  clearOption.dataset.code = "";
+  clearOption.setAttribute("role", "option");
+  clearOption.setAttribute("aria-selected", uploadCountry.value === "" ? "true" : "false");
+
+  const clearLabel = document.createElement("span");
+  clearLabel.textContent = cleanedCountryPlaceholder;
+
+  clearOption.appendChild(clearLabel);
+
+  clearOption.addEventListener("click", () => {
+    setSelectedCountry("");
+    closeCountryListbox();
+    uploadCountryButton.focus();
+  });
+
+  clearOption.addEventListener("mousemove", () => {
+    highlightCountryOption(0);
+  });
+
+  uploadCountryOptions.appendChild(clearOption);
+
+  filtered.forEach((country, index) => {
+    const optionIndex = index + 1;
+    return (
+      country.name.toLowerCase().includes(normalized) ||
+      country.code.toLowerCase().includes(normalized)
+    );
+  });
+
+  uploadCountryOptions.innerHTML = "";
+
+  filtered.forEach((country, index) => {
+    const optionIndex = index + 1;
+    const option = document.createElement("button");
+    option.type = "button";
+    option.id = `upload-country-option-${country.code.toLowerCase()}`;
+    option.className = "country-picker-option";
+    option.dataset.code = country.code;
+    option.setAttribute("role", "option");
+    option.setAttribute("aria-selected", country.code === uploadCountry.value ? "true" : "false");
+
+    const flag = document.createElement("span");
+    flag.className = `country-picker-option-flag ${getFlagClass(country.code)}`;
+    flag.setAttribute("aria-hidden", "true");
+
+    const label = document.createElement("span");
+    label.textContent = country.name;
+
+    option.append(flag, label);
+
+    option.addEventListener("click", () => {
+      setSelectedCountry(country.code);
+      closeCountryListbox();
+      uploadCountryButton.focus();
+    });
+
+    option.addEventListener("mousemove", () => {
+  highlightCountryOption(optionIndex);
+});
+
+    uploadCountryOptions.appendChild(option);
+  });
+
+  filteredCountryOptions = filtered;
+  highlightedCountryIndex = filtered.length ? 0 : -1;
+
+  if (filtered.length) {
+    highlightCountryOption(0);
+  } else {
+    uploadCountryListbox.removeAttribute("aria-activedescendant");
   }
 }
 
@@ -1458,7 +1821,8 @@ console.log("Countries path:", getCountriesPath());
   function closeUploadModal() {
     uploadModal.classList.add("hidden");
     uploadUsername.value = "";
-    uploadCountry.value = "";
+    setSelectedCountry("");
+    closeCountryListbox();
     uploadError.textContent = "";
     uploadError.classList.add("hidden");
   }
@@ -1618,6 +1982,66 @@ console.log("Countries path:", getCountriesPath());
 
   populateCountrySelect();
   retryPendingScores();
+
+  uploadCountryButton.addEventListener("click", () => {
+    const isOpen = uploadCountryButton.getAttribute("aria-expanded") === "true";
+    if (isOpen) {
+      closeCountryListbox();
+    } else {
+      openCountryListbox();
+    }
+  });
+
+  uploadCountryButton.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      openCountryListbox();
+      const delta = event.key === "ArrowDown" ? 1 : -1;
+      highlightCountryOption(highlightedCountryIndex + delta);
+    }
+  });
+
+  uploadCountrySearch.addEventListener("input", (event) => {
+  filterCountryOptions(event.target.value);
+});
+
+uploadCountrySearch.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowDown") {
+    event.preventDefault();
+    highlightCountryOption(highlightedCountryIndex + 1);
+    return;
+  }
+
+  if (event.key === "ArrowUp") {
+    event.preventDefault();
+    highlightCountryOption(highlightedCountryIndex - 1);
+    return;
+  }
+
+  if (event.key === "Enter") {
+    event.preventDefault();
+    const options = uploadCountryOptions.querySelectorAll(".country-picker-option");
+    if (options[highlightedCountryIndex]) {
+      const selectedCode = options[highlightedCountryIndex].dataset.code;
+      setSelectedCountry(selectedCode);
+      closeCountryListbox();
+      uploadCountryButton.focus();
+    }
+    return;
+  }
+
+  if (event.key === "Escape") {
+    event.preventDefault();
+    closeCountryListbox();
+    uploadCountryButton.focus();
+  }
+});
+
+  document.addEventListener("click", (event) => {
+    if (!uploadCountryPicker.contains(event.target)) {
+      closeCountryListbox();
+    }
+  });
 
   window.addEventListener("online", retryPendingScores);
   window.addEventListener("focus", retryPendingScores);

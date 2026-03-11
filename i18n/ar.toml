@@ -428,3 +428,8 @@ other = "التالي →"
 ["leaderboards.spiral.pagination.page_of"]
 other = "الصفحة {{ .current }} من {{ .total }}"
 
+["spiral.upload.select_country"]
+other = "اختر الدولة"
+
+["spiral.upload.no_country"]
+other = "بدون دولة"
