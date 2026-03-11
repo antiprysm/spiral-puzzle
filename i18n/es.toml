@@ -433,3 +433,75 @@ other = "Seleccionar país"
 
 ["spiral.upload.no_country"]
 other = "Sin país"
+
+["spiral.upload.search_country_placeholder"]
+other = "Buscar país"
+
+["spiral.upload.button"]
+other = "Subir puntuación"
+
+["spiral.upload.prompt.title"]
+other = "Subir puntuación"
+
+["spiral.upload.prompt.message"]
+other = "¿Quieres subir tu puntuación a la tabla de clasificación?"
+
+["spiral.upload.prompt.yes"]
+other = "Sí"
+
+["spiral.upload.prompt.later"]
+other = "Más tarde"
+
+["spiral.upload.form.title"]
+other = "Introduce tus datos"
+
+["spiral.upload.form.username_placeholder"]
+other = "Introduce nombre de usuario"
+
+["spiral.upload.form.current_score"]
+other = "Puntuación actual:"
+
+["spiral.upload.form.submit"]
+other = "Enviar puntuación"
+
+["spiral.upload.result.done"]
+other = "Hecho"
+
+["spiral.upload.close"]
+other = "Cerrar"
+
+["spiral.upload.validation.username_required"]
+other = "El nombre de usuario es obligatorio."
+
+["spiral.upload.validation.username_length"]
+other = "El nombre de usuario debe tener entre 3 y 15 caracteres."
+
+["spiral.upload.validation.username_two_letters"]
+other = "Debe tener al menos dos letras seguidas."
+
+["spiral.upload.validation.username_repeating_chars"]
+other = "No puede tener tres caracteres repetidos."
+
+["spiral.upload.validation.username_allowed_chars"]
+other = "Solo se permiten letras, números, guiones, guiones bajos y puntos."
+
+["spiral.upload.validation.username_start"]
+other = "No puede comenzar con un guion, punto o guion bajo."
+
+["spiral.upload.validation.username_end"]
+other = "No puede terminar con un guion, punto o guion bajo."
+
+["spiral.upload.validation.username_begins_with_letter"]
+other = "Debe comenzar con una letra."
+
+["spiral.upload.validation.invalid_score"]
+other = "Puntuación no válida. La puntuación debe ser mayor que 0."
+
+["spiral.upload.result.success"]
+other = "¡Éxito! Tu puntuación se ha subido."
+
+["spiral.upload.result.offline_saved"]
+other = "La puntuación se guardó sin conexión. Se subirá cuando vuelvas a estar en línea."
+
+["spiral.upload.result.retry_later"]
+other = "La subida falló ahora mismo. Tu puntuación se guardó y se volverá a intentar más tarde."

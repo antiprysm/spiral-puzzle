@@ -433,3 +433,75 @@ other = "देश चुनें"
 
 ["spiral.upload.no_country"]
 other = "कोई देश नहीं"
+
+["spiral.upload.search_country_placeholder"]
+other = "देश खोजें"
+
+["spiral.upload.button"]
+other = "स्कोर अपलोड करें"
+
+["spiral.upload.prompt.title"]
+other = "स्कोर अपलोड करें"
+
+["spiral.upload.prompt.message"]
+other = "क्या आप अपना स्कोर लीडरबोर्ड पर अपलोड करना चाहते हैं?"
+
+["spiral.upload.prompt.yes"]
+other = "हाँ"
+
+["spiral.upload.prompt.later"]
+other = "बाद में"
+
+["spiral.upload.form.title"]
+other = "अपनी जानकारी दर्ज करें"
+
+["spiral.upload.form.username_placeholder"]
+other = "उपयोगकर्ता नाम दर्ज करें"
+
+["spiral.upload.form.current_score"]
+other = "वर्तमान स्कोर:"
+
+["spiral.upload.form.submit"]
+other = "स्कोर जमा करें"
+
+["spiral.upload.result.done"]
+other = "हो गया"
+
+["spiral.upload.close"]
+other = "बंद करें"
+
+["spiral.upload.validation.username_required"]
+other = "उपयोगकर्ता नाम आवश्यक है।"
+
+["spiral.upload.validation.username_length"]
+other = "उपयोगकर्ता नाम 3-15 अक्षरों का होना चाहिए।"
+
+["spiral.upload.validation.username_two_letters"]
+other = "कम से कम दो अक्षर लगातार होने चाहिए।"
+
+["spiral.upload.validation.username_repeating_chars"]
+other = "तीन एक जैसे अक्षर लगातार नहीं हो सकते।"
+
+["spiral.upload.validation.username_allowed_chars"]
+other = "केवल अक्षर, अंक, डैश, अंडरस्कोर और डॉट की अनुमति है।"
+
+["spiral.upload.validation.username_start"]
+other = "डैश, डॉट या अंडरस्कोर से शुरू नहीं हो सकता।"
+
+["spiral.upload.validation.username_end"]
+other = "डैश, डॉट या अंडरस्कोर पर समाप्त नहीं हो सकता।"
+
+["spiral.upload.validation.username_begins_with_letter"]
+other = "एक अक्षर से शुरू होना चाहिए।"
+
+["spiral.upload.validation.invalid_score"]
+other = "अमान्य स्कोर। स्कोर 0 से बड़ा होना चाहिए।"
+
+["spiral.upload.result.success"]
+other = "सफलता! आपका स्कोर अपलोड हो गया है।"
+
+["spiral.upload.result.offline_saved"]
+other = "स्कोर ऑफलाइन सहेजा गया। ऑनलाइन होने पर यह अपलोड हो जाएगा।"
+
+["spiral.upload.result.retry_later"]
+other = "अभी अपलोड विफल रहा। आपका स्कोर सहेजा गया है और बाद में फिर प्रयास किया जाएगा।"

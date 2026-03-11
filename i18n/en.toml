@@ -433,3 +433,75 @@ other = "Select Country"
 
 ["spiral.upload.no_country"]
 other = "No Country"
+
+["spiral.upload.search_country_placeholder"]
+other = "Search country"
+
+["spiral.upload.button"]
+other = "Upload Score"
+
+["spiral.upload.prompt.title"]
+other = "Upload Score"
+
+["spiral.upload.prompt.message"]
+other = "Do you want to upload your score to the leaderboard?"
+
+["spiral.upload.prompt.yes"]
+other = "Yes"
+
+["spiral.upload.prompt.later"]
+other = "Later"
+
+["spiral.upload.form.title"]
+other = "Enter Your Details"
+
+["spiral.upload.form.username_placeholder"]
+other = "Enter Username"
+
+["spiral.upload.form.current_score"]
+other = "Current Score:"
+
+["spiral.upload.form.submit"]
+other = "Submit Score"
+
+["spiral.upload.result.done"]
+other = "Done"
+
+["spiral.upload.close"]
+other = "Close"
+
+["spiral.upload.validation.username_required"]
+other = "Username is required."
+
+["spiral.upload.validation.username_length"]
+other = "Username must be 3-15 characters long."
+
+["spiral.upload.validation.username_two_letters"]
+other = "Must have at least two letters side-by-side."
+
+["spiral.upload.validation.username_repeating_chars"]
+other = "Cannot have three repeating characters."
+
+["spiral.upload.validation.username_allowed_chars"]
+other = "Only letters, numbers, dashes, underscores, and dots allowed."
+
+["spiral.upload.validation.username_start"]
+other = "Cannot start with a dash, dot, or underscore."
+
+["spiral.upload.validation.username_end"]
+other = "Cannot end with a dash, dot, or underscore."
+
+["spiral.upload.validation.username_begins_with_letter"]
+other = "Must begin with a letter."
+
+["spiral.upload.validation.invalid_score"]
+other = "Invalid score. Score must be greater than 0."
+
+["spiral.upload.result.success"]
+other = "Success! Your score has been uploaded."
+
+["spiral.upload.result.offline_saved"]
+other = "Score saved offline. It will upload when you're back online."
+
+["spiral.upload.result.retry_later"]
+other = "Upload failed right now. Your score was saved and will retry later."

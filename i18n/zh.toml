@@ -433,3 +433,75 @@ other = "选择国家"
 
 ["spiral.upload.no_country"]
 other = "无国家"
+
+["spiral.upload.search_country_placeholder"]
+other = "搜索国家"
+
+["spiral.upload.button"]
+other = "上传分数"
+
+["spiral.upload.prompt.title"]
+other = "上传分数"
+
+["spiral.upload.prompt.message"]
+other = "你想把你的分数上传到排行榜吗？"
+
+["spiral.upload.prompt.yes"]
+other = "是"
+
+["spiral.upload.prompt.later"]
+other = "稍后"
+
+["spiral.upload.form.title"]
+other = "输入你的信息"
+
+["spiral.upload.form.username_placeholder"]
+other = "输入用户名"
+
+["spiral.upload.form.current_score"]
+other = "当前分数："
+
+["spiral.upload.form.submit"]
+other = "提交分数"
+
+["spiral.upload.result.done"]
+other = "完成"
+
+["spiral.upload.close"]
+other = "关闭"
+
+["spiral.upload.validation.username_required"]
+other = "用户名为必填项。"
+
+["spiral.upload.validation.username_length"]
+other = "用户名长度必须为 3-15 个字符。"
+
+["spiral.upload.validation.username_two_letters"]
+other = "必须至少有两个连续字母。"
+
+["spiral.upload.validation.username_repeating_chars"]
+other = "不能有三个重复字符。"
+
+["spiral.upload.validation.username_allowed_chars"]
+other = "仅允许字母、数字、连字符、下划线和点。"
+
+["spiral.upload.validation.username_start"]
+other = "不能以下划线、点或连字符开头。"
+
+["spiral.upload.validation.username_end"]
+other = "不能以下划线、点或连字符结尾。"
+
+["spiral.upload.validation.username_begins_with_letter"]
+other = "必须以字母开头。"
+
+["spiral.upload.validation.invalid_score"]
+other = "分数无效。分数必须大于 0。"
+
+["spiral.upload.result.success"]
+other = "成功！你的分数已上传。"
+
+["spiral.upload.result.offline_saved"]
+other = "分数已离线保存。恢复联网后将自动上传。"
+
+["spiral.upload.result.retry_later"]
+other = "当前上传失败。你的分数已保存，稍后会重试。"
