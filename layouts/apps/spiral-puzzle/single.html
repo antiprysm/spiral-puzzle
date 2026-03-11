@@ -330,6 +330,93 @@
   font-size: 1rem;
 }
 
+.country-picker {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.country-picker-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  text-align: left;
+  background: #fff;
+  cursor: pointer;
+}
+
+.country-picker-trigger:focus-visible,
+.country-picker-option:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 1px;
+}
+
+.country-picker-selected-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.country-picker-flag,
+.country-picker-option-flag {
+  width: 1.25em;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
+}
+
+.country-picker-flag.hidden-flag {
+  visibility: hidden;
+}
+
+.country-picker-selected-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.country-picker-caret {
+  color: #475569;
+  font-size: 0.9rem;
+}
+
+.country-picker-list {
+  position: absolute;
+  top: calc(100% - 8px);
+  left: 0;
+  right: 0;
+  max-height: 240px;
+  overflow-y: auto;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  z-index: 5;
+}
+
+.country-picker-option {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #f1f5f9;
+  background: #fff;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.country-picker-option:last-child {
+  border-bottom: none;
+}
+
+.country-picker-option.highlighted,
+.country-picker-option[aria-selected="true"] {
+  background: #eff6ff;
+}
+
 .upload-actions {
   display: flex;
   justify-content: center;
@@ -453,7 +540,30 @@
           autocomplete="nickname"
         />
   
-        <select id="upload-country" class="upload-input"></select>
+        <div id="upload-country-picker" class="country-picker">
+          <input id="upload-country" type="hidden" value="" />
+          <button
+            id="upload-country-button"
+            class="upload-input country-picker-trigger"
+            type="button"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-controls="upload-country-listbox"
+          >
+            <span class="country-picker-selected-wrap">
+              <span id="upload-country-flag" class="country-picker-flag fi hidden-flag" aria-hidden="true"></span>
+              <span id="upload-country-selected-text" class="country-picker-selected-text">{{ i18n "spiral.upload.select_country" }}</span>
+            </span>
+            <span class="country-picker-caret" aria-hidden="true">▾</span>
+          </button>
+          <div
+            id="upload-country-listbox"
+            class="country-picker-list hidden"
+            role="listbox"
+            tabindex="-1"
+            aria-label="{{ i18n "spiral.upload.select_country" }}"
+          ></div>
+        </div>
   
         <p id="upload-error" class="upload-error hidden"></p>
         <p class="upload-score-preview">Current Score: <span id="upload-score-preview">0</span></p>
@@ -1223,13 +1333,26 @@ window.addEventListener("resize", () => {
   const PENDING_SCORES_KEY = "spiral_pending_scores";
 
   async function loadCountries() {
-    const response = await fetch(getCountriesPath());
+    const countriesPath = getCountriesPath();
 
-    if (!response.ok) {
-      throw new Error("Failed to load countries");
+    try {
+      const response = await fetch(countriesPath);
+
+      if (!response.ok) {
+        throw new Error(`Failed to load countries: ${countriesPath}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      if (countriesPath !== "/data/countries.en.json") {
+        const fallbackResponse = await fetch("/data/countries.en.json");
+        if (fallbackResponse.ok) {
+          return fallbackResponse.json();
+        }
+      }
+
+      throw error;
     }
-
-    return response.json();
   }
   const SITE_LANG = '{{ .Site.Language.Lang }}';
   console.log("Rendered SITE_LANG:", SITE_LANG);
@@ -1257,32 +1380,121 @@ console.log("Countries path:", getCountriesPath());
 
   const uploadUsername = document.getElementById("upload-username");
   const uploadCountry = document.getElementById("upload-country");
+  const uploadCountryPicker = document.getElementById("upload-country-picker");
+  const uploadCountryButton = document.getElementById("upload-country-button");
+  const uploadCountryListbox = document.getElementById("upload-country-listbox");
+  const uploadCountryFlag = document.getElementById("upload-country-flag");
+  const uploadCountrySelectedText = document.getElementById("upload-country-selected-text");
   const uploadError = document.getElementById("upload-error");
   const uploadResultText = document.getElementById("upload-result-text");
   const uploadScorePreview = document.getElementById("upload-score-preview");
   const uploadBackdrop = uploadModal.querySelector(".upload-modal-backdrop");
+  const countryPlaceholderText = {{ i18n "spiral.upload.select_country" | jsonify }};
+
+  let countryOptions = [];
+  let highlightedCountryIndex = -1;
   
   async function populateCountrySelect() {
-  uploadCountry.innerHTML = "";
-
-  const placeholder = document.createElement("option");
-  placeholder.value = "";
-  placeholder.textContent = {{ i18n "spiral.upload.select_country" | jsonify }};
-  uploadCountry.appendChild(placeholder);
-
-  try {
-    const countries = await loadCountries();
-
-    countries.forEach((country) => {
-      const option = document.createElement("option");
-      option.value = country.code;
-      option.textContent = country.name;
-      uploadCountry.appendChild(option);
-    });
-  } catch (error) {
-    console.error("Failed to populate country select:", error);
+    try {
+      const countries = await loadCountries();
+      countryOptions = countries;
+      renderCountryOptions(countries);
+    } catch (error) {
+      console.error("Failed to populate country select:", error);
+      countryOptions = [];
+      renderCountryOptions([]);
+    }
   }
-}
+
+  function getFlagClass(code) {
+    return `fi fi-${code.toLowerCase()}`;
+  }
+
+  function setSelectedCountry(code) {
+    const country = countryOptions.find((item) => item.code === code);
+
+    uploadCountry.value = country ? country.code : "";
+    uploadCountrySelectedText.textContent = country ? country.name : countryPlaceholderText;
+    uploadCountryFlag.className = "country-picker-flag fi";
+
+    if (country) {
+      uploadCountryFlag.classList.remove("hidden-flag");
+      uploadCountryFlag.classList.add(...getFlagClass(country.code).split(" "));
+    } else {
+      uploadCountryFlag.classList.add("hidden-flag");
+    }
+
+    const options = uploadCountryListbox.querySelectorAll(".country-picker-option");
+    options.forEach((option) => {
+      option.setAttribute("aria-selected", option.dataset.code === uploadCountry.value ? "true" : "false");
+    });
+  }
+
+  function closeCountryListbox() {
+    uploadCountryButton.setAttribute("aria-expanded", "false");
+    uploadCountryListbox.classList.add("hidden");
+  }
+
+  function highlightCountryOption(index) {
+    const options = uploadCountryListbox.querySelectorAll(".country-picker-option");
+    if (options.length === 0) return;
+
+    highlightedCountryIndex = Math.max(0, Math.min(index, options.length - 1));
+    options.forEach((option, optionIndex) => {
+      option.classList.toggle("highlighted", optionIndex === highlightedCountryIndex);
+    });
+
+    options[highlightedCountryIndex].scrollIntoView({ block: "nearest" });
+    uploadCountryListbox.setAttribute("aria-activedescendant", options[highlightedCountryIndex].id);
+  }
+
+  function openCountryListbox() {
+    if (!countryOptions.length) return;
+
+    uploadCountryButton.setAttribute("aria-expanded", "true");
+    uploadCountryListbox.classList.remove("hidden");
+
+    const selectedIndex = countryOptions.findIndex((country) => country.code === uploadCountry.value);
+    highlightCountryOption(selectedIndex >= 0 ? selectedIndex : 0);
+    uploadCountryListbox.focus();
+  }
+
+  function renderCountryOptions(countries) {
+    uploadCountryListbox.innerHTML = "";
+
+    countries.forEach((country, index) => {
+      const option = document.createElement("button");
+      option.type = "button";
+      option.id = `upload-country-option-${country.code.toLowerCase()}`;
+      option.className = "country-picker-option";
+      option.dataset.code = country.code;
+      option.setAttribute("role", "option");
+      option.setAttribute("aria-selected", "false");
+
+      const flag = document.createElement("span");
+      flag.className = `country-picker-option-flag ${getFlagClass(country.code)}`;
+      flag.setAttribute("aria-hidden", "true");
+
+      const label = document.createElement("span");
+      label.textContent = country.name;
+
+      option.append(flag, label);
+      option.addEventListener("click", () => {
+        setSelectedCountry(country.code);
+        closeCountryListbox();
+        uploadCountryButton.focus();
+      });
+
+      option.addEventListener("mousemove", () => {
+        highlightCountryOption(index);
+      });
+
+      uploadCountryListbox.appendChild(option);
+    });
+
+    setSelectedCountry("");
+    closeCountryListbox();
+  }
 
   function openUploadModal() {
     uploadScorePreview.textContent = score;
@@ -1299,7 +1511,8 @@ console.log("Countries path:", getCountriesPath());
   function closeUploadModal() {
     uploadModal.classList.add("hidden");
     uploadUsername.value = "";
-    uploadCountry.value = "";
+    setSelectedCountry("");
+    closeCountryListbox();
     uploadError.textContent = "";
     uploadError.classList.add("hidden");
   }
@@ -1459,6 +1672,56 @@ console.log("Countries path:", getCountriesPath());
 
   populateCountrySelect();
   retryPendingScores();
+
+  uploadCountryButton.addEventListener("click", () => {
+    const isOpen = uploadCountryButton.getAttribute("aria-expanded") === "true";
+    if (isOpen) {
+      closeCountryListbox();
+    } else {
+      openCountryListbox();
+    }
+  });
+
+  uploadCountryButton.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      openCountryListbox();
+      const delta = event.key === "ArrowDown" ? 1 : -1;
+      highlightCountryOption(highlightedCountryIndex + delta);
+    }
+  });
+
+  uploadCountryListbox.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeCountryListbox();
+      uploadCountryButton.focus();
+      return;
+    }
+
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      const delta = event.key === "ArrowDown" ? 1 : -1;
+      highlightCountryOption(highlightedCountryIndex + delta);
+      return;
+    }
+
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      const options = uploadCountryListbox.querySelectorAll(".country-picker-option");
+      if (options[highlightedCountryIndex]) {
+        const selectedCode = options[highlightedCountryIndex].dataset.code;
+        setSelectedCountry(selectedCode);
+        closeCountryListbox();
+        uploadCountryButton.focus();
+      }
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!uploadCountryPicker.contains(event.target)) {
+      closeCountryListbox();
+    }
+  });
 
   window.addEventListener("online", retryPendingScores);
   window.addEventListener("focus", retryPendingScores);
