@@ -1593,6 +1593,20 @@ console.log("Countries path:", getCountriesPath());
   const cleanedCountryPlaceholder = countryPlaceholderText.replace(/^"(.*)"$/, "$1");
   const noCountryTextRaw = "\"No Country\"";
   const noCountryText = noCountryTextRaw.replace(/^"(.*)"$/, "$1");
+  const uploadI18n = {
+    usernameRequired: "\"Username is required.\"",
+    usernameLength: "\"Username must be 3-15 characters long.\"",
+    usernameTwoLetters: "\"Must have at least two letters side-by-side.\"",
+    usernameRepeatingChars: "\"Cannot have three repeating characters.\"",
+    usernameAllowedChars: "\"Only letters, numbers, dashes, underscores, and dots allowed.\"",
+    usernameStart: "\"Cannot start with a dash, dot, or underscore.\"",
+    usernameEnd: "\"Cannot end with a dash, dot, or underscore.\"",
+    usernameBeginsWithLetter: "\"Must begin with a letter.\"",
+    invalidScore: "\"Invalid score. Score must be greater than 0.\"",
+    uploadSuccess: "\"Success! Your score has been uploaded.\"",
+    offlineSaved: "\"Score saved offline. It will upload when you're back online.\"",
+    retryLater: "\"Upload failed right now. Your score was saved and will retry later.\""
+  };
 
   let countryOptions = [];
   let highlightedCountryIndex = -1;
@@ -1730,6 +1744,12 @@ function renderCountryOptions(countries) {
 
 function filterCountryOptions(query) {
   const normalized = query.trim().toLowerCase();
+  const filtered = countryOptions.filter((country) => (
+    country.name.toLowerCase().includes(normalized) ||
+    country.code.toLowerCase().includes(normalized)
+  ));
+
+  uploadCountryOptions.innerHTML = "";
 
   const clearOption = document.createElement("button");
   clearOption.type = "button";
@@ -1740,7 +1760,7 @@ function filterCountryOptions(query) {
   clearOption.setAttribute("aria-selected", uploadCountry.value === "" ? "true" : "false");
 
   const clearLabel = document.createElement("span");
-  clearLabel.textContent = cleanedCountryPlaceholder;
+  clearLabel.textContent = noCountryText;
 
   clearOption.appendChild(clearLabel);
 
@@ -1755,16 +1775,6 @@ function filterCountryOptions(query) {
   });
 
   uploadCountryOptions.appendChild(clearOption);
-
-  filtered.forEach((country, index) => {
-    const optionIndex = index + 1;
-    return (
-      country.name.toLowerCase().includes(normalized) ||
-      country.code.toLowerCase().includes(normalized)
-    );
-  });
-
-  uploadCountryOptions.innerHTML = "";
 
   filtered.forEach((country, index) => {
     const optionIndex = index + 1;
@@ -1792,21 +1802,17 @@ function filterCountryOptions(query) {
     });
 
     option.addEventListener("mousemove", () => {
-  highlightCountryOption(optionIndex);
-});
+      highlightCountryOption(optionIndex);
+    });
 
     uploadCountryOptions.appendChild(option);
   });
 
   filteredCountryOptions = filtered;
-  highlightedCountryIndex = filtered.length ? 0 : -1;
-
-  if (filtered.length) {
-    highlightCountryOption(0);
-  } else {
-    uploadCountryListbox.removeAttribute("aria-activedescendant");
-  }
+  highlightedCountryIndex = 0;
+  highlightCountryOption(0);
 }
+
 
   function openUploadModal() {
     uploadScorePreview.textContent = score;
@@ -1845,14 +1851,14 @@ function filterCountryOptions(query) {
 
   function getUsernameError(name) {
     const trimmedName = name.trim();
-    if (trimmedName.length === 0) return "Username is required.";
-    if (trimmedName.length < 3 || trimmedName.length > 15) return "Username must be 3-15 characters long.";
-    if (!/[a-zA-Z]{2}/.test(trimmedName)) return "Must have at least two letters side-by-side.";
-    if (/(.)\1{2}/.test(trimmedName)) return "Cannot have three repeating characters.";
-    if (!/^([a-zA-Z0-9_.-]+)$/.test(trimmedName)) return "Only letters, numbers, dashes, underscores, and dots allowed.";
-    if (trimmedName.startsWith("_") || trimmedName.startsWith(".") || trimmedName.startsWith("-")) return "Cannot start with a dash, dot, or underscore.";
-    if (trimmedName.endsWith("_") || trimmedName.endsWith(".") || trimmedName.endsWith("-")) return "Cannot end with a dash, dot, or underscore.";
-    if (!/^[a-zA-Z].*/.test(trimmedName)) return "Must begin with a letter.";
+    if (trimmedName.length === 0) return uploadI18n.usernameRequired;
+    if (trimmedName.length < 3 || trimmedName.length > 15) return uploadI18n.usernameLength;
+    if (!/[a-zA-Z]{2}/.test(trimmedName)) return uploadI18n.usernameTwoLetters;
+    if (/(.)\1{2}/.test(trimmedName)) return uploadI18n.usernameRepeatingChars;
+    if (!/^([a-zA-Z0-9_.-]+)$/.test(trimmedName)) return uploadI18n.usernameAllowedChars;
+    if (trimmedName.startsWith("_") || trimmedName.startsWith(".") || trimmedName.startsWith("-")) return uploadI18n.usernameStart;
+    if (trimmedName.endsWith("_") || trimmedName.endsWith(".") || trimmedName.endsWith("-")) return uploadI18n.usernameEnd;
+    if (!/^[a-zA-Z].*/.test(trimmedName)) return uploadI18n.usernameBeginsWithLetter;
     return "";
   }
 
@@ -1946,14 +1952,8 @@ function filterCountryOptions(query) {
       return;
     }
 
-    if (!countryISO) {
-      uploadError.textContent = "Please select a country.";
-      uploadError.classList.remove("hidden");
-      return;
-    }
-
     if (score <= 0) {
-      showUploadResult("Invalid score. Score must be greater than 0.");
+      showUploadResult(uploadI18n.invalidScore);
       return;
     }
 
@@ -1970,15 +1970,15 @@ function filterCountryOptions(query) {
     try {
       if (navigator.onLine) {
         await postScore(scoreData);
-        showUploadResult("Success! Your score has been uploaded.");
+        showUploadResult(uploadI18n.uploadSuccess);
       } else {
         queuePendingScore(scoreData);
-        showUploadResult("Score saved offline. It will upload when you're back online.");
+        showUploadResult(uploadI18n.offlineSaved);
       }
     } catch (error) {
       console.error("[upload] submit failed:", error);
       queuePendingScore(scoreData);
-      showUploadResult("Upload failed right now. Your score was saved and will retry later.");
+      showUploadResult(uploadI18n.retryLater);
     }
   }
 

@@ -17,6 +17,11 @@
   <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   <link rel="stylesheet" href="/css/site.css">
   
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css"
+/>
+
 
   <script>
     window.ModelViewerElement = window.ModelViewerElement || {};
@@ -376,6 +381,31 @@
 [dir="rtl"] .leaderboard-card {
   text-align: right;
 }
+
+.lb-country-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.lb-country-flag {
+  width: 1.1em;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.lb-country-code {
+  display: inline-block;
+}
+
+.leaderboard-card .country {
+  display: flex;
+  justify-content: center;
+}
+
+[dir="rtl"] .lb-country-wrap {
+  flex-direction: row-reverse;
+}
 </style>
 
 <script id="leaderboard-i18n" type="application/json">
@@ -418,6 +448,24 @@
     .replaceAll("__TOTAL__", vars.total ?? "");
 }
 
+function renderCountryMarkup(countryCodeRaw) {
+  const countryCode = String(countryCodeRaw || "").trim().toUpperCase();
+
+  if (!countryCode) {
+    return "";
+  }
+
+  const safeCode = escapeHtml(countryCode);
+  const flagClass = `fi fi-${countryCode.toLowerCase()}`;
+
+  return `
+    <span class="lb-country-wrap">
+      <span class="lb-country-flag ${flagClass}" aria-hidden="true"></span>
+      <span class="lb-country-code">${safeCode}</span>
+    </span>
+  `;
+}
+
   function escapeHtml(value) {
     return String(value ?? "")
       .replaceAll("&", "&amp;")
@@ -449,7 +497,7 @@
       card.innerHTML = `
         <div class="medal">${medalForRank(rank)}</div>
         <div class="player">#${rank} ${escapeHtml(row.username)}</div>
-        <div class="country">${escapeHtml(row.countryiso || row.countryISO || "")}</div>
+        <div class="country">${renderCountryMarkup(row.countryiso || row.countryISO || "")}</div>
         <div class="score">${Number(row.score || 0).toLocaleString()}</div>
       `;
       top3El.appendChild(card);
@@ -470,7 +518,7 @@
       tr.innerHTML = `
         <td>${absoluteRank}</td>
         <td>${escapeHtml(row.username)}</td>
-        <td>${escapeHtml(row.countryiso || row.countryISO || "")}</td>
+        <td>${renderCountryMarkup(row.countryiso || row.countryISO || "")}</td>
         <td>${Number(row.score || 0).toLocaleString()}</td>
       `;
       bodyEl.appendChild(tr);

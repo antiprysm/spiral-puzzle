@@ -690,7 +690,7 @@
 
   <div class="score-row">
     <p class="score text-shadow">النتيجة: <span id="score">0</span></p>
-    <button id="upload-score-button" class="upload-score-button">☁ Upload Score</button>
+    <button id="upload-score-button" class="upload-score-button">☁ رفع النتيجة</button>
   </div>
   <p class="instructions">انقر واسحب لإجراء اختيارك بحركة واحدة</p>
 
@@ -712,25 +712,25 @@
   <div id="upload-modal" class="upload-modal hidden">
     <div class="upload-modal-backdrop"></div>
     <div class="upload-modal-card">
-      <button id="upload-close-button" class="upload-close-button" aria-label="Close">✖</button>
+      <button id="upload-close-button" class="upload-close-button" aria-label="إغلاق">✖</button>
   
       <div id="upload-step-prompt" class="upload-step">
-        <h3>Upload Score</h3>
-        <p>Do you want to upload your score to the leaderboard?</p>
+        <h3>رفع النتيجة</h3>
+        <p>هل تريد رفع نتيجتك إلى لوحة المتصدرين؟</p>
         <div class="upload-actions">
-          <button id="upload-yes-button" class="primary-button">Yes</button>
-          <button id="upload-later-button" class="secondary-button">Later</button>
+          <button id="upload-yes-button" class="primary-button">نعم</button>
+          <button id="upload-later-button" class="secondary-button">لاحقًا</button>
         </div>
       </div>
   
       <div id="upload-step-form" class="upload-step hidden">
-        <h3>Enter Your Details</h3>
+        <h3>أدخل بياناتك</h3>
   
         <input
           id="upload-username"
           class="upload-input"
           type="text"
-          placeholder="Enter Username"
+          placeholder="أدخل اسم المستخدم"
           maxlength="15"
           autocomplete="nickname"
         />
@@ -762,7 +762,7 @@
               id="upload-country-search"
               class="country-picker-search"
               type="text"
-              placeholder="Search country"
+              placeholder="ابحث عن دولة"
               autocomplete="off"
             />
             <div id="upload-country-options"></div>
@@ -770,17 +770,17 @@
         </div>
   
         <p id="upload-error" class="upload-error hidden"></p>
-        <p class="upload-score-preview">Current Score: <span id="upload-score-preview">0</span></p>
+        <p class="upload-score-preview">النتيجة الحالية: <span id="upload-score-preview">0</span></p>
   
         <div class="upload-actions">
-          <button id="upload-submit-button" class="primary-button">Submit Score</button>
+          <button id="upload-submit-button" class="primary-button">إرسال النتيجة</button>
         </div>
       </div>
   
       <div id="upload-step-result" class="upload-step hidden">
-        <h3 id="upload-result-text">Done</h3>
+        <h3 id="upload-result-text">تم</h3>
         <div class="upload-actions">
-          <button id="upload-result-close-button" class="primary-button">Close</button>
+          <button id="upload-result-close-button" class="primary-button">إغلاق</button>
         </div>
       </div>
     </div>
@@ -1589,8 +1589,24 @@ console.log("Countries path:", getCountriesPath());
   const uploadResultText = document.getElementById("upload-result-text");
   const uploadScorePreview = document.getElementById("upload-score-preview");
   const uploadBackdrop = uploadModal.querySelector(".upload-modal-backdrop");
-  const countryPlaceholderText = "\"اختر الدولة\"".replace(/^"(.*)"$/, "$1");
-  const noCountryText = "\"بدون دولة\"";
+  const countryPlaceholderText = "\"اختر الدولة\"";
+  const cleanedCountryPlaceholder = countryPlaceholderText.replace(/^"(.*)"$/, "$1");
+  const noCountryTextRaw = "\"بدون دولة\"";
+  const noCountryText = noCountryTextRaw.replace(/^"(.*)"$/, "$1");
+  const uploadI18n = {
+    usernameRequired: "\"اسم المستخدم مطلوب.\"",
+    usernameLength: "\"يجب أن يكون اسم المستخدم بين 3 و15 حرفًا.\"",
+    usernameTwoLetters: "\"يجب أن يحتوي على حرفين متتاليين على الأقل.\"",
+    usernameRepeatingChars: "\"لا يمكن أن يحتوي على ثلاثة أحرف متكررة.\"",
+    usernameAllowedChars: "\"يُسمح فقط بالأحرف والأرقام والشرطات والشرطات السفلية والنقاط.\"",
+    usernameStart: "\"لا يمكن أن يبدأ بشرطة أو نقطة أو شرطة سفلية.\"",
+    usernameEnd: "\"لا يمكن أن ينتهي بشرطة أو نقطة أو شرطة سفلية.\"",
+    usernameBeginsWithLetter: "\"يجب أن يبدأ بحرف.\"",
+    invalidScore: "\"نتيجة غير صالحة. يجب أن تكون النتيجة أكبر من 0.\"",
+    uploadSuccess: "\"نجاح! تم رفع نتيجتك.\"",
+    offlineSaved: "\"تم حفظ النتيجة بدون اتصال. سيتم رفعها عند عودتك إلى الإنترنت.\"",
+    retryLater: "\"فشل الرفع الآن. تم حفظ نتيجتك وستتم إعادة المحاولة لاحقًا.\""
+  };
 
   let countryOptions = [];
   let highlightedCountryIndex = -1;
@@ -1728,6 +1744,12 @@ function renderCountryOptions(countries) {
 
 function filterCountryOptions(query) {
   const normalized = query.trim().toLowerCase();
+  const filtered = countryOptions.filter((country) => (
+    country.name.toLowerCase().includes(normalized) ||
+    country.code.toLowerCase().includes(normalized)
+  ));
+
+  uploadCountryOptions.innerHTML = "";
 
   const clearOption = document.createElement("button");
   clearOption.type = "button";
@@ -1738,7 +1760,7 @@ function filterCountryOptions(query) {
   clearOption.setAttribute("aria-selected", uploadCountry.value === "" ? "true" : "false");
 
   const clearLabel = document.createElement("span");
-  clearLabel.textContent = cleanedCountryPlaceholder;
+  clearLabel.textContent = noCountryText;
 
   clearOption.appendChild(clearLabel);
 
@@ -1753,16 +1775,6 @@ function filterCountryOptions(query) {
   });
 
   uploadCountryOptions.appendChild(clearOption);
-
-  filtered.forEach((country, index) => {
-    const optionIndex = index + 1;
-    return (
-      country.name.toLowerCase().includes(normalized) ||
-      country.code.toLowerCase().includes(normalized)
-    );
-  });
-
-  uploadCountryOptions.innerHTML = "";
 
   filtered.forEach((country, index) => {
     const optionIndex = index + 1;
@@ -1790,21 +1802,17 @@ function filterCountryOptions(query) {
     });
 
     option.addEventListener("mousemove", () => {
-  highlightCountryOption(optionIndex);
-});
+      highlightCountryOption(optionIndex);
+    });
 
     uploadCountryOptions.appendChild(option);
   });
 
   filteredCountryOptions = filtered;
-  highlightedCountryIndex = filtered.length ? 0 : -1;
-
-  if (filtered.length) {
-    highlightCountryOption(0);
-  } else {
-    uploadCountryListbox.removeAttribute("aria-activedescendant");
-  }
+  highlightedCountryIndex = 0;
+  highlightCountryOption(0);
 }
+
 
   function openUploadModal() {
     uploadScorePreview.textContent = score;
@@ -1843,14 +1851,14 @@ function filterCountryOptions(query) {
 
   function getUsernameError(name) {
     const trimmedName = name.trim();
-    if (trimmedName.length === 0) return "Username is required.";
-    if (trimmedName.length < 3 || trimmedName.length > 15) return "Username must be 3-15 characters long.";
-    if (!/[a-zA-Z]{2}/.test(trimmedName)) return "Must have at least two letters side-by-side.";
-    if (/(.)\1{2}/.test(trimmedName)) return "Cannot have three repeating characters.";
-    if (!/^([a-zA-Z0-9_.-]+)$/.test(trimmedName)) return "Only letters, numbers, dashes, underscores, and dots allowed.";
-    if (trimmedName.startsWith("_") || trimmedName.startsWith(".") || trimmedName.startsWith("-")) return "Cannot start with a dash, dot, or underscore.";
-    if (trimmedName.endsWith("_") || trimmedName.endsWith(".") || trimmedName.endsWith("-")) return "Cannot end with a dash, dot, or underscore.";
-    if (!/^[a-zA-Z].*/.test(trimmedName)) return "Must begin with a letter.";
+    if (trimmedName.length === 0) return uploadI18n.usernameRequired;
+    if (trimmedName.length < 3 || trimmedName.length > 15) return uploadI18n.usernameLength;
+    if (!/[a-zA-Z]{2}/.test(trimmedName)) return uploadI18n.usernameTwoLetters;
+    if (/(.)\1{2}/.test(trimmedName)) return uploadI18n.usernameRepeatingChars;
+    if (!/^([a-zA-Z0-9_.-]+)$/.test(trimmedName)) return uploadI18n.usernameAllowedChars;
+    if (trimmedName.startsWith("_") || trimmedName.startsWith(".") || trimmedName.startsWith("-")) return uploadI18n.usernameStart;
+    if (trimmedName.endsWith("_") || trimmedName.endsWith(".") || trimmedName.endsWith("-")) return uploadI18n.usernameEnd;
+    if (!/^[a-zA-Z].*/.test(trimmedName)) return uploadI18n.usernameBeginsWithLetter;
     return "";
   }
 
@@ -1944,14 +1952,8 @@ function filterCountryOptions(query) {
       return;
     }
 
-    if (!countryISO) {
-      uploadError.textContent = "Please select a country.";
-      uploadError.classList.remove("hidden");
-      return;
-    }
-
     if (score <= 0) {
-      showUploadResult("Invalid score. Score must be greater than 0.");
+      showUploadResult(uploadI18n.invalidScore);
       return;
     }
 
@@ -1968,15 +1970,15 @@ function filterCountryOptions(query) {
     try {
       if (navigator.onLine) {
         await postScore(scoreData);
-        showUploadResult("Success! Your score has been uploaded.");
+        showUploadResult(uploadI18n.uploadSuccess);
       } else {
         queuePendingScore(scoreData);
-        showUploadResult("Score saved offline. It will upload when you're back online.");
+        showUploadResult(uploadI18n.offlineSaved);
       }
     } catch (error) {
       console.error("[upload] submit failed:", error);
       queuePendingScore(scoreData);
-      showUploadResult("Upload failed right now. Your score was saved and will retry later.");
+      showUploadResult(uploadI18n.retryLater);
     }
   }
 
