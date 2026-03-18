@@ -368,3 +368,34 @@ h2 { margin: 0 0 1rem; }
     justify-content: flex-start;
   }
 }
+
+footer {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-text {
+  margin: 0;
+  color: #777
+}
+
+.footer-logo {
+  height: clamp(40px, 5vw, 80px);
+  width: auto;
+  opacity: 0.9;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.footer-logo:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.footer-logo:hover {
+  opacity: 1;
+}
