@@ -505,3 +505,99 @@ other = "分数已离线保存。恢复联网后将自动上传。"
 
 ["spiral.upload.result.retry_later"]
 other = "当前上传失败。你的分数已保存，稍后会重试。"
+
+["catchledger.hero.eyebrow"]
+other = "CatchLedger"
+
+["catchledger.hero.sublead"]
+other = "将渔获、销售、支出和导出记录集中整理在一个地方。"
+
+["catchledger.carousel.preview"]
+other = "预览应用运行效果"
+
+["catchledger.carousel.dashboard"]
+other = "一切尽在一处"
+
+["catchledger.carousel.log_catch"]
+other = "立即记录你的渔获"
+
+["catchledger.carousel.inventory"]
+other = "跟踪每一次渔获"
+
+["catchledger.carousel.sales"]
+other = "轻松记录销售"
+
+["catchledger.carousel.profit"]
+other = "了解你的真实利润"
+
+["catchledger.carousel.reports"]
+other = "导出你的记录"
+
+["catchledger.features.inventory.kicker"]
+other = "库存"
+
+["catchledger.features.inventory.title"]
+other = "清晰管理渔获"
+
+["catchledger.features.inventory.body"]
+other = "将品种、数量、价格、质量和地点等信息整齐记录，不再杂乱。"
+
+["catchledger.features.sales.kicker"]
+other = "销售"
+
+["catchledger.features.sales.title"]
+other = "记录每一笔交易"
+
+["catchledger.features.sales.body"]
+other = "保存买家信息、付款方式和销售地点，让每笔交易都便于查看。"
+
+["catchledger.features.reports.kicker"]
+other = "报表"
+
+["catchledger.features.reports.title"]
+other = "需要时随时导出"
+
+["catchledger.features.reports.body"]
+other = "生成用于记账、报税、合规或与会计共享的记录。"
+
+["catchledger.workflow.step1.title"]
+other = "记录渔获"
+
+["catchledger.workflow.step1.body"]
+other = "快速添加鱼类记录，并填写重要细节。"
+
+["catchledger.workflow.step2.title"]
+other = "跟踪销售和支出"
+
+["catchledger.workflow.step2.body"]
+other = "无需零散笔记，也能查看卖出了什么、花费了什么。"
+
+["catchledger.workflow.step3.title"]
+other = "查看并导出"
+
+["catchledger.workflow.step3.body"]
+other = "随时为记账、报表和业务复盘做好准备。"
+
+["catchledger.cta.title"]
+other = "立即获取 CatchLedger"
+
+["catchledger.cta.body"]
+other = "适用于 iPhone、iPad 和 Android。"
+
+["catchledger.store.apple_alt"]
+other = "在 App Store 下载 CatchLedger"
+
+["catchledger.store.google_alt"]
+other = "在 Google Play 获取 CatchLedger"
+
+["catchledger.a11y.prev_slide"]
+other = "上一张幻灯片"
+
+["catchledger.a11y.next_slide"]
+other = "下一张幻灯片"
+
+["catchledger.a11y.pagination"]
+other = "轮播分页"
+
+["catchledger.a11y.go_to_slide"]
+other = "转到第 __INDEX__ 张幻灯片"

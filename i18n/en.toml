@@ -505,3 +505,99 @@ other = "Score saved offline. It will upload when you're back online."
 
 ["spiral.upload.result.retry_later"]
 other = "Upload failed right now. Your score was saved and will retry later."
+
+[catchledger.hero.eyebrow]
+other = "CatchLedger"
+
+[catchledger.hero.sublead]
+other = "Organize catches, sales, expenses, and exports in one place."
+
+[catchledger.carousel.preview]
+other = "Preview the app in motion"
+
+[catchledger.carousel.dashboard]
+other = "Everything in one place"
+
+[catchledger.carousel.log_catch]
+other = "Log your catch instantly"
+
+[catchledger.carousel.inventory]
+other = "Track every catch"
+
+[catchledger.carousel.sales]
+other = "Record sales with ease"
+
+[catchledger.carousel.profit]
+other = "Know your true profit"
+
+[catchledger.carousel.reports]
+other = "Export your records"
+
+[catchledger.features.inventory.kicker]
+other = "Inventory"
+
+[catchledger.features.inventory.title]
+other = "Track catches clearly"
+
+[catchledger.features.inventory.body]
+other = "Keep species, quantities, pricing, quality, and location details organized without clutter."
+
+[catchledger.features.sales.kicker]
+other = "Sales"
+
+[catchledger.features.sales.title]
+other = "Record each transaction"
+
+[catchledger.features.sales.body]
+other = "Capture buyer info, payment type, and sale location so every transaction stays easy to review."
+
+[catchledger.features.reports.kicker]
+other = "Reports"
+
+[catchledger.features.reports.title]
+other = "Export when needed"
+
+[catchledger.features.reports.body]
+other = "Generate records for bookkeeping, taxes, compliance, or sharing with an accountant."
+
+[catchledger.workflow.step1.title]
+other = "Log catches"
+
+[catchledger.workflow.step1.body]
+other = "Add fish entries quickly with details that matter."
+
+[catchledger.workflow.step2.title]
+other = "Track sales and expenses"
+
+[catchledger.workflow.step2.body]
+other = "See what was sold and what was spent without scattered notes."
+
+[catchledger.workflow.step3.title]
+other = "Review and export"
+
+[catchledger.workflow.step3.body]
+other = "Stay ready for bookkeeping, reporting, and business review."
+
+[catchledger.cta.title]
+other = "Get CatchLedger today"
+
+[catchledger.cta.body]
+other = "Available on iPhone, iPad, and Android."
+
+[catchledger.store.apple_alt]
+other = "Download CatchLedger on the App Store"
+
+[catchledger.store.google_alt]
+other = "Get CatchLedger on Google Play"
+
+[catchledger.a11y.prev_slide]
+other = "Previous slide"
+
+[catchledger.a11y.next_slide]
+other = "Next slide"
+
+[catchledger.a11y.pagination]
+other = "Carousel pagination"
+
+[catchledger.a11y.go_to_slide]
+other = "Go to slide __INDEX__"
