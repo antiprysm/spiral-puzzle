@@ -2,6 +2,7 @@
 title: "CatchLedger"
 description: "تطبيق بسيط لتتبع المصيد والسجل."
 translationKey: "apps-catchledger"
+type: 'apps/catchledger'
 ---
 يساعدك CatchLedger على إبقاء سجلات النشاط منظمة دون تعقيد.
 

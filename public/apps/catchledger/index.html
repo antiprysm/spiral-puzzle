@@ -168,7 +168,11 @@
 
   <main class="wrap">
     
-  <div class="catchledger-shell" id="catchledger-shell">
+    <div
+        class="catchledger-shell"
+        id="catchledger-shell"
+        data-go-to-slide-label='Go to slide __INDEX__'
+        >
     <div class="catchledger-bg" aria-hidden="true">
       <div class="catchledger-bg-base" id="bg-base"></div>
       <div class="catchledger-bg-fade" id="bg-fade"></div>
@@ -204,7 +208,7 @@
           >
             <img
               src="/img/Download_on_the_App_Store_Badge.png"
-              alt="Download on the App Store"
+              alt="Download CatchLedger on the App Store"
               class="store-badge-img"
             >
           </a>
@@ -217,7 +221,7 @@
           >
             <img
               src="/img/get-it-on-google-play-download.png"
-              alt="Get it on Google Play"
+              alt="Get CatchLedger on Google Play"
               class="store-badge-img"
             >
           </a>
@@ -251,42 +255,42 @@
 
               <article class="catchledger-card" data-theme="early" data-index="1">
                 <div class="catchledger-device">
-                  <img src="/img/catchledger-dashboard.jpg" alt="CatchLedger dashboard screen" class="catchledger-media" loading="lazy">
+                  <img src="/img/catchledger-dashboard.jpg" alt="Everything in one place" class="catchledger-media" loading="lazy">
                 </div>
                 <p class="catchledger-caption">Everything in one place</p>
               </article>
 
               <article class="catchledger-card" data-theme="dawn" data-index="2">
                 <div class="catchledger-device">
-                  <img src="/img/catchledger-log-catch.jpg" alt="CatchLedger log catch screen" class="catchledger-media" loading="lazy">
+                  <img src="/img/catchledger-log-catch.jpg" alt="Log your catch instantly" class="catchledger-media" loading="lazy">
                 </div>
                 <p class="catchledger-caption">Log your catch instantly</p>
               </article>
 
               <article class="catchledger-card" data-theme="sunrise" data-index="3">
                 <div class="catchledger-device">
-                  <img src="/img/catchledger-inventory.jpg" alt="CatchLedger inventory screen" class="catchledger-media" loading="lazy">
+                  <img src="/img/catchledger-inventory.jpg" alt="Track every catch" class="catchledger-media" loading="lazy">
                 </div>
                 <p class="catchledger-caption">Track every catch</p>
               </article>
 
               <article class="catchledger-card" data-theme="day" data-index="4">
                 <div class="catchledger-device">
-                  <img src="/img/catchledger-sales-entry.jpg" alt="CatchLedger sales entry screen" class="catchledger-media" loading="lazy">
+                  <img src="/img/catchledger-sales-entry.jpg" alt="Record sales with ease" class="catchledger-media" loading="lazy">
                 </div>
                 <p class="catchledger-caption">Record sales with ease</p>
               </article>
 
               <article class="catchledger-card" data-theme="golden" data-index="5">
                 <div class="catchledger-device">
-                  <img src="/img/catchledger-profit.jpg" alt="CatchLedger profit screen" class="catchledger-media" loading="lazy">
+                  <img src="/img/catchledger-profit.jpg" alt="Know your true profit" class="catchledger-media" loading="lazy">
                 </div>
                 <p class="catchledger-caption">Know your true profit</p>
               </article>
 
               <article class="catchledger-card" data-theme="clear" data-index="6">
                 <div class="catchledger-device">
-                  <img src="/img/catchledger-reports.jpg" alt="CatchLedger reports screen" class="catchledger-media" loading="lazy">
+                  <img src="/img/catchledger-reports.jpg" alt="Export your records" class="catchledger-media" loading="lazy">
                 </div>
                 <p class="catchledger-caption">Export your records</p>
               </article>
@@ -370,7 +374,7 @@
         >
           <img
             src="/img/Download_on_the_App_Store_Badge.png"
-            alt="Download on the App Store"
+            alt="Download CatchLedger on the App Store"
             class="store-badge-img"
           >
         </a>
@@ -383,7 +387,7 @@
         >
           <img
             src="/img/get-it-on-google-play-download.png"
-            alt="Get it on Google Play"
+            alt="Get CatchLedger on Google Play"
             class="store-badge-img"
           >
         </a>
@@ -393,9 +397,10 @@
 
   <script>
     (() => {
-      const DEBUG_BG = true;
+      const DEBUG_BG = false;
   
       const shell = document.getElementById('catchledger-shell');
+      const goToSlideLabelTemplate = shell.dataset.goToSlideLabel || 'Go to slide __INDEX__';
       const trackWrap = document.getElementById('catchledger-track-wrap');
       const track = document.getElementById('catchledger-track');
       const cards = Array.from(track.querySelectorAll('.catchledger-card'));
@@ -431,7 +436,7 @@
         const dot = document.createElement('button');
         dot.type = 'button';
         dot.className = 'catchledger-dot';
-        dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+        dot.setAttribute('aria-label', goToSlideLabelTemplate.replace('__INDEX__', String(index + 1)));
         dot.addEventListener('click', () => scrollToCard(index));
         dotsWrap.appendChild(dot);
       });

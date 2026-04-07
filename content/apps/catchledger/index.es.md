@@ -2,6 +2,7 @@
 title: "CatchLedger"
 description: "Aplicación simple para llevar registro de capturas y bitácora."
 translationKey: "apps-catchledger"
+type: 'apps/catchledger'
 ---
 CatchLedger te ayuda a mantener tus registros de actividad organizados sin complicaciones.
 

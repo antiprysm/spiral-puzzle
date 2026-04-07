@@ -2,7 +2,7 @@
 title: "CatchLedger"
 description: "Simple catch and ledger tracking app."
 translationKey: "apps-catchledger"
-type: "apps/catchledger"
+type: 'apps/catchledger'
 ---
 
 CatchLedger helps fishermen and small operators keep catches, sales, expenses, and reports organized in one place.

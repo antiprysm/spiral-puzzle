@@ -1,5 +1,9 @@
 {{ define "main" }}
-  <div class="catchledger-shell" id="catchledger-shell">
+    <div
+        class="catchledger-shell"
+        id="catchledger-shell"
+        data-go-to-slide-label='{{ i18n "catchledger.a11y.go_to_slide" }}'
+        >
     <div class="catchledger-bg" aria-hidden="true">
       <div class="catchledger-bg-base" id="bg-base"></div>
       <div class="catchledger-bg-fade" id="bg-fade"></div>
@@ -217,10 +221,10 @@
 
   <script>
     (() => {
-      const DEBUG_BG = true;
+      const DEBUG_BG = false;
   
       const shell = document.getElementById('catchledger-shell');
-      const goToSlideLabelTemplate = {{ i18n "catchledger.a11y.go_to_slide" | jsonify }};
+      const goToSlideLabelTemplate = shell.dataset.goToSlideLabel || 'Go to slide __INDEX__';
       const trackWrap = document.getElementById('catchledger-track-wrap');
       const track = document.getElementById('catchledger-track');
       const cards = Array.from(track.querySelectorAll('.catchledger-card'));

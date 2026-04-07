@@ -2,6 +2,7 @@
 title: "CatchLedger"
 description: "कैच और लॉग ट्रैकिंग के लिए सरल ऐप।"
 translationKey: "apps-catchledger"
+type: 'apps/catchledger'
 ---
 CatchLedger आपकी गतिविधि लॉग को बिना अनावश्यक जटिलता के व्यवस्थित रखने में मदद करता है।
 

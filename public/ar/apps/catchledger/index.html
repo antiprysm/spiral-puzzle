@@ -168,18 +168,189 @@
 
   <main class="wrap">
     
-<article class="page-card">
-  
-  
-  
+    <div
+        class="catchledger-shell"
+        id="catchledger-shell"
+        data-go-to-slide-label='انتقل إلى الشريحة __INDEX__'
+        >
+    <div class="catchledger-bg" aria-hidden="true">
+      <div class="catchledger-bg-base" id="bg-base"></div>
+      <div class="catchledger-bg-fade" id="bg-fade"></div>
+    </div>
 
-  
+    <div class="catchledger-overlay" aria-hidden="true">
+      <img
+        src="/img/catchledger-carousel-overlay.png"
+        alt=""
+        class="catchledger-overlay-art"
+      >
+    </div>
 
-  <h1>CatchLedger</h1>
+    <section class="catchledger-hero">
+      <div class="catchledger-copy">
+        <p class="eyebrow">CatchLedger</p>
+        <h1 class="catchledger-title">CatchLedger</h1>
 
-  <div class="content">
-    
-      <p>يساعدك CatchLedger على إبقاء سجلات النشاط منظمة دون تعقيد.</p>
+        
+          <p class="catchledger-lead">تطبيق بسيط لتتبع المصيد والسجل.</p>
+        
+
+        <p class="catchledger-sublead">
+          نظّم المصيد والمبيعات والمصروفات وعمليات التصدير في مكان واحد.
+        </p>
+
+        <div class="store-badges">
+          <a
+            href="https://apps.apple.com/us/app/catchledger/id6760839496"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="حمّل CatchLedger من App Store"
+          >
+            <img
+              src="/img/Download_on_the_App_Store_Badge.png"
+              alt="حمّل CatchLedger من App Store"
+              class="store-badge-img"
+            >
+          </a>
+
+          <a
+            href="https://play.google.com/store/apps/details?id=com.hambungle.catchledger"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="احصل على CatchLedger من Google Play"
+          >
+            <img
+              src="/img/get-it-on-google-play-download.png"
+              alt="احصل على CatchLedger من Google Play"
+              class="store-badge-img"
+            >
+          </a>
+        </div>
+      </div>
+
+      <div class="catchledger-stage">
+        <div class="catchledger-carousel" id="catchledger-carousel">
+          <button class="catchledger-nav catchledger-nav--prev" type="button" aria-label="الشريحة السابقة">
+            ‹
+          </button>
+
+          <div class="catchledger-track-wrap" id="catchledger-track-wrap">
+            <div class="catchledger-track" id="catchledger-track">
+              <article class="catchledger-card is-active" data-theme="night" data-index="0">
+                <div class="catchledger-device catchledger-device--video">
+                  <video
+                    class="catchledger-media"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                    poster="/img/catchledger-dashboard.jpg"
+                  >
+                    <source src="/video/catch_ledger_app_preview_trimmed.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <p class="catchledger-caption">استعراض التطبيق أثناء العمل</p>
+              </article>
+
+              <article class="catchledger-card" data-theme="early" data-index="1">
+                <div class="catchledger-device">
+                  <img src="/img/catchledger-dashboard.jpg" alt="كل شيء في مكان واحد" class="catchledger-media" loading="lazy">
+                </div>
+                <p class="catchledger-caption">كل شيء في مكان واحد</p>
+              </article>
+
+              <article class="catchledger-card" data-theme="dawn" data-index="2">
+                <div class="catchledger-device">
+                  <img src="/img/catchledger-log-catch.jpg" alt="سجّل مصيدك فورًا" class="catchledger-media" loading="lazy">
+                </div>
+                <p class="catchledger-caption">سجّل مصيدك فورًا</p>
+              </article>
+
+              <article class="catchledger-card" data-theme="sunrise" data-index="3">
+                <div class="catchledger-device">
+                  <img src="/img/catchledger-inventory.jpg" alt="تتبّع كل عملية صيد" class="catchledger-media" loading="lazy">
+                </div>
+                <p class="catchledger-caption">تتبّع كل عملية صيد</p>
+              </article>
+
+              <article class="catchledger-card" data-theme="day" data-index="4">
+                <div class="catchledger-device">
+                  <img src="/img/catchledger-sales-entry.jpg" alt="سجّل المبيعات بسهولة" class="catchledger-media" loading="lazy">
+                </div>
+                <p class="catchledger-caption">سجّل المبيعات بسهولة</p>
+              </article>
+
+              <article class="catchledger-card" data-theme="golden" data-index="5">
+                <div class="catchledger-device">
+                  <img src="/img/catchledger-profit.jpg" alt="اعرف ربحك الحقيقي" class="catchledger-media" loading="lazy">
+                </div>
+                <p class="catchledger-caption">اعرف ربحك الحقيقي</p>
+              </article>
+
+              <article class="catchledger-card" data-theme="clear" data-index="6">
+                <div class="catchledger-device">
+                  <img src="/img/catchledger-reports.jpg" alt="صدّر سجلاتك" class="catchledger-media" loading="lazy">
+                </div>
+                <p class="catchledger-caption">صدّر سجلاتك</p>
+              </article>
+            </div>
+          </div>
+
+          <button class="catchledger-nav catchledger-nav--next" type="button" aria-label="الشريحة التالية">
+            ›
+          </button>
+        </div>
+
+        <div class="catchledger-dots" id="catchledger-dots" aria-label="ترقيم صفحات العرض الدوّار"></div>
+      </div>
+    </section>
+
+    <section class="catchledger-feature-band">
+      <div class="catchledger-feature-card">
+        <span class="catchledger-feature-kicker">المخزون</span>
+        <h2>تتبّع المصيد بوضوح</h2>
+        <p>احتفظ بالأنواع والكميات والأسعار والجودة والموقع منظّمة دون تعقيد.</p>
+      </div>
+
+      <div class="catchledger-feature-card">
+        <span class="catchledger-feature-kicker">المبيعات</span>
+        <h2>سجّل كل معاملة</h2>
+        <p>احفظ بيانات المشتري وطريقة الدفع وموقع البيع حتى تبقى كل معاملة سهلة المراجعة.</p>
+      </div>
+
+      <div class="catchledger-feature-card">
+        <span class="catchledger-feature-kicker">التقارير</span>
+        <h2>صدّر عند الحاجة</h2>
+        <p>أنشئ سجلات للمحاسبة أو الضرائب أو الامتثال أو لمشاركتها مع محاسب.</p>
+      </div>
+    </section>
+
+    <section class="catchledger-workflow page-card">
+      <div class="catchledger-workflow-grid">
+        <div class="catchledger-step">
+          <div class="catchledger-step-num">1</div>
+          <h3>سجّل عمليات الصيد</h3>
+          <p>أضف إدخالات الأسماك بسرعة مع التفاصيل المهمة.</p>
+        </div>
+
+        <div class="catchledger-step">
+          <div class="catchledger-step-num">2</div>
+          <h3>تتبّع المبيعات والمصروفات</h3>
+          <p>اعرف ما تم بيعه وما تم إنفاقه دون ملاحظات متفرقة.</p>
+        </div>
+
+        <div class="catchledger-step">
+          <div class="catchledger-step-num">3</div>
+          <h3>راجع وصدّر</h3>
+          <p>كن مستعدًا للمحاسبة والتقارير ومراجعة الأعمال.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="catchledger-content page-card">
+      <div class="content">
+        <p>يساعدك CatchLedger على إبقاء سجلات النشاط منظمة دون تعقيد.</p>
 <h3 id="أبرز-الميزات">أبرز الميزات</h3>
 <ul>
 <li>إنشاء إدخالات سريعة لكل عملية صيد.</li>
@@ -187,9 +358,211 @@
 <li>مراجعة السجل الكامل في مكان واحد.</li>
 </ul>
 
-    
+      </div>
+    </section>
+
+    <section class="catchledger-cta page-card">
+      <h2>احصل على CatchLedger اليوم</h2>
+      <p>متوفر على iPhone وiPad وAndroid.</p>
+
+      <div class="store-badges store-badges--center">
+        <a
+          href="https://apps.apple.com/us/app/catchledger/id6760839496"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="حمّل CatchLedger من App Store"
+        >
+          <img
+            src="/img/Download_on_the_App_Store_Badge.png"
+            alt="حمّل CatchLedger من App Store"
+            class="store-badge-img"
+          >
+        </a>
+
+        <a
+          href="https://play.google.com/store/apps/details?id=com.hambungle.catchledger"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="احصل على CatchLedger من Google Play"
+        >
+          <img
+            src="/img/get-it-on-google-play-download.png"
+            alt="احصل على CatchLedger من Google Play"
+            class="store-badge-img"
+          >
+        </a>
+      </div>
+    </section>
   </div>
-</article>
+
+  <script>
+    (() => {
+      const DEBUG_BG = false;
+  
+      const shell = document.getElementById('catchledger-shell');
+      const goToSlideLabelTemplate = shell.dataset.goToSlideLabel || 'Go to slide __INDEX__';
+      const trackWrap = document.getElementById('catchledger-track-wrap');
+      const track = document.getElementById('catchledger-track');
+      const cards = Array.from(track.querySelectorAll('.catchledger-card'));
+      const prev = shell.querySelector('.catchledger-nav--prev');
+      const next = shell.querySelector('.catchledger-nav--next');
+      const dotsWrap = document.getElementById('catchledger-dots');
+  
+      const bgBase = document.getElementById('bg-base');
+      const bgFade = document.getElementById('bg-fade');
+  
+      if (!track || !cards.length || !trackWrap || !bgBase || !bgFade) return;
+  
+      const themes = {
+        night: 'linear-gradient(180deg, #6f8faa 0%, #c4d1db 46%, #e6cfbb 100%)',
+        early: 'linear-gradient(180deg, #7d9bb4 0%, #ccd7df 46%, #e5cfbc 100%)',
+        dawn: 'linear-gradient(180deg, #8fabc1 0%, #d6dee3 46%, #e7d1be 100%)',
+        sunrise: 'linear-gradient(180deg, #b6c5d0 0%, #e4ded8 48%, #e4c7a8 100%)',
+        day: 'linear-gradient(180deg, #d2d8d8 0%, #ece0d1 48%, #ddb98f 100%)',
+        golden: 'linear-gradient(180deg, #eee2cf 0%, #efd5ae 52%, #c99663 100%)',
+        clear: 'linear-gradient(180deg, #f3eadb 0%, #efddc3 52%, #d8b48b 100%)'
+      };
+  
+      let activeIndex = 0;
+      let activeTheme = cards[0].dataset.theme || 'night';
+      let scrollEndTimer = null;
+      let fadeResetTimer = null;
+  
+      bgBase.style.background = themes[activeTheme] || themes.night;
+      bgFade.style.background = themes[activeTheme] || themes.night;
+      bgFade.style.opacity = '0';
+  
+      cards.forEach((card, index) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'catchledger-dot';
+        dot.setAttribute('aria-label', goToSlideLabelTemplate.replace('__INDEX__', String(index + 1)));
+        dot.addEventListener('click', () => scrollToCard(index));
+        dotsWrap.appendChild(dot);
+      });
+  
+      const dots = Array.from(dotsWrap.querySelectorAll('.catchledger-dot'));
+  
+      function renderActiveState(index) {
+        cards.forEach((card, i) => {
+          card.classList.toggle('is-active', i === index);
+          card.classList.toggle('is-left', i < index);
+          card.classList.toggle('is-right', i > index);
+        });
+  
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('is-active', i === index);
+        });
+      }
+  
+      function setBackground(themeKey) {
+        if (themeKey === activeTheme) return;
+
+        const oldBg = themes[activeTheme] || themes.night;
+        const nextBg = themes[themeKey] || themes.night;
+
+        if (DEBUG_BG) {
+            console.log('theme change', { from: activeTheme, to: themeKey });
+        }
+
+        clearTimeout(fadeResetTimer);
+
+        
+        bgBase.style.background = nextBg;
+
+        
+        bgFade.style.transition = 'none';
+        bgFade.style.background = oldBg;
+        bgFade.style.opacity = '1';
+
+        
+        void bgFade.offsetWidth;
+
+        
+        requestAnimationFrame(() => {
+            bgFade.style.transition = 'opacity 1100ms cubic-bezier(0.22, 1, 0.36, 1)';
+            bgFade.style.opacity = '0';
+        });
+
+        fadeResetTimer = setTimeout(() => {
+            bgFade.style.transition = 'none';
+            bgFade.style.opacity = '0';
+            bgFade.style.background = nextBg;
+        }, 1150);
+
+        activeTheme = themeKey;
+        }
+  
+      function updateActive(index) {
+        if (index === activeIndex) return;
+  
+        activeIndex = index;
+        renderActiveState(index);
+  
+        const theme = cards[index].dataset.theme || 'night';
+  
+        if (DEBUG_BG) {
+          console.log('updateActive', { index, theme });
+        }
+  
+        setBackground(theme);
+      }
+  
+      function getClosestCardIndex() {
+        const wrapRect = trackWrap.getBoundingClientRect();
+        const wrapCenter = wrapRect.left + wrapRect.width / 2;
+  
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+  
+        cards.forEach((card, index) => {
+          const rect = card.getBoundingClientRect();
+          const cardCenter = rect.left + rect.width / 2;
+          const distance = Math.abs(cardCenter - wrapCenter);
+  
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
+          }
+        });
+  
+        return closestIndex;
+      }
+  
+      function handleScroll() {
+        clearTimeout(scrollEndTimer);
+        scrollEndTimer = setTimeout(() => {
+          const index = getClosestCardIndex();
+          if (DEBUG_BG) {
+            console.log('scroll settled on index', index);
+          }
+          updateActive(index);
+        }, 90);
+      }
+  
+      function scrollToCard(index) {
+        const clamped = Math.max(0, Math.min(cards.length - 1, index));
+  
+        cards[clamped].scrollIntoView({
+          behavior: 'smooth',
+          inline: 'center',
+          block: 'nearest'
+        });
+  
+        
+        clearTimeout(scrollEndTimer);
+        scrollEndTimer = setTimeout(() => {
+          updateActive(clamped);
+        }, 220);
+      }
+  
+      trackWrap.addEventListener('scroll', handleScroll, { passive: true });
+      prev.addEventListener('click', () => scrollToCard(activeIndex - 1));
+      next.addEventListener('click', () => scrollToCard(activeIndex + 1));
+  
+      renderActiveState(0);
+    })();
+  </script>
 
   </main>
 

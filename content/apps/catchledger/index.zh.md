@@ -2,6 +2,7 @@
 title: "CatchLedger"
 description: "简洁的渔获与日志追踪应用。"
 translationKey: "apps-catchledger"
+type: 'apps/catchledger'
 ---
 CatchLedger 帮助你在不增加负担的情况下有条理地管理活动记录。
 
