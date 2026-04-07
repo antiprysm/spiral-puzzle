@@ -505,3 +505,99 @@ other = "تم حفظ النتيجة بدون اتصال. سيتم رفعها ع�
 
 ["spiral.upload.result.retry_later"]
 other = "فشل الرفع الآن. تم حفظ نتيجتك وستتم إعادة المحاولة لاحقًا."
+
+["catchledger.hero.eyebrow"]
+other = "CatchLedger"
+
+["catchledger.hero.sublead"]
+other = "نظّم المصيد والمبيعات والمصروفات وعمليات التصدير في مكان واحد."
+
+["catchledger.carousel.preview"]
+other = "استعراض التطبيق أثناء العمل"
+
+["catchledger.carousel.dashboard"]
+other = "كل شيء في مكان واحد"
+
+["catchledger.carousel.log_catch"]
+other = "سجّل مصيدك فورًا"
+
+["catchledger.carousel.inventory"]
+other = "تتبّع كل عملية صيد"
+
+["catchledger.carousel.sales"]
+other = "سجّل المبيعات بسهولة"
+
+["catchledger.carousel.profit"]
+other = "اعرف ربحك الحقيقي"
+
+["catchledger.carousel.reports"]
+other = "صدّر سجلاتك"
+
+["catchledger.features.inventory.kicker"]
+other = "المخزون"
+
+["catchledger.features.inventory.title"]
+other = "تتبّع المصيد بوضوح"
+
+["catchledger.features.inventory.body"]
+other = "احتفظ بالأنواع والكميات والأسعار والجودة والموقع منظّمة دون تعقيد."
+
+["catchledger.features.sales.kicker"]
+other = "المبيعات"
+
+["catchledger.features.sales.title"]
+other = "سجّل كل معاملة"
+
+["catchledger.features.sales.body"]
+other = "احفظ بيانات المشتري وطريقة الدفع وموقع البيع حتى تبقى كل معاملة سهلة المراجعة."
+
+["catchledger.features.reports.kicker"]
+other = "التقارير"
+
+["catchledger.features.reports.title"]
+other = "صدّر عند الحاجة"
+
+["catchledger.features.reports.body"]
+other = "أنشئ سجلات للمحاسبة أو الضرائب أو الامتثال أو لمشاركتها مع محاسب."
+
+["catchledger.workflow.step1.title"]
+other = "سجّل عمليات الصيد"
+
+["catchledger.workflow.step1.body"]
+other = "أضف إدخالات الأسماك بسرعة مع التفاصيل المهمة."
+
+["catchledger.workflow.step2.title"]
+other = "تتبّع المبيعات والمصروفات"
+
+["catchledger.workflow.step2.body"]
+other = "اعرف ما تم بيعه وما تم إنفاقه دون ملاحظات متفرقة."
+
+["catchledger.workflow.step3.title"]
+other = "راجع وصدّر"
+
+["catchledger.workflow.step3.body"]
+other = "كن مستعدًا للمحاسبة والتقارير ومراجعة الأعمال."
+
+["catchledger.cta.title"]
+other = "احصل على CatchLedger اليوم"
+
+["catchledger.cta.body"]
+other = "متوفر على iPhone وiPad وAndroid."
+
+["catchledger.store.apple_alt"]
+other = "حمّل CatchLedger من App Store"
+
+["catchledger.store.google_alt"]
+other = "احصل على CatchLedger من Google Play"
+
+["catchledger.a11y.prev_slide"]
+other = "الشريحة السابقة"
+
+["catchledger.a11y.next_slide"]
+other = "الشريحة التالية"
+
+["catchledger.a11y.pagination"]
+other = "ترقيم صفحات العرض الدوّار"
+
+["catchledger.a11y.go_to_slide"]
+other = "انتقل إلى الشريحة __INDEX__"

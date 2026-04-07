@@ -505,3 +505,99 @@ other = "La puntuación se guardó sin conexión. Se subirá cuando vuelvas a es
 
 ["spiral.upload.result.retry_later"]
 other = "La subida falló ahora mismo. Tu puntuación se guardó y se volverá a intentar más tarde."
+
+["catchledger.hero.eyebrow"]
+other = "CatchLedger"
+
+["catchledger.hero.sublead"]
+other = "Organiza capturas, ventas, gastos y exportaciones en un solo lugar."
+
+["catchledger.carousel.preview"]
+other = "Vista previa de la app en acción"
+
+["catchledger.carousel.dashboard"]
+other = "Todo en un solo lugar"
+
+["catchledger.carousel.log_catch"]
+other = "Registra tu captura al instante"
+
+["catchledger.carousel.inventory"]
+other = "Lleva el control de cada captura"
+
+["catchledger.carousel.sales"]
+other = "Registra ventas con facilidad"
+
+["catchledger.carousel.profit"]
+other = "Conoce tu ganancia real"
+
+["catchledger.carousel.reports"]
+other = "Exporta tus registros"
+
+["catchledger.features.inventory.kicker"]
+other = "Inventario"
+
+["catchledger.features.inventory.title"]
+other = "Controla las capturas con claridad"
+
+["catchledger.features.inventory.body"]
+other = "Mantén organizados la especie, la cantidad, los precios, la calidad y la ubicación sin complicaciones."
+
+["catchledger.features.sales.kicker"]
+other = "Ventas"
+
+["catchledger.features.sales.title"]
+other = "Registra cada transacción"
+
+["catchledger.features.sales.body"]
+other = "Guarda la información del comprador, el método de pago y el lugar de la venta para revisarlo todo fácilmente."
+
+["catchledger.features.reports.kicker"]
+other = "Reportes"
+
+["catchledger.features.reports.title"]
+other = "Exporta cuando lo necesites"
+
+["catchledger.features.reports.body"]
+other = "Genera registros para contabilidad, impuestos, cumplimiento o para compartir con un contador."
+
+["catchledger.workflow.step1.title"]
+other = "Registra capturas"
+
+["catchledger.workflow.step1.body"]
+other = "Añade entradas de pescado rápidamente con los detalles que importan."
+
+["catchledger.workflow.step2.title"]
+other = "Controla ventas y gastos"
+
+["catchledger.workflow.step2.body"]
+other = "Ve lo que se vendió y lo que se gastó sin notas dispersas."
+
+["catchledger.workflow.step3.title"]
+other = "Revisa y exporta"
+
+["catchledger.workflow.step3.body"]
+other = "Mantente listo para contabilidad, reportes y revisión del negocio."
+
+["catchledger.cta.title"]
+other = "Obtén CatchLedger hoy"
+
+["catchledger.cta.body"]
+other = "Disponible en iPhone, iPad y Android."
+
+["catchledger.store.apple_alt"]
+other = "Descargar CatchLedger en App Store"
+
+["catchledger.store.google_alt"]
+other = "Obtener CatchLedger en Google Play"
+
+["catchledger.a11y.prev_slide"]
+other = "Diapositiva anterior"
+
+["catchledger.a11y.next_slide"]
+other = "Siguiente diapositiva"
+
+["catchledger.a11y.pagination"]
+other = "Paginación del carrusel"
+
+["catchledger.a11y.go_to_slide"]
+other = "Ir a la diapositiva __INDEX__"

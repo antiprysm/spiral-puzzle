@@ -15,7 +15,7 @@
 
     <section class="catchledger-hero">
       <div class="catchledger-copy">
-        <p class="eyebrow">CatchLedger</p>
+        <p class="eyebrow">{{ i18n "catchledger.hero.eyebrow" }}</p>
         <h1 class="catchledger-title">{{ .Title }}</h1>
 
         {{ with .Description }}
@@ -23,7 +23,7 @@
         {{ end }}
 
         <p class="catchledger-sublead">
-          Organize catches, sales, expenses, and exports in one place.
+          {{ i18n "catchledger.hero.sublead" }}
         </p>
 
         <div class="store-badges">
@@ -31,11 +31,11 @@
             href="https://apps.apple.com/us/app/catchledger/id6760839496"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Download CatchLedger on the App Store"
+            aria-label="{{ i18n "catchledger.store.apple_alt" }}"
           >
             <img
               src="{{ "img/Download_on_the_App_Store_Badge.png" | relURL }}"
-              alt="Download on the App Store"
+              alt="{{ i18n "catchledger.store.apple_alt" }}"
               class="store-badge-img"
             >
           </a>
@@ -44,11 +44,11 @@
             href="https://play.google.com/store/apps/details?id=com.hambungle.catchledger"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Get CatchLedger on Google Play"
+            aria-label="{{ i18n "catchledger.store.google_alt" }}"
           >
             <img
               src="{{ "img/get-it-on-google-play-download.png" | relURL }}"
-              alt="Get it on Google Play"
+              alt="{{ i18n "catchledger.store.google_alt" }}"
               class="store-badge-img"
             >
           </a>
@@ -57,7 +57,7 @@
 
       <div class="catchledger-stage">
         <div class="catchledger-carousel" id="catchledger-carousel">
-          <button class="catchledger-nav catchledger-nav--prev" type="button" aria-label="Previous slide">
+          <button class="catchledger-nav catchledger-nav--prev" type="button" aria-label="{{ i18n "catchledger.a11y.prev_slide" }}">
             ‹
           </button>
 
@@ -77,79 +77,79 @@
                     <source src="{{ "video/catch_ledger_app_preview_trimmed.mp4" | relURL }}" type="video/mp4">
                   </video>
                 </div>
-                <p class="catchledger-caption">Preview the app in motion</p>
+                <p class="catchledger-caption">{{ i18n "catchledger.carousel.preview" }}</p>
               </article>
 
               <article class="catchledger-card" data-theme="early" data-index="1">
                 <div class="catchledger-device">
-                  <img src="{{ "img/catchledger-dashboard.jpg" | relURL }}" alt="CatchLedger dashboard screen" class="catchledger-media" loading="lazy">
+                  <img src="{{ "img/catchledger-dashboard.jpg" | relURL }}" alt="{{ i18n "catchledger.carousel.dashboard" }}" class="catchledger-media" loading="lazy">
                 </div>
-                <p class="catchledger-caption">Everything in one place</p>
+                <p class="catchledger-caption">{{ i18n "catchledger.carousel.dashboard" }}</p>
               </article>
 
               <article class="catchledger-card" data-theme="dawn" data-index="2">
                 <div class="catchledger-device">
-                  <img src="{{ "img/catchledger-log-catch.jpg" | relURL }}" alt="CatchLedger log catch screen" class="catchledger-media" loading="lazy">
+                  <img src="{{ "img/catchledger-log-catch.jpg" | relURL }}" alt="{{ i18n "catchledger.carousel.log_catch" }}" class="catchledger-media" loading="lazy">
                 </div>
-                <p class="catchledger-caption">Log your catch instantly</p>
+                <p class="catchledger-caption">{{ i18n "catchledger.carousel.log_catch" }}</p>
               </article>
 
               <article class="catchledger-card" data-theme="sunrise" data-index="3">
                 <div class="catchledger-device">
-                  <img src="{{ "img/catchledger-inventory.jpg" | relURL }}" alt="CatchLedger inventory screen" class="catchledger-media" loading="lazy">
+                  <img src="{{ "img/catchledger-inventory.jpg" | relURL }}" alt="{{ i18n "catchledger.carousel.inventory" }}" class="catchledger-media" loading="lazy">
                 </div>
-                <p class="catchledger-caption">Track every catch</p>
+                <p class="catchledger-caption">{{ i18n "catchledger.carousel.inventory" }}</p>
               </article>
 
               <article class="catchledger-card" data-theme="day" data-index="4">
                 <div class="catchledger-device">
-                  <img src="{{ "img/catchledger-sales-entry.jpg" | relURL }}" alt="CatchLedger sales entry screen" class="catchledger-media" loading="lazy">
+                  <img src="{{ "img/catchledger-sales-entry.jpg" | relURL }}" alt="{{ i18n "catchledger.carousel.sales" }}" class="catchledger-media" loading="lazy">
                 </div>
-                <p class="catchledger-caption">Record sales with ease</p>
+                <p class="catchledger-caption">{{ i18n "catchledger.carousel.sales" }}</p>
               </article>
 
               <article class="catchledger-card" data-theme="golden" data-index="5">
                 <div class="catchledger-device">
-                  <img src="{{ "img/catchledger-profit.jpg" | relURL }}" alt="CatchLedger profit screen" class="catchledger-media" loading="lazy">
+                  <img src="{{ "img/catchledger-profit.jpg" | relURL }}" alt="{{ i18n "catchledger.carousel.profit" }}" class="catchledger-media" loading="lazy">
                 </div>
-                <p class="catchledger-caption">Know your true profit</p>
+                <p class="catchledger-caption">{{ i18n "catchledger.carousel.profit" }}</p>
               </article>
 
               <article class="catchledger-card" data-theme="clear" data-index="6">
                 <div class="catchledger-device">
-                  <img src="{{ "img/catchledger-reports.jpg" | relURL }}" alt="CatchLedger reports screen" class="catchledger-media" loading="lazy">
+                  <img src="{{ "img/catchledger-reports.jpg" | relURL }}" alt="{{ i18n "catchledger.carousel.reports" }}" class="catchledger-media" loading="lazy">
                 </div>
-                <p class="catchledger-caption">Export your records</p>
+                <p class="catchledger-caption">{{ i18n "catchledger.carousel.reports" }}</p>
               </article>
             </div>
           </div>
 
-          <button class="catchledger-nav catchledger-nav--next" type="button" aria-label="Next slide">
+          <button class="catchledger-nav catchledger-nav--next" type="button" aria-label="{{ i18n "catchledger.a11y.next_slide" }}">
             ›
           </button>
         </div>
 
-        <div class="catchledger-dots" id="catchledger-dots" aria-label="Carousel pagination"></div>
+        <div class="catchledger-dots" id="catchledger-dots" aria-label="{{ i18n "catchledger.a11y.pagination" }}"></div>
       </div>
     </section>
 
     <section class="catchledger-feature-band">
       <div class="catchledger-feature-card">
-        <span class="catchledger-feature-kicker">Inventory</span>
-        <h2>Track catches clearly</h2>
-        <p>Keep species, quantities, pricing, quality, and location details organized without clutter.</p>
+        <span class="catchledger-feature-kicker">{{ i18n "catchledger.features.inventory.kicker" }}</span>
+        <h2>{{ i18n "catchledger.features.inventory.title" }}</h2>
+        <p>{{ i18n "catchledger.features.inventory.body" }}</p>
       </div>
 
       <div class="catchledger-feature-card">
-        <span class="catchledger-feature-kicker">Sales</span>
-        <h2>Record each transaction</h2>
-        <p>Capture buyer info, payment type, and sale location so every transaction stays easy to review.</p>
+        <span class="catchledger-feature-kicker">{{ i18n "catchledger.features.sales.kicker" }}</span>
+        <h2>{{ i18n "catchledger.features.sales.title" }}</h2>
+        <p>{{ i18n "catchledger.features.sales.body" }}</p>
       </div>
 
       <div class="catchledger-feature-card">
-        <span class="catchledger-feature-kicker">Reports</span>
-        <h2>Export when needed</h2>
-        <p>Generate records for bookkeeping, taxes, compliance, or sharing with an accountant.</p>
+        <span class="catchledger-feature-kicker">{{ i18n "catchledger.features.reports.kicker" }}</span>
+        <h2>{{ i18n "catchledger.features.reports.title" }}</h2>
+        <p>{{ i18n "catchledger.features.reports.body" }}</p>
       </div>
     </section>
 
@@ -157,20 +157,20 @@
       <div class="catchledger-workflow-grid">
         <div class="catchledger-step">
           <div class="catchledger-step-num">1</div>
-          <h3>Log catches</h3>
-          <p>Add fish entries quickly with details that matter.</p>
+          <h3>{{ i18n "catchledger.workflow.step1.title" }}</h3>
+          <p>{{ i18n "catchledger.workflow.step1.body" }}</p>
         </div>
 
         <div class="catchledger-step">
           <div class="catchledger-step-num">2</div>
-          <h3>Track sales and expenses</h3>
-          <p>See what was sold and what was spent without scattered notes.</p>
+          <h3>{{ i18n "catchledger.workflow.step2.title" }}</h3>
+          <p>{{ i18n "catchledger.workflow.step2.body" }}</p>
         </div>
 
         <div class="catchledger-step">
           <div class="catchledger-step-num">3</div>
-          <h3>Review and export</h3>
-          <p>Stay ready for bookkeeping, reporting, and business review.</p>
+          <h3>{{ i18n "catchledger.workflow.step3.title" }}</h3>
+          <p>{{ i18n "catchledger.workflow.step3.body" }}</p>
         </div>
       </div>
     </section>
@@ -182,19 +182,19 @@
     </section>
 
     <section class="catchledger-cta page-card">
-      <h2>Get CatchLedger today</h2>
-      <p>Available on iPhone, iPad, and Android.</p>
+      <h2>{{ i18n "catchledger.cta.title" }}</h2>
+      <p>{{ i18n "catchledger.cta.body" }}</p>
 
       <div class="store-badges store-badges--center">
         <a
           href="https://apps.apple.com/us/app/catchledger/id6760839496"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Download CatchLedger on the App Store"
+          aria-label="{{ i18n "catchledger.store.apple_alt" }}"
         >
           <img
             src="{{ "img/Download_on_the_App_Store_Badge.png" | relURL }}"
-            alt="Download on the App Store"
+            alt="{{ i18n "catchledger.store.apple_alt" }}"
             class="store-badge-img"
           >
         </a>
@@ -203,11 +203,11 @@
           href="https://play.google.com/store/apps/details?id=com.hambungle.catchledger"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Get CatchLedger on Google Play"
+          aria-label="{{ i18n "catchledger.store.google_alt" }}"
         >
           <img
             src="{{ "img/get-it-on-google-play-download.png" | relURL }}"
-            alt="Get it on Google Play"
+            alt="{{ i18n "catchledger.store.google_alt" }}"
             class="store-badge-img"
           >
         </a>
@@ -220,6 +220,7 @@
       const DEBUG_BG = true;
   
       const shell = document.getElementById('catchledger-shell');
+      const goToSlideLabelTemplate = {{ i18n "catchledger.a11y.go_to_slide" | jsonify }};
       const trackWrap = document.getElementById('catchledger-track-wrap');
       const track = document.getElementById('catchledger-track');
       const cards = Array.from(track.querySelectorAll('.catchledger-card'));
@@ -255,7 +256,7 @@
         const dot = document.createElement('button');
         dot.type = 'button';
         dot.className = 'catchledger-dot';
-        dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+        dot.setAttribute('aria-label', goToSlideLabelTemplate.replace('__INDEX__', String(index + 1)));
         dot.addEventListener('click', () => scrollToCard(index));
         dotsWrap.appendChild(dot);
       });
