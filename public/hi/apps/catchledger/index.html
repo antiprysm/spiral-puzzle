@@ -427,9 +427,9 @@
   
       const bgBase = document.getElementById('bg-base');
       const bgFade = document.getElementById('bg-fade');
-
+  
       const previewVideo = document.getElementById('catchledger-preview-video');
-    const audioToggle = document.getElementById('catchledger-video-audio-toggle');
+      const audioToggle = document.getElementById('catchledger-video-audio-toggle');
   
       if (!track || !cards.length || !trackWrap || !bgBase || !bgFade) return;
   
@@ -443,10 +443,19 @@
         clear: 'linear-gradient(180deg, #f3eadb 0%, #efddc3 52%, #d8b48b 100%)'
       };
   
+      const audioOnLabel = shell.dataset.audioOn || 'Audio on';
+      const audioOffLabel = shell.dataset.audioOff || 'Audio off';
+      const enableAudioLabel = shell.dataset.enableAudio || 'Enable video audio';
+      const disableAudioLabel = shell.dataset.disableAudio || 'Disable video audio';
+  
+      const PREVIEW_SLIDE_INDEX = 0;
+  
       let activeIndex = 0;
       let activeTheme = cards[0].dataset.theme || 'night';
       let scrollEndTimer = null;
       let fadeResetTimer = null;
+      let userWantsAudio = false;
+      let wasPreviewSlideActive = true;
   
       bgBase.style.background = themes[activeTheme] || themes.night;
       bgFade.style.background = themes[activeTheme] || themes.night;
@@ -477,47 +486,81 @@
   
       function setBackground(themeKey) {
         if (themeKey === activeTheme) return;
-
+  
         const oldBg = themes[activeTheme] || themes.night;
         const nextBg = themes[themeKey] || themes.night;
-
+  
         if (DEBUG_BG) {
-            console.log('theme change', { from: activeTheme, to: themeKey });
+          console.log('theme change', { from: activeTheme, to: themeKey });
         }
-
+  
         clearTimeout(fadeResetTimer);
-
-        
+  
         bgBase.style.background = nextBg;
-
-        
+  
         bgFade.style.transition = 'none';
         bgFade.style.background = oldBg;
         bgFade.style.opacity = '1';
-
-        
+  
         void bgFade.offsetWidth;
-
-        
+  
         requestAnimationFrame(() => {
-            bgFade.style.transition = 'opacity 1100ms cubic-bezier(0.22, 1, 0.36, 1)';
-            bgFade.style.opacity = '0';
+          bgFade.style.transition = 'opacity 1100ms cubic-bezier(0.22, 1, 0.36, 1)';
+          bgFade.style.opacity = '0';
         });
-
+  
         fadeResetTimer = setTimeout(() => {
-            bgFade.style.transition = 'none';
-            bgFade.style.opacity = '0';
-            bgFade.style.background = nextBg;
+          bgFade.style.transition = 'none';
+          bgFade.style.opacity = '0';
+          bgFade.style.background = nextBg;
         }, 1150);
-
+  
         activeTheme = themeKey;
+      }
+  
+      function syncVideoAudioUi() {
+        if (!previewVideo || !audioToggle) return;
+  
+        const iconEl = audioToggle.querySelector('.catchledger-video-audio-toggle__icon');
+        const labelEl = audioToggle.querySelector('.catchledger-video-audio-toggle__label');
+        const isMuted = previewVideo.muted;
+  
+        if (iconEl) iconEl.textContent = isMuted ? '🔇' : '🔊';
+        if (labelEl) labelEl.textContent = isMuted ? audioOffLabel : audioOnLabel;
+  
+        audioToggle.setAttribute('aria-pressed', String(!isMuted));
+        audioToggle.setAttribute('aria-label', isMuted ? enableAudioLabel : disableAudioLabel);
+      }
+  
+      function handlePreviewSlideAudio(index) {
+        if (!previewVideo) return;
+  
+        const isPreviewSlideActive = index === PREVIEW_SLIDE_INDEX;
+  
+        if (wasPreviewSlideActive && !isPreviewSlideActive) {
+          previewVideo.muted = true;
+          syncVideoAudioUi();
         }
+  
+        if (!wasPreviewSlideActive && isPreviewSlideActive) {
+          previewVideo.muted = !userWantsAudio;
+          syncVideoAudioUi();
+  
+          const playPromise = previewVideo.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => {});
+          }
+        }
+  
+        wasPreviewSlideActive = isPreviewSlideActive;
+      }
   
       function updateActive(index) {
         if (index === activeIndex) return;
   
         activeIndex = index;
         renderActiveState(index);
+        handlePreviewSlideAudio(index);
   
         const theme = cards[index].dataset.theme || 'night';
   
@@ -569,50 +612,35 @@
           block: 'nearest'
         });
   
-        
         clearTimeout(scrollEndTimer);
         scrollEndTimer = setTimeout(() => {
           updateActive(clamped);
         }, 220);
       }
-
+  
       if (previewVideo && audioToggle) {
-        const iconEl = audioToggle.querySelector('.catchledger-video-audio-toggle__icon');
-        const labelEl = audioToggle.querySelector('.catchledger-video-audio-toggle__label');
-
-        const audioOnLabel = shell.dataset.audioOn || 'Audio on';
-        const audioOffLabel = shell.dataset.audioOff || 'Audio off';
-        const enableAudioLabel = shell.dataset.enableAudio || 'Enable audio';
-        const disableAudioLabel = shell.dataset.disableAudio || 'Disable audio';
-
-        function syncVideoAudioUi() {
-            const isMuted = previewVideo.muted;
-            if (iconEl) iconEl.textContent = isMuted ? '🔇' : '🔊';
-            if (labelEl) labelEl.textContent = isMuted ? audioOffLabel : audioOnLabel;
-            audioToggle.setAttribute('aria-pressed', String(!isMuted));
-            audioToggle.setAttribute('aria-label', isMuted ? enableAudioLabel : disableAudioLabel);
-        }
-
         previewVideo.muted = true;
         previewVideo.volume = 1;
         syncVideoAudioUi();
-
+  
         audioToggle.addEventListener('click', () => {
-            previewVideo.muted = !previewVideo.muted;
-            syncVideoAudioUi();
-
-            const playPromise = previewVideo.play();
-            if (playPromise && typeof playPromise.catch === 'function') {
+          userWantsAudio = !userWantsAudio;
+          previewVideo.muted = !userWantsAudio;
+          syncVideoAudioUi();
+  
+          const playPromise = previewVideo.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
             playPromise.catch(() => {});
-            }
+          }
         });
-        }
+      }
   
       trackWrap.addEventListener('scroll', handleScroll, { passive: true });
       prev.addEventListener('click', () => scrollToCard(activeIndex - 1));
       next.addEventListener('click', () => scrollToCard(activeIndex + 1));
   
       renderActiveState(0);
+      handlePreviewSlideAudio(0);
     })();
   </script>
 
@@ -621,7 +649,7 @@
   <footer class="site-footer">
     <div class="wrap footer-inner">
   
-      <a href="/" class="footer-brand">
+      <a href="/hi/" class="footer-brand">
         <img src="/img/hambungle-logo.png" alt="Hambungle" class="footer-logo">
       </a>
   
