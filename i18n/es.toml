@@ -601,3 +601,15 @@ other = "Paginación del carrusel"
 
 ["catchledger.a11y.go_to_slide"]
 other = "Ir a la diapositiva __INDEX__"
+
+[catchledger.video.audio_off]
+other = "Audio desactivado"
+
+[catchledger.video.audio_on]
+other = "Audio activado"
+
+[catchledger.a11y.enable_audio]
+other = "Activar audio del video"
+
+[catchledger.a11y.disable_audio]
+other = "Desactivar audio del video"

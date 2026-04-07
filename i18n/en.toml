@@ -601,3 +601,15 @@ other = "Carousel pagination"
 
 [catchledger.a11y.go_to_slide]
 other = "Go to slide __INDEX__"
+
+[catchledger.video.audio_off]
+other = "Audio off"
+
+[catchledger.video.audio_on]
+other = "Audio on"
+
+[catchledger.a11y.enable_audio]
+other = "Enable video audio"
+
+[catchledger.a11y.disable_audio]
+other = "Disable video audio"

@@ -601,3 +601,15 @@ other = "कैरोसेल पेजिनेशन"
 
 ["catchledger.a11y.go_to_slide"]
 other = "स्लाइड __INDEX__ पर जाएँ"
+
+[catchledger.video.audio_off]
+other = "ऑडियो बंद"
+
+[catchledger.video.audio_on]
+other = "ऑडियो चालू"
+
+[catchledger.a11y.enable_audio]
+other = "वीडियो ऑडियो चालू करें"
+
+[catchledger.a11y.disable_audio]
+other = "वीडियो ऑडियो बंद करें"

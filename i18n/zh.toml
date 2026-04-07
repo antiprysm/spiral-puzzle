@@ -601,3 +601,15 @@ other = "轮播分页"
 
 ["catchledger.a11y.go_to_slide"]
 other = "转到第 __INDEX__ 张幻灯片"
+
+[catchledger.video.audio_off]
+other = "音频关闭"
+
+[catchledger.video.audio_on]
+other = "音频开启"
+
+[catchledger.a11y.enable_audio]
+other = "开启视频音频"
+
+[catchledger.a11y.disable_audio]
+other = "关闭视频音频"
