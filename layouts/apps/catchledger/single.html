@@ -1,173 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  
-  <title>CatchLedger | Hambungle</title>
-
-  
-  
-  
-
-  
-
-  <meta name="description" content="Simple catch and ledger tracking app.">
-  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
-  <link rel="stylesheet" href="/css/site.css">
-  
-
-  
-
-  <script>
-    window.ModelViewerElement = window.ModelViewerElement || {};
-    window.ModelViewerElement.meshoptDecoderLocation = '\/js\/meshopt_decoder.module.js';
-  </script>
-
-  <script type="module" src="/js/model-viewer.min.js"></script>
-</head>
-
-<body>
-  <header class="site-header">
-    <div class="wrap nav">
-      
-      
-
-      
-      
-        
-      
-
-      
-      
-
-      
-      
-        
-      
-      
-      
-      
-
-      
-      
-
-      
-      
-
-      <a class="brand" href="/">Hambungle</a>
-
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="/">Studio</a>
-        <a href="/apps/spiral-puzzle/">Spiral Puzzle</a>
-        <a href="/apps/catchledger/">CatchLedger</a>
-        <a href="/leaderboards/">Leaderboards</a>
-        <a href="/privacy/">Privacy</a>
-        <a href="/terms/">Terms</a>
-        <a href="/contact/">Contact</a>
-      </nav>
-
-      <div class="language-switcher" role="navigation" aria-label="Language selector">
-        
-        
-      
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
-        <label class="sr-only" for="language-switcher-select">Language</label>
-        <select id="language-switcher-select" onchange="switchSiteLanguage(this.value)">
-          
-            
-      
-            
-      
-            
-      
-            
-      
-            <option value="/apps/catchledger/" selected>
-              English
-            </option>
-          
-            
-      
-            
-      
-            
-      
-            
-      
-            <option value="/ar/apps/catchledger/" >
-              العربية
-            </option>
-          
-            
-      
-            
-      
-            
-      
-            
-      
-            <option value="/es/apps/catchledger/" >
-              Español
-            </option>
-          
-            
-      
-            
-      
-            
-      
-            
-      
-            <option value="/hi/apps/catchledger/" >
-              हिन्दी
-            </option>
-          
-            
-      
-            
-      
-            
-      
-            
-      
-            <option value="/zh/apps/catchledger/" >
-              中文
-            </option>
-          
-        </select>
-      </div>
-    </div>
-  </header>
-
-  <main class="wrap">
-    
+{{ define "main" }}
   <div class="catchledger-shell" id="catchledger-shell">
     <div class="catchledger-bg" aria-hidden="true">
       <div class="catchledger-bg-base" id="bg-base"></div>
@@ -176,7 +7,7 @@
 
     <div class="catchledger-overlay" aria-hidden="true">
       <img
-        src="/img/catchledger-carousel-overlay.png"
+        src="{{ "img/catchledger-carousel-overlay.png" | relURL }}"
         alt=""
         class="catchledger-overlay-art"
       >
@@ -185,11 +16,11 @@
     <section class="catchledger-hero">
       <div class="catchledger-copy">
         <p class="eyebrow">CatchLedger</p>
-        <h1 class="catchledger-title">CatchLedger</h1>
+        <h1 class="catchledger-title">{{ .Title }}</h1>
 
-        
-          <p class="catchledger-lead">Simple catch and ledger tracking app.</p>
-        
+        {{ with .Description }}
+          <p class="catchledger-lead">{{ . }}</p>
+        {{ end }}
 
         <p class="catchledger-sublead">
           Organize catches, sales, expenses, and exports in one place.
@@ -203,7 +34,7 @@
             aria-label="Download CatchLedger on the App Store"
           >
             <img
-              src="/img/Download_on_the_App_Store_Badge.png"
+              src="{{ "img/Download_on_the_App_Store_Badge.png" | relURL }}"
               alt="Download on the App Store"
               class="store-badge-img"
             >
@@ -216,7 +47,7 @@
             aria-label="Get CatchLedger on Google Play"
           >
             <img
-              src="/img/get-it-on-google-play-download.png"
+              src="{{ "img/get-it-on-google-play-download.png" | relURL }}"
               alt="Get it on Google Play"
               class="store-badge-img"
             >
@@ -241,9 +72,9 @@
                     loop
                     playsinline
                     preload="metadata"
-                    poster="/img/catchledger-dashboard.jpg"
+                    poster="{{ "img/catchledger-dashboard.jpg" | relURL }}"
                   >
-                    <source src="/video/catch_ledger_app_preview_trimmed.mp4" type="video/mp4">
+                    <source src="{{ "video/catch_ledger_app_preview_trimmed.mp4" | relURL }}" type="video/mp4">
                   </video>
                 </div>
                 <p class="catchledger-caption">Preview the app in motion</p>
@@ -251,42 +82,42 @@
 
               <article class="catchledger-card" data-theme="early" data-index="1">
                 <div class="catchledger-device">
-                  <img src="/img/catchledger-dashboard.jpg" alt="CatchLedger dashboard screen" class="catchledger-media" loading="lazy">
+                  <img src="{{ "img/catchledger-dashboard.jpg" | relURL }}" alt="CatchLedger dashboard screen" class="catchledger-media" loading="lazy">
                 </div>
                 <p class="catchledger-caption">Everything in one place</p>
               </article>
 
               <article class="catchledger-card" data-theme="dawn" data-index="2">
                 <div class="catchledger-device">
-                  <img src="/img/catchledger-log-catch.jpg" alt="CatchLedger log catch screen" class="catchledger-media" loading="lazy">
+                  <img src="{{ "img/catchledger-log-catch.jpg" | relURL }}" alt="CatchLedger log catch screen" class="catchledger-media" loading="lazy">
                 </div>
                 <p class="catchledger-caption">Log your catch instantly</p>
               </article>
 
               <article class="catchledger-card" data-theme="sunrise" data-index="3">
                 <div class="catchledger-device">
-                  <img src="/img/catchledger-inventory.jpg" alt="CatchLedger inventory screen" class="catchledger-media" loading="lazy">
+                  <img src="{{ "img/catchledger-inventory.jpg" | relURL }}" alt="CatchLedger inventory screen" class="catchledger-media" loading="lazy">
                 </div>
                 <p class="catchledger-caption">Track every catch</p>
               </article>
 
               <article class="catchledger-card" data-theme="day" data-index="4">
                 <div class="catchledger-device">
-                  <img src="/img/catchledger-sales-entry.jpg" alt="CatchLedger sales entry screen" class="catchledger-media" loading="lazy">
+                  <img src="{{ "img/catchledger-sales-entry.jpg" | relURL }}" alt="CatchLedger sales entry screen" class="catchledger-media" loading="lazy">
                 </div>
                 <p class="catchledger-caption">Record sales with ease</p>
               </article>
 
               <article class="catchledger-card" data-theme="golden" data-index="5">
                 <div class="catchledger-device">
-                  <img src="/img/catchledger-profit.jpg" alt="CatchLedger profit screen" class="catchledger-media" loading="lazy">
+                  <img src="{{ "img/catchledger-profit.jpg" | relURL }}" alt="CatchLedger profit screen" class="catchledger-media" loading="lazy">
                 </div>
                 <p class="catchledger-caption">Know your true profit</p>
               </article>
 
               <article class="catchledger-card" data-theme="clear" data-index="6">
                 <div class="catchledger-device">
-                  <img src="/img/catchledger-reports.jpg" alt="CatchLedger reports screen" class="catchledger-media" loading="lazy">
+                  <img src="{{ "img/catchledger-reports.jpg" | relURL }}" alt="CatchLedger reports screen" class="catchledger-media" loading="lazy">
                 </div>
                 <p class="catchledger-caption">Export your records</p>
               </article>
@@ -346,14 +177,7 @@
 
     <section class="catchledger-content page-card">
       <div class="content">
-        <p>CatchLedger helps fishermen and small operators keep catches, sales, expenses, and reports organized in one place.</p>
-<h3 id="highlights">Highlights</h3>
-<ul>
-<li>Log each catch with practical details like species, quantity, location, and quality.</li>
-<li>Record sales and keep buyer, payment, and location information easy to review.</li>
-<li>Export records for bookkeeping, taxes, compliance, or sharing with an accountant.</li>
-</ul>
-
+        {{ .Content }}
       </div>
     </section>
 
@@ -369,7 +193,7 @@
           aria-label="Download CatchLedger on the App Store"
         >
           <img
-            src="/img/Download_on_the_App_Store_Badge.png"
+            src="{{ "img/Download_on_the_App_Store_Badge.png" | relURL }}"
             alt="Download on the App Store"
             class="store-badge-img"
           >
@@ -382,7 +206,7 @@
           aria-label="Get CatchLedger on Google Play"
         >
           <img
-            src="/img/get-it-on-google-play-download.png"
+            src="{{ "img/get-it-on-google-play-download.png" | relURL }}"
             alt="Get it on Google Play"
             class="store-badge-img"
           >
@@ -462,18 +286,18 @@
 
         clearTimeout(fadeResetTimer);
 
-        
+        // Put the next theme underneath immediately
         bgBase.style.background = nextBg;
 
-        
+        // Reset the fading layer to the old theme at full opacity
         bgFade.style.transition = 'none';
         bgFade.style.background = oldBg;
         bgFade.style.opacity = '1';
 
-        
+        // Force browser to commit the starting state
         void bgFade.offsetWidth;
 
-        
+        // Then animate out with easing
         requestAnimationFrame(() => {
             bgFade.style.transition = 'opacity 1100ms cubic-bezier(0.22, 1, 0.36, 1)';
             bgFade.style.opacity = '0';
@@ -544,7 +368,7 @@
           block: 'nearest'
         });
   
-        
+        // Update state near the end of the smooth scroll
         clearTimeout(scrollEndTimer);
         scrollEndTimer = setTimeout(() => {
           updateActive(clamped);
@@ -558,32 +382,4 @@
       renderActiveState(0);
     })();
   </script>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="wrap footer-inner">
-  
-      <a href="/" class="footer-brand">
-        <img src="/img/hambungle-logo.png" alt="Hambungle" class="footer-logo">
-      </a>
-  
-      <p class="footer-text">
-        © 2026 Hambungle Studio
-      </p>
-  
-    </div>
-  </footer>
-  <script>
-    function switchSiteLanguage(target) {
-      if (!target) return;
-  
-      var cleanTarget = String(target).split("?")[0].split("#")[0];
-      var search = window.location.search || "";
-      var hash = window.location.hash || "";
-  
-      window.location.assign(cleanTarget + search + hash);
-    }
-  </script>
-</body>
-</html>
+{{ end }}
