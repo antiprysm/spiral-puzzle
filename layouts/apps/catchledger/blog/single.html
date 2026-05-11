@@ -1,0 +1,27 @@
+{{ define "head" }}
+  {{ with .Params.focus_keyword }}<meta name="article:tag" content="{{ . }}">{{ end }}
+{{ end }}
+
+{{ define "main" }}
+<article class="catchledger-blog-post page-card">
+  <nav class="catchledger-blog-breadcrumb" aria-label="Breadcrumb">
+    <a href="{{ "/apps/catchledger/" | relURL }}">CatchLedger</a>
+    <span aria-hidden="true">/</span>
+    <a href="{{ "/apps/catchledger/blog/" | relURL }}">Blog</a>
+  </nav>
+
+  <header class="catchledger-blog-post-header">
+    <p class="eyebrow">Fishing logbook guide</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="catchledger-blog-lead">{{ . }}</p>{{ end }}
+    <div class="catchledger-blog-card-meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      {{ with .Params.focus_keyword }}<span>Focus: {{ . }}</span>{{ end }}
+    </div>
+  </header>
+
+  <div class="content catchledger-blog-content">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

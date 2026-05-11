@@ -1,0 +1,25 @@
+{{ define "main" }}
+<div class="catchledger-blog-shell">
+  <section class="catchledger-blog-hero page-card">
+    <p class="eyebrow">CatchLedger Blog</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="catchledger-blog-lead">{{ . }}</p>{{ end }}
+    <div class="catchledger-blog-intro content">{{ .Content }}</div>
+    <a class="btn" href="{{ "/apps/catchledger/" | relURL }}">Explore CatchLedger</a>
+  </section>
+
+  <section class="catchledger-blog-list" aria-label="CatchLedger fishing logbook articles">
+    {{ range .Pages.ByDate.Reverse }}
+      <article class="catchledger-blog-card page-card">
+        <div class="catchledger-blog-card-meta">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+          {{ with .Params.focus_keyword }}<span>{{ . }}</span>{{ end }}
+        </div>
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        {{ with .Description }}<p>{{ . }}</p>{{ end }}
+        <a class="catchledger-blog-readmore" href="{{ .RelPermalink }}" aria-label="Read {{ .Title }}">Read article →</a>
+      </article>
+    {{ end }}
+  </section>
+</div>
+{{ end }}
