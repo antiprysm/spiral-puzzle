@@ -84,6 +84,57 @@
   }
 
   .studio-home .section-title { color: #f3f4f6; }
+
+  .studio-home .latest-posts-intro {
+    max-width: 720px;
+    margin: 0 0 1rem;
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+
+  .studio-home .blog-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  .studio-home .blog-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    align-items: center;
+    margin-bottom: 0.65rem;
+    color: #93c5fd;
+    font-size: 0.82rem;
+  }
+
+  .studio-home .blog-card-app {
+    display: inline-flex;
+    border-radius: 999px;
+    padding: 0.16rem 0.55rem;
+    border: 1px solid rgba(147, 197, 253, 0.24);
+    background: rgba(37, 99, 235, 0.16);
+    color: #bfdbfe;
+  }
+
+  .studio-home .blog-card h3 {
+    margin: 0 0 0.55rem;
+  }
+
+  .studio-home .blog-card h3 a {
+    color: #f9fafb;
+  }
+
+  .studio-home .blog-card p {
+    flex: 1;
+  }
+
+  .studio-home .blog-card-readmore {
+    margin-top: 0.25rem;
+    color: #bfdbfe;
+    font-weight: 700;
+  }
+
   .studio-home .app-card { background: #0b1220; border-color: #1f2937; }
   .studio-home .app-card h3 { color: #f9fafb; }
   .studio-home .app-card p { color: #94a3b8; }
@@ -198,6 +249,29 @@
       </article>
     </div>
   </section>
+
+  {{ $blogPosts := where .Site.RegularPages "Params.is_blog" true }}
+  {{ $blogPosts = where $blogPosts "Draft" "!=" true }}
+  {{ if gt (len $blogPosts) 0 }}
+    <section class="section-block" aria-labelledby="latest-blog-posts-title">
+      <h2 class="section-title" id="latest-blog-posts-title">Latest Blog Posts</h2>
+      <p class="latest-posts-intro">Practical notes from Hambungle apps, experiments, and field-tested projects.</p>
+
+      <div class="card-grid">
+        {{ range first 3 ($blogPosts.ByDate.Reverse) }}
+          <article class="app-card blog-card">
+            <div class="blog-card-meta">
+              {{ with .Params.app }}<span class="blog-card-app">{{ . }}</span>{{ end }}
+              {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>{{ end }}
+            </div>
+            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}</p>
+            <a class="blog-card-readmore" href="{{ .RelPermalink }}">Read article</a>
+          </article>
+        {{ end }}
+      </div>
+    </section>
+  {{ end }}
 
   <section class="studio-break">
     <div class="studio-break-inner">
