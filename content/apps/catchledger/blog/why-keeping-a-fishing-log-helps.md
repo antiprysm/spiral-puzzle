@@ -3,6 +3,7 @@ title: "Why Keeping a Fishing Log Helps You Catch More Fish"
 description: "Learn how a fishing log helps anglers track catches, bait, weather, water conditions, slow days, and fishing patterns so each trip teaches you more."
 date: 2026-05-11
 draft: false
+comments: true
 type: "apps/catchledger/blog"
 is_blog: true
 app: "CatchLedger"

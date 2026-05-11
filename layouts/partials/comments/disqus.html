@@ -1,0 +1,23 @@
+{{ if and .Params.comments (not .Draft) site.Params.disqusShortname }}
+<section class="catchledger-comments" aria-labelledby="catchledger-comments-title">
+  <h2 id="catchledger-comments-title">Comments</h2>
+  <p>Have a fishing log tip, bait note, or tracking habit? Share it below.</p>
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = "{{ .Permalink }}";
+      this.page.identifier = "{{ .RelPermalink }}";
+      this.page.title = "{{ .Title }}";
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://{{ site.Params.disqusShortname }}.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+</section>
+{{ end }}

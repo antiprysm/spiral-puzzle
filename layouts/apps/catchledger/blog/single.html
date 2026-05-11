@@ -23,5 +23,7 @@
   <div class="content catchledger-blog-content">
     {{ .Content }}
   </div>
+
+  {{ partial "comments/disqus.html" . }}
 </article>
 {{ end }}
