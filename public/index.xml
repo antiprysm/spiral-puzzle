@@ -1,61 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Hambungle</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content on Hambungle</description>
-    <generator>Hugo</generator>
-    <language>en-US</language>
-    <lastBuildDate>Mon, 11 May 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Why Keeping a Fishing Log Helps You Catch More Fish</title>
-      <link>http://localhost:1313/apps/catchledger/blog/why-keeping-a-fishing-log-helps/</link>
-      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/apps/catchledger/blog/why-keeping-a-fishing-log-helps/</guid>
-      <description>&lt;p&gt;A fishing log helps you turn individual trips into a record you can learn from. Instead of trying to remember every bait, location, weather change, and bite window from memory, you keep the important details in one place.&lt;/p&gt;&#xA;&lt;p&gt;Most anglers remember the big moments. They remember the biggest fish, the hard fight, the friend who was there, or the spot where everything finally came together. What fades faster are the small details that made the trip work: the bait, the time of day, the wind direction, the water clarity, the rig, the depth, or the exact stretch of bank where the bite started.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Contact</title>
-      <link>http://localhost:1313/contact/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/contact/</guid>
-      <description>&lt;p&gt;For support, collaboration, or questions, email us at &lt;a href=&#34;mailto:hello@hambungle.com&#34;&gt;hello@hambungle.com&lt;/a&gt;.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Privacy Policy — CatchLedger</title>
-      <link>http://localhost:1313/privacy/catchledger/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/privacy/catchledger/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Effective Date:&lt;/strong&gt; 01/15/25&lt;br&gt;&#xA;&lt;em&gt;Last updated: 03/31/25&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;information-we-collect&#34;&gt;Information We Collect&lt;/h2&gt;&#xA;&lt;p&gt;CatchLedger is designed to help users track catches and trip stats. We collect only the data needed to provide that functionality.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Account or Identifier Information (Optional):&lt;/strong&gt;&lt;br&gt;&#xA;If you choose to create or sign in to an account, we store the identifier needed to keep your entries synced.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Catch and Trip Entries (User Provided):&lt;/strong&gt;&lt;br&gt;&#xA;Information you enter (such as fish species, dates, notes, and measurements) is stored so it can be displayed back to you.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Privacy Policy — Spiral Word Puzzle</title>
-      <link>http://localhost:1313/privacy/spiral-word-puzzle/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/privacy/spiral-word-puzzle/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Effective Date:&lt;/strong&gt; 01/15/25&lt;br&gt;&#xA;&lt;em&gt;Last updated: 03/31/25&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;information-we-collect&#34;&gt;Information We Collect&lt;/h2&gt;&#xA;&lt;p&gt;Spiral Word Puzzle collects a limited amount of user information solely for leaderboard functionality.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Authentication Information (Required):&lt;/strong&gt;&lt;br&gt;&#xA;When submitting a high score, we collect a username or unique identifier to associate scores with players.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Country Location (Optional):&lt;/strong&gt;&lt;br&gt;&#xA;You may optionally choose your country from a list when submitting a high score. This is not automatically collected and is only stored if selected by you.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Spiral Puzzle</title>
-      <link>http://localhost:1313/apps/spiral-puzzle/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/apps/spiral-puzzle/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Terms</title>
-      <link>http://localhost:1313/terms/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/terms/</guid>
-      <description>&lt;p&gt;By using Hambungle apps and this website, you agree to use them lawfully and responsibly.&lt;/p&gt;&#xA;&lt;p&gt;We provide our apps as-is and may update, modify, or discontinue features at any time.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Thank You</title>
-      <link>http://localhost:1313/feedback/thanks/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/feedback/thanks/</guid>
-      <description>&lt;p&gt;Thanks for your feedback.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hambungle</title><link>https://hambungle.com/</link><description>Recent content on Hambungle</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Mon, 11 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://hambungle.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Why Keeping a Fishing Log Helps You Catch More Fish</title><link>https://hambungle.com/apps/catchledger/blog/why-keeping-a-fishing-log-helps/</link><pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate><guid>https://hambungle.com/apps/catchledger/blog/why-keeping-a-fishing-log-helps/</guid><description>&lt;p>A fishing log helps you turn individual trips into a record you can learn from. Instead of trying to remember every bait, location, weather change, and bite window from memory, you keep the important details in one place.&lt;/p>
+&lt;p>Most anglers remember the big moments. They remember the biggest fish, the hard fight, the friend who was there, or the spot where everything finally came together. What fades faster are the small details that made the trip work: the bait, the time of day, the wind direction, the water clarity, the rig, the depth, or the exact stretch of bank where the bite started.&lt;/p></description></item><item><title>Contact</title><link>https://hambungle.com/contact/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hambungle.com/contact/</guid><description>&lt;p>For support, collaboration, or questions, email us at &lt;a href="mailto:hello@hambungle.com">hello@hambungle.com&lt;/a>.&lt;/p></description></item><item><title>Privacy Policy — CatchLedger</title><link>https://hambungle.com/privacy/catchledger/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hambungle.com/privacy/catchledger/</guid><description>&lt;p>&lt;strong>Effective Date:&lt;/strong> 01/15/25&lt;br>
+&lt;em>Last updated: 03/31/25&lt;/em>&lt;/p>
+&lt;h2 id="information-we-collect">Information We Collect&lt;/h2>
+&lt;p>CatchLedger is designed to help users track catches and trip stats. We collect only the data needed to provide that functionality.&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>Account or Identifier Information (Optional):&lt;/strong>&lt;br>
+If you choose to create or sign in to an account, we store the identifier needed to keep your entries synced.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Catch and Trip Entries (User Provided):&lt;/strong>&lt;br>
+Information you enter (such as fish species, dates, notes, and measurements) is stored so it can be displayed back to you.&lt;/p></description></item><item><title>Privacy Policy — Spiral Word Puzzle</title><link>https://hambungle.com/privacy/spiral-word-puzzle/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hambungle.com/privacy/spiral-word-puzzle/</guid><description>&lt;p>&lt;strong>Effective Date:&lt;/strong> 01/15/25&lt;br>
+&lt;em>Last updated: 03/31/25&lt;/em>&lt;/p>
+&lt;h2 id="information-we-collect">Information We Collect&lt;/h2>
+&lt;p>Spiral Word Puzzle collects a limited amount of user information solely for leaderboard functionality.&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>Authentication Information (Required):&lt;/strong>&lt;br>
+When submitting a high score, we collect a username or unique identifier to associate scores with players.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Country Location (Optional):&lt;/strong>&lt;br>
+You may optionally choose your country from a list when submitting a high score. This is not automatically collected and is only stored if selected by you.&lt;/p></description></item><item><title>Spiral Puzzle</title><link>https://hambungle.com/apps/spiral-puzzle/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hambungle.com/apps/spiral-puzzle/</guid><description/></item><item><title>Terms</title><link>https://hambungle.com/terms/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hambungle.com/terms/</guid><description>&lt;p>By using Hambungle apps and this website, you agree to use them lawfully and responsibly.&lt;/p>
+&lt;p>We provide our apps as-is and may update, modify, or discontinue features at any time.&lt;/p></description></item><item><title>Thank You</title><link>https://hambungle.com/feedback/thanks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hambungle.com/feedback/thanks/</guid><description>&lt;p>Thanks for your feedback.&lt;/p></description></item></channel></rss>

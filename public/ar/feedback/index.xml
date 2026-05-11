@@ -1,18 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>التعليقات on Hambungle</title>
-    <link>http://localhost:1313/ar/feedback/</link>
-    <description>Recent content in التعليقات on Hambungle</description>
-    <generator>Hugo</generator>
-    <language>ar</language>
-    <atom:link href="http://localhost:1313/ar/feedback/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>شكرًا لك</title>
-      <link>http://localhost:1313/ar/feedback/thanks/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/ar/feedback/thanks/</guid>
-      <description>&lt;p&gt;شكرًا على ملاحظاتك.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>التعليقات on Hambungle</title><link>https://hambungle.com/ar/feedback/</link><description>Recent content in التعليقات on Hambungle</description><generator>Hugo</generator><language>ar</language><atom:link href="https://hambungle.com/ar/feedback/index.xml" rel="self" type="application/rss+xml"/><item><title>شكرًا لك</title><link>https://hambungle.com/ar/feedback/thanks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hambungle.com/ar/feedback/thanks/</guid><description>&lt;p>شكرًا على ملاحظاتك.&lt;/p></description></item></channel></rss>

@@ -1,19 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>CatchLedger Fishing Logbook Blog on Hambungle</title>
-    <link>http://localhost:1313/apps/catchledger/blog/</link>
-    <description>Recent content in CatchLedger Fishing Logbook Blog on Hambungle</description>
-    <generator>Hugo</generator>
-    <language>en-US</language>
-    <lastBuildDate>Mon, 11 May 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/apps/catchledger/blog/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Why Keeping a Fishing Log Helps You Catch More Fish</title>
-      <link>http://localhost:1313/apps/catchledger/blog/why-keeping-a-fishing-log-helps/</link>
-      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/apps/catchledger/blog/why-keeping-a-fishing-log-helps/</guid>
-      <description>&lt;p&gt;A fishing log helps you turn individual trips into a record you can learn from. Instead of trying to remember every bait, location, weather change, and bite window from memory, you keep the important details in one place.&lt;/p&gt;&#xA;&lt;p&gt;Most anglers remember the big moments. They remember the biggest fish, the hard fight, the friend who was there, or the spot where everything finally came together. What fades faster are the small details that made the trip work: the bait, the time of day, the wind direction, the water clarity, the rig, the depth, or the exact stretch of bank where the bite started.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CatchLedger Fishing Logbook Blog on Hambungle</title><link>https://hambungle.com/apps/catchledger/blog/</link><description>Recent content in CatchLedger Fishing Logbook Blog on Hambungle</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Mon, 11 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://hambungle.com/apps/catchledger/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Why Keeping a Fishing Log Helps You Catch More Fish</title><link>https://hambungle.com/apps/catchledger/blog/why-keeping-a-fishing-log-helps/</link><pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate><guid>https://hambungle.com/apps/catchledger/blog/why-keeping-a-fishing-log-helps/</guid><description>&lt;p>A fishing log helps you turn individual trips into a record you can learn from. Instead of trying to remember every bait, location, weather change, and bite window from memory, you keep the important details in one place.&lt;/p>
+&lt;p>Most anglers remember the big moments. They remember the biggest fish, the hard fight, the friend who was there, or the spot where everything finally came together. What fades faster are the small details that made the trip work: the bait, the time of day, the wind direction, the water clarity, the rig, the depth, or the exact stretch of bank where the bite started.&lt;/p></description></item></channel></rss>

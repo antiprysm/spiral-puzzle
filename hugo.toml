@@ -32,4 +32,4 @@ defaultContentLanguageInSubdir = false
     weight = 5
 
 [params]
-  disqusShortname = 'YOUR-DISQUS-SHORTNAME'
+  disqusShortname = 'hambungle'
