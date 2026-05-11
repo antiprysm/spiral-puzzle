@@ -202,6 +202,9 @@
       </div>
     </section>
 
+    {{ $catchledgerBlogPosts := where .Site.RegularPages "Params.is_blog" true }}
+    {{ $catchledgerBlogPosts = where $catchledgerBlogPosts "Params.app" "CatchLedger" }}
+    {{ $catchledgerBlogPosts = where $catchledgerBlogPosts "Draft" "!=" true }}
     <section class="catchledger-blog-promo page-card" aria-labelledby="catchledger-blog-promo-title">
       <div class="catchledger-blog-promo-copy">
         <p class="eyebrow">Fishing logbook guides</p>
@@ -212,11 +215,13 @@
         <a class="btn" href="/apps/catchledger/blog/">Read the CatchLedger Fishing Logbook Blog</a>
       </div>
 
-      <div class="catchledger-blog-promo-links" aria-label="CatchLedger blog posts">
-        <a href="/apps/catchledger/blog/why-keeping-a-fishing-log-helps/">Why Keeping a Fishing Log Helps You Catch More Fish</a>
-        <a href="/apps/catchledger/blog/what-to-track-in-a-fishing-log/">What Should You Track in a Fishing Log?</a>
-        <a href="/apps/catchledger/blog/best-fishing-log-app/">Best Fishing Log App: What to Look For</a>
-      </div>
+      {{ if gt (len $catchledgerBlogPosts) 0 }}
+        <div class="catchledger-blog-promo-links" aria-label="CatchLedger blog posts">
+          {{ range first 3 ($catchledgerBlogPosts.ByDate.Reverse) }}
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          {{ end }}
+        </div>
+      {{ end }}
     </section>
 
     <section class="catchledger-cta page-card">

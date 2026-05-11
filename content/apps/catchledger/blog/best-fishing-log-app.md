@@ -2,8 +2,10 @@
 title: "Best Fishing Log App: What to Look For"
 description: "Learn what makes the best fishing log app for personal catch tracking, including fast entry, useful notes, photos, history, and simple organization."
 date: 2026-05-11
-draft: true
+draft: false
 type: "apps/catchledger/blog"
+is_blog: true
+app: "CatchLedger"
 keywords:
   - best fishing log app
   - fishing log app

@@ -85,42 +85,52 @@
 
   .studio-home .section-title { color: #f3f4f6; }
 
-  .studio-home .blog-teaser {
+  .studio-home .latest-posts-intro {
+    max-width: 720px;
+    margin: 0 0 1rem;
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+
+  .studio-home .blog-card {
     display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  .studio-home .blog-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-top: 1rem;
-    padding: 1rem 1.1rem;
-    border: 1px solid #1f2937;
-    border-radius: 16px;
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(30, 41, 59, 0.86));
-    box-shadow: 0 16px 36px rgba(2, 6, 23, 0.22);
+    margin-bottom: 0.65rem;
+    color: #93c5fd;
+    font-size: 0.82rem;
   }
 
-  .studio-home .blog-teaser p {
-    margin: 0;
-    color: #cbd5e1;
-    line-height: 1.55;
+  .studio-home .blog-card-app {
+    display: inline-flex;
+    border-radius: 999px;
+    padding: 0.16rem 0.55rem;
+    border: 1px solid rgba(147, 197, 253, 0.24);
+    background: rgba(37, 99, 235, 0.16);
+    color: #bfdbfe;
   }
 
-  .studio-home .blog-teaser strong {
+  .studio-home .blog-card h3 {
+    margin: 0 0 0.55rem;
+  }
+
+  .studio-home .blog-card h3 a {
     color: #f9fafb;
   }
 
-  .studio-home .blog-teaser .btn {
-    flex: 0 0 auto;
+  .studio-home .blog-card p {
+    flex: 1;
   }
 
-  .studio-home .blog-teaser-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 0.85rem;
-    margin-top: 0.65rem;
-    font-size: 0.92rem;
-  }
-
-  .studio-home .blog-teaser-links a {
+  .studio-home .blog-card-readmore {
+    margin-top: 0.25rem;
     color: #bfdbfe;
     font-weight: 700;
   }
@@ -241,19 +251,26 @@
     </div>
   </section>
 
-  {{ if eq .Site.Language.Lang "en" }}
-    <section class="blog-teaser" aria-labelledby="catchledger-blog-teaser-title">
-      <div>
-        <p id="catchledger-blog-teaser-title">
-          <strong>New on the blog:</strong> practical fishing logbook tips for anglers who want to track catches, bait, weather, notes, and fishing patterns over time.
-        </p>
-        <div class="blog-teaser-links" aria-label="CatchLedger fishing logbook articles">
-          <a href="/apps/catchledger/blog/why-keeping-a-fishing-log-helps/">Why keeping a fishing log helps</a>
-          <a href="/apps/catchledger/blog/what-to-track-in-a-fishing-log/">What to track in a fishing log</a>
-          <a href="/apps/catchledger/blog/best-fishing-log-app/">Best fishing log app guide</a>
-        </div>
+  {{ $blogPosts := where .Site.RegularPages "Params.is_blog" true }}
+  {{ $blogPosts = where $blogPosts "Draft" "!=" true }}
+  {{ if gt (len $blogPosts) 0 }}
+    <section class="section-block" aria-labelledby="latest-blog-posts-title">
+      <h2 class="section-title" id="latest-blog-posts-title">Latest Blog Posts</h2>
+      <p class="latest-posts-intro">Practical notes from Hambungle apps, experiments, and field-tested projects.</p>
+
+      <div class="card-grid">
+        {{ range first 3 ($blogPosts.ByDate.Reverse) }}
+          <article class="app-card blog-card">
+            <div class="blog-card-meta">
+              {{ with .Params.app }}<span class="blog-card-app">{{ . }}</span>{{ end }}
+              {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>{{ end }}
+            </div>
+            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}</p>
+            <a class="blog-card-readmore" href="{{ .RelPermalink }}">Read article</a>
+          </article>
+        {{ end }}
       </div>
-      <a class="btn" href="/apps/catchledger/blog/">Read the CatchLedger Blog</a>
     </section>
   {{ end }}
 
