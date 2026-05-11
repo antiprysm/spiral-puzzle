@@ -30,3 +30,6 @@ defaultContentLanguageInSubdir = false
     languageCode = 'zh'
     languageDirection = 'ltr'
     weight = 5
+
+[params]
+  disqusShortname = 'YOUR-DISQUS-SHORTNAME'
