@@ -110,6 +110,57 @@
   }
 
   .studio-home .section-title { color: #f3f4f6; }
+
+  .studio-home .latest-posts-intro {
+    max-width: 720px;
+    margin: 0 0 1rem;
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+
+  .studio-home .blog-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  .studio-home .blog-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    align-items: center;
+    margin-bottom: 0.65rem;
+    color: #93c5fd;
+    font-size: 0.82rem;
+  }
+
+  .studio-home .blog-card-app {
+    display: inline-flex;
+    border-radius: 999px;
+    padding: 0.16rem 0.55rem;
+    border: 1px solid rgba(147, 197, 253, 0.24);
+    background: rgba(37, 99, 235, 0.16);
+    color: #bfdbfe;
+  }
+
+  .studio-home .blog-card h3 {
+    margin: 0 0 0.55rem;
+  }
+
+  .studio-home .blog-card h3 a {
+    color: #f9fafb;
+  }
+
+  .studio-home .blog-card p {
+    flex: 1;
+  }
+
+  .studio-home .blog-card-readmore {
+    margin-top: 0.25rem;
+    color: #bfdbfe;
+    font-weight: 700;
+  }
+
   .studio-home .app-card { background: #0b1220; border-color: #1f2937; }
   .studio-home .app-card h3 { color: #f9fafb; }
   .studio-home .app-card p { color: #94a3b8; }
@@ -162,6 +213,7 @@
 
   @media (max-width: 900px){
     .studio-home .hero { min-height: 560px; padding: 1.5rem; }
+    .studio-home .blog-teaser { align-items: flex-start; flex-direction: column; }
     .hambone-stage { top: auto; bottom: 0; width: 100%; height: 52%; }
     .studio-home .hero-copy { max-width: 100%; padding-right: 0; }
 
@@ -373,6 +425,10 @@
       </article>
     </div>
   </section>
+
+  
+  
+  
 
   <section class="studio-break">
     <div class="studio-break-inner">

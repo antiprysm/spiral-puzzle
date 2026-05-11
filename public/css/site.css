@@ -721,6 +721,54 @@ footer {
   margin-top: 0;
 }
 
+
+.catchledger-blog-promo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
+  gap: 1.25rem;
+  align-items: center;
+  margin-top: 1rem;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(238, 246, 255, 0.88)),
+    url('/img/catchledger-carousel-overlay.png') right center / cover;
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(186, 202, 219, 0.72);
+  box-shadow: 0 18px 46px rgba(15, 23, 42, 0.1);
+}
+
+.catchledger-blog-promo h2 {
+  margin-bottom: 0.55rem;
+  color: #10243b;
+}
+
+.catchledger-blog-promo p {
+  max-width: 680px;
+  margin-top: 0;
+  color: #4b5565;
+  line-height: 1.65;
+}
+
+.catchledger-blog-promo-links {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.catchledger-blog-promo-links a {
+  display: block;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.76);
+  color: #10243b;
+  font-weight: 700;
+}
+
+.catchledger-blog-promo-links a:hover {
+  background: #fff;
+  text-decoration: none;
+  border-color: rgba(37, 99, 235, 0.38);
+}
+
 .catchledger-cta {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -766,7 +814,8 @@ footer {
   }
 
   .catchledger-feature-band,
-  .catchledger-workflow-grid {
+  .catchledger-workflow-grid,
+  .catchledger-blog-promo {
     grid-template-columns: 1fr;
   }
 }
