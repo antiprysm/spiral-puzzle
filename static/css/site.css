@@ -1046,3 +1046,18 @@ footer {
 .catchledger-blog-content a {
   font-weight: 700;
 }
+
+.catchledger-blog-content {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.catchledger-blog-content img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 2rem auto;
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+}

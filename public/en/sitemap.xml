@@ -3,6 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/apps/</loc>
+    <lastmod>2026-05-11T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ar"
@@ -29,7 +30,11 @@
                 href="http://localhost:1313/apps/"
                 />
   </url><url>
+    <loc>http://localhost:1313/apps/catchledger/blog/best-fishing-log-app/</loc>
+    <lastmod>2026-05-11T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/apps/catchledger/</loc>
+    <lastmod>2026-05-11T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ar"
@@ -55,6 +60,43 @@
                 hreflang="en-US"
                 href="http://localhost:1313/apps/catchledger/"
                 />
+  </url><url>
+    <loc>http://localhost:1313/apps/catchledger/blog/</loc>
+    <lastmod>2026-05-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2026-05-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ar"
+                href="http://localhost:1313/ar/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://localhost:1313/es/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="hi"
+                href="http://localhost:1313/hi/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="http://localhost:1313/zh/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-US"
+                href="http://localhost:1313/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/apps/catchledger/blog/what-to-track-in-a-fishing-log/</loc>
+    <lastmod>2026-05-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/apps/catchledger/blog/why-keeping-a-fishing-log-helps/</loc>
+    <lastmod>2026-05-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
     <xhtml:link
@@ -135,33 +177,6 @@
                 rel="alternate"
                 hreflang="en-US"
                 href="http://localhost:1313/feedback/"
-                />
-  </url><url>
-    <loc>http://localhost:1313/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ar"
-                href="http://localhost:1313/ar/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="http://localhost:1313/es/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="hi"
-                href="http://localhost:1313/hi/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="http://localhost:1313/zh/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-US"
-                href="http://localhost:1313/"
                 />
   </url><url>
     <loc>http://localhost:1313/leaderboards/</loc>

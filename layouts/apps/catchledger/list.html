@@ -1,0 +1,470 @@
+{{ define "main" }}
+    <div
+    class="catchledger-shell"
+    id="catchledger-shell"
+    data-go-to-slide-label='{{ i18n "catchledger.a11y.go_to_slide" }}'
+    data-audio-on='{{ i18n "catchledger.video.audio_on" }}'
+    data-audio-off='{{ i18n "catchledger.video.audio_off" }}'
+    data-enable-audio='{{ i18n "catchledger.a11y.enable_audio" }}'
+    data-disable-audio='{{ i18n "catchledger.a11y.disable_audio" }}'
+    >
+    <div class="catchledger-bg" aria-hidden="true">
+      <div class="catchledger-bg-base" id="bg-base"></div>
+      <div class="catchledger-bg-fade" id="bg-fade"></div>
+    </div>
+
+    <div class="catchledger-overlay" aria-hidden="true">
+      <img
+        src="{{ "img/catchledger-carousel-overlay.png" | relURL }}"
+        alt=""
+        class="catchledger-overlay-art"
+      >
+    </div>
+
+    <section class="catchledger-hero">
+      <div class="catchledger-copy">
+        <p class="eyebrow">{{ i18n "catchledger.hero.eyebrow" }}</p>
+        <h1 class="catchledger-title">{{ .Title }}</h1>
+
+        {{ with .Description }}
+          <p class="catchledger-lead">{{ . }}</p>
+        {{ end }}
+
+        <p class="catchledger-sublead">
+          {{ i18n "catchledger.hero.sublead" }}
+        </p>
+
+        <div class="store-badges">
+          <a
+            href="https://apps.apple.com/us/app/catchledger/id6760839496"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="{{ i18n "catchledger.store.apple_alt" }}"
+          >
+            <img
+              src="{{ "img/Download_on_the_App_Store_Badge.png" | relURL }}"
+              alt="{{ i18n "catchledger.store.apple_alt" }}"
+              class="store-badge-img"
+            >
+          </a>
+
+          <a
+            href="https://play.google.com/store/apps/details?id=com.hambungle.catchledger"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="{{ i18n "catchledger.store.google_alt" }}"
+          >
+            <img
+              src="{{ "img/get-it-on-google-play-download.png" | relURL }}"
+              alt="{{ i18n "catchledger.store.google_alt" }}"
+              class="store-badge-img"
+            >
+          </a>
+        </div>
+      </div>
+
+      <div class="catchledger-stage">
+        <div class="catchledger-carousel" id="catchledger-carousel">
+          <button class="catchledger-nav catchledger-nav--prev" type="button" aria-label="{{ i18n "catchledger.a11y.prev_slide" }}">
+            ‹
+          </button>
+
+          <div class="catchledger-track-wrap" id="catchledger-track-wrap">
+            <div class="catchledger-track" id="catchledger-track">
+                <article class="catchledger-card is-active" data-theme="night" data-index="0">
+                    <div class="catchledger-device catchledger-device--video">
+                      <video
+                        id="catchledger-preview-video"
+                        class="catchledger-media"
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        preload="metadata"
+                        poster="{{ "img/catchledger-dashboard.jpg" | relURL }}"
+                      >
+                        <source src="{{ "video/catch_ledger_app_preview_trimmed.mp4" | relURL }}" type="video/mp4">
+                      </video>
+                  
+                      <button
+                        type="button"
+                        class="catchledger-video-audio-toggle"
+                        id="catchledger-video-audio-toggle"
+                        aria-label="{{ i18n "catchledger.a11y.enable_audio" }}"
+                        aria-pressed="false"
+                      >
+                        <span class="catchledger-video-audio-toggle__icon" aria-hidden="true">🔇</span>
+                        <span class="catchledger-video-audio-toggle__label">{{ i18n "catchledger.video.audio_off" }}</span>
+                      </button>
+                    </div>
+                  
+                    <p class="catchledger-caption">{{ i18n "catchledger.carousel.preview" }}</p>
+                  </article>
+
+              <article class="catchledger-card" data-theme="early" data-index="1">
+                <div class="catchledger-device">
+                  <img src="{{ "img/catchledger-dashboard.jpg" | relURL }}" alt="{{ i18n "catchledger.carousel.dashboard" }}" class="catchledger-media" loading="lazy">
+                </div>
+                <p class="catchledger-caption">{{ i18n "catchledger.carousel.dashboard" }}</p>
+              </article>
+
+              <article class="catchledger-card" data-theme="dawn" data-index="2">
+                <div class="catchledger-device">
+                  <img src="{{ "img/catchledger-log-catch.jpg" | relURL }}" alt="{{ i18n "catchledger.carousel.log_catch" }}" class="catchledger-media" loading="lazy">
+                </div>
+                <p class="catchledger-caption">{{ i18n "catchledger.carousel.log_catch" }}</p>
+              </article>
+
+              <article class="catchledger-card" data-theme="sunrise" data-index="3">
+                <div class="catchledger-device">
+                  <img src="{{ "img/catchledger-inventory.jpg" | relURL }}" alt="{{ i18n "catchledger.carousel.inventory" }}" class="catchledger-media" loading="lazy">
+                </div>
+                <p class="catchledger-caption">{{ i18n "catchledger.carousel.inventory" }}</p>
+              </article>
+
+              <article class="catchledger-card" data-theme="day" data-index="4">
+                <div class="catchledger-device">
+                  <img src="{{ "img/catchledger-sales-entry.jpg" | relURL }}" alt="{{ i18n "catchledger.carousel.sales" }}" class="catchledger-media" loading="lazy">
+                </div>
+                <p class="catchledger-caption">{{ i18n "catchledger.carousel.sales" }}</p>
+              </article>
+
+              <article class="catchledger-card" data-theme="golden" data-index="5">
+                <div class="catchledger-device">
+                  <img src="{{ "img/catchledger-profit.jpg" | relURL }}" alt="{{ i18n "catchledger.carousel.profit" }}" class="catchledger-media" loading="lazy">
+                </div>
+                <p class="catchledger-caption">{{ i18n "catchledger.carousel.profit" }}</p>
+              </article>
+
+              <article class="catchledger-card" data-theme="clear" data-index="6">
+                <div class="catchledger-device">
+                  <img src="{{ "img/catchledger-reports.jpg" | relURL }}" alt="{{ i18n "catchledger.carousel.reports" }}" class="catchledger-media" loading="lazy">
+                </div>
+                <p class="catchledger-caption">{{ i18n "catchledger.carousel.reports" }}</p>
+              </article>
+            </div>
+          </div>
+
+          <button class="catchledger-nav catchledger-nav--next" type="button" aria-label="{{ i18n "catchledger.a11y.next_slide" }}">
+            ›
+          </button>
+        </div>
+
+        <div class="catchledger-dots" id="catchledger-dots" aria-label="{{ i18n "catchledger.a11y.pagination" }}"></div>
+      </div>
+    </section>
+
+    <section class="catchledger-feature-band">
+      <div class="catchledger-feature-card">
+        <span class="catchledger-feature-kicker">{{ i18n "catchledger.features.inventory.kicker" }}</span>
+        <h2>{{ i18n "catchledger.features.inventory.title" }}</h2>
+        <p>{{ i18n "catchledger.features.inventory.body" }}</p>
+      </div>
+
+      <div class="catchledger-feature-card">
+        <span class="catchledger-feature-kicker">{{ i18n "catchledger.features.sales.kicker" }}</span>
+        <h2>{{ i18n "catchledger.features.sales.title" }}</h2>
+        <p>{{ i18n "catchledger.features.sales.body" }}</p>
+      </div>
+
+      <div class="catchledger-feature-card">
+        <span class="catchledger-feature-kicker">{{ i18n "catchledger.features.reports.kicker" }}</span>
+        <h2>{{ i18n "catchledger.features.reports.title" }}</h2>
+        <p>{{ i18n "catchledger.features.reports.body" }}</p>
+      </div>
+    </section>
+
+    <section class="catchledger-workflow page-card">
+      <div class="catchledger-workflow-grid">
+        <div class="catchledger-step">
+          <div class="catchledger-step-num">1</div>
+          <h3>{{ i18n "catchledger.workflow.step1.title" }}</h3>
+          <p>{{ i18n "catchledger.workflow.step1.body" }}</p>
+        </div>
+
+        <div class="catchledger-step">
+          <div class="catchledger-step-num">2</div>
+          <h3>{{ i18n "catchledger.workflow.step2.title" }}</h3>
+          <p>{{ i18n "catchledger.workflow.step2.body" }}</p>
+        </div>
+
+        <div class="catchledger-step">
+          <div class="catchledger-step-num">3</div>
+          <h3>{{ i18n "catchledger.workflow.step3.title" }}</h3>
+          <p>{{ i18n "catchledger.workflow.step3.body" }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="catchledger-content page-card">
+      <div class="content">
+        {{ .Content }}
+      </div>
+    </section>
+
+    <section class="catchledger-cta page-card">
+      <h2>{{ i18n "catchledger.cta.title" }}</h2>
+      <p>{{ i18n "catchledger.cta.body" }}</p>
+
+      <div class="store-badges store-badges--center">
+        <a
+          href="https://apps.apple.com/us/app/catchledger/id6760839496"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="{{ i18n "catchledger.store.apple_alt" }}"
+        >
+          <img
+            src="{{ "img/Download_on_the_App_Store_Badge.png" | relURL }}"
+            alt="{{ i18n "catchledger.store.apple_alt" }}"
+            class="store-badge-img"
+          >
+        </a>
+
+        <a
+          href="https://play.google.com/store/apps/details?id=com.hambungle.catchledger"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="{{ i18n "catchledger.store.google_alt" }}"
+        >
+          <img
+            src="{{ "img/get-it-on-google-play-download.png" | relURL }}"
+            alt="{{ i18n "catchledger.store.google_alt" }}"
+            class="store-badge-img"
+          >
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (() => {
+      const DEBUG_BG = false;
+  
+      const shell = document.getElementById('catchledger-shell');
+      const goToSlideLabelTemplate = shell.dataset.goToSlideLabel || 'Go to slide __INDEX__';
+      const trackWrap = document.getElementById('catchledger-track-wrap');
+      const track = document.getElementById('catchledger-track');
+      const cards = Array.from(track.querySelectorAll('.catchledger-card'));
+      const prev = shell.querySelector('.catchledger-nav--prev');
+      const next = shell.querySelector('.catchledger-nav--next');
+      const dotsWrap = document.getElementById('catchledger-dots');
+  
+      const bgBase = document.getElementById('bg-base');
+      const bgFade = document.getElementById('bg-fade');
+  
+      const previewVideo = document.getElementById('catchledger-preview-video');
+      const audioToggle = document.getElementById('catchledger-video-audio-toggle');
+  
+      if (!track || !cards.length || !trackWrap || !bgBase || !bgFade) return;
+  
+      const themes = {
+        night: 'linear-gradient(180deg, #6f8faa 0%, #c4d1db 46%, #e6cfbb 100%)',
+        early: 'linear-gradient(180deg, #7d9bb4 0%, #ccd7df 46%, #e5cfbc 100%)',
+        dawn: 'linear-gradient(180deg, #8fabc1 0%, #d6dee3 46%, #e7d1be 100%)',
+        sunrise: 'linear-gradient(180deg, #b6c5d0 0%, #e4ded8 48%, #e4c7a8 100%)',
+        day: 'linear-gradient(180deg, #d2d8d8 0%, #ece0d1 48%, #ddb98f 100%)',
+        golden: 'linear-gradient(180deg, #eee2cf 0%, #efd5ae 52%, #c99663 100%)',
+        clear: 'linear-gradient(180deg, #f3eadb 0%, #efddc3 52%, #d8b48b 100%)'
+      };
+  
+      const audioOnLabel = shell.dataset.audioOn || 'Audio on';
+      const audioOffLabel = shell.dataset.audioOff || 'Audio off';
+      const enableAudioLabel = shell.dataset.enableAudio || 'Enable video audio';
+      const disableAudioLabel = shell.dataset.disableAudio || 'Disable video audio';
+  
+      const PREVIEW_SLIDE_INDEX = 0;
+  
+      let activeIndex = 0;
+      let activeTheme = cards[0].dataset.theme || 'night';
+      let scrollEndTimer = null;
+      let fadeResetTimer = null;
+      let userWantsAudio = false;
+      let wasPreviewSlideActive = true;
+  
+      bgBase.style.background = themes[activeTheme] || themes.night;
+      bgFade.style.background = themes[activeTheme] || themes.night;
+      bgFade.style.opacity = '0';
+  
+      cards.forEach((card, index) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'catchledger-dot';
+        dot.setAttribute('aria-label', goToSlideLabelTemplate.replace('__INDEX__', String(index + 1)));
+        dot.addEventListener('click', () => scrollToCard(index));
+        dotsWrap.appendChild(dot);
+      });
+  
+      const dots = Array.from(dotsWrap.querySelectorAll('.catchledger-dot'));
+  
+      function renderActiveState(index) {
+        cards.forEach((card, i) => {
+          card.classList.toggle('is-active', i === index);
+          card.classList.toggle('is-left', i < index);
+          card.classList.toggle('is-right', i > index);
+        });
+  
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('is-active', i === index);
+        });
+      }
+  
+      function setBackground(themeKey) {
+        if (themeKey === activeTheme) return;
+  
+        const oldBg = themes[activeTheme] || themes.night;
+        const nextBg = themes[themeKey] || themes.night;
+  
+        if (DEBUG_BG) {
+          console.log('theme change', { from: activeTheme, to: themeKey });
+        }
+  
+        clearTimeout(fadeResetTimer);
+  
+        bgBase.style.background = nextBg;
+  
+        bgFade.style.transition = 'none';
+        bgFade.style.background = oldBg;
+        bgFade.style.opacity = '1';
+  
+        void bgFade.offsetWidth;
+  
+        requestAnimationFrame(() => {
+          bgFade.style.transition = 'opacity 1100ms cubic-bezier(0.22, 1, 0.36, 1)';
+          bgFade.style.opacity = '0';
+        });
+  
+        fadeResetTimer = setTimeout(() => {
+          bgFade.style.transition = 'none';
+          bgFade.style.opacity = '0';
+          bgFade.style.background = nextBg;
+        }, 1150);
+  
+        activeTheme = themeKey;
+      }
+  
+      function syncVideoAudioUi() {
+        if (!previewVideo || !audioToggle) return;
+  
+        const iconEl = audioToggle.querySelector('.catchledger-video-audio-toggle__icon');
+        const labelEl = audioToggle.querySelector('.catchledger-video-audio-toggle__label');
+        const isMuted = previewVideo.muted;
+  
+        if (iconEl) iconEl.textContent = isMuted ? '🔇' : '🔊';
+        if (labelEl) labelEl.textContent = isMuted ? audioOffLabel : audioOnLabel;
+  
+        audioToggle.setAttribute('aria-pressed', String(!isMuted));
+        audioToggle.setAttribute('aria-label', isMuted ? enableAudioLabel : disableAudioLabel);
+      }
+  
+      function handlePreviewSlideAudio(index) {
+        if (!previewVideo) return;
+  
+        const isPreviewSlideActive = index === PREVIEW_SLIDE_INDEX;
+  
+        if (wasPreviewSlideActive && !isPreviewSlideActive) {
+          previewVideo.muted = true;
+          syncVideoAudioUi();
+        }
+  
+        if (!wasPreviewSlideActive && isPreviewSlideActive) {
+          previewVideo.muted = !userWantsAudio;
+          syncVideoAudioUi();
+  
+          const playPromise = previewVideo.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => {});
+          }
+        }
+  
+        wasPreviewSlideActive = isPreviewSlideActive;
+      }
+  
+      function updateActive(index) {
+        if (index === activeIndex) return;
+  
+        activeIndex = index;
+        renderActiveState(index);
+        handlePreviewSlideAudio(index);
+  
+        const theme = cards[index].dataset.theme || 'night';
+  
+        if (DEBUG_BG) {
+          console.log('updateActive', { index, theme });
+        }
+  
+        setBackground(theme);
+      }
+  
+      function getClosestCardIndex() {
+        const wrapRect = trackWrap.getBoundingClientRect();
+        const wrapCenter = wrapRect.left + wrapRect.width / 2;
+  
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+  
+        cards.forEach((card, index) => {
+          const rect = card.getBoundingClientRect();
+          const cardCenter = rect.left + rect.width / 2;
+          const distance = Math.abs(cardCenter - wrapCenter);
+  
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
+          }
+        });
+  
+        return closestIndex;
+      }
+  
+      function handleScroll() {
+        clearTimeout(scrollEndTimer);
+        scrollEndTimer = setTimeout(() => {
+          const index = getClosestCardIndex();
+          if (DEBUG_BG) {
+            console.log('scroll settled on index', index);
+          }
+          updateActive(index);
+        }, 90);
+      }
+  
+      function scrollToCard(index) {
+        const clamped = Math.max(0, Math.min(cards.length - 1, index));
+  
+        cards[clamped].scrollIntoView({
+          behavior: 'smooth',
+          inline: 'center',
+          block: 'nearest'
+        });
+  
+        clearTimeout(scrollEndTimer);
+        scrollEndTimer = setTimeout(() => {
+          updateActive(clamped);
+        }, 220);
+      }
+  
+      if (previewVideo && audioToggle) {
+        previewVideo.muted = true;
+        previewVideo.volume = 1;
+        syncVideoAudioUi();
+  
+        audioToggle.addEventListener('click', () => {
+          userWantsAudio = !userWantsAudio;
+          previewVideo.muted = !userWantsAudio;
+          syncVideoAudioUi();
+  
+          const playPromise = previewVideo.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => {});
+          }
+        });
+      }
+  
+      trackWrap.addEventListener('scroll', handleScroll, { passive: true });
+      prev.addEventListener('click', () => scrollToCard(activeIndex - 1));
+      next.addEventListener('click', () => scrollToCard(activeIndex + 1));
+  
+      renderActiveState(0);
+      handlePreviewSlideAudio(0);
+    })();
+  </script>
+{{ end }}

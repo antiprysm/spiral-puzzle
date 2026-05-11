@@ -2,7 +2,7 @@
 title: "What Should You Track in a Fishing Log?"
 description: "Learn what to track in a fishing log, including species, date, location, bait, gear, weather, water conditions, photos, and notes for next time."
 date: 2026-05-11
-draft: false
+draft: true
 type: "apps/catchledger/blog"
 keywords:
   - fishing log
