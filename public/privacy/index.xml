@@ -1,23 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Privacy Policy on Hambungle</title><link>https://hambungle.com/privacy/</link><description>Recent content in Privacy Policy on Hambungle</description><generator>Hugo</generator><language>en-US</language><atom:link href="https://hambungle.com/privacy/index.xml" rel="self" type="application/rss+xml"/><item><title>Privacy Policy — CatchLedger</title><link>https://hambungle.com/privacy/catchledger/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hambungle.com/privacy/catchledger/</guid><description>&lt;p>&lt;strong>Effective Date:&lt;/strong> 01/15/25&lt;br>
-&lt;em>Last updated: 03/31/25&lt;/em>&lt;/p>
-&lt;h2 id="information-we-collect">Information We Collect&lt;/h2>
-&lt;p>CatchLedger is designed to help users track catches and trip stats. We collect only the data needed to provide that functionality.&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;strong>Account or Identifier Information (Optional):&lt;/strong>&lt;br>
-If you choose to create or sign in to an account, we store the identifier needed to keep your entries synced.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>Catch and Trip Entries (User Provided):&lt;/strong>&lt;br>
-Information you enter (such as fish species, dates, notes, and measurements) is stored so it can be displayed back to you.&lt;/p></description></item><item><title>Privacy Policy — Spiral Word Puzzle</title><link>https://hambungle.com/privacy/spiral-word-puzzle/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hambungle.com/privacy/spiral-word-puzzle/</guid><description>&lt;p>&lt;strong>Effective Date:&lt;/strong> 01/15/25&lt;br>
-&lt;em>Last updated: 03/31/25&lt;/em>&lt;/p>
-&lt;h2 id="information-we-collect">Information We Collect&lt;/h2>
-&lt;p>Spiral Word Puzzle collects a limited amount of user information solely for leaderboard functionality.&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;strong>Authentication Information (Required):&lt;/strong>&lt;br>
-When submitting a high score, we collect a username or unique identifier to associate scores with players.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>Country Location (Optional):&lt;/strong>&lt;br>
-You may optionally choose your country from a list when submitting a high score. This is not automatically collected and is only stored if selected by you.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Privacy Policy on Hambungle</title>
+    <link>http://localhost:1313/privacy/</link>
+    <description>Recent content in Privacy Policy on Hambungle</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <atom:link href="http://localhost:1313/privacy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Privacy Policy — CatchLedger</title>
+      <link>http://localhost:1313/privacy/catchledger/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/privacy/catchledger/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Effective Date:&lt;/strong&gt; 01/15/25&lt;br&gt;&#xA;&lt;em&gt;Last updated: 03/31/25&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;information-we-collect&#34;&gt;Information We Collect&lt;/h2&gt;&#xA;&lt;p&gt;CatchLedger is designed to help users track catches and trip stats. We collect only the data needed to provide that functionality.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Account or Identifier Information (Optional):&lt;/strong&gt;&lt;br&gt;&#xA;If you choose to create or sign in to an account, we store the identifier needed to keep your entries synced.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Catch and Trip Entries (User Provided):&lt;/strong&gt;&lt;br&gt;&#xA;Information you enter (such as fish species, dates, notes, and measurements) is stored so it can be displayed back to you.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Privacy Policy — Spiral Word Puzzle</title>
+      <link>http://localhost:1313/privacy/spiral-word-puzzle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/privacy/spiral-word-puzzle/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Effective Date:&lt;/strong&gt; 01/15/25&lt;br&gt;&#xA;&lt;em&gt;Last updated: 03/31/25&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;information-we-collect&#34;&gt;Information We Collect&lt;/h2&gt;&#xA;&lt;p&gt;Spiral Word Puzzle collects a limited amount of user information solely for leaderboard functionality.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Authentication Information (Required):&lt;/strong&gt;&lt;br&gt;&#xA;When submitting a high score, we collect a username or unique identifier to associate scores with players.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Country Location (Optional):&lt;/strong&gt;&lt;br&gt;&#xA;You may optionally choose your country from a list when submitting a high score. This is not automatically collected and is only stored if selected by you.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
